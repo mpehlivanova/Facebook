@@ -43,9 +43,10 @@ import wather from "../components-css/imgLeftBar/wather.png";
 const useStyles = makeStyles({
   divFon: {
     width: "300px",
-    background: "#f2f3f5",
+    background: "#F2F3F5",
     padding: "20px",
-    marginTop:"51px",
+    marginTop:"1px",
+    borderBottom: "1px solid #a1a1a1",
   
   },
   img: {
@@ -56,6 +57,13 @@ const useStyles = makeStyles({
   list:{
     borderRadius:'10px'
     
+  },
+  // text:{
+  //   fontSize: '0.5rem',
+    
+  // }
+  text: {
+    fontSize: 'xx-small',
   }
 
 });
@@ -73,14 +81,14 @@ export default function LeftSideBar() {
           <ListItemIcon >
             <img className={classes.img} src = {myProfil} alt="icon my profil" ></img>
           </ListItemIcon>
-          <ListItemText primary="{your name}" />
+          <ListItemText  primary="{your name}" />
         </ListItemButton>
 
         <ListItemButton>
           <ListItemIcon>
           <img src = {friends} alt="icon friends" ></img>
           </ListItemIcon>
-          <ListItemText primary="Friends" />
+          <ListItemText  primary="Friends" />
         </ListItemButton>
 
         <ListItemButton>
