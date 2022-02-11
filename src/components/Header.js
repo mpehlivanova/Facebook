@@ -1,5 +1,5 @@
 import React from "react";
-import "../components-css/header.modules.css"
+import "../components-css/Header.module.css"
 import SearchIcon from '@mui/icons-material/Search';
 import HomeIcon from '@mui/icons-material/Home'
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
