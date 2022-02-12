@@ -1,16 +1,12 @@
 import React from "react";
-
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import Collapse from "@mui/material/Collapse";
-
 import { makeStyles } from "@mui/styles";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-
-
 import myProfil from "../components-css/imgLeftBar/guest.png";
 import memories from "../components-css/imgLeftBar/memoirs.png";
 import friends from "../components-css/imgLeftBar/friends.png"
@@ -37,239 +33,259 @@ import recentAd from "../components-css/imgLeftBar/recentAd.png";
 import translate from "../components-css/imgLeftBar/translation.png";
 import watch from "../components-css/imgLeftBar/watch.png";
 import wather from "../components-css/imgLeftBar/wather.png";
+import "../components-css/LeftSidebar.css";
 
 
 
 const useStyles = makeStyles({
-  divFon: {
-    width: "300px",
+  container: {
+    width: "25%",
     background: "#F2F3F5",
     padding: "20px",
-    marginTop:"1px",
-    borderBottom: "1px solid #a1a1a1",
+  
+   
   
   },
   img: {
-    width: "50px",
+    width: "30px",
     borderRadius:"50%",
-
+  },
+  
+  
+  text: {
+    fontSize: 'small',
+    fontFamily:"Segoe UI Historic, Helvetica, Arial"
   },
   list:{
-    borderRadius:'10px'
-    
+    borderBottom: "1px solid #cfd0d1",
+   
   },
-  // text:{
-  //   fontSize: '0.5rem',
-    
-  // }
-  text: {
-    fontSize: 'xx-small',
+  shortcuts:{
+    width: "50px",
+    borderRadius:"5px",
+    marginRight:"20px",
   }
 
 });
 
-export default function LeftSideBar() {
+export default function LeftSidebar() {
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();
   const handleClick = () => {
     setOpen(!open);
   };
   return (
-    <div className={classes.divFon}>
-      <List>
-        <ListItemButton className={classes.list}>
+    <div className={classes.container}>
+
+      <List className={classes.list}>
+        <ListItemButton className={classes.text}>
           <ListItemIcon >
             <img className={classes.img} src = {myProfil} alt="icon my profil" ></img>
           </ListItemIcon>
-          <ListItemText  primary="{your name}" />
+          Your name
+        </ListItemButton>
+        <ListItemButton className={classes.text}>
+          <ListItemIcon >
+          <img className={classes.img} src = {friends} alt="icon friends" ></img>
+          </ListItemIcon>
+          Friends
+
         </ListItemButton>
 
-        <ListItemButton>
+        <ListItemButton className={classes.text}>
           <ListItemIcon>
-          <img src = {friends} alt="icon friends" ></img>
+          <img width="30px" src = {memories} alt="icon memories" ></img>
           </ListItemIcon>
-          <ListItemText  primary="Friends" />
+          Memories
         </ListItemButton>
 
-        <ListItemButton>
+        <ListItemButton className={classes.text}>
           <ListItemIcon>
-          <img src = {memories} alt="icon memories" ></img>
+          <img width="30px" src = {save} alt="icon save" ></img>
           </ListItemIcon>
-          <ListItemText primary="Memories" />
+          Saved
         </ListItemButton>
 
-        <ListItemButton>
+        <ListItemButton className={classes.text}>
           <ListItemIcon>
-          <img src = {save} alt="icon save" ></img>
+          <img width="30px" src = {grups} alt="icon grups" ></img>
           </ListItemIcon>
-          <ListItemText primary="Saved" />
+          Grups
         </ListItemButton>
 
-        <ListItemButton>
+        <ListItemButton className={classes.text}>
           <ListItemIcon>
-          <img src = {grups} alt="icon grups" ></img>
+          <img width="30px"  src = {pages} alt="icon pages" ></img>
           </ListItemIcon>
-          <ListItemText primary="Grups" />
+          Pages
         </ListItemButton>
 
-        <ListItemButton>
+        <ListItemButton className={classes.text} onClick={handleClick}>
           <ListItemIcon>
-          <img src = {pages} alt="icon pages" ></img>
+          <ArrowDropDownIcon/>
           </ListItemIcon>
-          <ListItemText primary="Pages" />
-        </ListItemButton>
-
-        <ListItemButton onClick={handleClick}>
-          <ListItemIcon>
-          </ListItemIcon>
-          <ListItemText primary="See more" />
+          See more
           {open ? <ExpandLess /> :<ExpandMore/>}
         </ListItemButton>
 
         <Collapse in={open}>
           <List>
-            <ListItemButton>
+            <ListItemButton className={classes.text}>
               <ListItemIcon>
-              <img src = {publicity} alt="icon public" ></img>
+              <img width="30px"  src = {publicity} alt="icon public" ></img>
               </ListItemIcon>
-              <ListItemText primary="Ad Centre" />
+              Ad Centre
             </ListItemButton>
 
-            <ListItemButton>
+            <ListItemButton className={classes.text}>
               <ListItemIcon>
-              <img src = {adMasanger} alt="icon ads masanger" ></img>
+              <img width="30px"  src = {adMasanger} alt="icon ads masanger" ></img>
               </ListItemIcon>
-              <ListItemText primary="Ads Masanger" />
+              Ads Masanger
             </ListItemButton>
 
-            <ListItemButton>
+            <ListItemButton className={classes.text}>
               <ListItemIcon>
-              <img src = {clima} alt="icon clima centre" ></img>
+              <img width="30px"  src = {clima} alt="icon clima centre" ></img>
               </ListItemIcon>
-              <ListItemText primary="Clima Soience Centre" />
+              Clima Soience Centre
             </ListItemButton>
 
-            <ListItemButton>
+            <ListItemButton className={classes.text}>
               <ListItemIcon>
-              <img src = {comminity} alt="icon community help" ></img>
+              <img width="30px"  src = {comminity} alt="icon community help" ></img>
               </ListItemIcon>
-              <ListItemText primary="Community Help" />
+              Community Help
             </ListItemButton>
 
-            <ListItemButton>
+            <ListItemButton className={classes.text}>
               <ListItemIcon>
-              <img src = {covid} alt="icon COVID-19 " ></img>
+              <img width="30px"  src = {covid} alt="icon COVID-19 " ></img>
               </ListItemIcon>
-              <ListItemText primary="COVID-19 Information Centre" />
+              COVID-19 Information Centre
             </ListItemButton>
 
-            <ListItemButton>
+            <ListItemButton className={classes.text}>
               <ListItemIcon>
-              <img src = {health} alt="icon health" ></img>
+              <img width="30px"  src = {health} alt="icon health" ></img>
               </ListItemIcon>
-              <ListItemText primary="Emotion Health" />
+              Emotion Health
             </ListItemButton>
 
-            <ListItemButton>
+            <ListItemButton className={classes.text}>
               <ListItemIcon>
-              <img src = {events} alt="icon events" ></img>
+              <img width="30px"  src = {events} alt="icon events" ></img>
               </ListItemIcon>
-              <ListItemText primary="Events" />
+              Events
             </ListItemButton>
 
-            <ListItemButton>
+            <ListItemButton className={classes.text}>
               <ListItemIcon>
-              <img src = {pay} alt="icon pay" ></img>
+              <img width="30px"  src = {pay} alt="icon pay" ></img>
               </ListItemIcon>
-              <ListItemText primary="Facebook Pay" />
+              Facebook Pay
             </ListItemButton>
 
-            <ListItemButton>
+            <ListItemButton className={classes.text}>
               <ListItemIcon>
-              <img src = {favorites} alt="icon favorites" ></img>
+              <img width="30px"  src = {favorites} alt="icon favorites" ></img>
               </ListItemIcon>
-              <ListItemText primary="Favorites" />
+              Favorites
             </ListItemButton>
 
-            <ListItemButton>
+            <ListItemButton className={classes.text}>
               <ListItemIcon>
-              <img src = {fundraisers} alt="icon fundraisers" ></img>
+              <img width="30px"  src = {fundraisers} alt="icon fundraisers" ></img>
               </ListItemIcon>
-              <ListItemText primary="Fundraisers" />
+              Fundraisers
             </ListItemButton>
 
-            <ListItemButton>
+            <ListItemButton className={classes.text}>
               <ListItemIcon>
-              <img src = {video} alt="icon video" ></img>
+              <img width="30px"  src = {video} alt="icon video" ></img>
               </ListItemIcon>
-              <ListItemText primary="Caming Video" />
+              Caming Video
             </ListItemButton>
 
-            <ListItemButton>
+            <ListItemButton className={classes.text}>
               <ListItemIcon>
-              <img src = {liveVideo} alt="icon live video" ></img>
+              <img width="30px"  src = {liveVideo} alt="icon live video" ></img>
               </ListItemIcon>
-              <ListItemText primary="Live videos" />
+              Live videos
             </ListItemButton>
 
-            <ListItemButton>
+            <ListItemButton className={classes.text}>
               <ListItemIcon>
-              <img src = {marketPlace} alt="icon market place" ></img>
+              <img width="30px"  src = {marketPlace} alt="icon market place" ></img>
               </ListItemIcon>
-              <ListItemText primary="Marketplace" />
+              Marketplace
             </ListItemButton>
 
-            <ListItemButton>
+            <ListItemButton className={classes.text}>
               <ListItemIcon>
-              <img src = {masanger} alt="icon masanger" ></img>
+              <img width="30px"  src = {masanger} alt="icon masanger" ></img>
               </ListItemIcon>
-              <ListItemText primary="Masanger" />
+              Masanger
             </ListItemButton>
 
-            <ListItemButton>
+            <ListItemButton className={classes.text}>
               <ListItemIcon>
-              <img src = {recent} alt="icon recent" ></img>
+              <img width="30px"  src = {recent} alt="icon recent" ></img>
               </ListItemIcon>
-              <ListItemText primary="Most recent" />
+              Most recent
             </ListItemButton>
 
-            <ListItemButton>
+            <ListItemButton className={classes.text}>
               <ListItemIcon>
-              <img src = {game} alt="icon game" ></img>
+              <img width="30px"  src = {game} alt="icon game" ></img>
               </ListItemIcon>
-              <ListItemText primary="Play games" />
+              Play games
             </ListItemButton>
 
-            <ListItemButton>
+            <ListItemButton className={classes.text}>
               <ListItemIcon>
-              <img src = {recentAd} alt="icon ad activity" ></img>
+              <img width="30px"  src = {recentAd} alt="icon ad activity" ></img>
               </ListItemIcon>
-              <ListItemText primary="Recent ad activity" />
+              Recent ad activity
             </ListItemButton>
 
-            <ListItemButton>
+            <ListItemButton className={classes.text}>
               <ListItemIcon>
-              <img src = {translate} alt="icon translate" ></img>
+              <img width="30px"  src = {translate} alt="icon translate" ></img>
               </ListItemIcon>
-              <ListItemText primary="Translate Facebook" />
+              Translate Facebook
             </ListItemButton>
 
-            <ListItemButton>
+            <ListItemButton className={classes.text}>
               <ListItemIcon>
-              <img src = {watch} alt="icon watch" ></img>
+              <img width="30px"  src = {watch} alt="icon watch" ></img>
               </ListItemIcon>
-              <ListItemText primary="Watch" />
+              Watch
             </ListItemButton>
 
-            <ListItemButton>
+            <ListItemButton className={classes.text}>
               <ListItemIcon>
-                <img src={wather} alt="icon for wather"></img>
+                <img width="30px"  src={wather} alt="icon for wather"></img>
               </ListItemIcon>
-              <ListItemText primary="Wather" />
+              Wather
             </ListItemButton>
           </List>
         </Collapse>
       </List>
+      <div >
+      <p marginTop="10px">Your shortcuts</p>
+      <ListItemButton >
+      <img className={classes.shortcuts}  src="https://www.capitan.bg/wp-content/uploads/2018/09/koza.jpg" alt="kozi"></img>
+      <p className={classes.text}> Продаваме кози на изгодно.</p>
+      </ListItemButton>
+      
+      <ListItemButton >
+      <img className={classes.shortcuts}  src="https://www.capitan.bg/wp-content/uploads/2018/09/koza.jpg" alt="kozi"></img>
+      <p className={classes.text}> Продаваме кози на изгодно.</p>
+      </ListItemButton>
+     
+      </div>
+      
     </div>
   );
 }
