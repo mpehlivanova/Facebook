@@ -84,12 +84,12 @@ export default function LeftSidebar() {
           </ListItemIcon>
           Your name
         </ListItemButton>
-
         <ListItemButton className={classes.text}>
           <ListItemIcon >
           <img className={classes.img} src = {friends} alt="icon friends" ></img>
           </ListItemIcon>
           Friends
+
         </ListItemButton>
 
         <ListItemButton className={classes.text}>

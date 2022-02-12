@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Login from './components/Login';
 import Main from "./components/Main.js"
 
+
 function App() {
   const user = null;
   return (
@@ -14,10 +15,12 @@ function App() {
           <div>
             <Header />
             <div className="app__body">
+
             <Main/>
             </div>
           </div>
          )};  
+
     </div>
     
     </>

@@ -9,8 +9,9 @@
     box-shadow: 0px 5px 8px -9px rgb(0,0,0,0.75);
     align-items: baseline;
     align-items:center;
+
     min-width: 885px;
-    
+
 }
 
 .left_header > img{
@@ -40,6 +41,8 @@
 }
 
 .header_inst:hover{
+
  color: #2e81f4
+
 
 }
