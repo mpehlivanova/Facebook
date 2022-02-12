@@ -9,9 +9,12 @@ function App() {
   const user = null;
   return (
     <>
-    <div className="app">
-      {!user ? (<Login />) :
-        (
+      <div className="app">
+        {!user ? (
+          <>
+            <Login/>
+          </>
+        ) : (
           <div>
             <Header />
             <div className="app__body">
@@ -20,12 +23,10 @@ function App() {
               {/* <RightSidebar /> */}
             </div>
           </div>
-          
-         )}     
-    </div>
-    
+        )}
+      </div>
     </>
-  )}
+  );}
 
 export default App;
 
