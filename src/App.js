@@ -1,9 +1,9 @@
+
 import React from "react";
 import Header from "./components/Header";
 import Login from './components/Login';
-import LeftSidebar from './components/LeftSidebar';
-// import RightSidebar from './components/RightSidebar';
-// import NewsFeed from './components/NewsFeed';
+import Main from "./components/Main.js"
+
 
 function App() {
   const user = null;
@@ -18,9 +18,8 @@ function App() {
           <div>
             <Header />
             <div className="app__body">
-              <LeftSidebar />
-              {/* <NewsFeed /> */}
-              {/* <RightSidebar /> */}
+
+            <Main/>
             </div>
           </div>
         )}
