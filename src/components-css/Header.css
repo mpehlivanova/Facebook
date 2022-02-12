@@ -11,20 +11,16 @@
     align-items:center;
     min-width: 885px;
     
-    
-    
 }
-
 
 .left_header > img{
-    height: 40px;
-    
+    height: 40px;  
 }
+
 .left_header{
     display: flex;
     justify-content: space-evenly;
 }
-
 
 .header_input{
     display: flex;
@@ -35,16 +31,15 @@
     border-radius: 33px;
     margin-bottom: 10px;
     width:250px
- 
 }
+
 .header_input >input{
     border: none;
     background-color: #eff2f5;
     outline-width: 0;
 }
 
-
 .header_inst:hover{
  color: #2e81f4
- 
+
 }

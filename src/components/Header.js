@@ -1,8 +1,6 @@
 import React from "react";
-
+import "../components-css/Header.css"
 import { makeStyles } from "@mui/styles";
-
-import "../components-css/header.modules.css"
 import SearchIcon from '@mui/icons-material/Search';
 import HomeIcon from '@mui/icons-material/Home'
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
@@ -20,8 +18,7 @@ import Button from '@mui/material/Button'
 
 const useStyles = makeStyles({
     iconCentrum: {
-      scale:"1.2",
-      
+        color: "#777",
     
     },
     iconRight: {
@@ -47,19 +44,17 @@ function Header(){
 
         <div className="header_input">
             <SearchIcon/>
-        <input type="text"></input>
+        <input type="text" placeholder="Search Facebook"></input>
         </div>
         </div>
 
         <div className="central_header"> 
             <div className={classes.centrum}>
+
             <Button className={classes.opasy}  color="inherit"  ><HomeIcon className={classes.iconCentrum} /></Button>
             <Button className={classes.opasy}  color="inherit" ><StorefrontOutlinedIcon className={classes.iconCentrum} /></Button>
            <Button className={classes.opasy}  color="inherit" ><PeopleAltOutlinedIcon className={classes.iconCentrum} /></Button>
            <Button className={classes.opasy}  color="inherit" ><SmartDisplayOutlinedIcon className={classes.iconCentrum}  /></Button>
-           {/* <IconButton><SupervisedUserCircleOutlinedIcon className={classes.iconCentrum} /></IconButton> */}
-      
-
             </div>
         </div>
 

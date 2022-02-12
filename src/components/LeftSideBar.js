@@ -1,17 +1,12 @@
 import React from "react";
-
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import Collapse from "@mui/material/Collapse";
-
-
 import { makeStyles } from "@mui/styles";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-
-
 import myProfil from "../components-css/imgLeftBar/guest.png";
 import memories from "../components-css/imgLeftBar/memoirs.png";
 import friends from "../components-css/imgLeftBar/friends.png"
@@ -38,6 +33,7 @@ import recentAd from "../components-css/imgLeftBar/recentAd.png";
 import translate from "../components-css/imgLeftBar/translation.png";
 import watch from "../components-css/imgLeftBar/watch.png";
 import wather from "../components-css/imgLeftBar/wather.png";
+import "../components-css/LeftSidebar.css";
 
 
 
@@ -71,7 +67,8 @@ const useStyles = makeStyles({
   }
 
 });
-export default function LeftSideBar() {
+
+export default function LeftSidebar() {
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();
   const handleClick = () => {
@@ -85,12 +82,12 @@ export default function LeftSideBar() {
           <ListItemIcon >
             <img className={classes.img} src = {myProfil} alt="icon my profil" ></img>
           </ListItemIcon>
-          your name
+          Your name
         </ListItemButton>
 
         <ListItemButton className={classes.text}>
-          <ListItemIcon>
-          <img width="30px" src = {friends} alt="icon friends" ></img>
+          <ListItemIcon >
+          <img className={classes.img} src = {friends} alt="icon friends" ></img>
           </ListItemIcon>
           Friends
         </ListItemButton>
