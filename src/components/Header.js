@@ -13,7 +13,9 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import CircleNotificationsOutlinedIcon from '@mui/icons-material/CircleNotificationsOutlined';
 import ArrowDropDownCircleOutlinedIcon from '@mui/icons-material/ArrowDropDownCircleOutlined';
-import IconButton from '@mui/material/IconButton';
+// import IconButton from '@mui/material/IconButton';
+import Button from '@mui/material/Button'
+
 
 
 const useStyles = makeStyles({
@@ -29,11 +31,12 @@ const useStyles = makeStyles({
       centrum:{
           display:"flex",
           gap:"80px"
-      }
-
-  
+      },
+      opasy:{
+        opacity:"0.5",
+    },
   });
-
+;
 function Header(){
 
     const classes = useStyles();
@@ -50,10 +53,10 @@ function Header(){
 
         <div className="central_header"> 
             <div className={classes.centrum}>
-            <IconButton ><HomeIcon className={classes.iconCentrum} /></IconButton>
-            <IconButton><StorefrontOutlinedIcon className={classes.iconCentrum} /></IconButton>
-           <IconButton><PeopleAltOutlinedIcon className={classes.iconCentrum} /></IconButton>
-           <IconButton><SmartDisplayOutlinedIcon className={classes.iconCentrum}  /></IconButton>
+            <Button className={classes.opasy}  color="inherit"  ><HomeIcon className={classes.iconCentrum} /></Button>
+            <Button className={classes.opasy}  color="inherit" ><StorefrontOutlinedIcon className={classes.iconCentrum} /></Button>
+           <Button className={classes.opasy}  color="inherit" ><PeopleAltOutlinedIcon className={classes.iconCentrum} /></Button>
+           <Button className={classes.opasy}  color="inherit" ><SmartDisplayOutlinedIcon className={classes.iconCentrum}  /></Button>
            {/* <IconButton><SupervisedUserCircleOutlinedIcon className={classes.iconCentrum} /></IconButton> */}
       
 
@@ -61,10 +64,10 @@ function Header(){
         </div>
 
         <div className="right_header">
-            <IconButton><AccountCircleOutlinedIcon className={classes.iconRight}  /></IconButton>
-            <IconButton><AddCircleOutlineOutlinedIcon className={classes.iconRight}  /></IconButton>
-            <IconButton><CircleNotificationsOutlinedIcon className={classes.iconRight}  /></IconButton>
-            <IconButton><ArrowDropDownCircleOutlinedIcon className={classes.iconRight}  /></IconButton>
+            <Button className={classes.opasy}  color="inherit"><AccountCircleOutlinedIcon className={classes.iconRight}  /></Button>
+            <Button className={classes.opasy}  color="inherit"><AddCircleOutlineOutlinedIcon className={classes.iconRight}  /></Button>
+            <Button className={classes.opasy}  color="inherit"><CircleNotificationsOutlinedIcon className={classes.iconRight}  /></Button>
+            <Button className={classes.opasy}  color="inherit"><ArrowDropDownCircleOutlinedIcon className={classes.iconRight}  /></Button>
         <div></div>
         </div>
 
