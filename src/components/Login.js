@@ -17,7 +17,10 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 
-// import DatePicker from "./DatePicker"
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+
+import DatePicker from "./DatePicker";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -169,6 +172,18 @@ const useStyle = makeStyles({
     border: "none",
     fontSize: "16px",
   },
+
+  registerWrapper: {
+    display: "flex",
+    flexDirection: "column",
+  },
+
+  makeRegButtonWrapper: {
+    display: "flex",
+    justifyContent: "center",
+  },
+
+  
 });
 
 export default function Login() {
@@ -249,9 +264,19 @@ export default function Login() {
           <p>Бързо и лесно</p>
         </BootstrapDialogTitle>
 
-        <DialogContent dividers>
+        <DialogContent dividers className={style.registerWrapper}>
           <div className="namesWrapper">
-            <input
+            <TextField
+              required
+              id="outlined-required"
+              placeholder="Собствено име"
+            />
+            <TextField
+              required
+              id="outlined-required"
+              placeholder="Фамилно име"
+            />
+            {/* <input
               type="text"
               className={style.nameReg}
               placeholder="Собствено име"
@@ -260,33 +285,44 @@ export default function Login() {
               type="text"
               className={style.nameReg}
               placeholder="Фамилно име"
-            />
+            /> */}
           </div>
-          <input
+          <TextField
+            required
+            id="outlined-required"
+            placeholder="Имейл или телефон"
+          />
+          {/* <input
             type="text"
             className={style.mobileNumberOrMail}
             placeholder="Мобилен номер или емейл"
+          /> */}
+          <TextField
+            id="outlined-password-input"
+            type="password"
+            autoComplete="current-password"
+            placeholder="Парола"
           />
-          <input
+          {/* <input
             type="password"
             className={style.newPass}
             placeholder="Нова парола"
-          />
+          /> */}
 
           <div className="datesWrapper">
-            <p>Дата на раждане</p>
-
             
-            {/* <DatePicker/> */}
-             
+
+            <DatePicker />
           </div>
           <div className="genderWrapper">
             <FormControl>
-              <FormLabel id="demo-radio-buttons-group-label">Пол</FormLabel>
+              <FormLabel id="demo-row-radio-buttons-group-label"></FormLabel>
               <RadioGroup
-                aria-labelledby="demo-radio-buttons-group-label"
+                row
+                className={style.genderWrapper}
+                aria-labelledby="demo-row-radio-buttons-group-label"
                 defaultValue="female"
-                name="radio-buttons-group"
+                name="row-radio-buttons-group"
               >
                 <FormControlLabel
                   value="female"
@@ -307,8 +343,12 @@ export default function Login() {
             </FormControl>
           </div>
         </DialogContent>
-        <DialogActions>
-          <Button autoFocus onClick={handleClose}>
+        <DialogActions class={style.makeRegButtonWrapper}>
+          <Button
+            autoFocus
+            onClick={handleClose}
+            className={style.makeRegButton}
+          >
             Регистрация
           </Button>
         </DialogActions>
