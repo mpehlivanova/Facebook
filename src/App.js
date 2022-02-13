@@ -9,22 +9,23 @@ function App() {
   const user = null;
   return (
     <>
-    <div className="app">
-      {/* {!user ? (<Login />) :
-        (
-          <div> */}
+      <div className="app">
+        {!user ? (
+          <>
+            <Login/>
+          </>
+        ) : (
+          <div>
             <Header />
             <div className="app__body">
 
             <Main/>
             </div>
-          {/* </div>
-         )};   */}
-
-    </div>
-    
+          </div>
+        )}
+      </div>
     </>
-  )}
+  );}
 
 export default App;
 
