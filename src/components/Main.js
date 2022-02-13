@@ -6,15 +6,15 @@ import NewsFeed from "./NewsFeed.js";
 import LeftSideBar from "./LeftSideBar.js";
 import RightSideBar from "./RightSideBar.js";
 
+
 const useStyles = makeStyles({
-  conrainer: {
+  container: {
     width: "100%",
     background: "white",
     display: "flex",
-    flexDirection:"row",
-  
+    flexDirection: "row",
+    justifyContent: "center",
   },
-  
 });
 
 
@@ -23,10 +23,11 @@ export default function Main() {
   const classes = useStyles();
 
   return (
-    <div className={classes.conrainer}>
-    <LeftSideBar/>
-    <NewsFeed/>
-    <RightSideBar/>
+    <div className={classes.container}>
+      <LeftSideBar />
+      <NewsFeed/>
+        
+      <RightSideBar />
     </div>
   );
 }

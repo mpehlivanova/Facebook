@@ -94,7 +94,7 @@ function Header(){
         <div className={classes.header_input}>
             <SearchIcon/>
 
-        <input className={classes.header_input_value}type="text"></input>
+        <input className={classes.header_input_value}type="text" placeholder="Search Facebook"></input>
 
         </div>
         </div>

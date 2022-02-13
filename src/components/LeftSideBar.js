@@ -39,33 +39,29 @@ import "../components-css/LeftSidebar.css";
 
 const useStyles = makeStyles({
   container: {
-    width: "25%",
+    width: "28%",
     background: "#F2F3F5",
     padding: "20px",
-  
-   
-  
+    marginLeft: "-30px",
   },
   img: {
     width: "30px",
-    borderRadius:"50%",
+    borderRadius: "50%",
   },
-  
-  
-  text: {
-    fontSize: 'small',
-    fontFamily:"Segoe UI Historic, Helvetica, Arial"
-  },
-  list:{
-    borderBottom: "1px solid #cfd0d1",
-   
-  },
-  shortcuts:{
-    width: "50px",
-    borderRadius:"5px",
-    marginRight:"20px",
-  }
 
+  text: {
+    fontSize: "small",
+    fontFamily: "Segoe UI Historic, Helvetica, Arial",
+  },
+  list: {
+    borderBottom: "1px solid #cfd0d1",
+    
+  },
+  shortcuts: {
+    width: "50px",
+    borderRadius: "5px",
+    marginRight: "20px",
+  },
 });
 
 export default function LeftSidebar() {
@@ -110,7 +106,7 @@ export default function LeftSidebar() {
           <ListItemIcon>
           <img width="30px" src = {grups} alt="icon grups" ></img>
           </ListItemIcon>
-          Grups
+          Groups
         </ListItemButton>
 
         <ListItemButton className={classes.text}>
@@ -141,14 +137,14 @@ export default function LeftSidebar() {
               <ListItemIcon>
               <img width="30px"  src = {adMasanger} alt="icon ads masanger" ></img>
               </ListItemIcon>
-              Ads Masanger
+              Ads Messenger
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
               <ListItemIcon>
               <img width="30px"  src = {clima} alt="icon clima centre" ></img>
               </ListItemIcon>
-              Clima Soience Centre
+              Clima Science Centre
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
@@ -204,7 +200,7 @@ export default function LeftSidebar() {
               <ListItemIcon>
               <img width="30px"  src = {video} alt="icon video" ></img>
               </ListItemIcon>
-              Caming Video
+              Gaming Video
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
@@ -225,7 +221,7 @@ export default function LeftSidebar() {
               <ListItemIcon>
               <img width="30px"  src = {masanger} alt="icon masanger" ></img>
               </ListItemIcon>
-              Masanger
+              Messenger
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
@@ -267,13 +263,13 @@ export default function LeftSidebar() {
               <ListItemIcon>
                 <img width="30px"  src={wather} alt="icon for wather"></img>
               </ListItemIcon>
-              Wather
+              Wether
             </ListItemButton>
           </List>
         </Collapse>
       </List>
       <div >
-      <p marginTop="10px">Your shortcuts</p>
+      <p >Your shortcuts</p>
       <ListItemButton >
       <img className={classes.shortcuts}  src="https://www.capitan.bg/wp-content/uploads/2018/09/koza.jpg" alt="kozi"></img>
       <p className={classes.text}> Продаваме кози на изгодно.</p>
