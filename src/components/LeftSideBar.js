@@ -50,8 +50,9 @@ const useStyles = makeStyles({
   },
 
   text: {
-    fontSize: "small",
+    fontSize: "medium",
     fontFamily: "Segoe UI Historic, Helvetica, Arial",
+    paddingLeft:"10px"
   },
   list: {
     borderBottom: "1px solid #cfd0d1",
@@ -269,15 +270,15 @@ export default function LeftSidebar() {
         </Collapse>
       </List>
       <div >
-      <p >Your shortcuts</p>
+      <p  className={classes.text} >Your shortcuts</p>
       <ListItemButton >
-      <img className={classes.shortcuts}  src="https://www.capitan.bg/wp-content/uploads/2018/09/koza.jpg" alt="kozi"></img>
-      <p className={classes.text}> Продаваме кози на изгодно.</p>
+      <img className={classes.shortcuts}  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSM01N479KkBK_s89MUT0XhuGjWSnNcwkybCfGZnFOwkjRWhb6_7sc-Qyg_CIvd-k67Ahw&usqp=CAU" alt="kozi"></img>
+      <p className={classes.text}>Lorem ipsum dolor sit amet consectetur </p>
       </ListItemButton>
       
       <ListItemButton >
-      <img className={classes.shortcuts}  src="https://www.capitan.bg/wp-content/uploads/2018/09/koza.jpg" alt="kozi"></img>
-      <p className={classes.text}> Продаваме кози на изгодно.</p>
+      <img className={classes.shortcuts}  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSM01N479KkBK_s89MUT0XhuGjWSnNcwkybCfGZnFOwkjRWhb6_7sc-Qyg_CIvd-k67Ahw&usqp=CAU" alt="kozi"></img>
+      <p className={classes.text}> Lorem ipsum dolor sit amet consectetur</p>
       </ListItemButton>
      
       </div>

@@ -3,21 +3,17 @@ import CreateComment from "./CreateComment";
 
 import { makeStyles } from "@mui/styles";
 import StoryContainer from "./StoryContainer";
+import Post from "./Post";
 
 const useStyles = makeStyles({
   feed: {
     width: "60%",
     background: "#F2F3F5",    //change color /Marian
-    padding: "20px",
     display:"flex",
-    justifyContent:"center",  //add new style /Marian
-    
-
-  
-  createPost:{
-
-  }  
-
+    justifyContent:"center", 
+    flexDirection: "column",
+    alignItems: "center" ,//add new style /Marian
+    gap:"20px"
   },
 
   storiesWrapper: {
@@ -34,15 +30,12 @@ export default function NewsFeed(){
     <>
       <div className={classes.feed}>
         <div className={classes.storiesWrapper}>
-<<<<<<< HEAD
           <StoryContainer/>
-          
-=======
-          <CreateStory/>
-          <StoryBox />
-          <CreateComment/>
->>>>>>> e75a3c1e0ceab8bab36bdc05c62168496f3647cb
         </div>
+        {/* <CreateStory/>
+          <StoryBox /> */}
+          <CreateComment/>
+          <Post/>
       </div>
     </>
   );
