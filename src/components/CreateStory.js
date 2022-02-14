@@ -1,10 +1,6 @@
-import React from 'react'
-import { makeStyles } from '@mui/styles';
+import React from "react";
+import { makeStyles } from "@mui/styles";
 import AddIcon from "@mui/icons-material/Add";
-
-
-
-
 
 const useStyle = makeStyles({
   createStoryBox: {
@@ -26,33 +22,40 @@ const useStyle = makeStyles({
     borderRadius: "99px",
     color: "white",
     position: "relative",
-    top: "130px",
+    top: "-10px",
     left: "40px",
     border: "5px solid white",
   },
   name: {
     color: "black",
     position: "relative",
-    top: "120px",
+    // top: "120px",
     left: "14px",
+  },
+  imgWrapper: {
+      width: "112px",
+      height:"100%"
   },
 });
 
 export default function CreateStory() {
-    const style = useStyle();
-    return (
-      <>
+  const style = useStyle();
+  return (
+    <>
+      <div className={style.createStoryBox}>
         <div
-          className={style.createStoryBox}
+          className={style.imgWrapper}
           style={{
+            //   
             backgroundImage: `url(https://cdn.hmv.com/r/w-640/hmv/files/9d/9dc35313-9a06-4776-8a3e-4397d603c149.jpg)`,
             backgroundRepeat: "no-repeat",
-            backgroundSize: "contain",
+            backgroundSize: "cover",
+            borderRadius: "10px 10px 0 0",
           }}
-        >
-                <AddIcon className={style.addIcon} />
-                <p className={style.name}>Create story</p>
-        </div>
-      </>
-    );
+        ></div>
+        <AddIcon className={style.addIcon} />
+        <p className={style.name}>Create story</p>
+      </div>
+    </>
+  );
 }

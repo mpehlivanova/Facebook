@@ -1,8 +1,7 @@
 import React from "react";
 
 import { makeStyles } from "@mui/styles";
-import StoryBox from './StoryBox';
-import CreateStory from "./CreateStory";
+import StoryContainer from "./StoryContainer";
 
 const useStyles = makeStyles({
   feed: {
@@ -23,8 +22,7 @@ export default function NewsFeed(){
     <>
       <div className={classes.feed}>
         <div className={classes.storiesWrapper}>
-          <CreateStory/>
-          <StoryBox />
+          <StoryContainer/>
           
         </div>
       </div>
