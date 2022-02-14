@@ -24,7 +24,7 @@ export default function BadgeAvatars(props) {
         overlap="circular"
         anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
         variant="dot">
-        <Avatar style={{ width: 25, height: 25 }} alt="Remy Sharp" src={myProfil} /> 
+        <Avatar style={{ width: 25, height: 25 }} alt="Remy Sharp" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSM01N479KkBK_s89MUT0XhuGjWSnNcwkybCfGZnFOwkjRWhb6_7sc-Qyg_CIvd-k67Ahw&usqp=CAU" /> 
       </StyledBadge>
     </Stack>
   );
