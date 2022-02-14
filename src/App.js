@@ -1,11 +1,9 @@
-
 import React from "react";
 import Header from "./components/Header";
-import Login from './components/Login';
-import Main from "./components/Main.js"
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-
+import Login from "./pages/Login";
+import Main from "./pages/Main.js";
+// import AdapterDateFns from "@mui/lab/AdapterDateFns";
+// import LocalizationProvider from "@mui/lab/LocalizationProvider";
 
 function App() {
   const user = 1;
@@ -14,25 +12,19 @@ function App() {
       <div className="app">
         {!user ? (
           <>
-            <Login/>
+            <Login />
           </>
         ) : (
           <div>
             <Header />
             <div className="app__body">
-
-            <Main/>
+              <Main />
             </div>
           </div>
         )}
       </div>
     </>
-  );}
+  );
+}
 
 export default App;
-
-
-
-    
-
-

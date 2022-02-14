@@ -7,7 +7,6 @@ import VideocamIcon from '@mui/icons-material/Videocam';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 
-
 const cssStyle = makeStyles({
     topComment:{
         
@@ -32,7 +31,7 @@ const cssStyle = makeStyles({
         flex:"1"
     },
     conteiner:{
-        width:"75%",
+        width:"83%",
         height:"130px",
         display:"flex",
         marginTop:"20px",
