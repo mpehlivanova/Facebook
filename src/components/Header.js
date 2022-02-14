@@ -1,26 +1,18 @@
 import React from "react";
-
 import { makeStyles } from "@mui/styles";
 import "../components-css/Header.css"
-
 import SearchIcon from '@mui/icons-material/Search';
 import HomeIcon from '@mui/icons-material/Home';
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 import SmartDisplayOutlinedIcon from '@mui/icons-material/SmartDisplayOutlined';
 import StorefrontOutlinedIcon from '@mui/icons-material/StorefrontOutlined';
-// import SupervisedUserCircleOutlinedIcon from '@mui/icons-material/SupervisedUserCircleOutlined';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import CircleNotificationsOutlinedIcon from '@mui/icons-material/CircleNotificationsOutlined';
 import ArrowDropDownCircleOutlinedIcon from '@mui/icons-material/ArrowDropDownCircleOutlined';
-
 import IconButton from '@mui/material/IconButton';
-import { hover } from "@testing-library/user-event/dist/hover";
-import { blue } from "@mui/material/colors";
 import myProfil from "../components-css/imgLeftBar/guest.png";
-
-// import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button'
+import ListItemIcon from "@mui/material/ListItemIcon";
 
 
 
@@ -79,6 +71,10 @@ const useStyles = makeStyles({
     profile_image:{
         height: "35px",
         borderRadius: "33px"
+    },
+    right_header:{
+        display: "flex",
+        alignItems: "center",
     }
 
   });
@@ -110,25 +106,15 @@ function Header(){
             </div>
         </div>
 
-        <div className="right_header">
+        <div className={classes.right_header}>
 
-
-        
-
-            <IconButton>
-            <img className={classes.profile_image} src = {myProfil} alt="icon my profil"></img>
-            <h6>Name</h6> 
-            </IconButton>
+            <ListItemIcon >
+            <img className={classes.profile_image} src = {myProfil} alt="icon my profil" ></img>
+            </ListItemIcon>
             <IconButton><AddCircleOutlineOutlinedIcon className={classes.iconRight}  fontSize = "large"/></IconButton>
             <IconButton><CircleNotificationsOutlinedIcon className={classes.iconRight}  fontSize = "large"/></IconButton>
             <IconButton><ArrowDropDownCircleOutlinedIcon className={classes.iconRight} fontSize = "large" /></IconButton>
 
-            {/* <Button className={classes.opasy}  color="inherit"><AccountCircleOutlinedIcon className={classes.iconRight}  /></Button>
-            <Button className={classes.opasy}  color="inherit"><AddCircleOutlineOutlinedIcon className={classes.iconRight}  /></Button>
-            <Button className={classes.opasy}  color="inherit"><CircleNotificationsOutlinedIcon className={classes.iconRight}  /></Button>
-            <Button className={classes.opasy}  color="inherit"><ArrowDropDownCircleOutlinedIcon className={classes.iconRight}  /></Button> */}
-
-        <div></div>
         </div>
 
     </div>
