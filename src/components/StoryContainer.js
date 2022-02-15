@@ -5,10 +5,10 @@ import { makeStyles } from '@mui/styles';
 
 const useStyle = makeStyles({
     storyContainer: { 
-        width: "100%",
+        width: "130%",
         display: 'flex',
         justifyContent: 'center',
-        
+        gap:"10px"
     }
 })
 

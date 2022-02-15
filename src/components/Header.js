@@ -13,6 +13,7 @@ import IconButton from '@mui/material/IconButton';
 import myProfil from "../components-css/imgLeftBar/guest.png";
 import Button from '@mui/material/Button'
 import ListItemIcon from "@mui/material/ListItemIcon";
+import { BrowserRouter, Link } from "react-router-dom";
 
 
 
@@ -83,41 +84,101 @@ function Header(){
 
     const classes = useStyles();
 
-    return <div className={classes.header}>
-        <div className={classes.left_header}> 
-        <img className = {classes.left_header_img} src = "https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Facebook_f_logo_%282021%29.svg/2048px-Facebook_f_logo_%282021%29.svg.png" alt="logo_of_Facebook"></img>
+    return (
+      <div className={classes.header}>
+        <div className={classes.left_header}>
+          
+           
+              <Link to="/">
+                <img
+                  className={classes.left_header_img}
+                  src="https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Facebook_f_logo_%282021%29.svg/2048px-Facebook_f_logo_%282021%29.svg.png"
+                  alt="logo_of_Facebook"
+                />
+              </Link>
+           
+          
 
-        <div className={classes.header_input}>
-            <SearchIcon/>
+          <div className={classes.header_input}>
+            <SearchIcon />
 
-        <input className={classes.header_input_value}type="text" placeholder="Search Facebook"></input>
-
+            <input
+              className={classes.header_input_value}
+              type="text"
+              placeholder="Search Facebook"
+            ></input>
+          </div>
         </div>
-        </div>
 
-        <div className="central_header"> 
-            <div className={classes.centrum}>
-
-                <div className="options "><Button><HomeIcon className={classes.iconCentrum} fontSize = "large"/></Button></div>
-                <div className="options "><Button><StorefrontOutlinedIcon className={classes.iconCentrum} fontSize = "large"/></Button></div>
-                <div className="options "><Button><PeopleAltOutlinedIcon className={classes.iconCentrum} fontSize = "large"/></Button></div>
-                <div className="options "><Button><SmartDisplayOutlinedIcon className={classes.iconCentrum}  fontSize = "large"/></Button></div>
-
+        <div className="central_header">
+          <div className={classes.centrum}>
+            <div className="options ">
+              <Button>
+                <HomeIcon className={classes.iconCentrum} fontSize="large" />
+              </Button>
             </div>
+            <div className="options ">
+              <Button>
+                <StorefrontOutlinedIcon
+                  className={classes.iconCentrum}
+                  fontSize="large"
+                />
+              </Button>
+            </div>
+            <div className="options ">
+              <Button>
+                <PeopleAltOutlinedIcon
+                  className={classes.iconCentrum}
+                  fontSize="large"
+                />
+              </Button>
+            </div>
+            <div className="options ">
+              <Button>
+                <SmartDisplayOutlinedIcon
+                  className={classes.iconCentrum}
+                  fontSize="large"
+                />
+              </Button>
+            </div>
+          </div>
         </div>
 
         <div className={classes.right_header}>
+          <ListItemIcon>
 
-            <ListItemIcon >
-            <img className={classes.profile_image} src = {myProfil} alt="icon my profil" ></img>
-            </ListItemIcon>
-            <IconButton><AddCircleOutlineOutlinedIcon className={classes.iconRight}  fontSize = "large"/></IconButton>
-            <IconButton><CircleNotificationsOutlinedIcon className={classes.iconRight}  fontSize = "large"/></IconButton>
-            <IconButton><ArrowDropDownCircleOutlinedIcon className={classes.iconRight} fontSize = "large" /></IconButton>
+            
+              <Link to="/user">
+                <img
+                  className={classes.profile_image}
+                  src={myProfil}
+                  alt="icon my profil"
+                />
+              </Link>
+           
 
+          </ListItemIcon>
+          <IconButton>
+            <AddCircleOutlineOutlinedIcon
+              className={classes.iconRight}
+              fontSize="large"
+            />
+          </IconButton>
+          <IconButton>
+            <CircleNotificationsOutlinedIcon
+              className={classes.iconRight}
+              fontSize="large"
+            />
+          </IconButton>
+          <IconButton>
+            <ArrowDropDownCircleOutlinedIcon
+              className={classes.iconRight}
+              fontSize="large"
+            />
+          </IconButton>
         </div>
-
-    </div>
+      </div>
+    );
 }
 
 export default Header

@@ -2,27 +2,31 @@ import React from "react";
 import Header from "./components/Header";
 import Login from "./pages/Login";
 import Main from "./pages/Main.js";
+import {  Routes, Route } from "react-router-dom";
 // import AdapterDateFns from "@mui/lab/AdapterDateFns";
 // import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import ProfilePageTop from "./components/ProfilePageTop";
+import Friends from "./pages/Friends";
 
 function App() {
   const user = 1;
   return (
     <>
-      <div className="app">
-        {!user ? (
+      {!user ? (
+        <Login />
+      ) : (
           <>
-            <Login />
-          </>
-        ) : (
-          <div>
-            <Header />
-            <div className="app__body">
-              <Main />
-            </div>
-          </div>
-        )}
-      </div>
+            <Header/>
+            <Routes>
+              <Route path="/"  element={<Main></Main>} />
+              <Route
+                path="/user"
+                element={<ProfilePageTop></ProfilePageTop>}
+              />
+              <Route path="/friends" element={<Friends></Friends>} />
+            </Routes>
+        </>
+      )}
     </>
   );
 }

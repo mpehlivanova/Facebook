@@ -6,18 +6,20 @@ import Post from "./Post";
 
 const useStyles = makeStyles({
   feed: {
-    width: "60%",
+    width: "75%",
     background: "#F2F3F5",    //change color /Marian
-    display:"flex",
+    display: "flex",
     flexDirection: "column",
     alignItems: "center",
     // justifyContent: "center",
-      //add new style /Marian
+    //add new style /Marian
+    gap: "20px"
+  },
   createPost:{
 
-  }  
+  } , 
 
-  },
+  
 
   storiesWrapper: {
     display: "flex",
@@ -36,6 +38,8 @@ export default function NewsFeed(){
           <StoryContainer />
         </div>
         <CreateComment />
+        
+        <Post/>
       </div>
       
     </>

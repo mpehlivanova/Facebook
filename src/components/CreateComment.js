@@ -31,7 +31,7 @@ const cssStyle = makeStyles({
         flex:"1"
     },
     conteiner:{
-        width:"83%",
+        width:"78%",
         height:"130px",
         display:"flex",
         marginTop:"20px",

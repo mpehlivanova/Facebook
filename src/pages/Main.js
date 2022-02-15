@@ -3,7 +3,7 @@ import { makeStyles } from "@mui/styles";
 import NewsFeed from "../components/NewsFeed.js";
 import LeftSideBar from "../components/LeftSideBar.js";
 import RightSideBar from "../components/RightSideBar.js";
-import ProfilePageTop from './../components/ProfilePageTop';
+// import ProfilePageTop from './../components/ProfilePageTop';
 
 const useStyles = makeStyles({
   container: {
@@ -23,11 +23,10 @@ export default function Main() {
     <>
       <div className={classes.container}>
         <LeftSideBar />
-        <NewsFeed></NewsFeed>
-
+        <NewsFeed/>
         <RightSideBar />
       </div>
-      <ProfilePageTop/>
+      
     </>
   );
 }
