@@ -3,8 +3,6 @@ import { makeStyles } from "@mui/styles";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import EditIcon from "@mui/icons-material/Edit";
-// import { IconButton } from "@mui/material";
-import { display } from "@mui/system";
 import { Link } from "react-router-dom";
 
 const useStyle = makeStyles({
@@ -56,6 +54,7 @@ const useStyle = makeStyles({
 
   userName: {
     position: "relative",
+    height: "30px",
     top: "380px",
     left: "-25%",
     fontFamily: "Segoe UI",

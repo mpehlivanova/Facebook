@@ -7,6 +7,7 @@ import {  Routes, Route } from "react-router-dom";
 // import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import ProfilePageTop from "./components/ProfilePageTop";
 import Friends from "./pages/Friends";
+import ProfilePage from './pages/ProfilePage';
 
 function App() {
   const user = 1;
@@ -21,7 +22,7 @@ function App() {
               <Route path="/"  element={<Main></Main>} />
               <Route
                 path="/user"
-                element={<ProfilePageTop></ProfilePageTop>}
+                element={<ProfilePage/>}
               />
               <Route path="/friends" element={<Friends></Friends>} />
             </Routes>
