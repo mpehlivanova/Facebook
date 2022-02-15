@@ -26,7 +26,6 @@ export default function Main() {
     <div className={classes.container}>
       <LeftSideBar />
       <NewsFeed/>
-        
       <RightSideBar />
     </div>
   );

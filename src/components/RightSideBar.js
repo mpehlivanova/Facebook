@@ -51,8 +51,8 @@ const useStyles = makeStyles({
     marginBottom: "5px",
     fontSize: "small",
   },
-  textSmall: {
-    fontSize: "small",
+  textMedium: {
+    fontSize: "medium",
   },
   border: {
     borderTop: "1px solid #cfd0d1",

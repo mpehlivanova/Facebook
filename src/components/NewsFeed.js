@@ -4,6 +4,7 @@ import CreateComment from "./CreateComment";
 import { makeStyles } from "@mui/styles";
 import StoryContainer from "./StoryContainer";
 import Post from "./Post";
+import FriendsCard from "./Friends";
 
 const useStyles = makeStyles({
   feed: {
@@ -36,6 +37,7 @@ export default function NewsFeed(){
           <StoryBox /> */}
           <CreateComment/>
           <Post/>
+          <FriendsCard/>
       </div>
     </>
   );

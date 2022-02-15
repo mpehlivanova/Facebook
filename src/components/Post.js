@@ -3,7 +3,7 @@ import * as React from "react";
 import BadgeAvatars from "./Avatar.js";
 import PublicIcon from "@mui/icons-material/Public";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { grey,} from "@mui/material/colors";
+import { grey} from "@mui/material/colors";
 import { makeStyles } from "@mui/styles";
 import { Button } from "@mui/material";
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
@@ -39,8 +39,7 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "row",
     alignItems:"center",
-    
-
+    paddingLeft:"2px",
   },
   textSmall: {
     fontSize: "small",
@@ -54,9 +53,9 @@ const useStyles = makeStyles({
     fontFamily: "Segoe UI Historic, Helvetica, Arial",
   },
   textImput: {
-    fontSize: "small",
+    fontSize: "medium",
     fontFamily: "Segoe UI Historic, Helvetica, Arial",
-    padding: "0px 20px",
+    margin: "0px 0px 0px 5px",
   },
   border: {
     borderTop: "1px solid #cfd0d1",
@@ -86,7 +85,7 @@ const useStyles = makeStyles({
   },
   input: {
     borderRadius: "20px",
-    width: "300px",
+    width: "450px",
     height: "30px",
     margin: "6px",
     border: "none",
@@ -127,10 +126,9 @@ export default function Post(text, img) {
           <div className={post.row}>
             <BadgeAvatars />
             <div height="8px">
-              <p className={post.textSmall}>
-                <strong>
-                  {"{userName}"} is with {"{friend}"} at {"{Hotel}"}
-                </strong>{" "}</p>
+              <p className={post.textImput}>
+                <strong>{"{userName}"} </strong> is with <strong>{"{friend}"}</strong> at <strong>{"{Hotel}"}</strong>
+              </p>
               <p className={post.textXsmall}>
                 15h *
                 <PublicIcon
