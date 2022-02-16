@@ -86,6 +86,23 @@ const useStyles = makeStyles({
     },
     homeIcon:{
       color:"action"
+    },
+    user:{
+      display: "flex",
+      flexDirection:"row",
+      gap:"10px",
+      alignItems: "center",
+    },
+    link:{
+  
+        textDecoration: "none",
+        color: "black",
+        fontFamily: "Segoe UI",
+        fontSize: "16px",
+        fontWeight: "500",
+    
+      
+     
     }
 
   });
@@ -165,14 +182,20 @@ function Header(){
         <div className={classes.right_header}>
           <ListItemIcon>
 
-            
-              <Link to="/user">
+        
+            <Link className={classes.link} to="/user">
+            <div className={classes.user}>
                 <img
                   className={classes.profile_image}
                   src={myProfil}
                   alt="icon my profil"
                 />
+                <p>UserName</p>
+                </div>
               </Link>
+            
+              
+
            
 
           </ListItemIcon>
