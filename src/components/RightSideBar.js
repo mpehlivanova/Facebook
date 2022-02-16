@@ -23,6 +23,7 @@ const useStyles = makeStyles({
     background: "#F2F3F5",
     height: "120vh",
     padding: "20px",
+    margin:"0px"
   },
   ad: {
     height: "200px",
@@ -51,8 +52,8 @@ const useStyles = makeStyles({
     marginBottom: "5px",
     fontSize: "small",
   },
-  textSmall: {
-    fontSize: "small",
+  textMedium: {
+    fontSize: "medium",
   },
   border: {
     borderTop: "1px solid #cfd0d1",

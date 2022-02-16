@@ -3,7 +3,7 @@ import { styled } from "@mui/material/styles";
 import Badge from "@mui/material/Badge";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
-import myProfil from "../components-css/imgLeftBar/guest.png";
+
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -17,7 +17,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   }
 }));
 
-export default function BadgeAvatars(props) {
+export default function BadgeAvatars() {
   return (
     <Stack style={{fontSize:2}}  direction="row" scale=".2" spacing={1}>
       <StyledBadge 
