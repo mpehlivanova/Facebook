@@ -13,6 +13,13 @@ import IconButton from '@mui/material/IconButton';
 import myProfil from "../components-css/imgLeftBar/guest.png";
 import Button from '@mui/material/Button'
 import ListItemIcon from "@mui/material/ListItemIcon";
+import { Link } from "react-router-dom";
+import { Avatar } from "@mui/material";
+import MessageRoundedIcon from '@mui/icons-material/MessageRounded';
+import AppsRoundedIcon from '@mui/icons-material/AppsRounded';
+import { grey } from "@mui/material/colors";
+import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
+import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 
 
 
@@ -20,11 +27,11 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 const useStyles = makeStyles({
     iconCentrum: {
 
-      scale:"1.2",
+      scale:"0.9", // small icon header -Mariela
       borderBottom : "4px solid white"
     },
     iconRight: {
-        scale:"1.1"
+        scale:"0.9"// small icon header -Mariela
       
       },
       centrum:{
@@ -75,6 +82,9 @@ const useStyles = makeStyles({
     right_header:{
         display: "flex",
         alignItems: "center",
+    },
+    homeIcon:{
+      color:"action"
     }
 
   });
@@ -83,41 +93,137 @@ function Header(){
 
     const classes = useStyles();
 
-    return <div className={classes.header}>
-        <div className={classes.left_header}> 
-        <img className = {classes.left_header_img} src = "https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Facebook_f_logo_%282021%29.svg/2048px-Facebook_f_logo_%282021%29.svg.png" alt="logo_of_Facebook"></img>
+    return (
+      <div className={classes.header}>
+        <div className={classes.left_header}>
+          
+           
+              <Link to="/">
+                <img
+                  className={classes.left_header_img}
+                  src="https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Facebook_f_logo_%282021%29.svg/2048px-Facebook_f_logo_%282021%29.svg.png"
+                  alt="logo_of_Facebook"
+                />
+              </Link>
+           
+          
 
-        <div className={classes.header_input}>
-            <SearchIcon/>
+          <div className={classes.header_input}>
+            <SearchIcon />
 
-        <input className={classes.header_input_value}type="text" placeholder="Search Facebook"></input>
-
+            <input
+              className={classes.header_input_value}
+              type="text"
+              placeholder="Search Facebook"
+            ></input>
+          </div>
         </div>
-        </div>
 
-        <div className="central_header"> 
-            <div className={classes.centrum}>
-
-                <div className="options "><Button><HomeIcon className={classes.iconCentrum} fontSize = "large"/></Button></div>
-                <div className="options "><Button><StorefrontOutlinedIcon className={classes.iconCentrum} fontSize = "large"/></Button></div>
-                <div className="options "><Button><PeopleAltOutlinedIcon className={classes.iconCentrum} fontSize = "large"/></Button></div>
-                <div className="options "><Button><SmartDisplayOutlinedIcon className={classes.iconCentrum}  fontSize = "large"/></Button></div>
-
+        <div className="central_header">
+          <div className={classes.centrum}>
+            <div className="options">
+           <Link to="/">  {/*  added link and buttum color gre Mariela*/}
+              <Button>
+                <HomeIcon  color="action" className={classes.iconCentrum} fontSize="large" /> 
+              </Button>
+              </Link>
             </div>
+            <div className="options">
+              <Button>
+                <StorefrontOutlinedIcon
+                 color="action"
+                  className={classes.iconCentrum}
+                  fontSize="large"
+                />
+              </Button>
+            </div>
+            <div className="options">
+            <Link to="/friends">  {/*  added link Mariela */}
+              <Button>
+                <PeopleAltOutlinedIcon
+                  color="action"
+                  className={classes.iconCentrum}
+                  fontSize="large"/>
+              </Button>
+              </Link>
+            </div>
+            <div className="options">
+            <Link to="/video">  {/*  added link Mariela */}
+              <Button>
+                <SmartDisplayOutlinedIcon
+                  color="action"
+                  className={classes.iconCentrum}
+                  fontSize="large"
+                />
+              </Button>
+              </Link>
+            </div>
+          </div>
         </div>
 
         <div className={classes.right_header}>
+          <ListItemIcon>
 
-            <ListItemIcon >
-            <img className={classes.profile_image} src = {myProfil} alt="icon my profil" ></img>
-            </ListItemIcon>
-            <IconButton><AddCircleOutlineOutlinedIcon className={classes.iconRight}  fontSize = "large"/></IconButton>
-            <IconButton><CircleNotificationsOutlinedIcon className={classes.iconRight}  fontSize = "large"/></IconButton>
-            <IconButton><ArrowDropDownCircleOutlinedIcon className={classes.iconRight} fontSize = "large" /></IconButton>
+            
+              <Link to="/user">
+                <img
+                  className={classes.profile_image}
+                  src={myProfil}
+                  alt="icon my profil"
+                />
+              </Link>
+           
 
+          </ListItemIcon>
+
+          <Link to="/">{/*  added new style btn Mariela */}
+          <IconButton>
+          <Avatar sx={{ bgcolor: grey[200] }}>
+              <AppsRoundedIcon color="action"/>
+            </Avatar>
+          </IconButton>
+          </Link>
+          
+          <Link to="/">{/*  added new style btn Mariela */}
+          <IconButton>
+          <Avatar sx={{ bgcolor: grey[200] }}>
+              <MessageRoundedIcon color="action"/>
+            </Avatar>
+          </IconButton>
+          </Link>
+          
+          <Link to="/">{/*  added new style btn Mariela */}
+          <IconButton>
+          <Avatar  sx={{ bgcolor: grey[200] }}>
+              <NotificationsRoundedIcon color="action"/>
+            </Avatar>
+          </IconButton>
+          </Link>
+           
+          <Link to="/">{/*  added new style btn Mariela */}
+          <IconButton>
+          <Avatar className="homeIcon" sx={{ bgcolor: grey[200] }}>
+              <ArrowDropDownRoundedIcon color="action"/>
+            </Avatar>
+          </IconButton>
+          </Link>
+
+{/* 
+          <IconButton>
+            <CircleNotificationsOutlinedIcon
+              className={classes.iconRight}
+              fontSize="large"
+            />
+          </IconButton>
+          <IconButton>
+            <ArrowDropDownCircleOutlinedIcon
+              className={classes.iconRight}
+              fontSize="large"
+            />
+          </IconButton> */}
         </div>
-
-    </div>
+      </div>
+    );
 }
 
 export default Header

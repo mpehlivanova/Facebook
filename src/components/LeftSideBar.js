@@ -34,6 +34,7 @@ import translate from "../components-css/imgLeftBar/translation.png";
 import watch from "../components-css/imgLeftBar/watch.png";
 import wather from "../components-css/imgLeftBar/wather.png";
 import "../components-css/LeftSidebar.css";
+import { Link } from "react-router-dom";
 
 
 
@@ -43,6 +44,7 @@ const useStyles = makeStyles({
     background: "#F2F3F5",
     padding: "20px",
     marginLeft: "-30px",
+    
   },
   img: {
     width: "30px",
@@ -52,10 +54,19 @@ const useStyles = makeStyles({
   text: {
     fontSize: "medium",
     fontFamily: "Segoe UI Historic, Helvetica, Arial",
-    paddingLeft:"10px"
+    paddingLeft:"10px",
+    textDecoration: "none",
+    color:"black",
   },
   list: {
     borderBottom: "1px solid #cfd0d1",
+    fontFamily: "Segoe UI Historic, Helvetica, Arial",
+    paddingLeft:"10px",
+    textDecoration: "none",
+    color:"black",
+    fontSize: "16px",
+    fontWeight: "600",
+    width:"100%"
     
   },
   shortcuts: {
@@ -63,6 +74,10 @@ const useStyles = makeStyles({
     borderRadius: "5px",
     marginRight: "20px",
   },
+  link:{
+    textDecoration: "none",
+    color:"black",
+  }
 });
 
 export default function LeftSidebar() {
@@ -75,53 +90,70 @@ export default function LeftSidebar() {
     <div className={classes.container}>
 
       <List className={classes.list}>
+      <Link to="/user">
         <ListItemButton className={classes.text}>
           <ListItemIcon >
             <img className={classes.img} src = {myProfil} alt="icon my profil" ></img>
           </ListItemIcon>
-          Your name
+         <p className={classes.link}> Your name</p>
         </ListItemButton>
+        </Link>
+           <Link to="/friends">
         <ListItemButton className={classes.text}>
           <ListItemIcon >
           <img className={classes.img} src = {friends} alt="icon friends" ></img>
           </ListItemIcon>
-          Friends
-
+          <p className={classes.link}>Friends</p>
         </ListItemButton>
+        </Link>
+
+        <Link to="/grup">
+        <ListItemButton className={classes.text}>
+          <ListItemIcon>
+          <img width="30px" src = {grups} alt="icon grups" ></img>
+          </ListItemIcon>
+          <p className={classes.link}>Groups</p>
+        </ListItemButton>
+        </Link>
+
+        <Link to="/video">
+        <ListItemButton className={classes.text}>
+              <ListItemIcon>
+              <img width="30px"  src = {watch} alt="icon watch" ></img>
+              </ListItemIcon>
+              <p className={classes.link}>Watch</p>
+            </ListItemButton>
+            </Link>
 
         <ListItemButton className={classes.text}>
           <ListItemIcon>
           <img width="30px" src = {memories} alt="icon memories" ></img>
           </ListItemIcon>
-          Memories
+          <p className={classes.link}>Memories</p>
         </ListItemButton>
 
         <ListItemButton className={classes.text}>
           <ListItemIcon>
           <img width="30px" src = {save} alt="icon save" ></img>
           </ListItemIcon>
-          Saved
+          <p className={classes.link}>Saved</p>
         </ListItemButton>
 
-        <ListItemButton className={classes.text}>
-          <ListItemIcon>
-          <img width="30px" src = {grups} alt="icon grups" ></img>
-          </ListItemIcon>
-          Groups
-        </ListItemButton>
+       
 
         <ListItemButton className={classes.text}>
           <ListItemIcon>
           <img width="30px"  src = {pages} alt="icon pages" ></img>
           </ListItemIcon>
-          Pages
+          <p className={classes.link}>Pages</p>
         </ListItemButton>
+
 
         <ListItemButton className={classes.text} onClick={handleClick}>
           <ListItemIcon>
           <ArrowDropDownIcon/>
           </ListItemIcon>
-          See more
+          <p className={classes.link}>See more</p>
           {open ? <ExpandLess /> :<ExpandMore/>}
         </ListItemButton>
 
@@ -131,140 +163,133 @@ export default function LeftSidebar() {
               <ListItemIcon>
               <img width="30px"  src = {publicity} alt="icon public" ></img>
               </ListItemIcon>
-              Ad Centre
+              <p className={classes.link}>Ad Centre</p>
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
               <ListItemIcon>
               <img width="30px"  src = {adMasanger} alt="icon ads masanger" ></img>
               </ListItemIcon>
-              Ads Messenger
+              <p className={classes.link}>Ads Messenger</p>
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
               <ListItemIcon>
               <img width="30px"  src = {clima} alt="icon clima centre" ></img>
               </ListItemIcon>
-              Clima Science Centre
+              <p className={classes.link}>Clima Science Centre</p>
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
               <ListItemIcon>
               <img width="30px"  src = {comminity} alt="icon community help" ></img>
               </ListItemIcon>
-              Community Help
+              <p className={classes.link}>Community Help</p>
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
               <ListItemIcon>
               <img width="30px"  src = {covid} alt="icon COVID-19 " ></img>
               </ListItemIcon>
-              COVID-19 Information Centre
+              <p className={classes.link}>COVID-19 Information Centre</p>
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
               <ListItemIcon>
               <img width="30px"  src = {health} alt="icon health" ></img>
               </ListItemIcon>
-              Emotion Health
+              <p className={classes.link}>Emotion Health</p>
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
               <ListItemIcon>
               <img width="30px"  src = {events} alt="icon events" ></img>
               </ListItemIcon>
-              Events
+              <p className={classes.link}>Events</p>
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
               <ListItemIcon>
               <img width="30px"  src = {pay} alt="icon pay" ></img>
               </ListItemIcon>
-              Facebook Pay
+              <p className={classes.link}>Facebook Pay</p>
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
               <ListItemIcon>
               <img width="30px"  src = {favorites} alt="icon favorites" ></img>
               </ListItemIcon>
-              Favorites
+              <p className={classes.link}>Favorites</p>
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
               <ListItemIcon>
               <img width="30px"  src = {fundraisers} alt="icon fundraisers" ></img>
               </ListItemIcon>
-              Fundraisers
+              <p className={classes.link}>Fundraisers</p>
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
               <ListItemIcon>
               <img width="30px"  src = {video} alt="icon video" ></img>
               </ListItemIcon>
-              Gaming Video
+              <p className={classes.link}>Gaming Video</p>
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
               <ListItemIcon>
               <img width="30px"  src = {liveVideo} alt="icon live video" ></img>
               </ListItemIcon>
-              Live videos
+              <p className={classes.link}>Live videos</p>Live videos
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
               <ListItemIcon>
               <img width="30px"  src = {marketPlace} alt="icon market place" ></img>
               </ListItemIcon>
-              Marketplace
+              <p className={classes.link}>Marketplace</p>
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
               <ListItemIcon>
               <img width="30px"  src = {masanger} alt="icon masanger" ></img>
               </ListItemIcon>
-              Messenger
+              <p className={classes.link}>Messenger</p>
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
               <ListItemIcon>
               <img width="30px"  src = {recent} alt="icon recent" ></img>
               </ListItemIcon>
-              Most recent
+              <p className={classes.link}>Most recent</p>
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
               <ListItemIcon>
               <img width="30px"  src = {game} alt="icon game" ></img>
               </ListItemIcon>
-              Play games
+              <p className={classes.link}>Play games</p>
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
               <ListItemIcon>
               <img width="30px"  src = {recentAd} alt="icon ad activity" ></img>
               </ListItemIcon>
-              Recent ad activity
+              <p className={classes.link}>Recent ad activity</p>
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
               <ListItemIcon>
               <img width="30px"  src = {translate} alt="icon translate" ></img>
               </ListItemIcon>
-              Translate Facebook
-            </ListItemButton>
-
-            <ListItemButton className={classes.text}>
-              <ListItemIcon>
-              <img width="30px"  src = {watch} alt="icon watch" ></img>
-              </ListItemIcon>
-              Watch
+              <p className={classes.link}>Translate Facebook</p>
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
               <ListItemIcon>
                 <img width="30px"  src={wather} alt="icon for wather"></img>
               </ListItemIcon>
-              Wether
+              <p className={classes.link}>Wether</p>
             </ListItemButton>
           </List>
         </Collapse>

@@ -23,6 +23,7 @@ const useStyles = makeStyles({
     background: "#F2F3F5",
     height: "120vh",
     padding: "20px",
+    margin:"0px"
   },
   ad: {
     height: "200px",

@@ -17,7 +17,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   }
 }));
 
-export default function BadgeAvatars(props) {
+export default function BadgeAvatars() {
   return (
     <Stack style={{fontSize:2}}  direction="row" scale=".2" spacing={1}>
       <StyledBadge 

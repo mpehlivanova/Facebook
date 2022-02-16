@@ -17,8 +17,6 @@ const useStyles = makeStyles({
   },
 });
 
-
-
 export default function Main() {
   const classes = useStyles();
 
