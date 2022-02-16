@@ -9,6 +9,8 @@ import ProfilePageTop from "./components/ProfilePageTop";
 import Friends from "./pages/Friends";
 import VideoPage from "./pages/VideoPage";
 import Grups from "./pages/Grups";
+import ProfilePage from './pages/ProfilePage';
+
 
 function App() {
   const user = 1;

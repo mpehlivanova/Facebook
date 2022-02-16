@@ -24,6 +24,7 @@ import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 
 
 
+
 const useStyles = makeStyles({
     iconCentrum: {
 
@@ -52,7 +53,7 @@ const useStyles = makeStyles({
         zIndex: "100",
         top: "0",
         boxShadow: "0px 5px 8px -9px rgb(0,0,0,0.75)",
-        alignItems: "baseline",
+        // alignItems: "baseline",
         alignItems:"center",
     },
     left_header:{
