@@ -5,7 +5,6 @@ import Main from "./pages/Main.js";
 import {  Routes, Route } from "react-router-dom";
 // import AdapterDateFns from "@mui/lab/AdapterDateFns";
 // import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import ProfilePageTop from "./components/ProfilePageTop";
 import Friends from "./pages/Friends";
 import ProfilePage from './pages/ProfilePage';
 
