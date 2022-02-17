@@ -43,12 +43,15 @@ const useStyles = makeStyles({
   },
   header: {
     height: "50px",
+    width: "100%",
     display: "flex",
     justifyContent: "space-between",
-    position: "sticky",
+    position: "fixed",
     backgroundColor: "white",
-    zIndex: "100",
+    zIndex: "2",
     top: "0",
+    left: "0",
+
     boxShadow: "0px 5px 8px -9px rgb(0,0,0,0.75)",
     // alignItems: "baseline",
     alignItems: "center",
@@ -56,6 +59,8 @@ const useStyles = makeStyles({
   left_header: {
     display: "flex",
     justifyContent: "space-evenly",
+    marginLeft: "1%",
+    marginTop: "6px"
   },
   header_input: {
     display: "flex",

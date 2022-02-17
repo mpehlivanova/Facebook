@@ -11,6 +11,7 @@ const useStyle = makeStyles({
     
   },
   main: {
+    marginTop:"50%",
     display: "flex",
     gap: "40px"
 

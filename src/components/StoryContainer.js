@@ -8,7 +8,7 @@ const useStyle = makeStyles({
         width: "130%",
         display: 'flex',
         justifyContent: 'center',
-        gap:"10px"
+        
     }
 })
 

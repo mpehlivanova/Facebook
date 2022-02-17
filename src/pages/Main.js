@@ -12,7 +12,8 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
-    height:"130vh"
+    height: "130vh",
+    marginTop: "50px",
   },
 });
 

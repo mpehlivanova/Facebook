@@ -19,7 +19,7 @@ import UserDisny from "./userDisny.js";
 
 const useStyles = makeStyles({
   conrainerPost: {
-    width: "78%",
+    width: "75%",
     background: "white",
     display: "flex",
     flexDirection: "column",

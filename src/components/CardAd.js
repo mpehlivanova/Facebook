@@ -27,6 +27,7 @@ const useStyles = makeStyles({
 
 export default function CardAd(img, text) {
   const card = useStyles();
+  
   return (
     <ListItemButton >
         <div className={card.containerCard}>

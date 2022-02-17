@@ -32,7 +32,7 @@ const cssStyle = makeStyles({
     height: "30px",
   },
   conteiner: {
-    width: "78%",
+    width: "75%",
     height: "130px",
     display: "flex",
     marginTop: "20px",

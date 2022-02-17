@@ -176,14 +176,46 @@ const useStyle = makeStyles({
   registerWrapper: {
     display: "flex",
     flexDirection: "column",
+    gap: "10px",
+  },
+  topText: {
+    height:"100px",
+    fontFamily: "Helvetica",
+    marginLeft:"4%",
+  },
+
+  namesWrapper: {
+    display: "flex",
+    gap: "10px",
   },
 
   makeRegButtonWrapper: {
     display: "flex",
     justifyContent: "center",
   },
-
-  
+  genderWrapperBox: {
+    width: "133px",
+    height: "30px",
+    border: "1px solid #c4c4c4",
+    borderRadius: "5px",
+    color: "black",
+  },
+  genderWrapper: {
+    width: "96%",
+    marginLeft: "4%",
+    display: "flex",
+    justifyContent: "space-around",
+  },
+  regBtnFormCreate: {
+    backgroundColor: "#42b72a",
+    color: "white",
+    margin: "20px",
+    width: "190px",
+    height: "36px",
+    border:"none",
+    borderRadius: "5px",
+    fontSize: "18px"
+  },
 });
 
 export default function Login() {
@@ -251,21 +283,22 @@ export default function Login() {
         </div>
       </div>
 
+      {/* Register form  */}
       <BootstrapDialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}
       >
-        <BootstrapDialogTitle
+        <div className={style.topText}
           id="customized-dialog-title"
           onClose={handleClose}
         >
           <h1>Регистрация</h1>
-          <p>Бързо и лесно</p>
-        </BootstrapDialogTitle>
+          <p>Бързо и лесно е</p>
+        </div>
 
         <DialogContent dividers className={style.registerWrapper}>
-          <div className="namesWrapper">
+          <div className={style.namesWrapper}>
             <TextField
               required
               id="outlined-required"
@@ -310,47 +343,49 @@ export default function Login() {
           /> */}
 
           <div className="datesWrapper">
-            
-
             <DatePicker />
           </div>
-          <div className="genderWrapper">
-            <FormControl>
-              <FormLabel id="demo-row-radio-buttons-group-label"></FormLabel>
-              <RadioGroup
-                row
-                className={style.genderWrapper}
-                aria-labelledby="demo-row-radio-buttons-group-label"
-                defaultValue="female"
-                name="row-radio-buttons-group"
-              >
-                <FormControlLabel
-                  value="female"
-                  control={<Radio />}
-                  label="Жена"
-                />
-                <FormControlLabel
-                  value="male"
-                  control={<Radio />}
-                  label="Мъж"
-                />
-                <FormControlLabel
-                  value="other"
-                  control={<Radio />}
-                  label="Друг"
-                />
-              </RadioGroup>
-            </FormControl>
-          </div>
+
+          <FormControl>
+            <FormLabel id="demo-row-radio-buttons-group-label">Пол</FormLabel>
+            <RadioGroup
+              row
+              className={style.genderWrapper}
+              aria-labelledby="demo-row-radio-buttons-group-label"
+              defaultValue="female"
+              name="row-radio-buttons-group"
+            >
+              <FormControlLabel
+                className={style.genderWrapperBox}
+                value="female"
+                control={<Radio />}
+                label="Жена"
+              />
+
+              <FormControlLabel
+                className={style.genderWrapperBox}
+                value="male"
+                control={<Radio />}
+                label="Мъж"
+              />
+
+              <FormControlLabel
+                className={style.genderWrapperBox}
+                value="other"
+                control={<Radio />}
+                label="Друг"
+              />
+            </RadioGroup>
+          </FormControl>
         </DialogContent>
         <DialogActions class={style.makeRegButtonWrapper}>
-          <Button
+          <button
+            className={style.regBtnFormCreate}
             autoFocus
             onClick={handleClose}
-            className={style.makeRegButton}
           >
             Регистрация
-          </Button>
+          </button>
         </DialogActions>
       </BootstrapDialog>
     </div>

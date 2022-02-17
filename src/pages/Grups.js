@@ -14,6 +14,7 @@ import Post from "../components/Post";
 
 const useStyles = makeStyles({
   page: {
+    marginTop: "50px",
     width: "100%",
     height: "100px",
     display: "flex",
@@ -35,7 +36,7 @@ const useStyles = makeStyles({
     gap: "20px",
     flexWrap: "wrap",
     padding: "20px",
-    justifyContent:"center",
+    justifyContent: "center",
   },
   text: {
     fontSize: "medium",
@@ -108,7 +109,7 @@ export default function Grups() {
                 <input
                   className={groupPage.input}
                   type="text"
-                  placeholder="Search grup"
+                  placeholder="Search group"
                 ></input>
               </div>
             </form>

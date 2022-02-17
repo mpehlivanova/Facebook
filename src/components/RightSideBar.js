@@ -16,9 +16,11 @@ import IconButton from "@mui/material/IconButton";
 //    {/* scroll */}
 
 import { makeStyles } from "@mui/styles";
+import { IFrame } from './IFrame';
 
 const useStyles = makeStyles({
   conrainerRight: {
+    
     width: "20%",
     background: "#F2F3F5",
     height: "120vh",
@@ -51,6 +53,8 @@ const useStyles = makeStyles({
     marginTop: "5px",
     marginBottom: "5px",
     fontSize: "small",
+    fontFamily: "Helvetica",
+    fontSize: "16px"
   },
   textMedium: {
     fontSize: "medium",
@@ -93,7 +97,9 @@ export default function RightSideBar() {
 
   return (
     <div className={classes.conrainerRight}>
-      <h3 className={classes.text}>Sponsored</h3>
+      <h3 className={classes.text}>Спонсорирано</h3>
+      <hr/>
+      <IFrame />
       <div className={classes.ad}>
         <CardAd />
         <CardAd />

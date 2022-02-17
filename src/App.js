@@ -14,8 +14,9 @@ import ProfilePage from './pages/ProfilePage';
 function App() {
   const user = 1;
   return (
-    <>
-      {!user ? (
+
+      <>
+         {!user ? (
         <Login />
       ) : (
           <>
