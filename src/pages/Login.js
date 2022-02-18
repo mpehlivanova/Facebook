@@ -1,9 +1,6 @@
 import React from "react";
-
-// import Button from "@mui/material/Button";
 import { makeStyles } from "@mui/styles";
 import PropTypes from "prop-types";
-import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
@@ -21,6 +18,7 @@ import FormLabel from "@mui/material/FormLabel";
 import TextField from "@mui/material/TextField";
 
 import DatePicker from ".././components/DatePicker";
+import { useDispatch } from "react-redux";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -31,7 +29,10 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
+
+
 const BootstrapDialogTitle = (props) => {
+  
   const { children, onClose, ...other } = props;
 
   return (
@@ -219,6 +220,15 @@ const useStyle = makeStyles({
 });
 
 export default function Login() {
+
+  const dispatch = useDispatch();
+
+  const handleLogin = () => {
+    console.log("hi");
+    dispatch({ type: "LOGIN" });
+  };
+
+
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -265,7 +275,11 @@ export default function Login() {
             className={`${style.passwordInput} ${style.commonRight}`}
             placeholder="Парола"
           />
-          <button className={style.loginBtn} variant="contained">
+          <button
+            className={style.loginBtn}
+            variant="contained"
+            onClick={handleLogin}
+          >
             Вход
           </button>
           <a
@@ -289,7 +303,8 @@ export default function Login() {
         aria-labelledby="customized-dialog-title"
         open={open}
       >
-        <div className={style.topText}
+        <div
+          className={style.topText}
           id="customized-dialog-title"
           onClose={handleClose}
         >

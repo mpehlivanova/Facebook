@@ -68,7 +68,7 @@ const useStyles = makeStyles({
     height: "35px",
     margin: "10px",
     backgroundColor: " #eff2f5",
-    alignItems: "center",
+    // alignItems: "center",
     paddingLeft: "10px",
   },
   input: {

@@ -9,14 +9,15 @@ import Friends from "./pages/Friends";
 import VideoPage from "./pages/VideoPage";
 import Grups from "./pages/Grups";
 import ProfilePage from './pages/ProfilePage';
+import { useSelector } from "react-redux";
 
 
 function App() {
-  const user = 1;
+  const logged = useSelector(state => state.userData.logged);
   return (
 
       <>
-         {!user ? (
+         {!logged ? (
         <Login />
       ) : (
           <>

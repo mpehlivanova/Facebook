@@ -52,7 +52,7 @@ const useStyles = makeStyles({
     marginLeft: "10px",
     marginTop: "5px",
     marginBottom: "5px",
-    fontSize: "small",
+    // fontSize: "small",
     fontFamily: "Helvetica",
     fontSize: "16px"
   },

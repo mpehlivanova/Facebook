@@ -20,7 +20,7 @@ import AppsRoundedIcon from '@mui/icons-material/AppsRounded';
 import { grey } from "@mui/material/colors";
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
-
+import PopUpUserMenu from "./PopUpUserMenu"
 
 
 
@@ -60,7 +60,7 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "space-evenly",
     marginLeft: "1%",
-    marginTop: "6px"
+    marginTop: "6px",
   },
   header_input: {
     display: "flex",
@@ -92,7 +92,7 @@ const useStyles = makeStyles({
   user: {
     display: "flex",
     flexDirection: "row",
-    gap: "10px",
+    // gap: "5px",
     alignItems: "center",
   },
   link: {
@@ -102,8 +102,13 @@ const useStyles = makeStyles({
     fontSize: "16px",
     fontWeight: "500",
   },
-
-  
+  rightSideIcons: {
+    display: "flex",
+    width: "300px",
+    justifyContent: "center",
+    alignItems:"center"
+    
+  }
 });
 
 function Header(){
@@ -199,7 +204,7 @@ function Header(){
             </Link>
           </ListItemIcon>
 
-          <div className={useStyles.rightSideIcons}>
+          <div className={classes.rightSideIcons}>
             <Link to="/">
               {/* /*  added new style btn Mariela */}
 
@@ -230,11 +235,15 @@ function Header(){
 
             <Link to="/">
               {/*  added new style btn Mariela */}
-              <IconButton>
+              {/* <IconButton>
                 <Avatar className="homeIcon" sx={{ bgcolor: grey[200] }}>
-                  <ArrowDropDownRoundedIcon color="action" />
+                  <ArrowDropDownRoundedIcon color="action"></ArrowDropDownRoundedIcon>
+                
                 </Avatar>
+                
               </IconButton>
+               */}
+              <PopUpUserMenu />
             </Link>
           </div>
 

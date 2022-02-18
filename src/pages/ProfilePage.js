@@ -8,18 +8,16 @@ import Post from './../components/Post';
 const useStyle = makeStyles({
   container: {
     backgroundColor: "#f0f2f5",
-    
+    marginTop:"50px"
+  
   },
   main: {
-    marginTop:"50%",
     display: "flex",
     gap: "40px"
 
   },
   rightSide: {
-  
     width: "60%",
-
   }
 });
 
