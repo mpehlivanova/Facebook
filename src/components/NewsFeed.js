@@ -8,7 +8,7 @@ import FriendsCard from "./FriendsCard";
 const useStyles = makeStyles({
   feed: {
     width: "75%",
-    background: "#F2F3F5",    //change color /Mariannpm 
+    background: "#F2F3F5",    //change color /Marian
     display: "flex",
     flexDirection: "column",
     alignItems: "center",

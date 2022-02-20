@@ -2,7 +2,7 @@ import React from "react";
 export const IFrame = () => {
   return (
       <iframe
-        width="250"
+        width="100%"
         height="250"
         src="https://www.youtube.com/embed/qyWfWtsR1m8"
         title="YouTube video player"

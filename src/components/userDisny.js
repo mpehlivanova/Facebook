@@ -6,6 +6,8 @@ const UserDisny = [
 
       story:
         "https://cdn.britannica.com/10/152310-050-5A09D74A/Sand-dunes-Sahara-Morocco-Merzouga.jpg",
+      video:
+      "https://www.youtube.com/watch?v=-d5ztm8JB8c"  
     },
     {
       name: "Koko",
