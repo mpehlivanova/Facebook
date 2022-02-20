@@ -5,7 +5,7 @@ import PublicIcon from "@mui/icons-material/Public";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { grey } from "@mui/material/colors";
 import { makeStyles } from "@mui/styles";
-import { Button } from "@mui/material";
+import { Avatar, Button, ListItemIcon } from "@mui/material";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import RecommendRoundedIcon from "@mui/icons-material/RecommendRounded";
 import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
@@ -16,6 +16,7 @@ import StickyNote2OutlinedIcon from "@mui/icons-material/StickyNote2Outlined";
 import IconButton from "@mui/material/IconButton";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 import UserDisny from "./userDisny.js";
+import myProfil from "../components-css/imgLeftBar/guest.png";
 
 const useStyles = makeStyles({
   conrainerPost: {
@@ -27,8 +28,6 @@ const useStyles = makeStyles({
     boxShadow: "5px 5px 5px 5px rgb(169,169,169,0.25)",
     borderRadius: "10px",
     paddingBottom: "20px",
-  
-   
   },
   header: {
     display: "flex",
@@ -41,8 +40,7 @@ const useStyles = makeStyles({
     flexDirection: "row",
     alignItems: "center",
     paddingLeft: "5px",
-    poddingLeft:"10px",
- 
+    poddingLeft: "10px",
   },
   textSmall: {
     fontSize: "small",
@@ -58,8 +56,7 @@ const useStyles = makeStyles({
   textInput: {
     fontSize: "medium",
     fontFamily: "Segoe UI Historic, Helvetica, Arial",
-    margin:"5px 5px",
-  
+    margin: "5px 5px",
   },
   border: {
     borderTop: "1px solid #cfd0d1",
@@ -71,14 +68,13 @@ const useStyles = makeStyles({
     // padding: "4px",
   },
   addComment: {
-    width:"100%",
+    width: "100%",
     display: "flex",
     alignItems: "center",
     flexDirection: "row",
     gap: "10px",
   },
   form: {
-    
     display: "flex",
     alignItems: "center",
     flexDirection: "row",
@@ -89,11 +85,11 @@ const useStyles = makeStyles({
     borderRadius: "20px",
     width: "60%",
     height: "30px",
-    color:"action",
+    color: "action",
     border: "none",
     backgroundColor: " #eff2f5",
-    padding:"10px",
-    marginLeft:"5px"
+    padding: "10px",
+    marginLeft: "5px",
   },
   iconContact: {
     opacity: "0.5",
@@ -116,38 +112,37 @@ const useStyles = makeStyles({
     alignItems: "center",
     paddingLeft: "5px",
   },
-  textBox:{
+  textBox: {
     display: "flex",
     justifyContent: "space-between",
     height: "20px",
     padding: "20px",
   },
 
-
   inputComment: {
     border: "none",
     backgroundColor: " #eff2f5",
-    padding:"10px",
-    borderRadius:"20px",
+    padding: "10px",
+    borderRadius: "20px",
     width: "60%",
     height: "30px",
- 
   },
-  commenrWrite:{
-
+  commenrWrite: {
     display: "flex",
-    width:"95%",
+    width: "95%",
     flexDirection: "row",
     alignItems: "baseline",
     justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: " #eff2f5",
-    borderRadius:"20px",
-    marginLeft:"5px"
-
+    borderRadius: "20px",
+    marginLeft: "5px",
   },
-  
- 
+  img: {
+    width: "40px",
+    height: "40px",
+    borderRadius: "33px",
+  },
 });
 
 export default function Post() {
@@ -164,13 +159,19 @@ export default function Post() {
 
   return (
     <>
-      {UserDisny.map((user,i) => {
+      {UserDisny.map((user, i) => {
         return (
           <>
             <div key={uuidv4()} className={post.conrainerPost}>
               <div className={post.header}>
                 <div className={post.row}>
-                  <BadgeAvatars />
+                  <ListItemIcon>
+                    <img
+                      className={post.img}
+                      src={myProfil}
+                      alt="icon my profil"
+                    ></img>
+                  </ListItemIcon>
                   <div height="8px">
                     <p className={post.textInput}>
                       <strong>{user.name} </strong> is width

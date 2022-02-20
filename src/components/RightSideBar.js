@@ -98,7 +98,7 @@ export default function RightSideBar() {
   return (
     <div className={classes.conrainerRight}>
       <h3 className={classes.text}>Спонсорирано</h3>
-      <hr/>
+   
       <IFrame />
       <div className={classes.ad}>
         <CardAd />

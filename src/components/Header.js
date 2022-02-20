@@ -17,10 +17,11 @@ import { Link } from "react-router-dom";
 import { Avatar } from "@mui/material";
 import MessageRoundedIcon from '@mui/icons-material/MessageRounded';
 import AppsRoundedIcon from '@mui/icons-material/AppsRounded';
-import { grey } from "@mui/material/colors";
+import { blue, grey, red } from "@mui/material/colors";
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
-import PopUpUserMenu from "./PopUpUserMenu"
+import PopUpUserMenu from "./PopUpUserMenu";
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 
 
 
@@ -36,6 +37,9 @@ const useStyles = makeStyles({
   centrum: {
     display: "flex",
     gap: "60px",
+    "&:hover": {
+      bgcolor: red[900]
+    },
   },
 
   left_header_img: {
@@ -108,10 +112,10 @@ const useStyles = makeStyles({
     justifyContent: "center",
     alignItems:"center"
     
-  }
-});
+  },
+})
 
-function Header(){
+export default function Header(){
 
     const classes = useStyles();
 
@@ -144,10 +148,11 @@ function Header(){
                 {" "}
                 {/*  added link and buttum color gre Mariela*/}
                 <Button className={useStyles.centralBtns}>
-                  <HomeIcon
-                    color="action"
+                <HomeOutlinedIcon
+                     color="action"
                     className={classes.iconCentrum}
                     fontSize="large"
+                    
                   />
                 </Button>
               </Link>
@@ -228,7 +233,7 @@ function Header(){
               {/*  added new style btn Mariela */}
               <IconButton>
                 <Avatar sx={{ bgcolor: grey[200] }}>
-                  <NotificationsRoundedIcon color="action" />
+                  <NotificationsRoundedIcon color="action"  />
                 </Avatar>
               </IconButton>
             </Link>
@@ -265,4 +270,3 @@ function Header(){
     );
 }
 
-export default Header

@@ -4,6 +4,7 @@ import { makeStyles } from "@mui/styles";
 import StoryContainer from "./StoryContainer";
 import Post from "./Post";
 import FriendsCard from "./FriendsCard";
+import CreatePostNew from "./CreatePost";
 
 const useStyles = makeStyles({
   feed: {
@@ -40,7 +41,8 @@ export default function NewsFeed(){
         </div>
         {/* <CreateStory/>
           <StoryBox /> */}
-          <CreateComment/>
+          <CreatePostNew/>
+          {/* <CreateComment/> */}
           <Post/>
       </div>
       
