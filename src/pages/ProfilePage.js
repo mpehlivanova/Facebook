@@ -18,6 +18,7 @@ const useStyle = makeStyles({
   },
   rightSide: {
     width: "60%",
+    marginTop:"15px"
   }
 });
 
@@ -35,7 +36,6 @@ export default function ProfilePage() {
           <ProfilePageRightSide />
           <Post/>
        </div>
-        
       </div>
     </div>
   );

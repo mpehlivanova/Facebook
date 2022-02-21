@@ -7,7 +7,8 @@ const UserDisny = [
       story:
         "https://cdn.britannica.com/10/152310-050-5A09D74A/Sand-dunes-Sahara-Morocco-Merzouga.jpg",
       video:
-      "https://www.youtube.com/watch?v=-d5ztm8JB8c"  
+      "https://www.youtube.com/watch?v=-d5ztm8JB8c"  ,
+      text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
     },
     {
       name: "Koko",
@@ -16,6 +17,7 @@ const UserDisny = [
 
       story:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo6VUAnaCaXucCfLBspbFe8wpFAyD-TEJBq2Gx_pI5cSJ4Fr_et8nPO_qDc6PDkbCsDo0&usqp=CAU",
+        text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
     },
     {
       name: "Nemo",
@@ -24,6 +26,7 @@ const UserDisny = [
 
       story:
         "https://m.media-amazon.com/images/M/MV5BMjMwMDYxNTUyMl5BMl5BanBnXkFtZTcwNTIwMjQ4Nw@@._V1_QL75_UX500_CR0,47,500,281_.jpg",
+        text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
     },
     {
       name: "Simba",
@@ -32,6 +35,7 @@ const UserDisny = [
 
       story:
         "https://www.jenmansafaris.com/wp-content/uploads/2018/04/37069384-lion-king-pictures.jpg",
+        text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
     },
     {
         name: "Rango",
@@ -40,6 +44,7 @@ const UserDisny = [
   
         story:
           "https://cdn.britannica.com/10/152310-050-5A09D74A/Sand-dunes-Sahara-Morocco-Merzouga.jpg",
+          text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
       },
       {
         name: "Koko",
@@ -48,6 +53,7 @@ const UserDisny = [
   
         story:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo6VUAnaCaXucCfLBspbFe8wpFAyD-TEJBq2Gx_pI5cSJ4Fr_et8nPO_qDc6PDkbCsDo0&usqp=CAU",
+          text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
       },
       {
         name: "Nemo",
@@ -56,6 +62,7 @@ const UserDisny = [
   
         story:
           "https://m.media-amazon.com/images/M/MV5BMjMwMDYxNTUyMl5BMl5BanBnXkFtZTcwNTIwMjQ4Nw@@._V1_QL75_UX500_CR0,47,500,281_.jpg",
+          text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
       },
       {
         name: "Simba",
@@ -64,6 +71,7 @@ const UserDisny = [
   
         story:
           "https://www.jenmansafaris.com/wp-content/uploads/2018/04/37069384-lion-king-pictures.jpg",
+          text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
       },
       {
         name: "Rango",
@@ -72,6 +80,7 @@ const UserDisny = [
   
         story:
           "https://cdn.britannica.com/10/152310-050-5A09D74A/Sand-dunes-Sahara-Morocco-Merzouga.jpg",
+          text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
       },
       {
         name: "Koko",
@@ -80,6 +89,7 @@ const UserDisny = [
   
         story:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo6VUAnaCaXucCfLBspbFe8wpFAyD-TEJBq2Gx_pI5cSJ4Fr_et8nPO_qDc6PDkbCsDo0&usqp=CAU",
+          text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
       },
       {
         name: "Nemo",
@@ -88,6 +98,7 @@ const UserDisny = [
   
         story:
           "https://m.media-amazon.com/images/M/MV5BMjMwMDYxNTUyMl5BMl5BanBnXkFtZTcwNTIwMjQ4Nw@@._V1_QL75_UX500_CR0,47,500,281_.jpg",
+          text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
       },
       {
         name: "Simba",
@@ -96,6 +107,7 @@ const UserDisny = [
   
         story:
           "https://www.jenmansafaris.com/wp-content/uploads/2018/04/37069384-lion-king-pictures.jpg",
+          text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
       },
       {
           name: "Rango",
@@ -104,6 +116,7 @@ const UserDisny = [
     
           story:
             "https://cdn.britannica.com/10/152310-050-5A09D74A/Sand-dunes-Sahara-Morocco-Merzouga.jpg",
+            text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
         },
         {
           name: "Koko",
@@ -112,6 +125,7 @@ const UserDisny = [
     
           story:
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo6VUAnaCaXucCfLBspbFe8wpFAyD-TEJBq2Gx_pI5cSJ4Fr_et8nPO_qDc6PDkbCsDo0&usqp=CAU",
+            text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
         },
         {
           name: "Nemo",
@@ -120,6 +134,7 @@ const UserDisny = [
     
           story:
             "https://m.media-amazon.com/images/M/MV5BMjMwMDYxNTUyMl5BMl5BanBnXkFtZTcwNTIwMjQ4Nw@@._V1_QL75_UX500_CR0,47,500,281_.jpg",
+            text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
         },
         {
           name: "Simba",
@@ -128,6 +143,7 @@ const UserDisny = [
     
           story:
             "https://www.jenmansafaris.com/wp-content/uploads/2018/04/37069384-lion-king-pictures.jpg",
+            text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
         },
         {
           name: "Rango",
@@ -136,6 +152,7 @@ const UserDisny = [
     
           story:
             "https://cdn.britannica.com/10/152310-050-5A09D74A/Sand-dunes-Sahara-Morocco-Merzouga.jpg",
+            text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
         },
         {
           name: "Koko",
@@ -144,6 +161,7 @@ const UserDisny = [
     
           story:
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo6VUAnaCaXucCfLBspbFe8wpFAyD-TEJBq2Gx_pI5cSJ4Fr_et8nPO_qDc6PDkbCsDo0&usqp=CAU",
+            text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
         },
         {
           name: "Nemo",
@@ -152,6 +170,7 @@ const UserDisny = [
     
           story:
             "https://m.media-amazon.com/images/M/MV5BMjMwMDYxNTUyMl5BMl5BanBnXkFtZTcwNTIwMjQ4Nw@@._V1_QL75_UX500_CR0,47,500,281_.jpg",
+            text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
         },
         {
           name: "Koko",
@@ -160,6 +179,7 @@ const UserDisny = [
     
           story:
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo6VUAnaCaXucCfLBspbFe8wpFAyD-TEJBq2Gx_pI5cSJ4Fr_et8nPO_qDc6PDkbCsDo0&usqp=CAU",
+            text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
         },
         {
           name: "Nemo",
@@ -168,6 +188,7 @@ const UserDisny = [
     
           story:
             "https://m.media-amazon.com/images/M/MV5BMjMwMDYxNTUyMl5BMl5BanBnXkFtZTcwNTIwMjQ4Nw@@._V1_QL75_UX500_CR0,47,500,281_.jpg",
+            text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
         },
         {
           name: "Simba",
@@ -176,6 +197,7 @@ const UserDisny = [
     
           story:
             "https://www.jenmansafaris.com/wp-content/uploads/2018/04/37069384-lion-king-pictures.jpg",
+            text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
         },
         {
             name: "Rango",
@@ -184,6 +206,7 @@ const UserDisny = [
       
             story:
               "https://cdn.britannica.com/10/152310-050-5A09D74A/Sand-dunes-Sahara-Morocco-Merzouga.jpg",
+              text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
           },
           {
             name: "Koko",
@@ -192,6 +215,7 @@ const UserDisny = [
       
             story:
               "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo6VUAnaCaXucCfLBspbFe8wpFAyD-TEJBq2Gx_pI5cSJ4Fr_et8nPO_qDc6PDkbCsDo0&usqp=CAU",
+              text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
           },
           {
             name: "Nemo",
@@ -200,6 +224,7 @@ const UserDisny = [
       
             story:
               "https://m.media-amazon.com/images/M/MV5BMjMwMDYxNTUyMl5BMl5BanBnXkFtZTcwNTIwMjQ4Nw@@._V1_QL75_UX500_CR0,47,500,281_.jpg",
+              text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
           },
           {
             name: "Simba",
@@ -208,6 +233,7 @@ const UserDisny = [
       
             story:
               "https://www.jenmansafaris.com/wp-content/uploads/2018/04/37069384-lion-king-pictures.jpg",
+              text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
           },
           {
             name: "Rango",
@@ -216,6 +242,7 @@ const UserDisny = [
       
             story:
               "https://cdn.britannica.com/10/152310-050-5A09D74A/Sand-dunes-Sahara-Morocco-Merzouga.jpg",
+              text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
           },
           {
             name: "Koko",
@@ -224,6 +251,7 @@ const UserDisny = [
       
             story:
               "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo6VUAnaCaXucCfLBspbFe8wpFAyD-TEJBq2Gx_pI5cSJ4Fr_et8nPO_qDc6PDkbCsDo0&usqp=CAU",
+              text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
           },
           {
             name: "Nemo",
@@ -232,6 +260,7 @@ const UserDisny = [
       
             story:
               "https://m.media-amazon.com/images/M/MV5BMjMwMDYxNTUyMl5BMl5BanBnXkFtZTcwNTIwMjQ4Nw@@._V1_QL75_UX500_CR0,47,500,281_.jpg",
+              text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
           },
       {
         name: "Koko",
@@ -240,6 +269,7 @@ const UserDisny = [
   
         story:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo6VUAnaCaXucCfLBspbFe8wpFAyD-TEJBq2Gx_pI5cSJ4Fr_et8nPO_qDc6PDkbCsDo0&usqp=CAU",
+          text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
       },
       {
         name: "Nemo",
@@ -248,6 +278,7 @@ const UserDisny = [
   
         story:
           "https://m.media-amazon.com/images/M/MV5BMjMwMDYxNTUyMl5BMl5BanBnXkFtZTcwNTIwMjQ4Nw@@._V1_QL75_UX500_CR0,47,500,281_.jpg",
+          text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
       },
       {
         name: "Koko",
@@ -256,6 +287,7 @@ const UserDisny = [
   
         story:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo6VUAnaCaXucCfLBspbFe8wpFAyD-TEJBq2Gx_pI5cSJ4Fr_et8nPO_qDc6PDkbCsDo0&usqp=CAU",
+          text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
       },
       {
         name: "Nemo",
@@ -264,6 +296,7 @@ const UserDisny = [
   
         story:
           "https://m.media-amazon.com/images/M/MV5BMjMwMDYxNTUyMl5BMl5BanBnXkFtZTcwNTIwMjQ4Nw@@._V1_QL75_UX500_CR0,47,500,281_.jpg",
+          text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
       },
       {
         name: "Simba",
@@ -272,6 +305,7 @@ const UserDisny = [
   
         story:
           "https://www.jenmansafaris.com/wp-content/uploads/2018/04/37069384-lion-king-pictures.jpg",
+          text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
       },
       {
           name: "Rango",
@@ -280,6 +314,7 @@ const UserDisny = [
     
           story:
             "https://cdn.britannica.com/10/152310-050-5A09D74A/Sand-dunes-Sahara-Morocco-Merzouga.jpg",
+            text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
         },
         {
           name: "Koko",
@@ -288,6 +323,7 @@ const UserDisny = [
     
           story:
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo6VUAnaCaXucCfLBspbFe8wpFAyD-TEJBq2Gx_pI5cSJ4Fr_et8nPO_qDc6PDkbCsDo0&usqp=CAU",
+            text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
         },
         {
           name: "Nemo",
@@ -296,6 +332,7 @@ const UserDisny = [
     
           story:
             "https://m.media-amazon.com/images/M/MV5BMjMwMDYxNTUyMl5BMl5BanBnXkFtZTcwNTIwMjQ4Nw@@._V1_QL75_UX500_CR0,47,500,281_.jpg",
+            text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
         },
         {
           name: "Simba",
@@ -304,6 +341,7 @@ const UserDisny = [
     
           story:
             "https://www.jenmansafaris.com/wp-content/uploads/2018/04/37069384-lion-king-pictures.jpg",
+            text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
         },
         {
           name: "Rango",
@@ -312,6 +350,7 @@ const UserDisny = [
     
           story:
             "https://cdn.britannica.com/10/152310-050-5A09D74A/Sand-dunes-Sahara-Morocco-Merzouga.jpg",
+            text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
         },
         {
           name: "Koko",
@@ -320,6 +359,7 @@ const UserDisny = [
     
           story:
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo6VUAnaCaXucCfLBspbFe8wpFAyD-TEJBq2Gx_pI5cSJ4Fr_et8nPO_qDc6PDkbCsDo0&usqp=CAU",
+            text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
         },
         {
           name: "Nemo",
@@ -328,6 +368,7 @@ const UserDisny = [
     
           story:
             "https://m.media-amazon.com/images/M/MV5BMjMwMDYxNTUyMl5BMl5BanBnXkFtZTcwNTIwMjQ4Nw@@._V1_QL75_UX500_CR0,47,500,281_.jpg",
+            text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
         },
       {
         name: "Simba",
@@ -336,6 +377,7 @@ const UserDisny = [
   
         story:
           "https://www.jenmansafaris.com/wp-content/uploads/2018/04/37069384-lion-king-pictures.jpg",
+          text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus"
       },
   ];
   export default UserDisny;

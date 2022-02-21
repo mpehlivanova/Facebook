@@ -26,6 +26,7 @@ import Picker from "emoji-picker-react";
 import PersonAddAltRoundedIcon from "@mui/icons-material/PersonAddAltRounded";
 import MoodRoundedIcon from "@mui/icons-material/MoodRounded";
 import FmdGoodRoundedIcon from "@mui/icons-material/FmdGoodRounded";
+import { useDispatch, useSelector } from "react-redux";
 
 const cssStyle = makeStyles({
   topComment: {
@@ -181,9 +182,10 @@ const cssStyle = makeStyles({
   },
 });
 
-export default function CreatePost() {
+export default function CreatePost(props) {
   const style = cssStyle();
   const [open, setOpen] = React.useState(false);
+ 
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -192,6 +194,22 @@ export default function CreatePost() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const [postText, setpPostText] = React.useState("");
+
+  const setHandleInputPost=(ev)=>{
+    setpPostText(ev.target.value.trim())
+  }
+
+  const dispatch = useDispatch();
+
+    const posts = useSelector(state=>state.actionPost.addedPosts) //get all post from global
+
+  const handleCreatePost =()=>{
+    console.log(posts);
+    console.log("create post");
+    dispatch ({type:"CREATEPOST", payload:{text:postText}})
+  }
 
   return (
     <>
@@ -259,6 +277,7 @@ export default function CreatePost() {
           </div>
           <div className={style.inputTextPost}>
             <input
+              onChange={setHandleInputPost}
               className={style.input}
               placeholder={`Какво мислите, ${"User.name"}?`}
             ></input>
@@ -295,7 +314,12 @@ export default function CreatePost() {
             className={style.buttonPost}
             variant="contained"
             // disabled
-            onClick={handleClose}
+            
+            onClick={()=>{
+              handleCreatePost();
+              handleClose();
+
+            }}
           >
             Публикация
           </Button>
