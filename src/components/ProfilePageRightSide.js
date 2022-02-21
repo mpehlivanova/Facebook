@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
-import CreateComment from "./CreateComment"
+import CreatePost from "./CreatePost"
 
 const useStyle = makeStyles({
     mainRight: {
@@ -12,7 +12,9 @@ const useStyle = makeStyles({
 export default function ProfilePageRightSide() {
   const style = useStyle();
 
-    return <div className={style.mainRight}>
-      <CreateComment />
-  </div>;
+  return(
+  <div className={style.mainRight}>
+      <CreatePost />
+    </div>
+  )
 }

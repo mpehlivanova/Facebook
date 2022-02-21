@@ -16,9 +16,8 @@ import FormLabel from "@mui/material/FormLabel";
 import TextField from "@mui/material/TextField";
 import DatePicker from ".././components/DatePicker";
 import { useDispatch, useSelector } from "react-redux";
-import registeredUsers from "../server/registeredUsers";
-import userReducer from "../redux/reducers/userReducer"
-
+import userReducer from "../redux/reducers/userReducer";
+import GoogleLogin from "react-google-login";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -225,6 +224,15 @@ const useStyle = makeStyles({
 });
 
 export default function Login() {
+
+  const handleFailure = (result) => {
+    alert(result)
+  }
+  const handleGoogleLogin = (googleData) => {
+    console.log(googleData)
+  } 
+
+
   var validator = require("email-validator");
 
   const [email, setEmail] = useState("");
@@ -240,7 +248,7 @@ export default function Login() {
   };
 
   const dispatch = useDispatch();
-  const regUsers = useSelector(state => state.userData.registered);
+  const regUsers = useSelector((state) => state.userData.registered);
 
   const handleLogin = () => {
     console.log(regUsers);
@@ -295,13 +303,25 @@ export default function Login() {
   const handleRegister = () => {
     if (validator.validate(emailReg)) {
       console.log(regUsers);
-      // console.log(regUsers.filter(u => u.email === emailReg));
-      if ((regUsers.filter(u => u.email === emailReg))===null) {
-      // console.log("reg");   
-        dispatch({ type: "REGISTER", payload: regUsers.push({emailReg, passwordReg})})
-       }
+      const notAvailableEmails = (regUsers.filter(u => u.email === emailReg));
+      let mailsArr = [];
+      notAvailableEmails.forEach(u => mailsArr.push(u.email));
+      console.log(notAvailableEmails);
+      if (mailsArr.indexOf(emailReg) === -1) {
+        console.log("reg");
+        dispatch({
+          type: "REGISTER",
+          payload: {
+            email: emailReg,
+            password: passwordReg,
+            firstName: firstName,
+            lastName: lastName,
+            gender: gender
+          } 
+        });
+      }
     } else {
-      console.log("mail- ko");
+      console.log("mail is required");
     }
   };
 
@@ -380,11 +400,26 @@ export default function Login() {
             Забравена парола?
           </a>
           <hr className={style.hr} />
-          <button className={style.createRegisterBtn} onClick={handleClickOpen}>
+          <button className={style.createRegisterBtn} onClick={() => {
+            handleClickOpen()
+        
+          }
+          } >
             Създаване на нов профил
+            
           </button>
 
-          <button className={style.loginWithGoogle}>Вход с Google</button>
+          <div>
+            <GoogleLogin
+              clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+              buttonText="Вход с Google"
+              onSuccess={handleGoogleLogin}
+              onFailure={handleFailure}
+              cookiePolicy={"single_host_origin"}
+            ></GoogleLogin>
+          {/* <button className={style.loginWithGoogle}>Вход с Google</button> */}
+
+          </div>
         </div>
       </div>
 
@@ -473,8 +508,11 @@ export default function Login() {
           <button
             className={style.regBtnFormCreate}
             autoFocus
-            onClick={handleClose}
-            onClick={handleRegister}
+            onClick={() => {
+              handleRegister()
+              handleClose()
+            }}
+            
           >
             Регистрация
           </button>
