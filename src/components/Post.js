@@ -187,10 +187,7 @@ export default function Post(props) {
               </div>
               <div className={post.textInput}>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-                  aliquid amet sunt? Voluptate, incidunt recusandae inventore
-                  ducimus obcaecati harum enim natus commodi labore? Voluptatum
-                  facilis omnis, fugit aspernatur quam consequuntur?
+                {props.text}
                 </p>
               </div>
               <div>

@@ -5,6 +5,7 @@ import Post from "./Post";
 // import FriendsCard from "./FriendsCard";
 import CreatePost from "./CreatePost";
 import AllPosts from "./AllPosts";
+import MyPost from "./MyPost";
 
 const useStyles = makeStyles({
   feed: {
@@ -38,6 +39,7 @@ export default function NewsFeed(){
           <StoryContainer />
         </div>
           <CreatePost/>
+          <MyPost/>
           <AllPosts/>
       </div>
       
