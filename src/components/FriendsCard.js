@@ -81,7 +81,7 @@ export default function FriendsCard(img, name) {
                   Добавяне
                   </Button>
                   <Button sx={{ bgcolor: grey[200] }} >
-                  <p className={friends.textbtn}>Добавяне</p>
+                  <p className={friends.textbtn}>Изтриване</p>
                   </Button>
                 </div>
               </div>
