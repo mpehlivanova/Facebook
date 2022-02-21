@@ -11,19 +11,21 @@ import Tooltip from "@mui/material/Tooltip";
 import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
-import triangle from "../components-css/imgLeftBar/triangle.png"
-import { useDispatch } from 'react-redux';
-
+import triangle from "../components-css/imgLeftBar/triangle.png";
+import { useDispatch } from "react-redux";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import { grey } from "@mui/material/colors";
+import AnnouncementIcon from '@mui/icons-material/Announcement';
+import BedtimeIcon from '@mui/icons-material/Bedtime';
+import HelpIcon from '@mui/icons-material/Help';
 
 export default function AccountMenu() {
+  const dispatch = useDispatch();
 
-    const dispatch = useDispatch();
-    
-    const handleLogout = () => {
-          console.log("hi");
-          dispatch({ type: "LOGOUT" });
-        
-    }
+  const handleLogout = () => {
+    console.log("hi");
+    dispatch({ type: "LOGOUT" });
+  };
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -36,17 +38,17 @@ export default function AccountMenu() {
   return (
     <React.Fragment>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
-    
-        <Tooltip title="Account settings">
+        <Tooltip >
           <IconButton
             onClick={handleClick}
-            size="small"
-            sx={{ ml: 2 }}
+            size="medium"
             aria-controls={open ? "account-menu" : undefined}
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
           >
-                      <Avatar sx={{ width: 40, height: 40 }}></Avatar>
+            <Avatar sx={{ bgcolor: grey[200] }}>
+              <ArrowDropDownIcon color="action" />
+            </Avatar>
           </IconButton>
         </Tooltip>
       </Box>
@@ -66,7 +68,7 @@ export default function AccountMenu() {
               width: 32,
               height: 32,
               ml: -0.5,
-              mr: 1,
+              mr: 2,
             },
             "&:before": {
               content: '""',
@@ -86,29 +88,40 @@ export default function AccountMenu() {
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
         <MenuItem>
-          <Avatar /> Profile
-        </MenuItem>
-        <MenuItem>
-          <Avatar /> My account
+          <Avatar /> {"user.name"}
         </MenuItem>
         <Divider />
         <MenuItem>
-          <ListItemIcon>
-            <PersonAdd fontSize="small" />
+        <ListItemIcon>
+          <AnnouncementIcon/> 
           </ListItemIcon>
-          Add another account
+          Изпращане на обратна връзка
         </MenuItem>
+        <Divider />
+        
         <MenuItem>
           <ListItemIcon>
             <Settings fontSize="small" />
           </ListItemIcon>
-          Settings
+          Настройки за поверителност
+        </MenuItem>
+        <MenuItem>
+          <ListItemIcon>
+            <HelpIcon fontSize="small" />
+          </ListItemIcon>
+          Помощ и поддръжка
+        </MenuItem>
+        <MenuItem>
+          <ListItemIcon>
+            <BedtimeIcon fontSize="small" />
+          </ListItemIcon>
+          Дисплей и достъпност
         </MenuItem>
         <MenuItem onClick={handleLogout}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
-          Logout
+          Изход
         </MenuItem>
       </Menu>
     </React.Fragment>

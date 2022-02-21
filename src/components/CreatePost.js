@@ -181,7 +181,7 @@ const cssStyle = makeStyles({
   },
 });
 
-export default function CreatePostNew() {
+export default function CreatePost() {
   const style = cssStyle();
   const [open, setOpen] = React.useState(false);
 
