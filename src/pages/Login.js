@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@mui/styles";
 import PropTypes from "prop-types";
 import { styled } from "@mui/material/styles";
@@ -13,12 +13,12 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
-
-// import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-
 import DatePicker from ".././components/DatePicker";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import registeredUsers from "../server/registeredUsers";
+import userReducer from "../redux/reducers/userReducer"
+
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -29,12 +29,8 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-
-
 const BootstrapDialogTitle = (props) => {
-  
   const { children, onClose, ...other } = props;
-
   return (
     <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
       {children}
@@ -141,6 +137,7 @@ const useStyle = makeStyles({
     fontWeight: "600",
     borderRadius: "10px",
     margin: "6px",
+    cursor: "pointer",
   },
 
   forgottenPass: {
@@ -165,6 +162,7 @@ const useStyle = makeStyles({
     borderRadius: "10px",
     margin: "16px",
     border: "none",
+    cursor: "pointer",
   },
   loginWithGoogle: {
     width: "157px",
@@ -172,6 +170,7 @@ const useStyle = makeStyles({
     borderRadius: "10px",
     border: "none",
     fontSize: "16px",
+    cursor: "pointer",
   },
 
   registerWrapper: {
@@ -180,9 +179,9 @@ const useStyle = makeStyles({
     gap: "10px",
   },
   topText: {
-    height:"100px",
+    height: "100px",
     fontFamily: "Helvetica",
-    marginLeft:"4%",
+    marginLeft: "4%",
   },
 
   namesWrapper: {
@@ -190,10 +189,6 @@ const useStyle = makeStyles({
     gap: "10px",
   },
 
-  makeRegButtonWrapper: {
-    display: "flex",
-    justifyContent: "center",
-  },
   genderWrapperBox: {
     width: "133px",
     height: "30px",
@@ -207,27 +202,108 @@ const useStyle = makeStyles({
     display: "flex",
     justifyContent: "space-around",
   },
+  makeRegButtonWrapper: {
+    display: "flex",
+    justifyContent: "center",
+    width: "96%",
+  },
   regBtnFormCreate: {
     backgroundColor: "#42b72a",
     color: "white",
     margin: "20px",
     width: "190px",
     height: "36px",
-    border:"none",
+    border: "none",
     borderRadius: "5px",
-    fontSize: "18px"
+    fontSize: "18px",
+    marginRight: "30%",
+    cursor: "pointer",
+  },
+  error: {
+    fontFamily: "Helvetica",
   },
 });
 
 export default function Login() {
+  var validator = require("email-validator");
 
-  const dispatch = useDispatch();
-
-  const handleLogin = () => {
-    console.log("hi");
-    dispatch({ type: "LOGIN" });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
+  //login form functions
+  const setHandlerInputEmail = (e) => {
+    setEmail(e.target.value);
   };
 
+  const setHandlerInputPassword = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const dispatch = useDispatch();
+  const regUsers = useSelector(state => state.userData.registered);
+
+  const handleLogin = () => {
+    console.log(regUsers);
+    const user = regUsers.filter((u) => u.email === email);
+    if (validator.validate(email)) {
+      if (user && password === user[0].password) {
+        console.log("login");
+        dispatch({ type: "LOGIN" });
+        setError(false);
+      } else {
+        setError(true);
+      }
+    } else {
+      setError(true);
+    }
+  };
+  //register form functions
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [emailReg, setEmailReg] = useState("");
+  const [passwordReg, setPasswordReg] = useState("");
+  const [dayOfBirth, setDayOfBirth] = useState("");
+  const [monthOfBirth, setMonthOfBirth] = useState("");
+  const [yearOfBirth, setYearOfBirth] = useState("");
+  const [gender, setGender] = useState("");
+
+  const setHandlerInputFirstName = (e) => {
+    setFirstName(e.target.value);
+  };
+  const setHandlerInputLastName = (e) => {
+    setLastName(e.target.value);
+  };
+  const setHandlerInputEmailReg = (e) => {
+    setEmailReg(e.target.value);
+  };
+  const setHandlerInputPasswordReg = (e) => {
+    setPasswordReg(e.target.value);
+  };
+  const setHandlerInputDayOfBirth = (e) => {
+    setDayOfBirth(e.target.value);
+  };
+  const setHandlerInputMonthOfBirth = (e) => {
+    setMonthOfBirth(e.target.value);
+  };
+  const setHandlerInputYearOfBirth = (e) => {
+    setYearOfBirth(e.target.value);
+  };
+  const setHandlerInputGender = (e) => {
+    setGender(e.target.value);
+  };
+
+  const handleRegister = () => {
+    if (validator.validate(emailReg)) {
+      console.log(regUsers);
+      // console.log(regUsers.filter(u => u.email === emailReg));
+      if ((regUsers.filter(u => u.email === emailReg))===null) {
+      // console.log("reg");   
+        dispatch({ type: "REGISTER", payload: regUsers.push({emailReg, passwordReg})})
+       }
+    } else {
+      console.log("mail- ko");
+    }
+  };
 
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
@@ -267,14 +343,29 @@ export default function Login() {
 
         <div className={style.rightSide}>
           <input
+            id="email"
+            value={email}
+            required
             className={`${style.userInput} ${style.commonRight}`}
             placeholder="Имейл или телефонен номер"
+            onChange={(e) => setHandlerInputEmail(e)}
           />
           <input
+            id="password"
+            value={password}
+            required
             type="password"
             className={`${style.passwordInput} ${style.commonRight}`}
             placeholder="Парола"
+            onChange={(e) => setHandlerInputPassword(e)}
           />
+          {error ? (
+            <span className={style.error}>
+              Невалиден имейл адрес или парола
+            </span>
+          ) : (
+            " "
+          )}
           <button
             className={style.loginBtn}
             variant="contained"
@@ -315,47 +406,32 @@ export default function Login() {
         <DialogContent dividers className={style.registerWrapper}>
           <div className={style.namesWrapper}>
             <TextField
+              onChange={setHandlerInputFirstName}
               required
-              id="outlined-required"
+              id="outlined-required3"
               placeholder="Собствено име"
             />
             <TextField
               required
-              id="outlined-required"
+              id="outlined-required2"
+              onChange={setHandlerInputLastName}
               placeholder="Фамилно име"
             />
-            {/* <input
-              type="text"
-              className={style.nameReg}
-              placeholder="Собствено име"
-            />
-            <input
-              type="text"
-              className={style.nameReg}
-              placeholder="Фамилно име"
-            /> */}
           </div>
           <TextField
             required
-            id="outlined-required"
+            id="outlined-required1"
+            onChange={setHandlerInputEmailReg}
             placeholder="Имейл или телефон"
           />
-          {/* <input
-            type="text"
-            className={style.mobileNumberOrMail}
-            placeholder="Мобилен номер или емейл"
-          /> */}
+
           <TextField
             id="outlined-password-input"
             type="password"
+            onChange={setHandlerInputPasswordReg}
             autoComplete="current-password"
             placeholder="Парола"
           />
-          {/* <input
-            type="password"
-            className={style.newPass}
-            placeholder="Нова парола"
-          /> */}
 
           <div className="datesWrapper">
             <DatePicker />
@@ -369,6 +445,7 @@ export default function Login() {
               aria-labelledby="demo-row-radio-buttons-group-label"
               defaultValue="female"
               name="row-radio-buttons-group"
+              onChange={setHandlerInputGender}
             >
               <FormControlLabel
                 className={style.genderWrapperBox}
@@ -383,7 +460,6 @@ export default function Login() {
                 control={<Radio />}
                 label="Мъж"
               />
-
               <FormControlLabel
                 className={style.genderWrapperBox}
                 value="other"
@@ -393,11 +469,12 @@ export default function Login() {
             </RadioGroup>
           </FormControl>
         </DialogContent>
-        <DialogActions class={style.makeRegButtonWrapper}>
+        <DialogActions className={style.makeRegButtonWrapper}>
           <button
             className={style.regBtnFormCreate}
             autoFocus
             onClick={handleClose}
+            onClick={handleRegister}
           >
             Регистрация
           </button>

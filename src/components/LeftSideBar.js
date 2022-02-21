@@ -33,7 +33,7 @@ import recentAd from "../components-css/imgLeftBar/recentAd.png";
 import translate from "../components-css/imgLeftBar/translation.png";
 import watch from "../components-css/imgLeftBar/watch.png";
 import wather from "../components-css/imgLeftBar/wather.png";
-import "../components-css/LeftSidebar.css";
+// import "../components-css/LeftSidebar.css";
 import { Link } from "react-router-dom";
 
 

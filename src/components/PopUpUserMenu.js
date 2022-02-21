@@ -11,19 +11,16 @@ import Tooltip from "@mui/material/Tooltip";
 import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
-import triangle from "../components-css/imgLeftBar/triangle.png"
-import { useDispatch } from 'react-redux';
-
+import triangle from "../components-css/imgLeftBar/triangle.png";
+import { useDispatch } from "react-redux";
 
 export default function AccountMenu() {
+  const dispatch = useDispatch();
 
-    const dispatch = useDispatch();
-    
-    const handleLogout = () => {
-          console.log("hi");
-          dispatch({ type: "LOGOUT" });
-        
-    }
+  const handleLogout = () => {
+    console.log("hi");
+    dispatch({ type: "LOGOUT" });
+  };
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -36,7 +33,6 @@ export default function AccountMenu() {
   return (
     <React.Fragment>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
-    
         <Tooltip title="Account settings">
           <IconButton
             onClick={handleClick}
@@ -46,7 +42,16 @@ export default function AccountMenu() {
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
           >
-                      <Avatar sx={{ width: 40, height: 40 }}></Avatar>
+            <Avatar
+              sx={{
+                width: 40,
+                height: 40,
+                marginLeft: "-10px",
+                backgroundColor: "#eeeeee",
+              }}
+            >
+              
+            </Avatar>
           </IconButton>
         </Tooltip>
       </Box>
