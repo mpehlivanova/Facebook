@@ -18,14 +18,18 @@ import { grey } from "@mui/material/colors";
 import AnnouncementIcon from '@mui/icons-material/Announcement';
 import BedtimeIcon from '@mui/icons-material/Bedtime';
 import HelpIcon from '@mui/icons-material/Help';
+import Login from "../pages/Login"
 
 
 export default function AccountMenu() {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    console.log("hi");
+    console.log("bye");
     dispatch({ type: "LOGOUT" });
+    localStorage.removeItem("loginData");
+    
+
   };
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -119,7 +123,11 @@ export default function AccountMenu() {
           </ListItemIcon>
           Дисплей и достъпност
         </MenuItem>
-        <MenuItem onClick={handleLogout}>
+        <MenuItem onClick={() => {
+          handleLogout()
+          
+        }
+        }>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>

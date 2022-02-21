@@ -171,11 +171,8 @@ export default function Post(props) {
     }
   }
 
-  
-  
   return (
     <>
- 
           <>
             <div  className={post.conrainerPost}>
               <div className={post.header}>

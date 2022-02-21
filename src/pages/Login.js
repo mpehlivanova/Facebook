@@ -110,11 +110,13 @@ const useStyle = makeStyles({
     height: "52px",
     border: "1px solid #dddfe2",
     margin: "6px",
+    "&focus": { border: "1px solid #1877f2" },
   },
 
   userInput: {
     fontSize: "14px",
     paddingLeft: "10px",
+    "&focus": { border: "1px solid #1877f2" },
   },
 
   userInputClicked: {
@@ -124,6 +126,10 @@ const useStyle = makeStyles({
   passwordInput: {
     fontSize: "14px",
     paddingLeft: "10px",
+    "&focus": {
+      border: "1px solid #1877f2",
+      backgroundColor: "pink",
+    },
   },
 
   loginBtn: {
@@ -225,11 +231,41 @@ const useStyle = makeStyles({
 
 export default function Login() {
 
+let isLogged = useSelector((state) => state.userData.logged);
+
+ const [loginData, setLoginData] = useState(
+    localStorage.getItem("loginData") && (isLogged = true)
+      ? JSON.parse(localStorage.getItem("loginData"))
+      : null
+  );
+
   const handleFailure = (result) => {
     alert(result)
   }
-  const handleGoogleLogin = (googleData) => {
-    console.log(googleData)
+  const handleGoogleLogin = async (googleData) => {
+    console.log(googleData.profileObj.email);
+    console.log(googleData);
+    dispatch({
+      type: "REGISTER",
+      payload: {
+        email: googleData.profileObj.email,
+        password: googleData.tokenObj.idpId,
+        firstName: googleData.profileObj.name,
+        gender: "male",
+      },
+    });
+    // const res = await fetch('/api/google-login', {
+    //   method: "POST",
+    //   body: JSON.stringify({
+    //     token: googleData.tokenId,
+    //   }),
+    //   headers: {
+    //     "Content-Type": "application/json"
+    //   },
+    // })
+    // const data = await res.json();
+    // setLoginData(data);
+    // localStorage.setItem("loginData", JSON.stringify(data));
   } 
 
 
