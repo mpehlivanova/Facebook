@@ -15,6 +15,7 @@ import PhotoCameraOutlinedIcon from "@mui/icons-material/PhotoCameraOutlined";
 import StickyNote2OutlinedIcon from "@mui/icons-material/StickyNote2Outlined";
 import IconButton from "@mui/material/IconButton";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
+import { useState } from 'react';
 
 const useStyles = makeStyles({
   conrainerPost: {
@@ -146,7 +147,32 @@ const useStyles = makeStyles({
 export default function Post(props) {
   const post = useStyles();
 
+  const [like, isLike] = useState(false)
+  const [commentButton, isComment] = useState(false)
+  
 
+  const changeLikeOption = () => {
+    if(like === false){
+      isLike(true)
+      isLike(like + 1)
+    }
+    else{
+      isLike(like - 1)
+      isLike(false)   
+    }  
+  }
+
+  const createNewComment = () => {
+    if(commentButton === false){
+      isComment(true)
+    }
+    else{
+      isComment(false)
+    }
+  }
+
+  
+  
   return (
     <>
  
@@ -199,20 +225,17 @@ export default function Post(props) {
                 ></img>
               </div>
               <div className={post.likeConrainer}>
-                <div className={post.like}>
-                  <FavoriteRoundedIcon
-                    sx={{ width: 15, height: 15, color: grey["A100"] }}
-                  />
-                </div>
+                
                 <RecommendRoundedIcon color="primary" />
-                <p className={post.textSmall}>10</p>
+                <p className={post.textSmall}>{like}</p>
               </div>
 
               <div className={`${post.border} ${post.buttonBox}`}>
                 <Button
                   // sx={{ "&:hover": , textTransform: "none" }} //Mitko- without this row the button works appropriate
                   color="inherit"
-                  startIcon={<ThumbUpOutlinedIcon color="action" />}
+                  startIcon={<ThumbUpOutlinedIcon color="disabled" />}
+                  onClick = {changeLikeOption}
                 >
                   Like
                 </Button>
@@ -220,14 +243,15 @@ export default function Post(props) {
                   // sx={{ "&:hover": { width: "40%" }, textTransform: "none" }}//Mitko- without this row the button works appropriate
                   color="inherit"
                   startIcon={<ModeCommentOutlinedIcon color="action" />}
+                  onClick = {createNewComment}
                 >
                   Comment
                 </Button>
               </div>
 
-              <div>
-                <p className={post.textSmall}>View previouse comments</p>
-                <div className={post.row}>
+              {/*<div>
+              <p className={post.textSmall}>View previouse comments</p>
+               <div className={post.row}>
                   <div>
                     <BadgeAvatars />
                   </div>
@@ -238,8 +262,10 @@ export default function Post(props) {
                     <MoreHorizIcon color="disabled" />
                   </IconButton>
                 </div>
-              </div>
+              </div>*/}
 
+              
+              {commentButton ? (
               <div className={post.row}>
                 <div>
                   <BadgeAvatars />
@@ -249,12 +275,14 @@ export default function Post(props) {
                     className={post.inputComment}
                     type="text"
                     placeholder="White a comment"
+                    
                   ></input>
 
                   <div>
                     <IconButton size="small">
                       <SentimentSatisfiedOutlinedIcon
                         className={post.iconContact}
+                        
                       />
                     </IconButton>
                     <IconButton size="small">
@@ -269,6 +297,9 @@ export default function Post(props) {
                   </div>
                 </div>
               </div>
+              ) : null }
+              
+              
             </div>
           </>
 
