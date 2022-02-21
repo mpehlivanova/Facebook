@@ -9,8 +9,7 @@ const rootReducer = combineReducers({
   userData: dataReducer,
 });
 
-const store = createStore(rootReducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__());
+const store = createStore(rootReducer);
 
 
 export default store;

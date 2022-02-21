@@ -8,19 +8,17 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip";
-import PersonAdd from "@mui/icons-material/PersonAdd";
+// import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import triangle from "../components-css/imgLeftBar/triangle.png";
 import { useDispatch } from "react-redux";
-<<<<<<< HEAD
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { grey } from "@mui/material/colors";
 import AnnouncementIcon from '@mui/icons-material/Announcement';
 import BedtimeIcon from '@mui/icons-material/Bedtime';
 import HelpIcon from '@mui/icons-material/Help';
-=======
->>>>>>> 25e574cedc1a2a013435fc99b0470a944e1de95d
+
 
 export default function AccountMenu() {
   const dispatch = useDispatch();
@@ -41,32 +39,17 @@ export default function AccountMenu() {
   return (
     <React.Fragment>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
-<<<<<<< HEAD
         <Tooltip >
-=======
-        <Tooltip title="Account settings">
->>>>>>> 25e574cedc1a2a013435fc99b0470a944e1de95d
+
           <IconButton
             onClick={handleClick}
             size="medium"
             aria-controls={open ? "account-menu" : undefined}
             aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}
-          >
-<<<<<<< HEAD
+            aria-expanded={open ? "true" : undefined}>
+
             <Avatar sx={{ bgcolor: grey[200] }}>
               <ArrowDropDownIcon color="action" />
-=======
-            <Avatar
-              sx={{
-                width: 40,
-                height: 40,
-                marginLeft: "-10px",
-                backgroundColor: "#eeeeee",
-              }}
-            >
-              
->>>>>>> 25e574cedc1a2a013435fc99b0470a944e1de95d
             </Avatar>
           </IconButton>
         </Tooltip>

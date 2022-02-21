@@ -2,8 +2,9 @@ import React from "react";
 import { makeStyles } from "@mui/styles";
 import StoryContainer from "./StoryContainer";
 import Post from "./Post";
-import FriendsCard from "./FriendsCard";
+// import FriendsCard from "./FriendsCard";
 import CreatePost from "./CreatePost";
+import AllPosts from "./AllPosts";
 
 const useStyles = makeStyles({
   feed: {
@@ -37,7 +38,7 @@ export default function NewsFeed(){
           <StoryContainer />
         </div>
           <CreatePost/>
-          <Post/>
+          <AllPosts/>
       </div>
       
     </>

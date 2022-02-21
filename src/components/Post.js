@@ -5,7 +5,7 @@ import PublicIcon from "@mui/icons-material/Public";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { grey } from "@mui/material/colors";
 import { makeStyles } from "@mui/styles";
-import { Avatar, Button, ListItemIcon } from "@mui/material";
+import {  Button, ListItemIcon } from "@mui/material";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import RecommendRoundedIcon from "@mui/icons-material/RecommendRounded";
 import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
@@ -15,8 +15,6 @@ import PhotoCameraOutlinedIcon from "@mui/icons-material/PhotoCameraOutlined";
 import StickyNote2OutlinedIcon from "@mui/icons-material/StickyNote2Outlined";
 import IconButton from "@mui/material/IconButton";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
-import UserDisny from "./userDisny.js";
-import myProfil from "../components-css/imgLeftBar/guest.png";
 
 const useStyles = makeStyles({
   conrainerPost: {
@@ -145,36 +143,27 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Post() {
+export default function Post(props) {
   const post = useStyles();
 
-  function uuidv4() {
-    return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
-      (
-        c ^
-        (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
-      ).toString(16)
-    );
-  }
 
   return (
     <>
-      {UserDisny.map((user, i) => {
-        return (
+ 
           <>
-            <div key={uuidv4()} className={post.conrainerPost}>
+            <div  className={post.conrainerPost}>
               <div className={post.header}>
                 <div className={post.row}>
                   <ListItemIcon>
                     <img
                       className={post.img}
-                      src={myProfil}
+                      src={props.imgUser}//props
                       alt="icon my profil"
                     ></img>
                   </ListItemIcon>
                   <div height="8px">
                     <p className={post.textInput}>
-                      <strong>{user.name} </strong> is width
+                      <strong>{props.userName} </strong> is width  
                       <strong>{"{friend}"}</strong> at
                       <strong>{"{Hotel}"}</strong>
                     </p>
@@ -208,7 +197,7 @@ export default function Post() {
                 <img
                   className={post.border}
                   width="100%"
-                  src={user.story}
+                  src={props.storyUser}
                   alt="user img"
                 ></img>
               </div>
@@ -285,8 +274,7 @@ export default function Post() {
               </div>
             </div>
           </>
-        );
-      })}
+
     </>
   );
 }
