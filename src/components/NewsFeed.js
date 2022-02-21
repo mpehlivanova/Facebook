@@ -1,10 +1,11 @@
 import React from "react";
-import CreateComment from "./CreateComment";
 import { makeStyles } from "@mui/styles";
 import StoryContainer from "./StoryContainer";
 import Post from "./Post";
-import FriendsCard from "./FriendsCard";
-import CreatePostNew from "./CreatePost";
+// import FriendsCard from "./FriendsCard";
+import CreatePost from "./CreatePost";
+import AllPosts from "./AllPosts";
+import MyPost from "./MyPost";
 
 const useStyles = makeStyles({
   feed: {
@@ -20,8 +21,6 @@ const useStyles = makeStyles({
   createPost:{
 
   } , 
-
-  
 
   storiesWrapper: {
     display: "flex",
@@ -39,11 +38,9 @@ export default function NewsFeed(){
         <div className={classes.storiesWrapper}>
           <StoryContainer />
         </div>
-        {/* <CreateStory/>
-          <StoryBox /> */}
-          <CreatePostNew/>
-          {/* <CreateComment/> */}
-          <Post/>
+          <CreatePost/>
+          <MyPost/>
+          <AllPosts/>
       </div>
       
     </>

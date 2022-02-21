@@ -4,7 +4,7 @@ import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import MovieIcon from '@mui/icons-material/Movie';
 import { Avatar } from "@mui/material";
-import Post from "../components/Post";
+// import Post from "../components/Post";
 import VideoPost from "../components/VideoPost";
 
 

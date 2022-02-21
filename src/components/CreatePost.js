@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+// import { useState } from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -7,7 +7,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import myProfil from "../components-css/imgLeftBar/guest.png";
 import { makeStyles } from "@mui/styles";
 import { borderRadius, display, height } from "@mui/system";
-import VideocamIcon from "@mui/icons-material/Videocam";
+// import VideocamIcon from "@mui/icons-material/Videocam";
 import VideoCameraFrontIcon from "@mui/icons-material/VideoCameraFront";
 import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
@@ -26,6 +26,7 @@ import Picker from "emoji-picker-react";
 import PersonAddAltRoundedIcon from "@mui/icons-material/PersonAddAltRounded";
 import MoodRoundedIcon from "@mui/icons-material/MoodRounded";
 import FmdGoodRoundedIcon from "@mui/icons-material/FmdGoodRounded";
+import { useDispatch, useSelector } from "react-redux";
 
 const cssStyle = makeStyles({
   topComment: {
@@ -181,9 +182,10 @@ const cssStyle = makeStyles({
   },
 });
 
-export default function CreatePostNew() {
+export default function CreatePost(props) {
   const style = cssStyle();
   const [open, setOpen] = React.useState(false);
+ 
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -192,6 +194,22 @@ export default function CreatePostNew() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const [postText, setpPostText] = React.useState("");
+
+  const setHandleInputPost=(ev)=>{
+    setpPostText(ev.target.value.trim())
+  }
+
+  const dispatch = useDispatch();
+
+    const posts = useSelector(state=>state.actionPost.addedPosts) //get all post from global
+
+  const handleCreatePost =()=>{
+    console.log(posts);
+    console.log("create post");
+    dispatch ({type:"CREATEPOST", payload:{text:postText}})
+  }
 
   return (
     <>
@@ -259,6 +277,7 @@ export default function CreatePostNew() {
           </div>
           <div className={style.inputTextPost}>
             <input
+              onChange={setHandleInputPost}
               className={style.input}
               placeholder={`Какво мислите, ${"User.name"}?`}
             ></input>
@@ -295,7 +314,12 @@ export default function CreatePostNew() {
             className={style.buttonPost}
             variant="contained"
             // disabled
-            onClick={handleClose}
+            
+            onClick={()=>{
+              handleCreatePost();
+              handleClose();
+
+            }}
           >
             Публикация
           </Button>

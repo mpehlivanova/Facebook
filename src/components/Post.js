@@ -5,7 +5,7 @@ import PublicIcon from "@mui/icons-material/Public";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { grey } from "@mui/material/colors";
 import { makeStyles } from "@mui/styles";
-import { Avatar, Button, ListItemIcon } from "@mui/material";
+import {  Button, ListItemIcon } from "@mui/material";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import RecommendRoundedIcon from "@mui/icons-material/RecommendRounded";
 import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
@@ -15,8 +15,7 @@ import PhotoCameraOutlinedIcon from "@mui/icons-material/PhotoCameraOutlined";
 import StickyNote2OutlinedIcon from "@mui/icons-material/StickyNote2Outlined";
 import IconButton from "@mui/material/IconButton";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
-import UserDisny from "./userDisny.js";
-import myProfil from "../components-css/imgLeftBar/guest.png";
+import { useState } from 'react';
 
 const useStyles = makeStyles({
   conrainerPost: {
@@ -145,36 +144,52 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Post() {
+export default function Post(props) {
   const post = useStyles();
 
-  function uuidv4() {
-    return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
-      (
-        c ^
-        (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
-      ).toString(16)
-    );
+  const [like, isLike] = useState(false)
+  const [commentButton, isComment] = useState(false)
+  
+
+  const changeLikeOption = () => {
+    if(like === false){
+      isLike(true)
+      isLike(like + 1)
+    }
+    else{
+      isLike(like - 1)
+      isLike(false)   
+    }  
   }
 
+  const createNewComment = () => {
+    if(commentButton === false){
+      isComment(true)
+    }
+    else{
+      isComment(false)
+    }
+  }
+
+  
+  
   return (
     <>
-      {UserDisny.map((user, i) => {
-        return (
+ 
           <>
-            <div key={uuidv4()} className={post.conrainerPost}>
+            <div  className={post.conrainerPost}>
               <div className={post.header}>
                 <div className={post.row}>
                   <ListItemIcon>
                     <img
                       className={post.img}
-                      src={myProfil}
+                      src={props.imgUser}//props
                       alt="icon my profil"
                     ></img>
                   </ListItemIcon>
                   <div height="8px">
                     <p className={post.textInput}>
-                      <strong>{user.name} </strong> is width
+                      <strong>{props.userName} </strong> is width  
                       <strong>{"{friend}"}</strong> at
                       <strong>{"{Hotel}"}</strong>
                     </p>
@@ -198,35 +213,29 @@ export default function Post() {
               </div>
               <div className={post.textInput}>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-                  aliquid amet sunt? Voluptate, incidunt recusandae inventore
-                  ducimus obcaecati harum enim natus commodi labore? Voluptatum
-                  facilis omnis, fugit aspernatur quam consequuntur?
+                {props.text}
                 </p>
               </div>
               <div>
                 <img
                   className={post.border}
                   width="100%"
-                  src={user.story}
+                  src={props.storyUser}
                   alt="user img"
                 ></img>
               </div>
               <div className={post.likeConrainer}>
-                <div className={post.like}>
-                  <FavoriteRoundedIcon
-                    sx={{ width: 15, height: 15, color: grey["A100"] }}
-                  />
-                </div>
+                
                 <RecommendRoundedIcon color="primary" />
-                <p className={post.textSmall}>10</p>
+                <p className={post.textSmall}>{like}</p>
               </div>
 
               <div className={`${post.border} ${post.buttonBox}`}>
                 <Button
                   // sx={{ "&:hover": , textTransform: "none" }} //Mitko- without this row the button works appropriate
                   color="inherit"
-                  startIcon={<ThumbUpOutlinedIcon color="action" />}
+                  startIcon={<ThumbUpOutlinedIcon color="disabled" />}
+                  onClick = {changeLikeOption}
                 >
                   Like
                 </Button>
@@ -234,14 +243,15 @@ export default function Post() {
                   // sx={{ "&:hover": { width: "40%" }, textTransform: "none" }}//Mitko- without this row the button works appropriate
                   color="inherit"
                   startIcon={<ModeCommentOutlinedIcon color="action" />}
+                  onClick = {createNewComment}
                 >
                   Comment
                 </Button>
               </div>
 
-              <div>
-                <p className={post.textSmall}>View previouse comments</p>
-                <div className={post.row}>
+              {/*<div>
+              <p className={post.textSmall}>View previouse comments</p>
+               <div className={post.row}>
                   <div>
                     <BadgeAvatars />
                   </div>
@@ -252,8 +262,10 @@ export default function Post() {
                     <MoreHorizIcon color="disabled" />
                   </IconButton>
                 </div>
-              </div>
+              </div>*/}
 
+              
+              {commentButton ? (
               <div className={post.row}>
                 <div>
                   <BadgeAvatars />
@@ -263,12 +275,14 @@ export default function Post() {
                     className={post.inputComment}
                     type="text"
                     placeholder="White a comment"
+                    
                   ></input>
 
                   <div>
                     <IconButton size="small">
                       <SentimentSatisfiedOutlinedIcon
                         className={post.iconContact}
+                        
                       />
                     </IconButton>
                     <IconButton size="small">
@@ -283,10 +297,12 @@ export default function Post() {
                   </div>
                 </div>
               </div>
+              ) : null }
+              
+              
             </div>
           </>
-        );
-      })}
+
     </>
   );
 }

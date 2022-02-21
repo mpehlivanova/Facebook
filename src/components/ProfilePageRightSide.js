@@ -5,7 +5,6 @@ import CreatePost from "./CreatePost"
 const useStyle = makeStyles({
     mainRight: {
         display: "flex",
-
     }
 });
 
