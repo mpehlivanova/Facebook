@@ -149,6 +149,8 @@ export default function Post(props) {
 
   const [like, isLike] = useState(false)
   const [commentButton, isComment] = useState(false)
+  const [comment, createComent] = useState([])
+  
   
 
   const changeLikeOption = () => {
@@ -171,10 +173,21 @@ export default function Post(props) {
     }
   }
 
+  function uuidv4() {
+    return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
+      (
+        c ^
+        (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
+      ).toString(16)
+    );
+  }
+
+  
+  
   return (
     <>
           <>
-            <div  className={post.conrainerPost}>
+            <div  key={uuidv4()} className={post.conrainerPost}>
               <div className={post.header}>
                 <div className={post.row}>
                   <ListItemIcon>
@@ -263,6 +276,7 @@ export default function Post(props) {
 
               
               {commentButton ? (
+                <div>
               <div className={post.row}>
                 <div>
                   <BadgeAvatars />
@@ -274,7 +288,6 @@ export default function Post(props) {
                     placeholder="White a comment"
                     
                   ></input>
-
                   <div>
                     <IconButton size="small">
                       <SentimentSatisfiedOutlinedIcon
@@ -292,8 +305,42 @@ export default function Post(props) {
                       <StickyNote2OutlinedIcon className={post.iconContact} />
                     </IconButton>
                   </div>
-                </div>
+                </div> 
               </div>
+              <div>
+                {
+                 comment.map(element => (<div>
+                  <div className={post.row}>
+                    <div>
+                      <BadgeAvatars />
+                    </div>
+                    <div className={`${post.commenrWrite}`}>
+                      <p>{}</p>
+                      <div>
+                        <IconButton size="small">
+                          <SentimentSatisfiedOutlinedIcon
+                            className={post.iconContact}
+                            
+                          />
+                        </IconButton>
+                        <IconButton size="small">
+                          <PhotoCameraOutlinedIcon className={post.iconContact} />
+                        </IconButton>
+                        <IconButton size="small">
+                          <GifBoxOutlinedIcon className={post.iconContact} />
+                        </IconButton>
+                        <IconButton size="small">
+                          <StickyNote2OutlinedIcon className={post.iconContact} />
+                        </IconButton>
+                      </div>
+                    </div> 
+                  </div>
+                  </div>))
+                }
+              </div>
+              </div>
+              
+              
               ) : null }
               
               
