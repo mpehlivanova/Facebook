@@ -1,15 +1,10 @@
 import * as React from "react";
 import UserDisny from "./userDisny.js";
 import Post from "./Post.js";
-import { useDispatch, useSelector } from "react-redux";
-// import { AutofpsSelectRounded } from "@mui/icons-material";
 
 
 export default function AllPosts(props) {
     // const dispatch = useDispatch();
-    const posts = useSelector(state=>state.actionPost.addedPosts) //get all post from global
-    // const nameUser=useSelector() // get user name of logged user
-    // const imgUser=useSelector() // get user name of logged user
    
   
     function uuidv4() {
@@ -25,19 +20,14 @@ export default function AllPosts(props) {
       <>
         {UserDisny.map((user) => {
             return(
-                
                     <Post 
                     key={uuidv4()} 
                     imgUser={`${user.avatar}`} 
                     userName={user.name} 
                     storyUser={user.story}
                     text={user.text}>
-                    </Post> //add paramiter function Post
-                
+                    </Post>  
             )
-
-
-
         })}
         </>
     )

@@ -3,10 +3,19 @@ const INITIAL_STATE = {
     addedPosts:[
     
        {
-           text:"text"
+           text:"text",
+           idPost:"89"
        }
     
     ],
+   
+    addedComment:[
+        {
+            comment:"comment",
+            
+        }
+
+    ]
    
     
   };
@@ -19,6 +28,12 @@ const INITIAL_STATE = {
           ...state,
           addedPosts: [...state.addedPosts, action.payload],
         };
+        case "CREATECOMMENT":
+            return {
+              ...state,
+              addedComment: [...state.addedComment, action.payload],
+            };
+      
   
       default:
         return state;

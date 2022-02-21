@@ -183,6 +183,9 @@ const cssStyle = makeStyles({
 });
 
 export default function CreatePost(props) {
+
+
+
   const style = cssStyle();
   const [open, setOpen] = React.useState(false);
  
@@ -208,7 +211,7 @@ export default function CreatePost(props) {
   const handleCreatePost =()=>{
     console.log(posts);
     console.log("create post");
-    dispatch ({type:"CREATEPOST", payload:{text:postText}})
+    dispatch ({type:"CREATEPOST", payload:{text:postText,idPost:postText}})
   }
 
   return (
