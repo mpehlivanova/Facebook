@@ -1,5 +1,6 @@
 const INITIAL_STATE = {
   logged: false,
+  currLogged: null,
   registered: [
     {
       email: "asd@mail.com",
@@ -12,7 +13,7 @@ const INITIAL_STATE = {
   ],
 };
 
-const reducer = (state = INITIAL_STATE, action) => {
+const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case "LOGIN":
       return {
@@ -36,4 +37,4 @@ const reducer = (state = INITIAL_STATE, action) => {
       return state;
   }
 };
-export default reducer;
+export default userReducer;

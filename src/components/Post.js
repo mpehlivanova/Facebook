@@ -157,7 +157,7 @@ export default function Post(props) {
   const post = useStyles();
 
   const [like, isLike] = useState(false);
-  const [thisPost, useThisPost] = useState(true)
+  // const [thisPost, useThisPost] = useState(true)
 
   const changeLikeOption = () => {
     if (like === false) {
@@ -195,7 +195,7 @@ export default function Post(props) {
    
   };
   const dispatch = useDispatch();
-  const commentArr = useSelector((state) => state.actionPost.addedComment);
+  const commentArr = useSelector((state) => state.actionPost.addedCommented);
 
   const handleCreateComment = () => {
     console.log(commentArr);
@@ -278,16 +278,13 @@ export default function Post(props) {
 
           <div>
             <p className={post.textSmall}>View previouse comments</p>
-
+              {/* need to chech  */}
             {
         
               
               commentArr.map((com) => {
 
-                {/* needs to check which post the comment was created in  */}
-                
               return (
-                
                 <>
                   <div key={uuidv4()}  className={post.row}>
                     <div>

@@ -206,7 +206,7 @@ export default function CreatePost(props) {
 
   const dispatch = useDispatch();
 
-    const posts = useSelector(state=>state.actionPost.addedPosts) //get all post from global
+  const posts = useSelector(state=>state.actionPost.addedPosts) //get all post from global
 
   const handleCreatePost =()=>{
     console.log(posts);

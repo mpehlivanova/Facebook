@@ -18,6 +18,7 @@ import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 import UserDisny from "./userDisny.js";
 import { Player } from 'video-react';
 import { IFrame } from "./IFrame.js";
+import { useState } from 'react';
 
 
 const useStyles = makeStyles({
@@ -160,6 +161,32 @@ const useStyles = makeStyles({
 export default function VideoPost() {
   const post = useStyles();
 
+  const [like, isLike] = useState(false)
+  const [commentButton, isComment] = useState(false)
+  const [comment, createComent] = useState([])
+  
+  
+
+  const changeLikeOption = () => {
+    if(like === false){
+      isLike(true)
+      isLike(like + 1)
+    }
+    else{
+      isLike(like - 1)
+      isLike(false)   
+    }  
+  }
+
+  const createNewComment = () => {
+    if(commentButton === false){
+      isComment(true)
+    }
+    else{
+      isComment(false)
+    }
+  }
+
   function uuidv4() {
     return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
       (
@@ -210,15 +237,17 @@ export default function VideoPost() {
                     sx={{ width: 15, height: 15, color: grey["A100"] }}
                   />
                 </div>
+
                 <RecommendRoundedIcon color="primary" />
-                <p className={post.textSmall}>10</p>
+                <p className={post.textSmall}>{like}</p>
               </div>
 
               <div className={`${post.border} ${post.buttonBox}`}>
                 <Button
                   // sx={{ "&:hover": , textTransform: "none" }} //Mitko- without this row the button works appropriate
                   color="inherit"
-                  startIcon={<ThumbUpOutlinedIcon color="action" />}
+                  startIcon={<ThumbUpOutlinedIcon color="disabled" />}
+                  onClick = {changeLikeOption}
                 >
                   Like
                 </Button>
@@ -226,6 +255,7 @@ export default function VideoPost() {
                   // sx={{ "&:hover": { width: "40%" }, textTransform: "none" }}//Mitko- without this row the button works appropriate
                   color="inherit"
                   startIcon={<ModeCommentOutlinedIcon color="action" />}
+                  onClick = {createNewComment}
                 >
                   Comment
                 </Button>
@@ -233,6 +263,8 @@ export default function VideoPost() {
 
             
 
+              {commentButton ? (
+                <div>
               <div className={post.row}>
                 <div>
                   <BadgeAvatars />
@@ -242,12 +274,13 @@ export default function VideoPost() {
                     className={post.inputComment}
                     type="text"
                     placeholder="White a comment"
+                    
                   ></input>
-
                   <div>
                     <IconButton size="small">
                       <SentimentSatisfiedOutlinedIcon
                         className={post.iconContact}
+                        
                       />
                     </IconButton>
                     <IconButton size="small">
@@ -260,9 +293,49 @@ export default function VideoPost() {
                       <StickyNote2OutlinedIcon className={post.iconContact} />
                     </IconButton>
                   </div>
-                </div>
+                </div> 
               </div>
+              <div>
+                {
+                 comment.map(element => (<div>
+                  <div className={post.row}>
+                    <div>
+                      <BadgeAvatars />
+                    </div>
+                    <div className={`${post.commenrWrite}`}>
+                      <p>{}</p>
+                      <div>
+                        <IconButton size="small">
+                          <SentimentSatisfiedOutlinedIcon
+                            className={post.iconContact}
+                            
+                          />
+                        </IconButton>
+                        <IconButton size="small">
+                          <PhotoCameraOutlinedIcon className={post.iconContact} />
+                        </IconButton>
+                        <IconButton size="small">
+                          <GifBoxOutlinedIcon className={post.iconContact} />
+                        </IconButton>
+                        <IconButton size="small">
+                          <StickyNote2OutlinedIcon className={post.iconContact} />
+                        </IconButton>
+                      </div>
+                    </div> 
+                  </div>
+                  </div>))
+                }
+              </div>
+              </div>
+              
+              
+              ) : null }
+              
+              
             </div>
+
+
+
           </>
         );
       })}
