@@ -152,6 +152,9 @@ const useStyles = makeStyles({
     height: "40px",
     borderRadius: "33px",
   },
+  colorText:{
+    color:"#2e81f4"
+  }
 });
 
 export default function Post(props) {
@@ -160,7 +163,7 @@ export default function Post(props) {
   const idOfThisComment = props.id
 
   const [like, isLike] = useState(false);
-  // const [thisPost, useThisPost] = useState(true)
+  const [commentButton,isComment] = useState(false)
 
   const changeLikeOption = () => {
     if (like === false) {
@@ -172,14 +175,14 @@ export default function Post(props) {
     }
   };
 
-  // const createNewComment = () => {
-  //   if(commentButton === false){
-  //     isComment(true)
-  //   }
-  //   else{
-  //     isComment(false)
-  //   }
-  // }
+  const createNewComment = () => {
+     if(commentButton === false){
+       isComment(true)
+     }
+     else{
+       isComment(false)
+     }
+   }
 
   function uuidv4() {
     return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
@@ -195,7 +198,7 @@ export default function Post(props) {
  
   const setHandleCreateComment = (ev) => {
     setcreateComment(ev.target.value.trim());
-   
+    
   };
   const dispatch = useDispatch();
   const commentArr = useSelector((state) => state.actionPost.addedCommented);
@@ -203,10 +206,8 @@ export default function Post(props) {
   const commentsOnlyforthisPot = commentArr.filter(e=> e.idcomment === idOfThisComment)
 
   const handleCreateComment = () => {
-    console.log(commentArr);
-    console.log("create comment");
     dispatch({ type: "CREATECOMMENT", payload: { comment: createComment,idcomment :idOfThisComment } });
-   
+    isComment(false)
 
   };
 
@@ -270,19 +271,20 @@ export default function Post(props) {
               color="inherit"
               startIcon={<ThumbUpOutlinedIcon color="disabled" />}
               onClick={changeLikeOption}>
-              Like
+               Like
             </Button>
             <Button
               // sx={{ "&:hover": { width: "40%" }, textTransform: "none" }}//Mitko- without this row the button works appropriate
               color="inherit"
               startIcon={<ModeCommentOutlinedIcon color="action" />}
-              // onClick = {createNewComment}
-              onClick={handleCreateComment}
-            ></Button>
+              onClick = {createNewComment}
+              className={commentButton ? post.colorText : null}>
+              Comment
+            </Button>
           </div>
 
           <div>
-            <p className={post.textSmall}>View previouse comments</p>
+            
               {/* need to chech  */}
             {
         
@@ -307,7 +309,7 @@ export default function Post(props) {
             })}
           </div>
 
-          {/* {commentButton ? ( */}
+           {commentButton ? ( 
           <div className={post.row}>
             <div>
               <BadgeAvatars />
@@ -318,6 +320,7 @@ export default function Post(props) {
                 className={post.inputComment}
                 type="text"
                 placeholder="White a comment"
+                
               ></input>
 
               <div>
@@ -338,7 +341,7 @@ export default function Post(props) {
               </div>
             </div>
           </div>
-          {/* ) : null } */}
+           ) : null } 
         </div>
       </>
     </>
