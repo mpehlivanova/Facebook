@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
 import AddIcon from "@mui/icons-material/Add";
+import { useSelector } from 'react-redux';
 
 const useStyle = makeStyles({
   createStoryBox: {
@@ -39,6 +40,8 @@ const useStyle = makeStyles({
 });
 
 export default function CreateStory() {
+    const avatar = useSelector((state) => state.userData.registered[0].avatar);
+
   const style = useStyle();
   return (
     <>
@@ -47,7 +50,7 @@ export default function CreateStory() {
           className={style.imgWrapper}
           style={{
             //   
-            backgroundImage: `url(https://cdn.hmv.com/r/w-640/hmv/files/9d/9dc35313-9a06-4776-8a3e-4397d603c149.jpg)`,
+            backgroundImage: `url(${avatar})`,
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
             borderRadius: "10px 10px 0 0",

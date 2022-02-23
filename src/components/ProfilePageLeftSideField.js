@@ -5,7 +5,7 @@ const useStyle = makeStyles({
   field: {
     width: "90%",
     height: "50px",
-    fontSize: "16px",
+    fontSize: "12px",
     backgroundColor: "#e4e6eb",
     marginBottom: "10px",
     display: "flex",
@@ -15,13 +15,17 @@ const useStyle = makeStyles({
     fontWeight: "500",
     cursor: "pointer",
     "&:hover": {
-      backgroundColor: "#d8d8d8",
+      backgroundColor: "#f1f1f1",
     },
   },
 });
 
-export default function ProfilePageLeftSideFields(props) {
+export default function ProfilePageLeftSideField(props) {
   const style = useStyle();
 
-  return <div className={style.field}>{props.name}</div>;
+  return (
+    <div className={style.field} onClick={() => console.log("click")}>
+      {props.name}
+    </div>
+  );
 }

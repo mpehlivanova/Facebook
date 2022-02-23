@@ -6,6 +6,7 @@ import Post from "./Post";
 import CreatePost from "./CreatePost";
 import AllPosts from "./AllPosts";
 import MyPost from "./MyPost";
+// import { InfiniteScroll }  from './InfiniteScroll';
 
 const useStyles = makeStyles({
   feed: {
@@ -39,8 +40,9 @@ export default function NewsFeed(){
           <StoryContainer />
         </div>
           <CreatePost/>
-          <MyPost/>
-          <AllPosts/>
+        <MyPost />
+        <AllPosts/>
+          {/* <InfiniteScroll/> */}
       </div>
       
     </>

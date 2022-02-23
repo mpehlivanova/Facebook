@@ -183,6 +183,11 @@ const cssStyle = makeStyles({
 });
 
 export default function CreatePost(props) {
+
+  const avatar = useSelector((state) => state.userData.registered[0].avatar);
+  const fName = useSelector((state) => state.userData.registered[0].firstName);
+  const lName = useSelector((state) => state.userData.registered[0].lastName);
+  const fullName = fName + " " + lName;
   const style = cssStyle();
   const [open, setOpen] = React.useState(false);
  
@@ -218,13 +223,13 @@ export default function CreatePost(props) {
           <ListItemIcon>
             <img
               className={style.img}
-              src={myProfil}
+              src={avatar}
               alt="icon my profil"
             ></img>
           </ListItemIcon>
 
           <div onClick={handleClickOpen} className={style.divInput}>
-            <p className={style.p}>Какво мислите, {"User.name"}?</p>
+            <p className={style.p}>Какво мислите, {fullName}?</p>
           </div>
         </div>
         <div className={style.bottomComment}>

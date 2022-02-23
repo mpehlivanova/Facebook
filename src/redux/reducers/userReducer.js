@@ -5,9 +5,11 @@ const INITIAL_STATE = {
     {
       email: "asd@mail.com",
       password: "a",
-      firstName: "Ivan",
-      lastName: "Ivanov",
-      gender: "male",
+      firstName: "Nicole",
+      lastName: "Smith",
+      gender: "female",
+      avatar:
+        "http://thenewcode.com/assets/images/thumbnails/sarah-parmenter.jpeg",
       dateOfBirth: "11.07.1976",
     },
   ],
