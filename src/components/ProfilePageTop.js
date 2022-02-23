@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { makeStyles } from "@mui/styles";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
@@ -36,7 +37,7 @@ const useStyle = makeStyles({
     border: "none",
     position: "relative",
     top: "348px",
-    left: "52%",
+    left: "53%",
     fontFamily: "Segoe UI",
     cursor: "pointer",
   },
@@ -118,6 +119,11 @@ const useStyle = makeStyles({
 
 export default function ProfilePageTop() {
   const style = useStyle();
+  const avatar = useSelector((state) => state.userData.registered[0].avatar);
+  const coverPhoto = useSelector((state) => state.userData.registered[0].coverPhoto);
+  const fName = useSelector((state) => state.userData.registered[0].firstName);
+  const lName = useSelector((state) => state.userData.registered[0].lastName);
+  const fullName = fName + " " + lName;
 
   return (
     <>
@@ -125,7 +131,7 @@ export default function ProfilePageTop() {
         <div className={style.topWrapper}>
           <img
             className={style.coverImage}
-            src="https://www.denofgeek.com/wp-content/uploads/2019/11/elsa_and_anna_in_frozen_2_ending_0.jpg?resize=768%2C432"
+            src={coverPhoto}
             alt="coverImage"
           />
           <button className={style.editCoverImgBtn}>
@@ -135,12 +141,12 @@ export default function ProfilePageTop() {
 
           <img
             className={style.userAvatar}
-            src="https://lumiere-a.akamaihd.net/v1/images/ct_frozen_elsa_18466_22a50822.jpeg?region=0,0,600,600"
+            src={avatar}
             alt="userAvatar"
           />
           <CameraAltIcon />
 
-          <h4 className={style.userName}>Elsa From Arendale</h4>
+          <h4 className={style.userName}>{fullName}</h4>
           <div>
             <button className={style.addStoryBtn}>
               <AddCircleIcon />

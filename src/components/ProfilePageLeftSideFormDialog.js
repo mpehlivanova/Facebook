@@ -7,15 +7,17 @@ import DialogContent from "@mui/material/DialogContent";
 import { useDispatch } from 'react-redux';
 
 export default function FormDialog() {
+  
   const dispatch = useDispatch();
   const [biographyText, setBiographyText] = React.useState("");
 
   const [open, setOpen] = React.useState(false);
 
   const addBiography = () => {
-      console.log("add");
+    // console.log("add");
+    // console.log(biographyText);
       dispatch({
-        type: "CREATEBIOGRAPHY",
+        type: "CHANGEBIOGRAPHY",
         payload: { text: biographyText },
       });
     };
@@ -53,10 +55,8 @@ export default function FormDialog() {
         <DialogContent>
           <TextField
             onChange={setHandleInput}
-            sx={{ width: "300px" }}
-            autoFocus
+            sx={{ width: "400px" }}
             margin="dense"
-            id="name"
             fullWidth
             variant="standard"
           />

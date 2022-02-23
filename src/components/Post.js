@@ -75,7 +75,7 @@ const useStyles = makeStyles({
     flexDirection: "row",
     gap: "10px",
   },
-  addedCom:{
+  addedCom: {
     fontSize: "medium",
     fontFamily: "Segoe UI Historic, Helvetica, Arial",
     margin: "0px 3px",
@@ -96,8 +96,8 @@ const useStyles = makeStyles({
     backgroundColor: " #eff2f5",
     padding: "3px 10px",
     marginLeft: "5px",
-    display:"flex",
-    alignItems:"center"
+    display: "flex",
+    alignItems: "center",
   },
   iconContact: {
     opacity: "0.5",
@@ -139,7 +139,7 @@ const useStyles = makeStyles({
     display: "flex",
     width: "95%",
     flexDirection: "row",
-    alignItems: "baseline",
+    // alignItems: "baseline",
     justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: " #eff2f5",
@@ -151,9 +151,17 @@ const useStyles = makeStyles({
     height: "40px",
     borderRadius: "33px",
   },
+  iconWrapper: {
+    width:"300px"
+  }
 });
 
+
 export default function Post(props) {
+  const avatar = useSelector((state) => state.userData.registered[0].avatar);
+  const fName = useSelector((state) => state.userData.registered[0].firstName);
+  const lName = useSelector((state) => state.userData.registered[0].lastName);
+  const fullName = fName + " " + lName;
   const post = useStyles();
 
   const [like, isLike] = useState(false);
@@ -214,15 +222,15 @@ export default function Post(props) {
               <ListItemIcon>
                 <img
                   className={post.img}
-                  src={props.imgUser} //props
+                  src={avatar} //props
                   alt="icon my profil"
                 ></img>
               </ListItemIcon>
               <div height="8px">
                 <p className={post.textInput}>
-                  <strong>{props.userName} </strong> is width
-                  <strong>{"{friend}"}</strong> at
-                  <strong>{"{Hotel}"}</strong>
+                  <strong>{fullName} </strong> is width
+                  <strong>{" Гроздан "}</strong> at
+                  <strong>{" Парк Кайлъка "}</strong>
                 </p>
                 <p className={post.textXsmall}>
                   15h *
@@ -245,14 +253,14 @@ export default function Post(props) {
           <div className={post.textInput}>
             <p>{props.text}</p>
           </div>
-          <div>
+          {/* <div>
             <img
               className={post.border}
               width="100%"
               src={props.storyUser}
               alt="user img"
             ></img>
-          </div>
+          </div> */}
           <div className={post.likeConrainer}>
             <FavoriteRoundedIcon sx={{ color: red[600] }} />
             <RecommendRoundedIcon color="primary" />
@@ -273,15 +281,13 @@ export default function Post(props) {
               startIcon={<ModeCommentOutlinedIcon color="action" />}
               // onClick = {createNewComment}
               onClick={handleCreateComment}
-            ></Button>
+            >Comment</Button>
           </div>
 
           <div>
             <p className={post.textSmall}>View previouse comments</p>
               {/* need to chech  */}
-            {
-        
-              
+            {    
               commentArr.map((com) => {
 
               return (
@@ -305,7 +311,7 @@ export default function Post(props) {
           {/* {commentButton ? ( */}
           <div className={post.row}>
             <div>
-              <BadgeAvatars />
+              <BadgeAvatars src={avatar} />
             </div>
             <div className={`${post.commenrWrite}`}>
               <input
@@ -315,8 +321,8 @@ export default function Post(props) {
                 placeholder="White a comment"
               ></input>
 
-              <div>
-                <Button onClick={handleCreateComment}>add post</Button>
+              <div className={post.iconWrapper}>
+                <Button onClick={handleCreateComment}>add comment</Button>
                 <IconButton size="small">
                   <SentimentSatisfiedOutlinedIcon
                     className={post.iconContact}/>

@@ -1,12 +1,12 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
 import StoryContainer from "./StoryContainer";
-import Post from "./Post";
+// import Post from "./Post";
 // import FriendsCard from "./FriendsCard";
 import CreatePost from "./CreatePost";
 import AllPosts from "./AllPosts";
 import MyPost from "./MyPost";
-// import { InfiniteScroll }  from './InfiniteScroll';
+import { InfiniteScroll }  from './InfiniteScroll';
 
 const useStyles = makeStyles({
   feed: {

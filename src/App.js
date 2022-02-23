@@ -3,8 +3,6 @@ import Header from "./components/Header";
 import Login from "./pages/Login";
 import Main from "./pages/Main.js";
 import {  Routes, Route } from "react-router-dom";
-// import AdapterDateFns from "@mui/lab/AdapterDateFns";
-// import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import Friends from "./pages/Friends";
 import VideoPage from "./pages/VideoPage";
 import Grups from "./pages/Grups";

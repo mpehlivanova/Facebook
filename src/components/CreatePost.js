@@ -4,9 +4,9 @@ import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import myProfil from "../components-css/imgLeftBar/guest.png";
+// import myProfil from "../components-css/imgLeftBar/guest.png";
 import { makeStyles } from "@mui/styles";
-import { borderRadius, display, height } from "@mui/system";
+// import { borderRadius, display, height } from "@mui/system";
 // import VideocamIcon from "@mui/icons-material/Videocam";
 import VideoCameraFrontIcon from "@mui/icons-material/VideoCameraFront";
 import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
@@ -14,19 +14,21 @@ import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import { Avatar, IconButton } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { blue, green, grey, red, yellow } from "@mui/material/colors";
-import BadgeAvatars from "./Avatar";
+// import BadgeAvatars from "./Avatar";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
-import ColorLensIcon from "@mui/icons-material/ColorLens";
+// import ColorLensIcon from "@mui/icons-material/ColorLens";
 import colorImg from "../components-css/color.PNG";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import PhotoLibraryOutlinedIcon from "@mui/icons-material/PhotoLibraryOutlined";
-import Picker from "emoji-picker-react";
+// import Picker from "emoji-picker-react";
 import PersonAddAltRoundedIcon from "@mui/icons-material/PersonAddAltRounded";
 import MoodRoundedIcon from "@mui/icons-material/MoodRounded";
 import FmdGoodRoundedIcon from "@mui/icons-material/FmdGoodRounded";
 import { useDispatch, useSelector } from "react-redux";
+// import { CloseIcon } from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
 
 const cssStyle = makeStyles({
   topComment: {
@@ -162,6 +164,7 @@ const cssStyle = makeStyles({
     margin: "10px 10px",
     fontFamily: "Segoe UI Historic, Helvetica, Arial",
     fontSize: "large",
+    "&onFocus": {border: "none"}
   },
   footer: {
     border: "1px solid #cfd0d1",
@@ -255,19 +258,19 @@ export default function CreatePost(props) {
           <div className={style.header}>
             <h3 className={style.text}>Създаване на публикация</h3>
 
-            <IconButton onClick={handleClose} sx={{ bgcolor: grey[200] }}>
-              <AddIcon color="action" />
+            <IconButton  onClick={handleClose} sx={{ bgcolor: grey[200] }}>
+              <CloseIcon color="action" />
             </IconButton>
           </div>
           <div className={style.row}>
             <Avatar
               alt="user img"
-              src={"userimg"}
+              src={avatar}
               sx={{ width: 36, height: 36 }}
             />
             <div height="8px">
               <p className={style.textInput}>
-                <strong>{"user.name"} </strong>
+                <strong>{fullName} </strong>
               </p>
               <div className={style.friend}>
                 <PeopleAltIcon
@@ -286,7 +289,7 @@ export default function CreatePost(props) {
             <input
               onChange={setHandleInputPost}
               className={style.input}
-              placeholder={`Какво мислите, ${"User.name"}?`}
+              placeholder={`Какво мислите, ${fName}?`}
             ></input>
           </div>
 

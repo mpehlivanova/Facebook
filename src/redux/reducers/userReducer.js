@@ -3,14 +3,16 @@ const INITIAL_STATE = {
   currLogged: null,
   registered: [
     {
-      email: "asd@mail.com",
-      password: "a",
-      firstName: "Nicole",
-      lastName: "Smith",
+      email: "kristina@mail.com",
+      password: "123",
+      firstName: "Кристина",
+      lastName: "Георгиева",
       gender: "female",
       avatar:
         "http://thenewcode.com/assets/images/thumbnails/sarah-parmenter.jpeg",
-      dateOfBirth: "11.07.1976",
+      dateOfBirth: "11.07.1986",
+      coverPhoto:
+        "https://media.istockphoto.com/photos/picturesque-morning-in-plitvice-national-park-colorful-spring-scene-picture-id1093110112?k=20&m=1093110112&s=612x612&w=0&h=3OhKOpvzOSJgwThQmGhshfOnZTvMExZX2R91jNNStBY=",
     },
   ],
 };

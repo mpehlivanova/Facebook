@@ -6,22 +6,30 @@ import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
+// import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip";
 // import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
-import triangle from "../components-css/imgLeftBar/triangle.png";
+// import triangle from "../components-css/imgLeftBar/triangle.png";
 import { useDispatch } from "react-redux";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { grey } from "@mui/material/colors";
 import AnnouncementIcon from '@mui/icons-material/Announcement';
 import BedtimeIcon from '@mui/icons-material/Bedtime';
 import HelpIcon from '@mui/icons-material/Help';
-import Login from "../pages/Login"
+import {useSelector} from "react-redux"
+// import Login from "../pages/Login"
+import { Link } from 'react-router-dom';
+import { makeStyles } from '@mui/styles';
 
 
 export default function AccountMenu() {
+
+  const avatar = useSelector((state) => state.userData.registered[0].avatar);
+  const fName = useSelector((state) => state.userData.registered[0].firstName);
+  const lName = useSelector((state) => state.userData.registered[0].lastName);
+  const fullName = fName + " " + lName;
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -40,20 +48,40 @@ export default function AccountMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const useStyles = makeStyles({
+    link: {
+      textDecoration: "none",
+      color: "black",
+      fontFamily: "Segoe UI",
+      fontSize: "16px",
+      fontWeight: "500",
+    },
+    container: {
+      display: "flex",
+      width: "100%",
+
+    },
+    avatar: {
+      width:"100%"
+    }
+  });
+
+  const style = useStyles();
+
   return (
     <React.Fragment>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
-        <Tooltip >
-
+        <Tooltip>
           <IconButton
             onClick={handleClick}
             size="medium"
             aria-controls={open ? "account-menu" : undefined}
             aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}>
-
+            aria-expanded={open ? "true" : undefined}
+          >
             <Avatar sx={{ bgcolor: grey[200] }}>
-              <ArrowDropDownIcon color="action" />
+              <ArrowDropDownIcon sx={{ color: "black" }} />
             </Avatar>
           </IconButton>
         </Tooltip>
@@ -94,17 +122,22 @@ export default function AccountMenu() {
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
         <MenuItem>
-          <Avatar /> {"user.name"}
+          <Link to="/user" className={style.link}>
+            <div className={style.container}>
+              <Avatar src={avatar} className={style.avatar} />
+              <span>{fullName}</span>
+            </div>
+          </Link>
         </MenuItem>
         <Divider />
         <MenuItem>
-        <ListItemIcon>
-          <AnnouncementIcon/> 
+          <ListItemIcon>
+            <AnnouncementIcon />
           </ListItemIcon>
           Изпращане на обратна връзка
         </MenuItem>
         <Divider />
-        
+
         <MenuItem>
           <ListItemIcon>
             <Settings fontSize="small" />
@@ -123,11 +156,11 @@ export default function AccountMenu() {
           </ListItemIcon>
           Дисплей и достъпност
         </MenuItem>
-        <MenuItem onClick={() => {
-          handleLogout()
-          
-        }
-        }>
+        <MenuItem
+          onClick={() => {
+            handleLogout();
+          }}
+        >
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>

@@ -7,7 +7,7 @@ import Collapse from "@mui/material/Collapse";
 import { makeStyles } from "@mui/styles";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-import myProfil from "../components-css/imgLeftBar/guest.png";
+// import myProfil from "../components-css/imgLeftBar/guest.png";
 import memories from "../components-css/imgLeftBar/memoirs.png";
 import friends from "../components-css/imgLeftBar/friends.png"
 import save from "../components-css/imgLeftBar/reserved.png";
@@ -49,6 +49,7 @@ const useStyles = makeStyles({
   img: {
     width: "30px",
     borderRadius: "50%",
+    // marginRight:"-15px"
   },
 
   text: {
@@ -116,6 +117,9 @@ export default function LeftSidebar() {
   const handleClick = () => {
     setOpen(!open);
   };
+
+  let text = "";
+
   return (
     <div className={classes.container}>
       <List className={classes.list}>
@@ -140,7 +144,7 @@ export default function LeftSidebar() {
                 alt="icon friends"
               ></img>
             </ListItemIcon>
-            <p className={classes.link}>Friends</p>
+            <p className={classes.link}>Приятели</p>
           </ListItemButton>
         </Link>
 
@@ -149,7 +153,7 @@ export default function LeftSidebar() {
             <ListItemIcon>
               <img width="30px" src={grups} alt="icon grups"></img>
             </ListItemIcon>
-            <p className={classes.link}>Groups</p>
+            <p className={classes.link}>Групи</p>
           </ListItemButton>
         </Link>
 
@@ -166,29 +170,29 @@ export default function LeftSidebar() {
           <ListItemIcon>
             <img width="30px" src={memories} alt="icon memories"></img>
           </ListItemIcon>
-          <p className={classes.link}>Memories</p>
+          <p className={classes.link}>Спомени</p>
         </ListItemButton>
 
         <ListItemButton className={classes.text}>
           <ListItemIcon>
             <img width="30px" src={save} alt="icon save"></img>
           </ListItemIcon>
-          <p className={classes.link}>Saved</p>
+          <p className={classes.link}>Записано</p>
         </ListItemButton>
 
         <ListItemButton className={classes.text}>
           <ListItemIcon>
             <img width="30px" src={pages} alt="icon pages"></img>
           </ListItemIcon>
-          <p className={classes.link}>Pages</p>
+          <p className={classes.link}>Страници</p>
         </ListItemButton>
 
         <ListItemButton className={classes.text} onClick={handleClick}>
           <ListItemIcon>
             <ArrowDropDownIcon />
           </ListItemIcon>
-          <p className={classes.link}>See more</p>
-          {open ? <ExpandLess /> : <ExpandMore />}
+          <p className={classes.link}>{text}</p>
+          {open ?  (< ExpandLess />, {text} = "Вижте повече") : (<ExpandMore/> , {text} = "Вижте по-малко")}
         </ListItemButton>
 
         <Collapse in={open}>
@@ -197,7 +201,7 @@ export default function LeftSidebar() {
               <ListItemIcon>
                 <img width="30px" src={publicity} alt="icon public"></img>
               </ListItemIcon>
-              <p className={classes.link}>Ad Centre</p>
+              <p className={classes.link}>Рекламен център</p>
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
@@ -208,14 +212,14 @@ export default function LeftSidebar() {
                   alt="icon ads masanger"
                 ></img>
               </ListItemIcon>
-              <p className={classes.link}>Ads Messenger</p>
+              <p className={classes.link}>Диспечер на реклами</p>
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
               <ListItemIcon>
                 <img width="30px" src={clima} alt="icon clima centre"></img>
               </ListItemIcon>
-              <p className={classes.link}>Clima Science Centre</p>
+              <p className={classes.link}>Център за климатичната наука</p>
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
@@ -226,28 +230,28 @@ export default function LeftSidebar() {
                   alt="icon community help"
                 ></img>
               </ListItemIcon>
-              <p className={classes.link}>Community Help</p>
+              <p className={classes.link}>Кампании за набиране нна средства</p>
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
               <ListItemIcon>
                 <img width="30px" src={covid} alt="icon COVID-19 "></img>
               </ListItemIcon>
-              <p className={classes.link}>COVID-19 Information Centre</p>
+              <p className={classes.link}>COVID-19 Информационнен център</p>
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
               <ListItemIcon>
                 <img width="30px" src={health} alt="icon health"></img>
               </ListItemIcon>
-              <p className={classes.link}>Emotion Health</p>
+              <p className={classes.link}>Емоционално здраве</p>
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
               <ListItemIcon>
                 <img width="30px" src={events} alt="icon events"></img>
               </ListItemIcon>
-              <p className={classes.link}>Events</p>
+              <p className={classes.link}>Събития</p>
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
@@ -261,7 +265,7 @@ export default function LeftSidebar() {
               <ListItemIcon>
                 <img width="30px" src={favorites} alt="icon favorites"></img>
               </ListItemIcon>
-              <p className={classes.link}>Favorites</p>
+              <p className={classes.link}>Любими</p>
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
@@ -272,21 +276,21 @@ export default function LeftSidebar() {
                   alt="icon fundraisers"
                 ></img>
               </ListItemIcon>
-              <p className={classes.link}>Fundraisers</p>
+              <p className={classes.link}>Фондации</p>
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
               <ListItemIcon>
                 <img width="30px" src={video} alt="icon video"></img>
               </ListItemIcon>
-              <p className={classes.link}>Gaming Video</p>
+              <p className={classes.link}>Играене на игри</p>
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
               <ListItemIcon>
                 <img width="30px" src={liveVideo} alt="icon live video"></img>
               </ListItemIcon>
-              <p className={classes.link}>Live videos</p>Live videos
+              <p className={classes.link}>Видео на живо</p>
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
@@ -311,28 +315,28 @@ export default function LeftSidebar() {
               <ListItemIcon>
                 <img width="30px" src={recent} alt="icon recent"></img>
               </ListItemIcon>
-              <p className={classes.link}>Most recent</p>
+              <p className={classes.link}>Най-скорошни</p>
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
               <ListItemIcon>
                 <img width="30px" src={game} alt="icon game"></img>
               </ListItemIcon>
-              <p className={classes.link}>Play games</p>
+              <p className={classes.link}>Игри</p>
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
               <ListItemIcon>
                 <img width="30px" src={recentAd} alt="icon ad activity"></img>
               </ListItemIcon>
-              <p className={classes.link}>Recent ad activity</p>
+              <p className={classes.link}>Скорошни реклами</p>
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
               <ListItemIcon>
                 <img width="30px" src={translate} alt="icon translate"></img>
               </ListItemIcon>
-              <p className={classes.link}>Translate Facebook</p>
+              <p className={classes.link}>Преведи Facebook</p>
             </ListItemButton>
 
             <ListItemButton className={classes.text}>
@@ -355,7 +359,7 @@ export default function LeftSidebar() {
           <p className={classes.textGames}>Candy Crush </p>
         </ListItemButton>
 
-        <ListItemButton className={classes.games}>
+        <ListItemButton sx={{ height: "20px" }} className={classes.games}>
           <img
             className={classes.shortcuts}
             src="https://cdn.vox-cdn.com/thumbor/Q8BXCKDV7Elwz8AlVBI6KX5IR4g=/0x0:1870x818/1400x933/filters:focal(786x260:1084x558):no_upscale()/cdn.vox-cdn.com/uploads/chorus_image/image/67480796/farmville.0.jpg"
@@ -371,7 +375,7 @@ export default function LeftSidebar() {
           ></img>
           <p className={classes.textGames}>Castle Ville</p>
         </ListItemButton>
-        <ListItemButton className={classes.games}>
+        <ListItemButton className={classes.games} sx={{ height: "20px" }}>
           <img
             className={classes.shortcuts}
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbnEQrbwUq-tdGDrXskavB7o02zjnPgQGZgQcx5EjYDJAAgRR7o9lspHQO0i6YIWe6kOM&usqp=CAU"

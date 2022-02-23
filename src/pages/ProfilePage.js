@@ -34,7 +34,7 @@ export default function ProfilePage() {
 
        <div className={style.rightSide}>
           <ProfilePageRightSide />
-          <Post/>
+          
        </div>
       </div>
     </div>
