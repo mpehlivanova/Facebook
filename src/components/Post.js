@@ -154,6 +154,7 @@ const useStyles = makeStyles({
     height: "40px",
     borderRadius: "33px",
   },
+
   link: {
     textDecoration: "none",
     color: "#2c2d2d",
@@ -167,6 +168,11 @@ const useStyles = makeStyles({
   hover: {
     cursor: "pointer",
   },
+
+  colorText:{
+    color:"#2e81f4"
+  }
+
 });
 
 export default function Post(props) {
@@ -176,8 +182,10 @@ export default function Post(props) {
   // const idOfThisComment = props.id//Marian
   const avatar = useSelector((state) => state.userData.registered[0].avatar);
   const [like, isLike] = useState(false);
+
   const [commentList, viewCommentList] = useState(false);
   const [liked, viewLiked] = useState(false);
+
 
   const changeLikeOption = () => {
     if (like === false) {
@@ -196,10 +204,13 @@ export default function Post(props) {
     commentList ? viewCommentList(false) : viewCommentList(true);
   };
 
+
   const [createComment, setCreateComment] = useState("");
 
   const setHandleCreateComment = (ev) => {
+
     setCreateComment(ev.target.value.trim());
+
   };
   const dispatch = useDispatch();
   const postComment = useSelector((state) =>
@@ -209,8 +220,10 @@ export default function Post(props) {
   // const commentsOnlyforthisPot = postComment.filter(e=> e.idcomment === idOfThisComment) //Marian
 
   const handleCreateComment = () => {
+
     console.log(postComment);
     console.log("create comment");
+
 
     dispatch({
       type: "CREATECOMMENT",
@@ -371,6 +384,7 @@ export default function Post(props) {
               </IconButton>
             </div>
           </div>
+
         </div>
       </div>
     </>
