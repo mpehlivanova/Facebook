@@ -17,16 +17,12 @@ export default function MyPost() {
 
  return (
     <>
-      {myAllPost.map((p) => {
+      {myAllPost.map((post) => {
           return(
               
                   <Post 
                   key={uuidv4()} 
-                //   imgUser={`${user.avatar}`} 
-                //   userName={user.name} 
-                //   storyUser={user.story}
-                  text={p.text}
-                >
+                  text={post.text}>
                   </Post> 
               
           )

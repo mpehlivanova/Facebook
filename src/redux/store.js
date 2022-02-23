@@ -1,6 +1,6 @@
 import { createStore } from "redux";
 import { combineReducers } from "redux";
-import postReduser from "./reducers/actonReducer";
+import postReduser from "./reducers/actionReducer";
 import dataReducer from "./reducers/userReducer";
 
 

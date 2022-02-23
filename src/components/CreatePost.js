@@ -188,6 +188,8 @@ export default function CreatePost(props) {
   const fName = useSelector((state) => state.userData.registered[0].firstName);
   const lName = useSelector((state) => state.userData.registered[0].lastName);
   const fullName = fName + " " + lName;
+
+
   const style = cssStyle();
   const [open, setOpen] = React.useState(false);
  
@@ -213,7 +215,7 @@ export default function CreatePost(props) {
   const handleCreatePost =()=>{
     console.log(posts);
     console.log("create post");
-    dispatch ({type:"CREATEPOST", payload:{text:postText}})
+    dispatch ({type:"CREATEPOST", payload:{text:postText,idPost:postText}})
   }
 
   return (
