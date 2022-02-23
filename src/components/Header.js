@@ -22,8 +22,7 @@ import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import PopUpUserMenu from "./PopUpUserMenu";
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-
-
+import { useSelector } from 'react-redux';
 
 
 const useStyles = makeStyles({
@@ -116,7 +115,12 @@ const useStyles = makeStyles({
 })
 
 export default function Header(){
-
+  const avatar = useSelector((state) => state.userData.registered[0].avatar);
+  const fName = useSelector((state) => state.userData.registered[0].firstName);
+  const lName = useSelector((state) => state.userData.registered[0].lastName);
+  const fullName = fName + " " + lName;
+  // avatar =  ${avatar} ;
+  console.log(avatar);
     const classes = useStyles();
 
     return (
@@ -200,11 +204,12 @@ export default function Header(){
             <Link className={classes.link} to="/user">
               <div className={classes.user}>
                 <img
+                sx={{ mr:2 }}
                   className={classes.profile_image}
-                  src={myProfil}
+                  src={avatar}
                   alt="icon my profil"
                 />
-                <p>UserName</p>
+                <p>{fullName}</p>
               </div>
             </Link>
           </ListItemIcon>

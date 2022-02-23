@@ -1,11 +1,12 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
-import StoryContainer from "./StoryContainer";
+import StoryContainer from "./Story/StoryContainer";
 import CreatePost from "./CreatePost";
 import PrintAllPosts from "./PrintAllPosts";
 import PrintUserPosts from "./PrintUserPosts";
 // import PostHeader from "./Post/PostHeader";
 import ViewPostPage from "../pages/ViewPostPage";
+
 
 const useStyles = makeStyles({
   feed: {
@@ -39,6 +40,7 @@ export default function NewsFeed(){
           <CreatePost/>
           <PrintUserPosts/>
           <PrintAllPosts/>
+
       </div>
       
     </>

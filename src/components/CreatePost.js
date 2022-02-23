@@ -187,6 +187,13 @@ export default function CreatePost(props) {
 
   const id =UUidv4()
 
+  const avatar = useSelector((state) => state.userData.registered[0].avatar);
+  const fName = useSelector((state) => state.userData.registered[0].firstName);
+  const lName = useSelector((state) => state.userData.registered[0].lastName);
+  const fullName = fName + " " + lName;
+
+
+
   const style = cssStyle();
   const [open, setOpen] = React.useState(false);
  
@@ -218,23 +225,25 @@ export default function CreatePost(props) {
   const dispatch = useDispatch();
 
   const posts = useSelector(state=>state.actionPost.addedPosts) //get all post from global
-  const firstName = useSelector(state=>state.userData.registered[0].firstName) //get all post from global
-  const LastName = useSelector(state=>state.userData.registered[0].lastName) //get all post from global
-  const name=firstName +" "+LastName
-  const handleCreatePost =()=>{
-    console.log(posts);
-    
-    console.log("create post");
-    dispatch ({type:"CREATEPOST", payload:{
-      userName:name,
-      descripion:postText,
-      idPost:{id},
-      img:fileImg,
-      story:fileImg,
-      addedComment:[{}],
 
-    }})
-  }
+  const handleCreatePost =()=>{
+    console.log(fileImg);
+    console.log("img file");
+    console.log(posts);
+    console.log("create post");
+    if(postText !== ""){
+      dispatch ({type:"CREATEPOST", payload:{
+        userName:fullName,
+        descripion:postText,
+        idPost:{id},
+        img:avatar,
+        story:fileImg,
+        addedComment:[{}],
+  
+      }})
+    }
+    }
+    
 
   return (
     <>
@@ -243,13 +252,13 @@ export default function CreatePost(props) {
           <ListItemIcon>
             <img
               className={style.img}
-              src={myProfil}
+              src={avatar}
               alt="icon my profil"
             ></img>
           </ListItemIcon>
 
           <div onClick={handleClickOpen} className={style.divInput}>
-            <p className={style.p}>Какво мислите, {"User.name"}?</p>
+            <p className={style.p}>Какво мислите, {fullName}?</p>
           </div>
         </div>
         <div className={style.bottomComment}>
@@ -280,12 +289,12 @@ export default function CreatePost(props) {
           <div className={style.row}>
             <Avatar
               alt="user img"
-              src={"userimg"}
+              src={avatar}
               sx={{ width: 36, height: 36 }}
             />
             <div height="8px">
               <p className={style.textInput}>
-                <strong>{"user.name"} </strong>
+                <strong>{fullName} </strong>
               </p>
               <div className={style.friend}>
                 <PeopleAltIcon
@@ -304,7 +313,7 @@ export default function CreatePost(props) {
             <input
               onChange={setHandleInputPostImg}
               className={style.input}
-              placeholder={`Какво мислите, ${"User.name"}?`}
+              placeholder={`Какво мислите, ${fullName}?`}
             ></input>
           </div>
 

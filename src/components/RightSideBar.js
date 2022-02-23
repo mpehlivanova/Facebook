@@ -167,12 +167,6 @@ export default function RightSideBar() {
           </div>
         </List>
 
-        {/* scroll */}
-        {/* <Paper>
-          <EmployeeList employees={rows} showAdmin={false} />
-        </Paper>
- */}
-        {/* scroll */}
       </div>
     </div>
   );

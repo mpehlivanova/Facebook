@@ -5,6 +5,7 @@ import UUidv4 from "./Util.js";
 
 export default function PrintUserPosts() {
 
+ const avatar = useSelector((state) => state.userData.registered[0].avatar);
 
  const userAllPost =useSelector(state=>state.actionPost.addedPosts);
  console.log(userAllPost);
@@ -17,9 +18,9 @@ export default function PrintUserPosts() {
                   <Post 
                     key={id} 
                     idPost={id}
-                    img={post.img} 
+                    img={avatar} 
                     userName={post.userName} 
-                    story={post.img}
+                    story={post.story}
                     text={post.descripion}>
                   </Post> 
               

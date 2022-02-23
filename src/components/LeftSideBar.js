@@ -35,6 +35,7 @@ import watch from "../components-css/imgLeftBar/watch.png";
 import wather from "../components-css/imgLeftBar/wather.png";
 // import "../components-css/LeftSidebar.css";
 import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 
 
@@ -104,6 +105,12 @@ const useStyles = makeStyles({
 });
 
 export default function LeftSidebar() {
+
+  const avatar = useSelector((state) => state.userData.registered[0].avatar);
+  const fName = useSelector((state) => state.userData.registered[0].firstName);
+  const lName = useSelector((state) => state.userData.registered[0].lastName);
+  const fullName = fName + " " + lName;
+
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();
   const handleClick = () => {
@@ -117,11 +124,11 @@ export default function LeftSidebar() {
             <ListItemIcon>
               <img
                 className={classes.img}
-                src={myProfil}
+                src={avatar}
                 alt="icon my profil"
               ></img>
             </ListItemIcon>
-            <p className={classes.link}> Your name</p>
+            <p className={classes.link}> {fullName} </p>
           </ListItemButton>
         </Link>
         <Link className={classes.link} to="/friends">
