@@ -1,5 +1,7 @@
+
 const INITIAL_STATE = {
     addedPosts:[
+
       //  {
           //  userName:"test2",
           //  descripion:"consectetur adipisicing elit. Sint officiis facere ipsum cumque temporibus",
@@ -37,7 +39,7 @@ const INITIAL_STATE = {
   
   
  
-const postReducer = (state = INITIAL_STATE, action) => {
+const postReduser = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case "CREATEPOST":
       return {
@@ -55,8 +57,11 @@ const postReducer = (state = INITIAL_STATE, action) => {
         addedBiography: [...state.addedBiography, action.payload],
       };
 
-    default:
-      return state;
-  }
-};
-export default postReducer;
+
+
+      default:
+        return state;
+    }
+  };
+  export default postReduser;
+  

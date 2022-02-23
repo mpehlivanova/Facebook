@@ -31,6 +31,8 @@ const useStyles = makeStyles({
 export default function NewsFeed(){
     const classes = useStyles();
 
+
+    
   return (
     <>
       <div className={classes.feed}>
@@ -40,6 +42,7 @@ export default function NewsFeed(){
           <CreatePost/>
           <PrintUserPosts/>
           <PrintAllPosts/>
+
 
       </div>
       

@@ -15,8 +15,12 @@ import IconButton from "@mui/material/IconButton";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+
 import PeopleIcon from "@mui/icons-material/People";
 import UUidv4 from "./Util.js";
+
+import { type } from "@testing-library/user-event/dist/type";
+
 
 const useStyles = makeStyles({
   conrainerPost: {
@@ -169,6 +173,8 @@ export default function Post(props) {
   const id = UUidv4();
   const post = useStyles();
 
+  // const idOfThisComment = props.id//Marian
+  const avatar = useSelector((state) => state.userData.registered[0].avatar);
   const [like, isLike] = useState(false);
   const [commentList, viewCommentList] = useState(false);
   const [liked, viewLiked] = useState(false);
@@ -199,6 +205,8 @@ export default function Post(props) {
   const postComment = useSelector((state) =>
     state.actionPost.addedPosts.map((el) => el.addedComment)
   );
+
+  // const commentsOnlyforthisPot = postComment.filter(e=> e.idcomment === idOfThisComment) //Marian
 
   const handleCreateComment = () => {
     console.log(postComment);
@@ -292,15 +300,17 @@ export default function Post(props) {
           >
             Like
           </Button>
-          
+          <div  onClick={handleViewCommentList}>
           <Button
             sx={{ textTransform: "none" }}
             color="inherit"
             startIcon={<ModeCommentOutlinedIcon color="action" />}
-            onClick={handleViewCommentList}
+           
           >
             Comment
           </Button>
+          </div>
+          
         </div>
 
         <div>
@@ -317,7 +327,7 @@ export default function Post(props) {
                   <>
                     <div key={UUidv4} className={post.row}>
                       <div>
-                        <BadgeAvatars />
+                        <BadgeAvatars src= {avatar}  />
                       </div>
                       <div className={post.input}>
                         <p clasName={post.addedCom}>{com.comment}</p>
@@ -335,7 +345,7 @@ export default function Post(props) {
         {/* {commentButton ? ( */}
         <div className={post.row}>
           <div>
-            <BadgeAvatars />
+            <BadgeAvatars src= {avatar} />
           </div>
           <div className={`${post.commenrWrite}`}>
             <input
@@ -362,7 +372,6 @@ export default function Post(props) {
             </div>
           </div>
         </div>
-
       </div>
     </>
   );
