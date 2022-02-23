@@ -183,12 +183,20 @@ const cssStyle = makeStyles({
 });
 
 export default function CreatePost(props) {
-
-
+  function uuidv4() {
+    return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
+      (
+        c ^
+        (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
+      ).toString(16)
+    );
+  }
+  
+  
 
   const style = cssStyle();
   const [open, setOpen] = React.useState(false);
- 
+  const idOfThisPost = uuidv4()
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -199,19 +207,20 @@ export default function CreatePost(props) {
   };
 
   const [postText, setpPostText] = React.useState("");
+  
 
   const setHandleInputPost=(ev)=>{
     setpPostText(ev.target.value.trim())
+    props.setId(uuidv4)
   }
 
   const dispatch = useDispatch();
 
-  const posts = useSelector(state=>state.actionPost.addedPosts) //get all post from global
-
+  const posts = useSelector(state=>state.actionPost.addedPosts)
+ 
   const handleCreatePost =()=>{
-    console.log(posts);
-    console.log("create post");
-    dispatch ({type:"CREATEPOST", payload:{text:postText,idPost:postText}})
+    
+    dispatch ({type:"CREATEPOST", payload:{text:postText,idPost:idOfThisPost}})
   }
 
   return (

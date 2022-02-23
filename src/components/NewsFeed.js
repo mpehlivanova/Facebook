@@ -10,12 +10,10 @@ import MyPost from "./MyPost";
 const useStyles = makeStyles({
   feed: {
     width: "75%",
-    background: "#F2F3F5",    //change color /Marian
+    background: "#F2F3F5",    
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    // justifyContent: "center",
-    //add new style /Marian
     gap: "20px"
   },
   createPost:{
@@ -32,6 +30,16 @@ const useStyles = makeStyles({
 export default function NewsFeed(){
     const classes = useStyles();
 
+    function uuidv4() {
+      return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
+        (
+          c ^
+          (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
+        ).toString(16)
+      );
+    }
+    
+    
   return (
     <>
       <div className={classes.feed}>
@@ -39,7 +47,7 @@ export default function NewsFeed(){
           <StoryContainer />
         </div>
           <CreatePost/>
-          <MyPost/>
+          <MyPost />
           <AllPosts/>
       </div>
       

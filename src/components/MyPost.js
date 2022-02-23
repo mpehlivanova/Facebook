@@ -13,8 +13,9 @@ export default function MyPost() {
         );
       }
 
- const myAllPost =useSelector(state=>state.actionPost.addedPosts);
+ const myAllPost = useSelector(state=>state.actionPost.addedPosts);
 
+ 
  return (
     <>
       {myAllPost.map((post) => {
@@ -22,7 +23,10 @@ export default function MyPost() {
               
                   <Post 
                   key={uuidv4()} 
-                  text={post.text}>
+                  text={post.text}
+                  id = {post.idPost}
+                  >
+                   
                   </Post> 
               
           )

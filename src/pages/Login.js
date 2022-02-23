@@ -287,11 +287,11 @@ let isLogged = useSelector((state) => state.userData.logged);
   const regUsers = useSelector((state) => state.userData.registered);
 
   const handleLogin = () => {
-    console.log(regUsers);
+   
     const user = regUsers.filter((u) => u.email === email);
     if (validator.validate(email)) {
       if (user && password === user[0].password) {
-        console.log("login");
+        
         dispatch({ type: "LOGIN" });
         setError(false);
       } else {

@@ -18,6 +18,7 @@ import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { type } from "@testing-library/user-event/dist/type";
 
 const useStyles = makeStyles({
   conrainerPost: {
@@ -156,6 +157,8 @@ const useStyles = makeStyles({
 export default function Post(props) {
   const post = useStyles();
 
+  const idOfThisComment = props.id
+
   const [like, isLike] = useState(false);
   // const [thisPost, useThisPost] = useState(true)
 
@@ -189,7 +192,7 @@ export default function Post(props) {
 
 
   const [createComment, setcreateComment] = useState("");
-
+ 
   const setHandleCreateComment = (ev) => {
     setcreateComment(ev.target.value.trim());
    
@@ -197,10 +200,12 @@ export default function Post(props) {
   const dispatch = useDispatch();
   const commentArr = useSelector((state) => state.actionPost.addedCommented);
 
+  const commentsOnlyforthisPot = commentArr.filter(e=> e.idcomment === idOfThisComment)
+
   const handleCreateComment = () => {
     console.log(commentArr);
     console.log("create comment");
-    dispatch({ type: "CREATECOMMENT", payload: { comment: createComment } });
+    dispatch({ type: "CREATECOMMENT", payload: { comment: createComment,idcomment :idOfThisComment } });
    
 
   };
@@ -243,7 +248,7 @@ export default function Post(props) {
             </div>
           </div>
           <div className={post.textInput}>
-            <p>{props.text}</p>
+            <p>{props.text} </p>
           </div>
           <div>
             <img
@@ -282,7 +287,7 @@ export default function Post(props) {
             {
         
               
-              commentArr.map((com) => {
+          commentsOnlyforthisPot.map((com) => {
 
               return (
                 <>
