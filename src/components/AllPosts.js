@@ -2,7 +2,6 @@ import * as React from "react";
 import UserDisny from "./userDisny.js";
 import Post from "./Post.js";
 
-
 export default function AllPosts(props) {
     // const dispatch = useDispatch();
    

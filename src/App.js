@@ -11,9 +11,9 @@ import Grups from "./pages/Grups";
 import ProfilePage from './pages/ProfilePage';
 import { useSelector } from "react-redux";
 
-
+// useSelector((state) => state.userData.logged);
 function App() {
-  const logged = useSelector(state => state.userData.logged);
+  const logged = 1;
   return (
 
       <>

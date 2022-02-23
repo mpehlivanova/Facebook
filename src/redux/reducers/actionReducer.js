@@ -2,13 +2,14 @@
 const INITIAL_STATE = {
     addedPosts:[
        {
-           
+           text:"text",
+           idPost:"777"
        }
 
   ],
   addedCommented: [
     {
-      
+      comment:"comment",
     }
   ],
   };
