@@ -32,9 +32,9 @@ export default function CardAd(img, text) {
     <ListItemButton >
         <div className={card.containerCard}>
           <img className={card.imgAd}
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSM01N479KkBK_s89MUT0XhuGjWSnNcwkybCfGZnFOwkjRWhb6_7sc-Qyg_CIvd-k67Ahw&usqp=CAU" alt="photoAd">
+            src="https://webpartner.bg/wp-content/uploads/internet_reklama.jpg" alt="photoAd">
             </img>
-          <p className={card.text}>Nemo.com</p>
+          <p className={card.text}>Реклама.bg</p>
         </div>
       </ListItemButton>
 

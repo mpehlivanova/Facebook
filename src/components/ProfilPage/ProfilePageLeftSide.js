@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from "@mui/styles";
 import ProfilePageLeftSideField from "./ProfilePageLeftSideField";
 import ProfilePageLeftSideFormDialog from "./ProfilePageLeftSideFormDialog";
-import Biography from './Biography';
+import Biography from '../Biography';
 import { useSelector } from 'react-redux';
 
 

@@ -8,7 +8,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import VideoCallIcon from "@mui/icons-material/VideoCall";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import IconButton from "@mui/material/IconButton";
-import users from "../server/users"
+import users from "./Json/users"
 
 //    {/* scroll */}
 // // import EmployeeList, { IEmployee } from "./EmployeeList";
@@ -170,12 +170,6 @@ export default function RightSideBar() {
             </ListItemButton> */}
          
 
-        {/* scroll */}
-        {/* <Paper>
-          <EmployeeList employees={rows} showAdmin={false} />
-        </Paper>
- */}
-        {/* scroll */}
       </div>
     // </div>
   );

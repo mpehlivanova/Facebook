@@ -322,7 +322,7 @@ export default function Post(props) {
               ></input>
 
               <div className={post.iconWrapper}>
-                <Button onClick={handleCreateComment}>add comment</Button>
+                <Button onClick={handleCreateComment}>add post</Button>
                 <IconButton size="small">
                   <SentimentSatisfiedOutlinedIcon
                     className={post.iconContact}/>
