@@ -1,21 +1,19 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
 import StoryContainer from "./StoryContainer";
-import Post from "./Post";
-// import FriendsCard from "./FriendsCard";
 import CreatePost from "./CreatePost";
-import AllPosts from "./AllPosts";
-import MyPost from "./MyPost";
+import PrintAllPosts from "./PrintAllPosts";
+import PrintUserPosts from "./PrintUserPosts";
+// import PostHeader from "./Post/PostHeader";
+import ViewPostPage from "../pages/ViewPostPage";
 
 const useStyles = makeStyles({
   feed: {
     width: "75%",
-    background: "#F2F3F5",    //change color /Marian
+    background: "#F2F3F5",    
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    // justifyContent: "center",
-    //add new style /Marian
     gap: "20px"
   },
   createPost:{
@@ -39,8 +37,8 @@ export default function NewsFeed(){
           <StoryContainer />
         </div>
           <CreatePost/>
-          <MyPost/>
-          <AllPosts/>
+          <PrintUserPosts/>
+          <PrintAllPosts/>
       </div>
       
     </>

@@ -140,7 +140,7 @@ export default function Header(){
             ></input>
           </div>
         </div>
-
+        <Link to="/view">viewPost</Link>
         <div className={useStyles.centralHeader}>
           <div className={classes.centrum}>
             <div className="options">

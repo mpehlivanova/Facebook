@@ -27,6 +27,7 @@ import PersonAddAltRoundedIcon from "@mui/icons-material/PersonAddAltRounded";
 import MoodRoundedIcon from "@mui/icons-material/MoodRounded";
 import FmdGoodRoundedIcon from "@mui/icons-material/FmdGoodRounded";
 import { useDispatch, useSelector } from "react-redux";
+import UUidv4 from "./Util";
 
 const cssStyle = makeStyles({
   topComment: {
@@ -184,7 +185,7 @@ const cssStyle = makeStyles({
 
 export default function CreatePost(props) {
 
-
+  const id =UUidv4()
 
   const style = cssStyle();
   const [open, setOpen] = React.useState(false);
@@ -197,21 +198,42 @@ export default function CreatePost(props) {
   const handleClose = () => {
     setOpen(false);
   };
+  const [fileImg, setFileImg] = React.useState("");
+
+
+  const setHandleFildUploud = (ev) => {
+      const{files}=ev.target;
+      const localImgUrl=URL.createObjectURL(files[0])
+      setFileImg(localImgUrl)
+
+  };
 
   const [postText, setpPostText] = React.useState("");
-
-  const setHandleInputPost=(ev)=>{
+ 
+  const setHandleInputPostImg=(ev)=>{
     setpPostText(ev.target.value.trim())
   }
+
 
   const dispatch = useDispatch();
 
   const posts = useSelector(state=>state.actionPost.addedPosts) //get all post from global
-
+  const firstName = useSelector(state=>state.userData.registered[0].firstName) //get all post from global
+  const LastName = useSelector(state=>state.userData.registered[0].lastName) //get all post from global
+  const name=firstName +" "+LastName
   const handleCreatePost =()=>{
     console.log(posts);
+    
     console.log("create post");
-    dispatch ({type:"CREATEPOST", payload:{text:postText,idPost:postText}})
+    dispatch ({type:"CREATEPOST", payload:{
+      userName:name,
+      descripion:postText,
+      idPost:{id},
+      img:fileImg,
+      story:fileImg,
+      addedComment:[{}],
+
+    }})
   }
 
   return (
@@ -231,16 +253,16 @@ export default function CreatePost(props) {
           </div>
         </div>
         <div className={style.bottomComment}>
-          <div className={style.conteiner_option}>
+          <div onClick={handleClickOpen} className={style.conteiner_option}>
             <VideoCameraFrontIcon className={style.camera} fontSize="large" />
             <h3 className={style.textInfo}>Видео на живо</h3>
           </div>
 
-          <div className={style.conteiner_option}>
+          <div onClick={handleClickOpen} className={style.conteiner_option}>
             <InsertPhotoIcon className={style.photo} fontSize="large" />
             <h3 className={style.textInfo}>Снимка/видеоклип</h3>
           </div>
-          <div className={style.conteiner_option}>
+          <div onClick={handleClickOpen} className={style.conteiner_option}>
             <EmojiEmotionsIcon className={style.emoji} fontSize="large" />
             <h3 className={style.textInfo}>Чувство/Дейност</h3>
           </div>
@@ -280,7 +302,7 @@ export default function CreatePost(props) {
           </div>
           <div className={style.inputTextPost}>
             <input
-              onChange={setHandleInputPost}
+              onChange={setHandleInputPostImg}
               className={style.input}
               placeholder={`Какво мислите, ${"User.name"}?`}
             ></input>
@@ -290,13 +312,16 @@ export default function CreatePost(props) {
             <img src={colorImg} alt="imgColor"></img>
             <SentimentSatisfiedAltIcon color="action" />
           </div>
+
           <div className={`${style.postAdd} ${style.footer}`}>
             <p className={style.p}>Добавете към публикацията си</p>
+            
             <div>
-              <IconButton size="small">
-                <PhotoLibraryOutlinedIcon sx={{ color: green[700] }} />
+            <input type='file' onChange={setHandleFildUploud}></input>
+              <IconButton  size="small">
+              <PhotoLibraryOutlinedIcon sx={{ color: green[700] }} />
               </IconButton>
-              <IconButton size="small">
+              <IconButton  size="small">
                 <PersonAddAltRoundedIcon sx={{ color: blue[700] }} />
               </IconButton>
               <IconButton size="small">
@@ -319,6 +344,7 @@ export default function CreatePost(props) {
             // disabled
             
             onClick={()=>{
+              // ev.preventDefault()
               handleCreatePost();
               handleClose();
 
