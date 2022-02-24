@@ -146,7 +146,7 @@ export default function Header(){
             ></input>
           </div>
         </div>
-
+        <Link to="/view">viewPost</Link>
         <div className={useStyles.centralHeader}>
           <div className={classes.centrum}>
             <div className="options">
@@ -206,6 +206,7 @@ export default function Header(){
             <Link className={classes.link} to="/user">
               <div className={classes.user}>
                 <img
+                sx={{ mr:2 }}
                   className={classes.profile_image}
                   src={avatar}
                   alt="icon my profil"

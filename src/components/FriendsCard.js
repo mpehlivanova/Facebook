@@ -2,8 +2,8 @@ import * as React from "react";
 // import Box from '@mui/material/Box';
 import { makeStyles } from "@mui/styles";
 import Button from "@mui/material/Button";
-import UserDisny from "./userDisny.js"
 import { grey } from "@mui/material/colors";
+//import users from "../server/users"
 
 const useStyles = makeStyles({
 
@@ -65,17 +65,17 @@ export default function FriendsCard(img, name) {
   return (
     <>
       {
-        UserDisny.map((user) => {
+        users.map((u) => {
 
           return (
             <>
               <div className={friends.oneFriend}>
                 <img
                   className={friends.imgUser}
-                  src={user.avatar}
+                  src={u.image}
                   alt="user img">
                   </img>
-                <p className={friends.text}>{user.name}</p>
+                <p className={friends.text}>{u.name}</p>
                 <div className={friends.conrainerBtn}>
                   <Button variant="contained">
                   Добавяне

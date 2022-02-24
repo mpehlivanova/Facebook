@@ -4,9 +4,9 @@ import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import myProfil from "../components-css/imgLeftBar/guest.png";
+// import myProfil from "../components-css/imgLeftBar/guest.png";
 import { makeStyles } from "@mui/styles";
-import { borderRadius, display, height } from "@mui/system";
+// import { borderRadius, display, height } from "@mui/system";
 // import VideocamIcon from "@mui/icons-material/Videocam";
 import VideoCameraFrontIcon from "@mui/icons-material/VideoCameraFront";
 import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
@@ -14,19 +14,20 @@ import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import { Avatar, IconButton } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { blue, green, grey, red, yellow } from "@mui/material/colors";
-import BadgeAvatars from "./Avatar";
+// import BadgeAvatars from "./Avatar";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
-import ColorLensIcon from "@mui/icons-material/ColorLens";
+// import ColorLensIcon from "@mui/icons-material/ColorLens";
 import colorImg from "../components-css/color.PNG";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import PhotoLibraryOutlinedIcon from "@mui/icons-material/PhotoLibraryOutlined";
-import Picker from "emoji-picker-react";
+// import Picker from "emoji-picker-react";
 import PersonAddAltRoundedIcon from "@mui/icons-material/PersonAddAltRounded";
 import MoodRoundedIcon from "@mui/icons-material/MoodRounded";
 import FmdGoodRoundedIcon from "@mui/icons-material/FmdGoodRounded";
 import { useDispatch, useSelector } from "react-redux";
+import UUidv4 from "./Util";
 
 const cssStyle = makeStyles({
   topComment: {
@@ -183,20 +184,18 @@ const cssStyle = makeStyles({
 });
 
 export default function CreatePost(props) {
-  function uuidv4() {
-    return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
-      (
-        c ^
-        (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
-      ).toString(16)
-    );
-  }
-  
-  
+
+
+  const avatar = useSelector((state) => state.userData.registered[0].avatar);
+  const fName = useSelector((state) => state.userData.registered[0].firstName);
+  const lName = useSelector((state) => state.userData.registered[0].lastName);
+  const fullName = fName + " " + lName;
+
+
 
   const style = cssStyle();
   const [open, setOpen] = React.useState(false);
-  const idOfThisPost = uuidv4()
+ 
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -206,21 +205,46 @@ export default function CreatePost(props) {
     setOpen(false);
   };
 
-  const [postText, setpPostText] = React.useState("");
-  
 
-  const setHandleInputPost=(ev)=>{
+  const [fileImg, setFileImg] = React.useState("");
+
+  const setHandleFildUploud = (ev) => {
+      const{files}=ev.target;
+      const localImgUrl=URL.createObjectURL(files[0])
+      setFileImg(localImgUrl)
+
+  };
+
+  const [postText, setpPostText] = React.useState("");
+ 
+  const setHandleInputPostImg=(ev)=>{
     setpPostText(ev.target.value.trim())
   }
 
+
   const dispatch = useDispatch();
 
-  const posts = useSelector(state=>state.actionPost.addedPosts)
- 
+  const posts = useSelector((state)=>state.actionPost.addedPosts) //get all post from global
+
   const handleCreatePost =()=>{
+    console.log(fileImg);
+    console.log("img file");
+    console.log(posts);
+    console.log("create post");
+    if(postText !== ""){
+      dispatch ({type:"CREATEPOST",
+       payload:{ 
+        userName:fullName,
+        descripion:postText,
+        img:avatar,
+        story:fileImg,
+        postId:UUidv4(),
+       
     
-    dispatch ({type:"CREATEPOST", payload:{text:postText,idPost:idOfThisPost}})
-  }
+      }})
+    }
+    }
+    
 
   return (
     <>
@@ -229,26 +253,26 @@ export default function CreatePost(props) {
           <ListItemIcon>
             <img
               className={style.img}
-              src={myProfil}
+              src={avatar}
               alt="icon my profil"
             ></img>
           </ListItemIcon>
 
           <div onClick={handleClickOpen} className={style.divInput}>
-            <p className={style.p}>Какво мислите, {"User.name"}?</p>
+            <p className={style.p}>Какво мислите, {fullName}?</p>
           </div>
         </div>
         <div className={style.bottomComment}>
-          <div className={style.conteiner_option}>
+          <div onClick={handleClickOpen} className={style.conteiner_option}>
             <VideoCameraFrontIcon className={style.camera} fontSize="large" />
             <h3 className={style.textInfo}>Видео на живо</h3>
           </div>
 
-          <div className={style.conteiner_option}>
+          <div onClick={handleClickOpen} className={style.conteiner_option}>
             <InsertPhotoIcon className={style.photo} fontSize="large" />
             <h3 className={style.textInfo}>Снимка/видеоклип</h3>
           </div>
-          <div className={style.conteiner_option}>
+          <div onClick={handleClickOpen} className={style.conteiner_option}>
             <EmojiEmotionsIcon className={style.emoji} fontSize="large" />
             <h3 className={style.textInfo}>Чувство/Дейност</h3>
           </div>
@@ -266,12 +290,12 @@ export default function CreatePost(props) {
           <div className={style.row}>
             <Avatar
               alt="user img"
-              src={"userimg"}
+              src={avatar}
               sx={{ width: 36, height: 36 }}
             />
             <div height="8px">
               <p className={style.textInput}>
-                <strong>{"user.name"} </strong>
+                <strong>{fullName} </strong>
               </p>
               <div className={style.friend}>
                 <PeopleAltIcon
@@ -288,9 +312,9 @@ export default function CreatePost(props) {
           </div>
           <div className={style.inputTextPost}>
             <input
-              onChange={setHandleInputPost}
+              onChange={setHandleInputPostImg}
               className={style.input}
-              placeholder={`Какво мислите, ${"User.name"}?`}
+              placeholder={`Какво мислите, ${fullName}?`}
             ></input>
           </div>
 
@@ -298,13 +322,16 @@ export default function CreatePost(props) {
             <img src={colorImg} alt="imgColor"></img>
             <SentimentSatisfiedAltIcon color="action" />
           </div>
+
           <div className={`${style.postAdd} ${style.footer}`}>
             <p className={style.p}>Добавете към публикацията си</p>
+            
             <div>
-              <IconButton size="small">
-                <PhotoLibraryOutlinedIcon sx={{ color: green[700] }} />
+            <input type='file' onChange={setHandleFildUploud}></input>
+              <IconButton  size="small">
+              <PhotoLibraryOutlinedIcon sx={{ color: green[700] }} />
               </IconButton>
-              <IconButton size="small">
+              <IconButton  size="small">
                 <PersonAddAltRoundedIcon sx={{ color: blue[700] }} />
               </IconButton>
               <IconButton size="small">
@@ -327,6 +354,7 @@ export default function CreatePost(props) {
             // disabled
             
             onClick={()=>{
+              // ev.preventDefault()
               handleCreatePost();
               handleClose();
 

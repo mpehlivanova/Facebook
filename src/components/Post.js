@@ -1,11 +1,9 @@
 import * as React from "react";
-// import Box from '@mui/material/Box';
 import BadgeAvatars from "./Avatar.js";
-import PublicIcon from "@mui/icons-material/Public";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { grey, red } from "@mui/material/colors";
+import { grey } from "@mui/material/colors";
 import { makeStyles } from "@mui/styles";
-import { Button, ListItemIcon } from "@mui/material";
+import { Button, Link, ListItemIcon } from "@mui/material";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import RecommendRoundedIcon from "@mui/icons-material/RecommendRounded";
 import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
@@ -14,11 +12,13 @@ import SentimentSatisfiedOutlinedIcon from "@mui/icons-material/SentimentSatisfi
 import PhotoCameraOutlinedIcon from "@mui/icons-material/PhotoCameraOutlined";
 import StickyNote2OutlinedIcon from "@mui/icons-material/StickyNote2Outlined";
 import IconButton from "@mui/material/IconButton";
-import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { type } from "@testing-library/user-event/dist/type";
+import PeopleIcon from "@mui/icons-material/People";
+import UUidv4 from "./Util.js";
+import Login from "../pages/Login.js";
+// import { type } from "@testing-library/user-event/dist/type";
 
 const useStyles = makeStyles({
   conrainerPost: {
@@ -76,7 +76,7 @@ const useStyles = makeStyles({
     flexDirection: "row",
     gap: "10px",
   },
-  addedCom:{
+  addedCom: {
     fontSize: "medium",
     fontFamily: "Segoe UI Historic, Helvetica, Arial",
     margin: "0px 3px",
@@ -97,8 +97,8 @@ const useStyles = makeStyles({
     backgroundColor: " #eff2f5",
     padding: "3px 10px",
     marginLeft: "5px",
-    display:"flex",
-    alignItems:"center"
+    display: "flex",
+    alignItems: "center",
   },
   iconContact: {
     opacity: "0.5",
@@ -117,9 +117,9 @@ const useStyles = makeStyles({
   likeConrainer: {
     height: "10px",
     display: "flex",
-    flexDirection: "row",
     alignItems: "center",
-    paddingLeft: "5px",
+    padding: "0px 5px",
+    justifyContent: "space-between",
   },
   textBox: {
     display: "flex",
@@ -152,9 +152,24 @@ const useStyles = makeStyles({
     height: "40px",
     borderRadius: "33px",
   },
-  colorText:{
-    color:"#2e81f4"
-  }
+
+  link: {
+    textDecoration: "none",
+    color: "#2c2d2d",
+  },
+  imgPost: {
+    width: "100%",
+    borderTop: "1px solid #cfd0d1",
+    borderBottom: "1px solid #cfd0d1",
+    cursor: "pointer",
+  },
+  hover: {
+    cursor: "pointer",
+  },
+
+  colorText: {
+    color: "#2e81f4",
+  },
 });
 
 export default function Post(props) {
@@ -193,91 +208,162 @@ export default function Post(props) {
   }
 
 
-  const [createComment, setcreateComment] = useState("");
- 
+  // const postId=props.id
+  const post = useStyles();
+
+  const avatar = useSelector((state) => state.userData.registered[0].avatar);
+  // const [like, isLike] = useState(false);
+
+  // const [commentList, viewCommentList] = useState(false);
+  // const [liked, viewLiked] = useState(false);
+
+  // const changeLikeOption = () => {
+  //   if (like === false) {
+  //     isLike(true);
+  //     isLike(like + 1);
+  //   } else {
+  //     isLike(like - 1);
+  //     isLike(false);
+  //   }
+  // };
+  // const handleViewLiked = () => {
+  //   liked ? viewLiked(false) : viewLiked(true);
+  // };
+
+  // const handleViewCommentList = () => {
+  //   commentList ? viewCommentList(false) : viewCommentList(true);
+  // };
+
+  const [createComment, setCreateComment] = useState("");
+
   const setHandleCreateComment = (ev) => {
-    setcreateComment(ev.target.value.trim());
-    
+    setCreateComment(ev.target.value.trim());
   };
   const dispatch = useDispatch();
-  const commentArr = useSelector((state) => state.actionPost.addedCommented);
 
   const commentsOnlyforthisPot = commentArr.filter(com => com.postId === props.id)
 
   const handleCreateComment = () => {
     dispatch({ type: "CREATECOMMENT", payload: { comment: createComment,idcomment :uuidv4(), postId : props.id }});
     isComment(false)
+  const allPostsComment = useSelector((state) => state.actionPost.addedComment);
 
+  
+
+  //const handleCreateComment = () => {
+    //console.log(createComment);
+    //console.log(allPostsComment);
+    //console.log(onePostComment);
+    //console.log("create comment");
+
+    
+
+      dispatch({
+        type: "CREATECOMMENT",
+        payload: {
+          addedComment: {
+            commentText: createComment ,
+            commentId: uuidv4(),
+            postId : props.id,
+            img:avatar,
+          },
+        }
+      });
+    
   };
+  
+  const onePostComment = allPostsComment.filter(com => com.postId === props.id); //Marian
+  // const handleCreateComment = () => {
+  //   dispatch({ type: "CREATECOMMENT", payload: { comment: createComment,idcomment :UUidv4(), postId : props.id }});
+    
+
+  // };
 
   return (
     <>
-      <>
-        <div className={post.conrainerPost}>
-          <div className={post.header}>
-            <div className={post.row}>
-              <ListItemIcon>
-                <img
-                  className={post.img}
-                  src={props.imgUser} //props
-                  alt="icon my profil"
-                ></img>
-              </ListItemIcon>
-              <div height="8px">
-                <p className={post.textInput}>
-                  <strong>{props.userName} </strong> is width
+      <div className={post.conrainerPost}>
+        <div className={post.header}>
+          <div className={post.row}>
+            <ListItemIcon>
+              <img
+                className={post.img}
+                src={props.img}                       //props
+                alt="icon my profil"
+              ></img>
+            </ListItemIcon>
+            <div height="8px">
+              <p className={post.textInput}>
+                <strong>{props.userName} </strong>       {/* //props   */}
+                {/* is width                            
                   <strong>{"{friend}"}</strong> at
-                  <strong>{"{Hotel}"}</strong>
-                </p>
-                <p className={post.textXsmall}>
-                  15h *
-                  <PublicIcon
-                    sx={{
-                      fontSize: 12,
-                      color: grey[600],
-                      marginLeft: "2px",
-                    }}
-                  />
-                </p>
-              </div>
+                  <strong>{"{Hotel}"}</strong> */}
+              </p>
+              <p className={post.textXsmall}>
+                15h *
+                <PeopleIcon
+                  sx={{
+                    fontSize: 12,
+                    color: grey[600],
+                    marginLeft: "2px",
+                  }}
+                />
+              </p>
             </div>
-            <div>
-              <IconButton size="small">
-                <MoreHorizIcon color="disabled" />
-              </IconButton>
-            </div>
-          </div>
-          <div className={post.textInput}>
-            <p>{props.text} </p>
           </div>
           <div>
+            <IconButton size="small">
+              <MoreHorizIcon color="disabled" />
+            </IconButton>
+          </div>
+        </div>
+        <div className={post.textInput}>
+          <p>{props.text}</p>                    {/* //props   */}
+        </div>
+
+        <div>
+          <Link className={post.link} to={"/view/" + post.id}>
             <img
-              className={post.border}
-              width="100%"
-              src={props.storyUser}
+              className={post.imgPost}
+              src={props.storyImg}                //  {/* //props   */}
               alt="user img"
             ></img>
-          </div>
+          </Link>
+        </div>
+
+        <div className={post.likeConrainer}>
           <div className={post.likeConrainer}>
-            <FavoriteRoundedIcon sx={{ color: red[600] }} />
-            <RecommendRoundedIcon color="primary" />
-            <p className={post.textSmall}>{like}</p>
+            {/* {liked ? ( */}
+              <>
+                <RecommendRoundedIcon color="primary" />
+                <p className={post.textSmall}>
+                {/* {like} */}
+                </p>
+              </>
+            {/* ) : null} */}
           </div>
 
-          <div className={`${post.border} ${post.buttonBox}`}>
-            <Button
-              // sx={{ "&:hover": , textTransform: "none" }} //Mitko- without this row the button works appropriate
-              color="inherit"
-              startIcon={<ThumbUpOutlinedIcon color="disabled" />}
-              onClick={changeLikeOption}>
-               Like
-            </Button>
-            <Button
-              // sx={{ "&:hover": { width: "40%" }, textTransform: "none" }}//Mitko- without this row the button works appropriate
+          <p className={post.textSmall}>{onePostComment.length} commentar</p>
+        </div>
+
+        <div className={`${post.border} ${post.buttonBox}`}>
+          <Button
+            sx={{ textTransform: "none" }}
+            color="inherit"
+            startIcon={<ThumbUpOutlinedIcon color="disabled" />}
+            // onClick={() => {
+            //   changeLikeOption();
+            //   handleViewLiked();
+            // }}
+          >
+            Like
+          </Button>
+          <div 
+          // onClick={handleViewCommentList}
+          ><Button
+              sx={{ textTransform: "none" }}
               color="inherit"
               startIcon={<ModeCommentOutlinedIcon color="action" />}
-              onClick = {createNewComment}
-              className={commentButton ? post.colorText : null}>
+            >
               Comment
             </Button>
           </div>
@@ -342,7 +428,82 @@ export default function Post(props) {
           </div>
            ) : null } 
         </div>
-      </>
+
+        <div>
+        {/* {
+          postComment.length > 5 ? {commentList = false}:commentList(true)
+        } */}
+          <p
+          // onClick={handleViewCommentList}
+            className={`${post.textSmall} ${post.hover}`}
+          >
+            View previouse comments
+          </p>
+          {
+           
+            onePostComment.map((com) => {
+                return (
+                  <>
+                    <div key={com.commentId} className={post.row}>
+                      <div>
+                        <BadgeAvatars img={avatar} />
+                      </div>
+                      <div className={post.input}>
+                        <p className={post.addedCom}>{com.comment}</p>
+                      </div>
+                      <IconButton size="small">
+                        <MoreHorizIcon color="disabled" />
+                      </IconButton>
+                    </div>
+                  </>
+                );
+              })
+
+        
+          }
+
+          
+        </div>
+
+       
+        <div className={post.row}>
+          <div>
+            <BadgeAvatars img={avatar} />
+          </div>
+          <div className={`${post.commenrWrite}`}>
+            <input
+              onChange={setHandleCreateComment}
+              className={post.inputComment}
+              type="text"
+              placeholder="White a comment"
+            ></input>
+
+            <div>
+              <Button
+                onClick={() => {
+                  handleCreateComment();
+                  // viewCommentList(true);
+                  console.log(onePostComment);
+                  console.log("added Comment");
+                }}>
+               
+               add </Button>
+              <IconButton size="small">
+                <SentimentSatisfiedOutlinedIcon className={post.iconContact} />
+              </IconButton>
+              <IconButton size="small">
+                <PhotoCameraOutlinedIcon className={post.iconContact} />
+              </IconButton>
+              <IconButton size="small">
+                <GifBoxOutlinedIcon className={post.iconContact} />
+              </IconButton>
+              <IconButton size="small">
+                <StickyNote2OutlinedIcon className={post.iconContact} />
+              </IconButton>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 }

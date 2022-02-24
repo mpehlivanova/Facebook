@@ -1,9 +1,8 @@
-import React from 'react';
-import { useState } from 'react';
-import Picker from 'emoji-picker-react';
+import { Picker } from "@material-ui/pickers";
+import { useState } from "react";
 
-export default function Emoji (){
-  const [chosenEmoji, setChosenEmoji] = useState(null);
+export const Emoji = () => {
+  const [chosenEmoji, setChosenEmoji]  = useState(null);
 
   const onEmojiClick = (event, emojiObject) => {
     setChosenEmoji(emojiObject);
