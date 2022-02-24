@@ -209,7 +209,7 @@ export default function Post(props) {
 
 
   // const postId=props.id
-  const post = useStyles();
+  // const post = useStyles();
 
   const avatar = useSelector((state) => state.userData.registered[0].avatar);
   // const [like, isLike] = useState(false);
@@ -240,13 +240,13 @@ export default function Post(props) {
     setCreateComment(ev.target.value.trim());
   };
   const dispatch = useDispatch();
-
-  const commentsOnlyforthisPot = commentArr.filter(com => com.postId === props.id)
+  const allPostsComment = useSelector((state) => state.actionPost.addedComment);
+  const commentsOnlyforthisPot = allPostsComment.filter(com => com.postId === props.id)
 
   const handleCreateComment = () => {
     dispatch({ type: "CREATECOMMENT", payload: { comment: createComment,idcomment :uuidv4(), postId : props.id }});
     isComment(false)
-  const allPostsComment = useSelector((state) => state.actionPost.addedComment);
+
 
   
 
@@ -371,27 +371,7 @@ export default function Post(props) {
           <div>
             
               {/* need to chech  */}
-            {
-        
-              
-          commentsOnlyforthisPot.map((com) => {
-
-              return (
-                <>
-                  <div key={com.idcomment}  className={post.row}>
-                    <div>
-                      <BadgeAvatars />
-                    </div>
-                    <div className={post.input}>
-                      <p clasName={post.addedCom}>{com.comment}</p>
-                    </div>
-                    <IconButton size="small">
-                      <MoreHorizIcon color="disabled" />
-                    </IconButton>
-                  </div>
-                </>
-              );
-            })}
+          
           </div>
 
            {commentButton ? ( 
@@ -430,9 +410,7 @@ export default function Post(props) {
         </div>
 
         <div>
-        {/* {
-          postComment.length > 5 ? {commentList = false}:commentList(true)
-        } */}
+      
           <p
           // onClick={handleViewCommentList}
             className={`${post.textSmall} ${post.hover}`}
