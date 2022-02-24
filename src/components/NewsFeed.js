@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
-import StoryContainer from "./Story/StoryContainer";
+import StoryContainer from "./StoryContainer";
 import CreatePost from "./CreatePost";
 import PrintAllPosts from "./PrintAllPosts";
 import PrintUserPosts from "./PrintUserPosts";

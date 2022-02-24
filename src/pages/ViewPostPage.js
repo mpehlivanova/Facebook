@@ -69,6 +69,13 @@ const useStyle = makeStyles({
 });
 
 export default function ViewPostPage() {
+
+  const avatar = useSelector((state) => state.userData.registered[0].avatar);
+  const fName = useSelector((state) => state.userData.registered[0].firstName);
+  const lName = useSelector((state) => state.userData.registered[0].lastName);
+  const fullName = fName + " " + lName;
+
+
   const viewPost = useStyle();
   const [like, isLike] = useState(false);
   const [liked, viewLiked] = useState(false);
@@ -100,7 +107,7 @@ export default function ViewPostPage() {
         <div className={viewPost.leftDiv}>
           <img
             className={viewPost.img}
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRabbR9Ce-BSxT-U8aJ_TrRKPuCh3P_z4srnQ&usqp=CAU"
+            src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRabbR9Ce-BSxT-U8aJ_TrRKPuCh3P_z4srnQ&usqp=CAU"}
             alt="user post"
           ></img>
         </div>
@@ -111,7 +118,7 @@ export default function ViewPostPage() {
 
           <PostHeader
             userName="Ivan"
-            imgUser="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRabbR9Ce-BSxT-U8aJ_TrRKPuCh3P_z4srnQ&usqp=CAU"
+            imgUser={avatar}
           />
 
           {/* //Button  */}
@@ -140,7 +147,9 @@ export default function ViewPostPage() {
                 icon={<ThumbUpOutlinedIcon sx={{ mr: 1 }} color="action" />}
               ></ButtonPost>
             </div>
-            <div onClick={handleViewCommentList}>
+            <div 
+            // onClick={handleViewCommentList}
+            >
               <ButtonPost
                 name="Comment"
                 icon={<ModeCommentOutlinedIcon sx={{ mr: 1 }} color="action" />}

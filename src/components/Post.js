@@ -1,7 +1,7 @@
 import * as React from "react";
 import BadgeAvatars from "./Avatar.js";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { grey, red } from "@mui/material/colors";
+import { grey } from "@mui/material/colors";
 import { makeStyles } from "@mui/styles";
 import { Button, Link, ListItemIcon } from "@mui/material";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
@@ -15,12 +15,10 @@ import IconButton from "@mui/material/IconButton";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-
 import PeopleIcon from "@mui/icons-material/People";
 import UUidv4 from "./Util.js";
-
-import { type } from "@testing-library/user-event/dist/type";
-
+import Login from "../pages/Login.js";
+// import { type } from "@testing-library/user-event/dist/type";
 
 const useStyles = makeStyles({
   conrainerPost: {
@@ -169,72 +167,88 @@ const useStyles = makeStyles({
     cursor: "pointer",
   },
 
-  colorText:{
-    color:"#2e81f4"
-  }
-
+  colorText: {
+    color: "#2e81f4",
+  },
 });
 
 export default function Post(props) {
-  const id = UUidv4();
+
+  function uuidv4() {
+    return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
+      (
+        c ^
+        (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
+      ).toString(16)
+    );
+  }
+
+
+  // const postId=props.id
   const post = useStyles();
 
-  // const idOfThisComment = props.id//Marian
   const avatar = useSelector((state) => state.userData.registered[0].avatar);
-  const [like, isLike] = useState(false);
+  // const [like, isLike] = useState(false);
 
-  const [commentList, viewCommentList] = useState(false);
-  const [liked, viewLiked] = useState(false);
+  // const [commentList, viewCommentList] = useState(false);
+  // const [liked, viewLiked] = useState(false);
 
+  // const changeLikeOption = () => {
+  //   if (like === false) {
+  //     isLike(true);
+  //     isLike(like + 1);
+  //   } else {
+  //     isLike(like - 1);
+  //     isLike(false);
+  //   }
+  // };
+  // const handleViewLiked = () => {
+  //   liked ? viewLiked(false) : viewLiked(true);
+  // };
 
-  const changeLikeOption = () => {
-    if (like === false) {
-      isLike(true);
-      isLike(like + 1);
-    } else {
-      isLike(like - 1);
-      isLike(false);
-    }
-  };
-  const handleViewLiked = () => {
-    liked ? viewLiked(false) : viewLiked(true);
-  };
-
-  const handleViewCommentList = () => {
-    commentList ? viewCommentList(false) : viewCommentList(true);
-  };
-
+  // const handleViewCommentList = () => {
+  //   commentList ? viewCommentList(false) : viewCommentList(true);
+  // };
 
   const [createComment, setCreateComment] = useState("");
 
   const setHandleCreateComment = (ev) => {
-
     setCreateComment(ev.target.value.trim());
-
   };
   const dispatch = useDispatch();
-  const postComment = useSelector((state) =>
-    state.actionPost.addedPosts.map((el) => el.addedComment)
-  );
 
-  // const commentsOnlyforthisPot = postComment.filter(e=> e.idcomment === idOfThisComment) //Marian
+  const allPostsComment = useSelector((state) => state.actionPost.addedComment);
+
+  
 
   const handleCreateComment = () => {
-
-    console.log(postComment);
+    console.log(createComment);
+    console.log(allPostsComment);
+    console.log(onePostComment);
     console.log("create comment");
 
+    
 
-    dispatch({
-      type: "CREATECOMMENT",
-      payload: {
-        addedCommented: {
-          comment: createComment,
-          idComment: { id },
-        },
-      },
-    });
+      dispatch({
+        type: "CREATECOMMENT",
+        payload: {
+          addedComment: {
+            commentText: createComment ,
+            commentId: uuidv4(),
+            postId : props.id,
+            img:avatar,
+          },
+        }
+      });
+    
   };
+  
+  const onePostComment = allPostsComment.filter(com => com.postId === props.id); //Marian
+  // const handleCreateComment = () => {
+  //   dispatch({ type: "CREATECOMMENT", payload: { comment: createComment,idcomment :UUidv4(), postId : props.id }});
+    
+
+  // };
 
   return (
     <>
@@ -244,14 +258,14 @@ export default function Post(props) {
             <ListItemIcon>
               <img
                 className={post.img}
-                src={props.img} //props
+                src={props.img}                       //props
                 alt="icon my profil"
               ></img>
             </ListItemIcon>
             <div height="8px">
               <p className={post.textInput}>
-                <strong>{props.userName} </strong>
-                {/* is width
+                <strong>{props.userName} </strong>       {/* //props   */}
+                {/* is width                            
                   <strong>{"{friend}"}</strong> at
                   <strong>{"{Hotel}"}</strong> */}
               </p>
@@ -274,14 +288,14 @@ export default function Post(props) {
           </div>
         </div>
         <div className={post.textInput}>
-          <p>{props.text}</p>
+          <p>{props.text}</p>                    {/* //props   */}
         </div>
 
         <div>
-          <Link className={post.link} to="/view">
+          <Link className={post.link} to={"/view/" + post.id}>
             <img
               className={post.imgPost}
-              src={props.story}
+              src={props.storyImg}                //  {/* //props   */}
               alt="user img"
             ></img>
           </Link>
@@ -289,16 +303,17 @@ export default function Post(props) {
 
         <div className={post.likeConrainer}>
           <div className={post.likeConrainer}>
-            {/* <FavoriteRoundedIcon sx={{ color: red[600] }} /> */}
-            {liked ? (
+            {/* {liked ? ( */}
               <>
                 <RecommendRoundedIcon color="primary" />
-                <p className={post.textSmall}>{like}</p>
+                <p className={post.textSmall}>
+                {/* {like} */}
+                </p>
               </>
-            ) : null}
+            {/* ) : null} */}
           </div>
 
-          <p className={post.textSmall}>1 commentar</p>
+          <p className={post.textSmall}>{onePostComment.length} commentar</p>
         </div>
 
         <div className={`${post.border} ${post.buttonBox}`}>
@@ -306,44 +321,46 @@ export default function Post(props) {
             sx={{ textTransform: "none" }}
             color="inherit"
             startIcon={<ThumbUpOutlinedIcon color="disabled" />}
-            onClick={() => {
-              changeLikeOption();
-              handleViewLiked();
-            }}
+            // onClick={() => {
+            //   changeLikeOption();
+            //   handleViewLiked();
+            // }}
           >
             Like
           </Button>
-          <div  onClick={handleViewCommentList}>
-          <Button
-            sx={{ textTransform: "none" }}
-            color="inherit"
-            startIcon={<ModeCommentOutlinedIcon color="action" />}
-           
-          >
-            Comment
-          </Button>
+          <div 
+          // onClick={handleViewCommentList}
+          ><Button
+              sx={{ textTransform: "none" }}
+              color="inherit"
+              startIcon={<ModeCommentOutlinedIcon color="action" />}
+            >
+              Comment
+            </Button>
           </div>
-          
         </div>
 
         <div>
+        {/* {
+          postComment.length > 5 ? {commentList = false}:commentList(true)
+        } */}
           <p
-            onClick={handleViewCommentList}
+          // onClick={handleViewCommentList}
             className={`${post.textSmall} ${post.hover}`}
           >
             View previouse comments
           </p>
-   
-          {commentList
-            ? postComment.map((com) => {
+          {
+           
+            onePostComment.map((com) => {
                 return (
                   <>
-                    <div key={UUidv4} className={post.row}>
+                    <div key={com.commentId} className={post.row}>
                       <div>
-                        <BadgeAvatars src= {avatar}  />
+                        <BadgeAvatars img={avatar} />
                       </div>
                       <div className={post.input}>
-                        <p clasName={post.addedCom}>{com.comment}</p>
+                        <p className={post.addedCom}>{com.comment}</p>
                       </div>
                       <IconButton size="small">
                         <MoreHorizIcon color="disabled" />
@@ -352,13 +369,17 @@ export default function Post(props) {
                   </>
                 );
               })
-            : null}
+
+        
+          }
+
+          
         </div>
 
-        {/* {commentButton ? ( */}
+       
         <div className={post.row}>
           <div>
-            <BadgeAvatars src= {avatar} />
+            <BadgeAvatars img={avatar} />
           </div>
           <div className={`${post.commenrWrite}`}>
             <input
@@ -369,7 +390,15 @@ export default function Post(props) {
             ></input>
 
             <div>
-              <Button onClick={handleCreateComment}>add</Button>
+              <Button
+                onClick={() => {
+                  handleCreateComment();
+                  // viewCommentList(true);
+                  console.log(onePostComment);
+                  console.log("added Comment");
+                }}>
+               
+               add </Button>
               <IconButton size="small">
                 <SentimentSatisfiedOutlinedIcon className={post.iconContact} />
               </IconButton>
@@ -384,7 +413,6 @@ export default function Post(props) {
               </IconButton>
             </div>
           </div>
-
         </div>
       </div>
     </>

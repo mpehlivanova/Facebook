@@ -185,7 +185,6 @@ const cssStyle = makeStyles({
 
 export default function CreatePost(props) {
 
-  const id =UUidv4()
 
   const avatar = useSelector((state) => state.userData.registered[0].avatar);
   const fName = useSelector((state) => state.userData.registered[0].firstName);
@@ -205,8 +204,9 @@ export default function CreatePost(props) {
   const handleClose = () => {
     setOpen(false);
   };
-  const [fileImg, setFileImg] = React.useState("");
 
+
+  const [fileImg, setFileImg] = React.useState("");
 
   const setHandleFildUploud = (ev) => {
       const{files}=ev.target;
@@ -224,7 +224,7 @@ export default function CreatePost(props) {
 
   const dispatch = useDispatch();
 
-  const posts = useSelector(state=>state.actionPost.addedPosts) //get all post from global
+  const posts = useSelector((state)=>state.actionPost.addedPosts) //get all post from global
 
   const handleCreatePost =()=>{
     console.log(fileImg);
@@ -232,14 +232,15 @@ export default function CreatePost(props) {
     console.log(posts);
     console.log("create post");
     if(postText !== ""){
-      dispatch ({type:"CREATEPOST", payload:{
+      dispatch ({type:"CREATEPOST",
+       payload:{ 
         userName:fullName,
         descripion:postText,
-        idPost:{id},
         img:avatar,
         story:fileImg,
-        addedComment:[{}],
-  
+        postId:UUidv4(),
+       
+    
       }})
     }
     }

@@ -16,19 +16,21 @@ export default function PrintUserPosts() {
           return(
               
                   <Post 
-                    key={id} 
-                    idPost={id}
+                    userName={post.userName}
+                    text={post.descripion}
                     img={avatar} 
-                    userName={post.userName} 
-                    story={post.story}
-                    text={post.descripion}>
-                  </Post> 
+                    storyImg={post.story}
+                    id={post.postId}
+                    key={id} 
+                  ></Post> 
               
           )
 
 
 
-      })}
+      })
+      }
       </>
 
   )}
+

@@ -1,9 +1,9 @@
 import React from "react";
-import ProfilePageLeftSide from "../components/ProfilPage/ProfilePageLeftSide";
-import ProfilePageTop from "../components/ProfilPage/ProfilePageTop";
+import ProfilePageLeftSide from "../components/ProfilePageLeftSide";
+import ProfilePageTop from "../components/ProfilePageTop";
 import { makeStyles } from "@mui/styles";
-import ProfilePageRightSide from "../components/ProfilPage/ProfilePageLeftSide";
-import Post from './../components/Post';
+import ProfilePageRightSide from "../components/ProfilePageLeftSide";
+import Post from '../components/Post';
 
 const useStyle = makeStyles({
   container: {
