@@ -11,6 +11,20 @@ const INITIAL_STATE = {
       avatar:
         "http://thenewcode.com/assets/images/thumbnails/sarah-parmenter.jpeg",
       dateOfBirth: "11.07.1976",
+      id:"111",
+      request:["test1"],
+      friends:["priqteli"]
+    },
+    {
+      email: "asd1@mail.com",
+      password: "aа",
+      firstName: "Mimeto",
+      lastName: "S",
+      gender: "female",
+      avatar:
+        "http://thenewcode.com/assets/images/thumbnails/sarah-parmenter.jpeg",
+      dateOfBirth: "11.07.1976",
+      id:"222"
     },
   ],
 };

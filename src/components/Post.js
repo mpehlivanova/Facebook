@@ -160,7 +160,6 @@ const useStyles = makeStyles({
 export default function Post(props) {
   const post = useStyles();
 
-  const idOfThisComment = props.id
 
   const [like, isLike] = useState(false);
   const [commentButton,isComment] = useState(false)
@@ -203,10 +202,10 @@ export default function Post(props) {
   const dispatch = useDispatch();
   const commentArr = useSelector((state) => state.actionPost.addedCommented);
 
-  const commentsOnlyforthisPot = commentArr.filter(e=> e.idcomment === idOfThisComment)
+  const commentsOnlyforthisPot = commentArr.filter(com => com.postId === props.id)
 
   const handleCreateComment = () => {
-    dispatch({ type: "CREATECOMMENT", payload: { comment: createComment,idcomment :idOfThisComment } });
+    dispatch({ type: "CREATECOMMENT", payload: { comment: createComment,idcomment :uuidv4(), postId : props.id }});
     isComment(false)
 
   };
@@ -293,7 +292,7 @@ export default function Post(props) {
 
               return (
                 <>
-                  <div key={uuidv4()}  className={post.row}>
+                  <div key={com.idcomment}  className={post.row}>
                     <div>
                       <BadgeAvatars />
                     </div>

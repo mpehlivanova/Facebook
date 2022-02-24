@@ -211,7 +211,6 @@ export default function CreatePost(props) {
 
   const setHandleInputPost=(ev)=>{
     setpPostText(ev.target.value.trim())
-    props.setId(uuidv4)
   }
 
   const dispatch = useDispatch();

@@ -115,9 +115,11 @@ const useStyles = makeStyles({
 })
 
 export default function Header(){
+
   const avatar = useSelector((state) => state.userData.registered[0].avatar);
   const fName = useSelector((state) => state.userData.registered[0].firstName);
   const lName = useSelector((state) => state.userData.registered[0].lastName);
+  const request = useSelector((state) => state.userData.registered[0].request);
   const fullName = fName + " " + lName;
   // avatar =  ${avatar} ;
   console.log(avatar);
@@ -208,7 +210,7 @@ export default function Header(){
                   src={avatar}
                   alt="icon my profil"
                 />
-                <p>{fullName}</p>
+                <p>{fullName} {request.length}</p>
               </div>
             </Link>
           </ListItemIcon>
@@ -218,7 +220,7 @@ export default function Header(){
               {/* /*  added new style btn Mariela */}
 
               <IconButton>
-                <Avatar sx={{ bgcolor: grey[200] }}>
+                <Avatar sx={{ bgcolor: grey[200] }} >
                   <AppsRoundedIcon color="action" />
                 </Avatar>
               </IconButton>
