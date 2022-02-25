@@ -13,10 +13,7 @@ import GifBoxOutlinedIcon from "@mui/icons-material/GifBoxOutlined";
 import SentimentSatisfiedOutlinedIcon from "@mui/icons-material/SentimentSatisfiedOutlined";
 import ButtonPost from "./ButtonPost";
 
-
-
 const useStyles = makeStyles({
-
   row: {
     display: "flex",
     flexDirection: "row",
@@ -34,91 +31,91 @@ const useStyles = makeStyles({
     border: "none",
     backgroundColor: " #eff2f5",
     padding: "5px",
-    borderRadius: "20px",
+    borderRadius: "0px",
     width: "60%",
     height: "20px",
+    "&focus": { border: "none" },
   },
   commenrWrite: {
     display: "flex",
     width: "95%",
     flexDirection: "row",
-    alignItems: "baseline",
+    // alignItems: "baseline",
     justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: " #eff2f5",
     borderRadius: "20px",
     marginLeft: "5px",
+    "&focus": { border: "none" },
   },
-
-
-  
 });
 
 export default function CreateComment(props) {
-  const post = useStyles(); 
-
+  const post = useStyles();
   const [createComment, setCreateComment] = useState("");
-
-
   const setHandleCreateComment = (ev) => {
-     
     setCreateComment(ev.target.value.trim());
     // console.log(createComment);
-   
   };
-  const dispatch = useDispatch();
-  const allPost = useSelector((state) => state.actionPost.addedPosts.map(el=>
-    el.addedCommented
-));
 
+  // const cleanInput = () => {
+  //   setCreateComment("");
+  // }
+  const dispatch = useDispatch();
+  const allPost = useSelector((state) =>
+    state.actionPost.addedPosts.map((el) => el.addedCommented)
+  );
 
   const handleCreateComment = () => {
-
-    console.log( allPost);
+    console.log(allPost);
     console.log("create comment");
-    
-    dispatch({ type: "CREATECOMMENT", payload: { addedCommented: 
-      {
-        comment:createComment, 
-        idComment:{UUidv4}} 
-      } 
-    });
-}
 
+    dispatch({
+      type: "CREATECOMMENT",
+      payload: {
+        addedCommented: {
+          comment: createComment,
+          idComment: { UUidv4 },
+        },
+      },
+    });
+    setCreateComment("")
+  };
 
   return (
-      <>
+    <>
+      <div className={post.row}>
+        <div>
+          <BadgeAvatars />
+        </div>
+        <div className={post.commenrWrite}>
+          <input
+            onChange={setHandleCreateComment}
+            className={post.inputComment}
+            value={createComment}
+            type="text"
+            placeholder="White a comment"
+          ></input>
+
           <div className={post.row}>
-            <div>
-              <BadgeAvatars />
-            </div>
-            <div className={`${post.commenrWrite}`}>
-              <input
-                onChange={setHandleCreateComment}
-                className={post.inputComment}
-                type="text"
-                placeholder="White a comment"
-              ></input>
-
-              <div className={post.row}>
-              <div  onClick={ handleCreateComment}>
+            <div onClick={() => {
+              handleCreateComment()
+              // cleanInput()
+            }}>
               <ButtonPost name="add"></ButtonPost>
-             </div>
-                <IconButton size="small">
-                  <SentimentSatisfiedOutlinedIcon
-                    className={post.iconContact}/>
-                </IconButton>
-                <IconButton size="small">
-                  <PhotoCameraOutlinedIcon className={post.iconContact} />
-                </IconButton>
-                <IconButton size="small">
-                  <StickyNote2OutlinedIcon className={post.iconContact} />
-                </IconButton>
-              </div>
             </div>
+            <IconButton size="small">
+              <SentimentSatisfiedOutlinedIcon className={post.iconContact} />
+            </IconButton>
+            <IconButton size="small">
+              <PhotoCameraOutlinedIcon className={post.iconContact} />
+            </IconButton>
+            <IconButton size="small">
+              <StickyNote2OutlinedIcon className={post.iconContact} />
+            </IconButton>
           </div>
-     
-
-      </>
+        </div>
+      </div>
+    </>
   );
 }

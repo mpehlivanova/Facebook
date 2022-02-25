@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
-import StoryContainer from "./Story/StoryContainer";
+import StoryContainer from "./StoryContainer";
 // import Post from "./Post";
 // import FriendsCard from "./FriendsCard";
 import CreatePost from "./CreatePost";

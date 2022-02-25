@@ -2,12 +2,11 @@ import React from "react";
 import { makeStyles } from "@mui/styles";
 import ProfilePageLeftSideField from "./ProfilePageLeftSideField";
 import ProfilePageLeftSideFormDialog from "./ProfilePageLeftSideFormDialog";
-import Biography from '../Biography';
-import { useSelector } from 'react-redux';
-
+import { useSelector } from "react-redux";
 
 const useStyle = makeStyles({
   mainWrapper: {
+    boxShadow: "5px 5px 5px 5px rgb(169,169,169,0.25)",
     fontSize: "12px",
     marginTop: "16px",
     marginLeft: "10%",
@@ -15,7 +14,7 @@ const useStyle = makeStyles({
     width: "30%",
     display: "flex",
     flexDirection: "column",
-    gap: "10px",
+    gap: "15px",
     backgroundColor: "white",
     alignItems: "center",
     borderRadius: "10px",
@@ -34,35 +33,19 @@ const useStyle = makeStyles({
     marginTop: "-15px",
     width: "400px",
     textAlign: "center",
-    fontFamilies: "Helvetica"
-    
-  }
+    fontFamilies: "Helvetica",
+  },
 });
 
 export default function ProfilePageLeftSide() {
   const style = useStyle();
-
-  const biography = useSelector((state) => state.profile.biography.text);
+  const biography = useSelector((state) => state.profile.biography);
   console.log(biography);
 
-  // const [biographyText, setBiographyText] = React.useState("");
-
-  // const setHandleInputBiography = (ev) => {
-  //   setBiographyText(ev.target.value.trim());
-  // };
-
-
-  
   return (
     <div className={style.mainWrapper}>
       <p className={style.mainText}>Въведение</p>
-      {/* <Biography/> */}
       <p className={style.biography}> {biography}</p>
-      {/* <ProfilePageLeftSideField
-        key="1"
-        onClick={() => console.log("click")}
-        name="Добавяне на биография"
-      /> */}
       <ProfilePageLeftSideFormDialog />
       <ProfilePageLeftSideField
         className={style.secondaryText}

@@ -9,9 +9,9 @@ const profileReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case "CHANGEBIOGRAPHY":
       return {
-        
-        biography: action.payload
-      }
+        ...state,
+        biography: action.payload,
+      };
 
     case "CHANGECOVER":
       return {

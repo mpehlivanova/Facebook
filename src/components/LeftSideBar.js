@@ -48,6 +48,7 @@ const useStyles = makeStyles({
   },
   img: {
     width: "30px",
+    height:"30px",
     borderRadius: "50%",
     // marginRight:"-15px"
   },
@@ -107,7 +108,7 @@ const useStyles = makeStyles({
 
 export default function LeftSidebar() {
 
-  const avatar = useSelector((state) => state.userData.registered[0].avatar);
+  const avatar = useSelector((state) => state.profile.avatar);
   const fName = useSelector((state) => state.userData.registered[0].firstName);
   const lName = useSelector((state) => state.userData.registered[0].lastName);
   const fullName = fName + " " + lName;
@@ -192,7 +193,7 @@ export default function LeftSidebar() {
             <ArrowDropDownIcon />
           </ListItemIcon>
           <p className={classes.link}>{text}</p>
-          {open ?  (< ExpandLess />, {text} = "Вижте повече") : (<ExpandMore/> , {text} = "Вижте по-малко")}
+          {open ?  (< ExpandLess />, {text} = "Вижте по-малко") : (<ExpandMore/> , {text} = "Вижте повече")}
         </ListItemButton>
 
         <Collapse in={open}>

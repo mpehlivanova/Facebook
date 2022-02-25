@@ -1,25 +1,23 @@
 import React from "react";
-import ProfilePageLeftSide from "../components/ProfilPage/ProfilePageLeftSide";
-import ProfilePageTop from "../components/ProfilPage/ProfilePageTop";
+import ProfilePageLeftSide from "../components/ProfilePageLeftSide";
+import ProfilePageTop from "../components/ProfilePageTop";
 import { makeStyles } from "@mui/styles";
-import ProfilePageRightSide from "../components/ProfilPage/ProfilePageLeftSide";
-import Post from './../components/Post';
+import ProfilePageRightSide from "../components/ProfilePageRightSide";
+import { PostsLayout } from "./../components/InfiniteScroll";
 
 const useStyle = makeStyles({
   container: {
     backgroundColor: "#f0f2f5",
-    marginTop:"50px"
-  
+    marginTop: "50px",
   },
   main: {
     display: "flex",
-    gap: "40px"
-
+    gap: "40px",
   },
   rightSide: {
     width: "60%",
-    marginTop:"15px"
-  }
+    marginTop: "15px",
+  },
 });
 
 export default function ProfilePage() {
@@ -28,14 +26,11 @@ export default function ProfilePage() {
   return (
     <div className={style.container}>
       <ProfilePageTop />
-      
+
       <div className={style.main}>
         <ProfilePageLeftSide />
-
-       <div className={style.rightSide}>
-          <ProfilePageRightSide />
-          
-       </div>
+        <ProfilePageRightSide />
+        {/* <PostsLayout /> */}
       </div>
     </div>
   );

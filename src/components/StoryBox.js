@@ -1,8 +1,7 @@
 import React from "react";
 // import "../components-css/StoryBox"
 import { makeStyles } from "@mui/styles";
-import Users from "../Json/users";
-
+// import users from "../server/users"
 export default function StoryBox() {
   const stories = [
     {
@@ -79,28 +78,28 @@ export default function StoryBox() {
   return (
     <>
       {
-        Users.map((story,i) => {
+        stories.map((story) => {
 
-          if(i > 5){
+         
         return (
           <div key={story.name}
             className={style.storyWrapper}
             style={{
-              backgroundImage: `url(${story.image})`,
+              backgroundImage: `url(${story.story})`,
               backgroundRepeat:"no-repeat",
               backgroundSize:"cover",
             }}
           >
             <img
               className={style.userAvatar}
-              src={story.image}
+              src={story.avatar}
               alt="userAvatar"
             />
 
             <h4 className={style.authorName}>{story.name}</h4>
           </div>
         );
-      }
+      
       })}
     </>
   );

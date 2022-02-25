@@ -8,7 +8,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import VideoCallIcon from "@mui/icons-material/VideoCall";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import IconButton from "@mui/material/IconButton";
-import users from "./Json/users"
+import users from "../server/users";
 
 //    {/* scroll */}
 // // import EmployeeList, { IEmployee } from "./EmployeeList";
@@ -16,16 +16,15 @@ import users from "./Json/users"
 //    {/* scroll */}
 
 import { makeStyles } from "@mui/styles";
-import { IFrame } from './IFrame';
+import { IFrame } from "./IFrame";
 
 const useStyles = makeStyles({
   conrainerRight: {
-    
     width: "20%",
     background: "#F2F3F5",
     height: "120vh",
     padding: "20px",
-    margin:"0px"
+    margin: "0px",
   },
   ad: {
     height: "200px",
@@ -54,7 +53,7 @@ const useStyles = makeStyles({
     marginBottom: "5px",
     // fontSize: "small",
     fontFamily: "Helvetica",
-    fontSize: "16px"
+    fontSize: "16px",
   },
   textMedium: {
     fontSize: "medium",
@@ -132,16 +131,16 @@ export default function RightSideBar() {
             </div>
           </div>
 
-          {users.map(u => (
+          {users.map((u) => (
             <ListItemButton className={classes.list}>
               <BadgeAvatars src={u.image} />
               <p className={classes.textSmall}>{u.name}</p>
             </ListItemButton>
           ))}
-            </List>
-           </div>
+        </List>
+      </div>
 
-          {/* <ListItemButton className={classes.list}>
+      {/* <ListItemButton className={classes.list}>
             <BadgeAvatars />
             <p className={classes.textSmall}>Калоян Игнатов</p>
           </ListItemButton>
@@ -168,9 +167,14 @@ export default function RightSideBar() {
               <BadgeAvatars img="https://www.gravatar.com/avatar/1b8fabaa8d66250a7049bdb9ecf44397?s=250&d=mm&r=x" />
               <p className={classes.textSmall}>Всичко за котките</p>
             </ListItemButton> */}
-         
 
-      </div>
+      {/* scroll */}
+      {/* <Paper>
+          <EmployeeList employees={rows} showAdmin={false} />
+        </Paper>
+ */}
+      {/* scroll */}
+    </div>
     // </div>
   );
 }

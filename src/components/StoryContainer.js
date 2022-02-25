@@ -1,5 +1,5 @@
 import React from 'react';
-import CreateStory from '../CreateStory';
+import CreateStory from './CreateStory';
 import StoryBox from './StoryBox';
 import { makeStyles } from '@mui/styles';
 

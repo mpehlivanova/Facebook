@@ -4,31 +4,26 @@ import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 
 export default function FormDialog() {
-  
   const dispatch = useDispatch();
   const [biographyText, setBiographyText] = React.useState("");
-
   const [open, setOpen] = React.useState(false);
-
   const addBiography = () => {
     // console.log("add");
     // console.log(biographyText);
-      dispatch({
-        type: "CHANGEBIOGRAPHY",
-        payload: { text: biographyText },
-      });
-    };
-    const setHandleInput = (ev) => {
-      setBiographyText(ev.target.value.trim());
-    };
-
+    dispatch({
+      type: "CHANGEBIOGRAPHY",
+      payload: `${biographyText}`,
+    });
+  };
+  const setHandleInput = (ev) => {
+    setBiographyText(ev.target.value.trim());
+  };
   const handleClickOpen = () => {
     setOpen(true);
   };
-
   const handleClose = () => {
     setOpen(false);
   };
@@ -36,24 +31,24 @@ export default function FormDialog() {
   return (
     <div>
       <Button
+        key={1}
         sx={{
           color: "black",
           backgroundColor: "#e4e6eb",
           fontFamily: "Segoe UI",
           fontSize: "12px",
           fontWeight: "600",
-          width: "366px",
+          width: "376px",
           "&hover": { backgroundColor: "#d8d8d8" },
         }}
-        // variant="outlined"
-
         onClick={handleClickOpen}
       >
         Редактиране на биографията
       </Button>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog key={2} open={open} onClose={handleClose}>
         <DialogContent>
           <TextField
+            key={2}
             onChange={setHandleInput}
             sx={{ width: "400px" }}
             margin="dense"
@@ -66,6 +61,7 @@ export default function FormDialog() {
             Отказ
           </Button>
           <Button
+            key={3}
             sx={{ color: "black" }}
             onClick={() => {
               addBiography();

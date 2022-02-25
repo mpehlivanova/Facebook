@@ -133,6 +133,7 @@ const cssStyle = makeStyles({
     fontFamily: "Segoe UI Historic, Helvetica, Arial",
   },
   textInput: {
+    outlineWidth: "0",
     fontSize: "medium",
     fontFamily: "Segoe UI Historic, Helvetica, Arial",
     margin: "0px 0px",
@@ -165,7 +166,7 @@ const cssStyle = makeStyles({
     margin: "10px 10px",
     fontFamily: "Segoe UI Historic, Helvetica, Arial",
     fontSize: "large",
-    "&onFocus": {border: "none"}
+    outlineWidth: "0",
   },
   footer: {
     border: "1px solid #cfd0d1",
@@ -188,9 +189,8 @@ const cssStyle = makeStyles({
 
 export default function CreatePost(props) {
 
-  const id =UUidv4()
 
-  const avatar = useSelector((state) => state.userData.registered[0].avatar);
+  const avatar = useSelector((state) => state.profile.avatar);
   const fName = useSelector((state) => state.userData.registered[0].firstName);
   const lName = useSelector((state) => state.userData.registered[0].lastName);
   const fullName = fName + " " + lName;
@@ -208,8 +208,9 @@ export default function CreatePost(props) {
   const handleClose = () => {
     setOpen(false);
   };
-  const [fileImg, setFileImg] = React.useState("");
 
+
+  const [fileImg, setFileImg] = React.useState("");
 
   const setHandleFildUploud = (ev) => {
       const{files}=ev.target;
@@ -227,7 +228,7 @@ export default function CreatePost(props) {
 
   const dispatch = useDispatch();
 
-  const posts = useSelector(state=>state.actionPost.addedPosts) //get all post from global
+  const posts = useSelector((state)=>state.actionPost.addedPosts) //get all post from global
 
   const handleCreatePost =()=>{
     console.log(fileImg);
@@ -235,14 +236,13 @@ export default function CreatePost(props) {
     console.log(posts);
     console.log("create post");
     if(postText !== ""){
-      dispatch ({type:"CREATEPOST", payload:{
+      dispatch ({type:"CREATEPOST",
+       payload:{ 
         userName:fullName,
         descripion:postText,
-        idPost:{id},
         img:avatar,
         story:fileImg,
-        addedComment:[{}],
-  
+        postId:UUidv4(),
       }})
     }
     }
@@ -329,7 +329,7 @@ export default function CreatePost(props) {
             <p className={style.p}>Добавете към публикацията си</p>
             
             <div>
-            <input type='file' onChange={setHandleFildUploud}></input>
+            <input  type='file' onChange={setHandleFildUploud}></input>
               <IconButton  size="small">
               <PhotoLibraryOutlinedIcon sx={{ color: green[700] }} />
               </IconButton>
