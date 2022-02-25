@@ -3,7 +3,7 @@ import * as React from "react";
 import { makeStyles } from "@mui/styles";
 import Button from "@mui/material/Button";
 import { grey } from "@mui/material/colors";
-//import users from "../server/users"
+import users from "../server/users"
 
 const useStyles = makeStyles({
 
@@ -84,6 +84,26 @@ export default function FriendsCard(img, name) {
                   <p className={friends.textbtn}>Изтриване</p>
                   </Button>
                 </div>
+              </div>
+          
+              <div >
+                <img
+                  className={friends.imgUser}
+                  src={u.image}
+                  alt="user img">
+                  </img>
+                  <div>
+                  <p className={friends.text}>{u.name}</p>
+                <div className={friends.conrainerBtn}>
+                  <Button variant="contained">
+                  Добавяне
+                  </Button>
+                  <Button sx={{ bgcolor: grey[200] }} >
+                  <p className={friends.textbtn}>Изтриване</p>
+                  </Button>
+                </div>
+                  </div>
+               
               </div>
             </>
 

@@ -18,6 +18,7 @@ import { useDispatch } from "react-redux";
 import PeopleIcon from "@mui/icons-material/People";
 import UUidv4 from "./Util.js";
 import Login from "../pages/Login.js";
+import AddIcon from "@mui/icons-material/Add";
 // import { type } from "@testing-library/user-event/dist/type";
 
 const useStyles = makeStyles({
@@ -174,10 +175,13 @@ const useStyles = makeStyles({
 
 export default function Post(props) {
   const post = useStyles();
-
-
+  const avatar = useSelector((state) => state.userData.registered[0].avatar);
   const [like, isLike] = useState(false);
-  const [commentButton,isComment] = useState(false)
+  const [liked, viewLiked] = useState(false);
+  const [createComment, setCreateComment] = useState("");
+  const [commentList, viewCommentList] = useState(false);
+  const [newComment, addNewComment] = useState("");
+  
 
   const changeLikeOption = () => {
     if (like === false) {
@@ -189,95 +193,56 @@ export default function Post(props) {
     }
   };
 
-  const createNewComment = () => {
-     if(commentButton === false){
-       isComment(true)
-     }
-     else{
-       isComment(false)
-     }
-   }
+  const handleViewLiked = () => {
+    liked ? 
+    viewLiked(false) : 
+    viewLiked(true);
+  };
 
-  function uuidv4() {
-    return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
-      (
-        c ^
-        (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
-      ).toString(16)
-    );
-  }
-
-
-  // const postId=props.id
-  // const post = useStyles();
-
-  const avatar = useSelector((state) => state.userData.registered[0].avatar);
-  // const [like, isLike] = useState(false);
-
-  // const [commentList, viewCommentList] = useState(false);
-  // const [liked, viewLiked] = useState(false);
-
-  // const changeLikeOption = () => {
-  //   if (like === false) {
-  //     isLike(true);
-  //     isLike(like + 1);
-  //   } else {
-  //     isLike(like - 1);
-  //     isLike(false);
-  //   }
-  // };
-  // const handleViewLiked = () => {
-  //   liked ? viewLiked(false) : viewLiked(true);
-  // };
-
-  // const handleViewCommentList = () => {
-  //   commentList ? viewCommentList(false) : viewCommentList(true);
-  // };
-
-  const [createComment, setCreateComment] = useState("");
+  const handleViewCommentList = () => {
+    commentList ? 
+    viewCommentList(false) : 
+    viewCommentList(true);
+  };
 
   const setHandleCreateComment = (ev) => {
     setCreateComment(ev.target.value.trim());
   };
+
+  const handleAddNewComment=()=>{
+    addNewComment("");
+  }
   const dispatch = useDispatch();
+  const allPosts = useSelector((state) =>
+    state.actionPost.addedPosts.map((p) => {
+      <Link to={"/view/" + p.postId}>{p.story}</Link>;
+    })
+  );
+
   const allPostsComment = useSelector((state) => state.actionPost.addedComment);
-  const commentsOnlyforthisPot = allPostsComment.filter(com => com.postId === props.id)
+  const onePostComment = allPostsComment.filter(
+    (com) => com.postId === props.id
+  );
 
   const handleCreateComment = () => {
-    dispatch({ type: "CREATECOMMENT", payload: { comment: createComment,idcomment :uuidv4(), postId : props.id }});
-    isComment(false)
-
-
-  
-
-  //const handleCreateComment = () => {
-    //console.log(createComment);
-    //console.log(allPostsComment);
-    //console.log(onePostComment);
-    //console.log("create comment");
-
-    
-
+    // console.log(createComment);
+    // console.log(allPostsComment);
+    console.log(onePostComment);
+    console.log("create comment");
+    console.log(allPosts);
+    console.log(" allPosts");
+    if (createComment.length !== 0) {
       dispatch({
         type: "CREATECOMMENT",
         payload: {
-          addedComment: {
-            commentText: createComment ,
-            commentId: uuidv4(),
-            postId : props.id,
-            img:avatar,
-          },
-        }
+          comment: createComment,
+          idcomment: UUidv4(),
+          postId: props.id,
+        },
       });
-    
+      
+    }
   };
-  
-  const onePostComment = allPostsComment.filter(com => com.postId === props.id); //Marian
-  // const handleCreateComment = () => {
-  //   dispatch({ type: "CREATECOMMENT", payload: { comment: createComment,idcomment :UUidv4(), postId : props.id }});
-    
-
-  // };
 
   return (
     <>
@@ -287,16 +252,13 @@ export default function Post(props) {
             <ListItemIcon>
               <img
                 className={post.img}
-                src={props.img}                       //props
+                src={props.img}
                 alt="icon my profil"
               ></img>
             </ListItemIcon>
             <div height="8px">
               <p className={post.textInput}>
-                <strong>{props.userName} </strong>       {/* //props   */}
-                {/* is width                            
-                  <strong>{"{friend}"}</strong> at
-                  <strong>{"{Hotel}"}</strong> */}
+                <strong>{props.userName} </strong>
               </p>
               <p className={post.textXsmall}>
                 15h *
@@ -317,14 +279,14 @@ export default function Post(props) {
           </div>
         </div>
         <div className={post.textInput}>
-          <p>{props.text}</p>                    {/* //props   */}
+          <p>{props.text}</p>
         </div>
 
         <div>
           <Link className={post.link} to={"/view/" + post.id}>
             <img
               className={post.imgPost}
-              src={props.storyImg}                //  {/* //props   */}
+              src={props.storyImg}
               alt="user img"
             ></img>
           </Link>
@@ -332,14 +294,12 @@ export default function Post(props) {
 
         <div className={post.likeConrainer}>
           <div className={post.likeConrainer}>
-            {/* {liked ? ( */}
+            {liked ? (
               <>
                 <RecommendRoundedIcon color="primary" />
-                <p className={post.textSmall}>
-                {/* {like} */}
-                </p>
+                <p className={post.textSmall}>{like}</p> 
               </>
-            {/* ) : null} */}
+            ) : null}
           </div>
 
           <p className={post.textSmall}>{onePostComment.length} commentar</p>
@@ -347,79 +307,35 @@ export default function Post(props) {
 
         <div className={`${post.border} ${post.buttonBox}`}>
           <Button
+            onClick={() => {
+              changeLikeOption();
+              handleViewLiked();
+            }}
             sx={{ textTransform: "none" }}
             color="inherit"
             startIcon={<ThumbUpOutlinedIcon color="disabled" />}
-            // onClick={() => {
-            //   changeLikeOption();
-            //   handleViewLiked();
-            // }}
           >
             Like
           </Button>
-          <div 
-          // onClick={handleViewCommentList}
-          ><Button
-              sx={{ textTransform: "none" }}
-              color="inherit"
-              startIcon={<ModeCommentOutlinedIcon color="action" />}
-            >
-              Comment
-            </Button>
-          </div>
-
-          <div>
-            
-              {/* need to chech  */}
-          
-          </div>
-
-           {commentButton ? ( 
-          <div className={post.row}>
-            <div>
-              <BadgeAvatars />
-            </div>
-            <div className={`${post.commenrWrite}`}>
-              <input
-                onChange={setHandleCreateComment}
-                className={post.inputComment}
-                type="text"
-                placeholder="White a comment"
-                
-              ></input>
-
-              <div>
-                <Button onClick={handleCreateComment}>add post</Button>
-                <IconButton size="small">
-                  <SentimentSatisfiedOutlinedIcon
-                    className={post.iconContact}/>
-                </IconButton>
-                <IconButton size="small">
-                  <PhotoCameraOutlinedIcon className={post.iconContact} />
-                </IconButton>
-                <IconButton size="small">
-                  <GifBoxOutlinedIcon className={post.iconContact} />
-                </IconButton>
-                <IconButton size="small">
-                  <StickyNote2OutlinedIcon className={post.iconContact} />
-                </IconButton>
-              </div>
-            </div>
-          </div>
-           ) : null } 
+          <Button
+            onClick={handleViewCommentList}
+            sx={{ textTransform: "none" }}
+            color="inherit"
+            startIcon={<ModeCommentOutlinedIcon color="action" />}
+          >
+            Comment
+          </Button>
         </div>
 
         <div>
-      
           <p
-          // onClick={handleViewCommentList}
-            className={`${post.textSmall} ${post.hover}`}
-          >
-            View previouse comments
+            onClick={handleViewCommentList}
+            className={`${post.textSmall} ${post.hover}`}>
+            Преглед на предишните коментари
           </p>
-          {
-           
-            onePostComment.map((com) => {
+
+          {commentList
+            ? onePostComment.map((com) => {
                 return (
                   <>
                     <div key={com.commentId} className={post.row}>
@@ -436,14 +352,8 @@ export default function Post(props) {
                   </>
                 );
               })
-
-        
-          }
-
-          
+            : null}
         </div>
-
-       
         <div className={post.row}>
           <div>
             <BadgeAvatars img={avatar} />
@@ -454,18 +364,23 @@ export default function Post(props) {
               className={post.inputComment}
               type="text"
               placeholder="White a comment"
+              // value=""
             ></input>
 
             <div>
               <Button
                 onClick={() => {
                   handleCreateComment();
-                  // viewCommentList(true);
+                  viewCommentList(true);
+                  handleAddNewComment();
                   console.log(onePostComment);
                   console.log("added Comment");
-                }}>
-               
-               add </Button>
+                }}
+                sx={{ textTransform: "none",
+                }}
+              >
+                <AddIcon color="disabled" />
+              </Button>
               <IconButton size="small">
                 <SentimentSatisfiedOutlinedIcon className={post.iconContact} />
               </IconButton>

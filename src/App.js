@@ -29,7 +29,7 @@ function App() {
               <Route path="/friends" element={<Friends></Friends>} />
               <Route path="/video" element ={<VideoPage></VideoPage>}/>
               <Route path="/grup" element ={<Grups></Grups>}/>
-             <Route path="/view" element ={<ViewPostPage></ViewPostPage>}/>    {/* да сочи към ид на поста*/}
+             <Route path="/view/" element ={<ViewPostPage></ViewPostPage>}/>    {/* да сочи към ид на поста*/}
             </Routes>
         </>
       )}

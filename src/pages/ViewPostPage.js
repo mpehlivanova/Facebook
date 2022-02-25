@@ -107,7 +107,7 @@ export default function ViewPostPage() {
         <div className={viewPost.leftDiv}>
           <img
             className={viewPost.img}
-            src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRabbR9Ce-BSxT-U8aJ_TrRKPuCh3P_z4srnQ&usqp=CAU"}
+            src={"https://i.pinimg.com/736x/88/73/26/88732696e902cd550f8c63a048d8e003.jpg"}
             alt="user post"
           ></img>
         </div>
@@ -160,7 +160,7 @@ export default function ViewPostPage() {
           {/* //Comments  */}
           <div>
             <p
-              onClick={handleViewCommentList}
+
               className={`${viewPost.textSmall} ${viewPost.hover}`}
             >
               View previouse comments
