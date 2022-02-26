@@ -3,8 +3,6 @@ import Header from "./components/Header";
 import Login from "./pages/Login";
 import Main from "./pages/Main.js";
 import {  Routes, Route } from "react-router-dom";
-// import AdapterDateFns from "@mui/lab/AdapterDateFns";
-// import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import Friends from "./pages/Friends";
 import VideoPage from "./pages/VideoPage";
 import Grups from "./pages/Grups";
@@ -13,7 +11,7 @@ import { useSelector } from "react-redux";
 
 // useSelector((state) => state.userData.logged);
 function App() {
-  const logged =  useSelector((state) => state.userData.logged);
+  const logged = 1;
   return (
 
       <>

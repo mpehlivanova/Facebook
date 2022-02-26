@@ -40,7 +40,7 @@ const useStyle = makeStyles({
 });
 
 export default function CreateStory() {
-    const avatar = useSelector((state) => state.userData.registered[0].avatar);
+    const avatar = useSelector((state) => state.profile.avatar);
 
   const style = useStyle();
   return (

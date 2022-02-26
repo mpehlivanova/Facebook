@@ -49,11 +49,7 @@ const INITIAL_STATE = {
       postId: UUidv4(),
     },
   ],
-  addedComment: [
-
-
-    
-  ],
+  addedComment: [],
   addedBiography: [
     {
       text: "biography",

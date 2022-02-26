@@ -1,9 +1,15 @@
-import React from "react";
+import * as React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@mui/styles";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import EditIcon from "@mui/icons-material/Edit";
 import { Link } from "react-router-dom";
+import TextField from "@mui/material/TextField";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import { Button } from "@mui/material";
 
 const useStyle = makeStyles({
   topWrapper: {
@@ -19,7 +25,7 @@ const useStyle = makeStyles({
     height: "400px",
     width: "80%",
     objectFit: "cover",
-    objectPosition: "50% 0%",
+    // objectPosition: "0% 0%",
     borderRadius: "0 0 10px 10px",
     // left: "20%",
   },
@@ -36,7 +42,7 @@ const useStyle = makeStyles({
     border: "none",
     position: "relative",
     top: "348px",
-    left: "52%",
+    left: "53%",
     fontFamily: "Segoe UI",
     cursor: "pointer",
   },
@@ -49,7 +55,8 @@ const useStyle = makeStyles({
     top: "350px",
     left: "-25%",
     border: "3px solid #a0a1a3",
-    outline:"3px solid white"
+    outline: "3px solid white",
+    objectFit: "cover",
   },
 
   userName: {
@@ -66,25 +73,27 @@ const useStyle = makeStyles({
     width: "220px",
     position: "relative",
     top: "420px",
-    left: "33%",
+    left: "15%",
     borderRadius: "10px",
     display: "flex",
     alignItems: "center",
     backgroundColor: "#1876f2",
     color: "white",
     border: "none",
+    cursor: "pointer",
   },
   editProfileBtn: {
     height: "40px",
     width: "220px",
     position: "relative",
     top: "420px",
-    left: "33%",
+    left: "15%",
     borderRadius: "10px",
     display: "flex",
     alignItems: "center",
-    backgroundColor: "#f2f3f5",
+    backgroundColor: "#d2d3d5",
     border: "none",
+    cursor: "pointer",
   },
 
   main: {
@@ -114,33 +123,154 @@ const useStyle = makeStyles({
 
     // marginRight: "10px",
   },
+  cameraAvatarBtn: {
+    position: "relative",
+    width: "30px",
+    height: "30px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: "99px",
+    top: "85%",
+    left: "-29%",
+    border: "none",
+    backgroundColor: "#c0c1c3",
+    cursor: "pointer",
+  },
 });
 
 export default function ProfilePageTop() {
+  const dispatch = useDispatch();
+  const [openAvatar, setOpenAvatar] = React.useState(false);
+  const [openCover, setOpenCover] = React.useState(false);
+
+  const [coverImageURL, setCoverImageURL] = React.useState("");
+  const [avatarImageURL, setAvatarImageURL] = React.useState("");
+
+  //cover image functions
+  const handleChangeCover = (ev) => {
+    setCoverImageURL(ev.target.value.trim());
+  };
+  const changeCoverPhoto = () => {
+    dispatch({
+      type: "CHANGECOVER",
+      payload: `${coverImageURL}`,
+    });
+  };
+  const handleClickOpenCover = () => {
+    setOpenCover(true);
+  };
+  const handleCloseCover = () => {
+    setOpenCover(false);
+  };
+
+  // avatar image functions
+  const handleChangeAvatar = (ev) => {
+    setAvatarImageURL(ev.target.value.trim());
+  };
+  const changeAvatarPhoto = () => {
+    dispatch({
+      type: "CHANGEAVATAR",
+      payload: `${avatarImageURL}`,
+    });
+  };
+
+  const handleClickOpenAvatar = () => {
+    setOpenAvatar(true);
+  };
+  const handleCloseAvatar = () => {
+    setOpenAvatar(false);
+  };
+
   const style = useStyle();
+  const avatar = useSelector((state) => state.profile.avatar);
+  const coverPhoto = useSelector((state) => state.profile.coverPhoto);
+
+  const fName = useSelector((state) => state.userData.registered[0].firstName);
+  const lName = useSelector((state) => state.userData.registered[0].lastName);
+  const fullName = fName + " " + lName;
 
   return (
     <>
       <div className={style.main}>
         <div className={style.topWrapper}>
-          <img
-            className={style.coverImage}
-            src="https://www.denofgeek.com/wp-content/uploads/2019/11/elsa_and_anna_in_frozen_2_ending_0.jpg?resize=768%2C432"
-            alt="coverImage"
-          />
-          <button className={style.editCoverImgBtn}>
+          <img className={style.coverImage} src={coverPhoto} alt="coverImage" />
+          <button
+            key={4}
+            className={style.editCoverImgBtn}
+            onClick={() => {
+              console.log("clicked");
+              handleClickOpenCover();
+            }}
+          >
             <CameraAltIcon className={style.cameraLogo} />
             Редактиране на снимката на корицата
           </button>
+          <Dialog key={5} open={openCover} onClose={handleCloseCover}>
+            <DialogContent>
+              <TextField
+                key={1}
+                onChange={handleChangeCover}
+                sx={{ width: "400px" }}
+                margin="dense"
+                fullWidth
+                variant="standard"
+              />
+            </DialogContent>
+            <DialogActions>
+              <Button sx={{ color: "black" }} onClick={handleCloseCover}>
+                Отказ
+              </Button>
+              <Button
+                key={6}
+                sx={{ color: "black" }}
+                onClick={() => {
+                  changeCoverPhoto();
+                  handleCloseCover();
+                }}
+              >
+                Запис
+              </Button>
+            </DialogActions>
+          </Dialog>
 
-          <img
-            className={style.userAvatar}
-            src="https://lumiere-a.akamaihd.net/v1/images/ct_frozen_elsa_18466_22a50822.jpeg?region=0,0,600,600"
-            alt="userAvatar"
-          />
+          <img className={style.userAvatar} src={avatar} alt="userAvatar" />
           <CameraAltIcon />
+          <button
+            className={style.cameraAvatarBtn}
+            onClick={handleClickOpenAvatar}
+          >
+            <CameraAltIcon />
+          </button>
+          <Dialog key={77} open={openAvatar} onClose={handleCloseAvatar}>
+            <DialogContent>
+              <TextField
+                key={123}
+                onChange={handleChangeAvatar}
+                sx={{ width: "400px" }}
+                margin="dense"
+                fullWidth
+                variant="standard"
+              />
+            </DialogContent>
+            <DialogActions>
+              <Button sx={{ color: "black" }} onClick={handleCloseAvatar}>
+                Отказ
+              </Button>
+              <Button
+                key={632}
+                sx={{ color: "black" }}
+                onClick={() => {
+                  changeAvatarPhoto();
+                  handleCloseAvatar();
+                }}
+              >
+                Запис
+              </Button>
+            </DialogActions>
+          </Dialog>
 
-          <h4 className={style.userName}>Elsa From Arendale</h4>
+          <h4 className={style.userName}>{fullName}</h4>
           <div>
             <button className={style.addStoryBtn}>
               <AddCircleIcon />

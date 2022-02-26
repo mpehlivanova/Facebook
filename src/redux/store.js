@@ -2,13 +2,12 @@ import { createStore } from "redux";
 import { combineReducers } from "redux";
 import postReduser from "./reducers/actionReducer";
 import dataReducer from "./reducers/userReducer";
-
-
-// import rootReducer from "./rootReducer";
+import profileReducer from './reducers/profileReducer';
 
 const rootReducer = combineReducers({
   userData: dataReducer,
   actionPost: postReduser,
+  profile: profileReducer
  
 });
 

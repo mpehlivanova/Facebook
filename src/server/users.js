@@ -1,4 +1,4 @@
-const users = [
+ const users = [
   {
     id: 1,
     name: "Leanne Graham",
@@ -176,7 +176,7 @@ const users = [
     id: 8,
     image:
       "https://uiuxjobsboard.com/random-users-generator/images/imageF11.jpg",
-    name: "Nicholas Runolfsdottir V",
+    name: "Nicholas Runolfsdof",
     username: "Maxime_Nienow",
     email: "Sherwood@rosamond.me",
     address: {

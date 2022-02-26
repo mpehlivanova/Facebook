@@ -86,25 +86,7 @@ export default function FriendsCard(img, name) {
                 </div>
               </div>
           
-              <div >
-                <img
-                  className={friends.imgUser}
-                  src={u.image}
-                  alt="user img">
-                  </img>
-                  <div>
-                  <p className={friends.text}>{u.name}</p>
-                <div className={friends.conrainerBtn}>
-                  <Button variant="contained">
-                  Добавяне
-                  </Button>
-                  <Button sx={{ bgcolor: grey[200] }} >
-                  <p className={friends.textbtn}>Изтриване</p>
-                  </Button>
-                </div>
-                  </div>
-               
-              </div>
+           
             </>
 
           )

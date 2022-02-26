@@ -191,11 +191,10 @@ const cssStyle = makeStyles({
     display:"flex",
     justifyContent:"center"
   }
+ 
 });
 
 export default function CreatePost(props) {
-
-
   const avatar = useSelector((state) => state.userData.registered[0].avatar);
   const fName = useSelector((state) => state.userData.registered[0].firstName);
   const lName = useSelector((state) => state.userData.registered[0].lastName);
@@ -219,57 +218,49 @@ export default function CreatePost(props) {
     setOpen(false);
   };
 
-
   const [fileImg, setFileImg] = React.useState("");
 
   const setHandleFildUploud = (ev) => {
-      const{files}=ev.target;
-      const localImgUrl=URL.createObjectURL(files[0])
-      setFileImg(localImgUrl)
-
+    const { files } = ev.target;
+    const localImgUrl = URL.createObjectURL(files[0]);
+    setFileImg(localImgUrl);
   };
 
   const [postText, setpPostText] = React.useState("");
- 
-  const setHandleInputPostImg=(ev)=>{
-    setpPostText(ev.target.value.trim())
-  }
 
+  const setHandleInputPostImg = (ev) => {
+    setpPostText(ev.target.value.trim());
+  };
 
   const dispatch = useDispatch();
 
-  const posts = useSelector((state)=>state.actionPost.addedPosts) //get all post from global
+  const posts = useSelector((state) => state.actionPost.addedPosts); //get all post from global
 
-  const handleCreatePost =()=>{
+  const handleCreatePost = () => {
     console.log(fileImg);
     console.log("img file");
     console.log(posts);
     console.log("create post");
-    if(postText !== ""){
-      dispatch ({type:"CREATEPOST",
-       payload:{ 
-        userName:fullName,
-        descripion:postText,
-        img:avatar,
-        story:fileImg,
-        postId:UUidv4(),
-       
-    
-      }})
+    if (postText !== "") {
+      dispatch({
+        type: "CREATEPOST",
+        payload: {
+          userName: fullName,
+          descripion: postText,
+          img: avatar,
+          story: fileImg,
+          postId: UUidv4(),
+        },
+      });
     }
-    }
-    
+  };
 
   return (
     <>
       <div className={style.conteiner}>
         <div className={style.topComment}>
           <ListItemIcon>
-            <img
-              className={style.img}
-              src={avatar}
-              alt="icon my profil"
-            ></img>
+            <img className={style.img} src={avatar} alt="icon my profil"></img>
           </ListItemIcon>
 
           <div onClick={handleClickOpen} className={style.divInput}>
@@ -344,7 +335,7 @@ export default function CreatePost(props) {
 
           <div className={`${style.postAdd} ${style.footer}`}>
             <p className={style.p}>Добавете към публикацията си</p>
-            
+
             <div>
              <label>
             <input 
@@ -359,7 +350,7 @@ export default function CreatePost(props) {
               <IconButton  size="small"   onClick={() => fileInput.current.click()}>
               <PhotoLibraryOutlinedIcon sx={{ color: green[700] }} />
               </IconButton>
-              <IconButton  size="small">
+              <IconButton size="small">
                 <PersonAddAltRoundedIcon sx={{ color: blue[700] }} />
               </IconButton>
               <IconButton  size="small">
@@ -389,12 +380,11 @@ export default function CreatePost(props) {
             className={style.buttonPost}
             variant="contained"
             // disabled
-            
-            onClick={()=>{
+
+            onClick={() => {
               // ev.preventDefault()
               handleCreatePost();
               handleClose();
-
             }}
           >
             Публикация

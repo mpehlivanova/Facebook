@@ -2,13 +2,13 @@ import React from "react";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import iconRd from "../components-css/imgLeftBar/rd.png";
-import CardAd from "./CardAd.js";
+// import CardAd from "./CardAd.js";
 import BadgeAvatars from "./Avatar.js";
 import SearchIcon from "@mui/icons-material/Search";
 import VideoCallIcon from "@mui/icons-material/VideoCall";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import IconButton from "@mui/material/IconButton";
-
+import users from "../server/users";
 
 //    {/* scroll */}
 // // import EmployeeList, { IEmployee } from "./EmployeeList";
@@ -16,17 +16,15 @@ import IconButton from "@mui/material/IconButton";
 //    {/* scroll */}
 
 import { makeStyles } from "@mui/styles";
-import { IFrame } from './IFrame';
-
+import { IFrame } from "./IFrame";
 
 const useStyles = makeStyles({
   conrainerRight: {
-    
     width: "20%",
     background: "#F2F3F5",
-    height: "120vh",
+    height: "1300vh",
     padding: "20px",
-    margin:"0px"
+    margin: "0px",
   },
   ad: {
     height: "200px",
@@ -55,7 +53,7 @@ const useStyles = makeStyles({
     marginBottom: "5px",
     // fontSize: "small",
     fontFamily: "Helvetica",
-    fontSize: "16px"
+    fontSize: "16px",
   },
   textMedium: {
     fontSize: "medium",
@@ -93,28 +91,28 @@ const useStyles = makeStyles({
 
 // const user ={{},{}} // all user
 
-export default function RightSideBar() {
+export default function RightSideBar(props) {
   const classes = useStyles();
 
   return (
     <div className={classes.conrainerRight}>
       <h3 className={classes.text}>Спонсорирано</h3>
-   
+
       <IFrame />
-      <div className={classes.ad}>
+      {/* <div className={classes.ad}>
         <CardAd />
         <CardAd />
-      </div>
-      <div className={classes.border}>
+      </div> */}
+      {/* <div className={classes.border}>
         <ListItemButton className={classes.textSmall}>
-          <img width="30px" src={iconRd} alt="icon rd"></img>
+          <img width="30px" src={props.name} alt="icon rd"></img>
           <p className={classes.margin}>
             <strong>user name's </strong> end <strong> user name's </strong>{" "}
             birthday is today.
             <strong>your name's</strong>have hteir birthdays today.
           </p>
         </ListItemButton>
-      </div>
+      </div> */}
 
       <div>
         <List>
@@ -133,43 +131,50 @@ export default function RightSideBar() {
             </div>
           </div>
 
-     
-          <ListItemButton className={classes.list}>
+          {users.map((u) => (
+            <ListItemButton className={classes.list}>
+              <BadgeAvatars image={u.image} />
+              <p className={classes.textSmall}>{u.name}</p>
+            </ListItemButton>
+          ))}
+        </List>
+      </div>
+
+      {/* <ListItemButton className={classes.list}>
             <BadgeAvatars />
-            <p className={classes.textSmall}>userName</p>
+            <p className={classes.textSmall}>Калоян Игнатов</p>
           </ListItemButton>
 
           <ListItemButton className={classes.list}>
             <BadgeAvatars />
-            <p className={classes.textSmall}>userName</p>
+            <p className={classes.textSmall}>Кирил Страхилов</p>
           </ListItemButton>
 
           <ListItemButton className={classes.list}>
-            <BadgeAvatars />
-            <p className={classes.textSmall}>userName</p>
-          </ListItemButton>
-
-          <ListItemButton className={classes.list}>
-            <BadgeAvatars />
-            <p className={classes.textSmall}>userName</p>
+            <BadgeAvatars src="https://d33wubrfki0l68.cloudfront.net/1fa5d5db38d24786b36e58bf0562f1d821b12ef6/e61d8/static/inviteyourownheader1-878b5db230ca8e78e1451814ba07a834.jpg" />
+            <p className={classes.textSmall}>Мадлена Христова</p>
           </ListItemButton>
 
           <div className={classes.border}>
-            <h3 className={classes.text}>Group conversations</h3>
+            <h3 className={classes.text}>Групови разговори</h3>
 
             <ListItemButton className={classes.list}>
               <BadgeAvatars />
-              <p className={classes.textSmall}>group</p>
+              <p className={classes.textSmall}>Дом и градина</p>
             </ListItemButton>
 
             <ListItemButton className={classes.list}>
-              <BadgeAvatars />
-              <p className={classes.textSmall}>group</p>
-            </ListItemButton>
-          </div>
-        </List>
+              <BadgeAvatars img="https://www.gravatar.com/avatar/1b8fabaa8d66250a7049bdb9ecf44397?s=250&d=mm&r=x" />
+              <p className={classes.textSmall}>Всичко за котките</p>
+            </ListItemButton> */}
 
-      </div>
+      {/* scroll */}
+      {/* <Paper>
+          <EmployeeList employees={rows} showAdmin={false} />
+        </Paper>
+ */}
+      {/* scroll */}
     </div>
+    // </div>
   );
 }

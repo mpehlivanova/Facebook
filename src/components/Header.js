@@ -1,29 +1,28 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
-import "../components-css/Header.css"
-import SearchIcon from '@mui/icons-material/Search';
-import HomeIcon from '@mui/icons-material/Home';
-import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
-import SmartDisplayOutlinedIcon from '@mui/icons-material/SmartDisplayOutlined';
-import StorefrontOutlinedIcon from '@mui/icons-material/StorefrontOutlined';
+import "../components-css/Header.css";
+import SearchIcon from "@mui/icons-material/Search";
+// import HomeIcon from '@mui/icons-material/Home';
+import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
+import SmartDisplayOutlinedIcon from "@mui/icons-material/SmartDisplayOutlined";
+// import StorefrontOutlinedIcon from '@mui/icons-material/StorefrontOutlined';
 // import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-import CircleNotificationsOutlinedIcon from '@mui/icons-material/CircleNotificationsOutlined';
-import ArrowDropDownCircleOutlinedIcon from '@mui/icons-material/ArrowDropDownCircleOutlined';
-import IconButton from '@mui/material/IconButton';
-import myProfil from "../components-css/imgLeftBar/guest.png";
-import Button from '@mui/material/Button'
+// import CircleNotificationsOutlinedIcon from '@mui/icons-material/CircleNotificationsOutlined';
+// import ArrowDropDownCircleOutlinedIcon from '@mui/icons-material/ArrowDropDownCircleOutlined';
+import IconButton from "@mui/material/IconButton";
+// import myProfil from "../components-css/imgLeftBar/guest.png";
+import Button from "@mui/material/Button";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import { Link } from "react-router-dom";
 import { Avatar } from "@mui/material";
-import MessageRoundedIcon from '@mui/icons-material/MessageRounded';
-import AppsRoundedIcon from '@mui/icons-material/AppsRounded';
+import MessageRoundedIcon from "@mui/icons-material/MessageRounded";
+import AppsRoundedIcon from "@mui/icons-material/AppsRounded";
 import { blue, grey, red } from "@mui/material/colors";
-import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
-import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
+import NotificationsRoundedIcon from "@mui/icons-material/NotificationsRounded";
+// import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import PopUpUserMenu from "./PopUpUserMenu";
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import { useSelector } from 'react-redux';
-
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles({
   iconCentrum: {
@@ -37,8 +36,9 @@ const useStyles = makeStyles({
     display: "flex",
     gap: "60px",
     "&:hover": {
-      bgcolor: red[900]
+      bgcolor: red[900],
     },
+    marginLeft: "80%",
   },
 
   left_header_img: {
@@ -48,7 +48,7 @@ const useStyles = makeStyles({
     height: "50px",
     width: "100%",
     display: "flex",
-    justifyContent: "space-between",
+    // justifyContent: "space-between",
     position: "fixed",
     backgroundColor: "white",
     zIndex: "2",
@@ -81,13 +81,16 @@ const useStyles = makeStyles({
     outlineWidth: "0",
   },
   profile_image: {
-    height: "35px",
+    height: "25px",
+    width:"25px",
     borderRadius: "33px",
+    marginRight: "5px",
   },
   right_header: {
     display: "flex",
     width: "345px",
     alignItems: "center",
+    marginLeft: "26%",
   },
   homeIcon: {
     color: "action",
@@ -109,61 +112,59 @@ const useStyles = makeStyles({
     display: "flex",
     width: "300px",
     justifyContent: "center",
-    alignItems:"center"
-    
+    alignItems: "center",
+    marginLeft: "15px",
   },
-})
+});
 
-export default function Header(){
-
-  const avatar = useSelector((state) => state.userData.registered[0].avatar);
+export default function Header() {
+  const avatar = useSelector((state) => state.profile.avatar);
   const fName = useSelector((state) => state.userData.registered[0].firstName);
   const lName = useSelector((state) => state.userData.registered[0].lastName);
-  const request = useSelector((state) => state.userData.registered[0].request);
   const fullName = fName + " " + lName;
-  // avatar =  ${avatar} ;
+
   console.log(avatar);
-    const classes = useStyles();
+  const classes = useStyles();
 
-    return (
-      <div className={classes.header}>
-        <div className={classes.left_header}>
-          <Link to="/">
-            <img
-              className={classes.left_header_img}
-              src="https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Facebook_f_logo_%282021%29.svg/2048px-Facebook_f_logo_%282021%29.svg.png"
-              alt="logo_of_Facebook"
-            />
-          </Link>
+  return (
+    <div className={classes.header}>
+      <div className={classes.left_header}>
+        <Link to="/">
+          <img
+            className={classes.left_header_img}
+            src="https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Facebook_f_logo_%282021%29.svg/2048px-Facebook_f_logo_%282021%29.svg.png"
+            alt="logo_of_Facebook"
+          />
+        </Link>
 
-          <div className={classes.header_input}>
-            <SearchIcon />
+        <div className={classes.header_input}>
+          <SearchIcon />
 
-            <input
-              className={classes.header_input_value}
-              type="text"
-              placeholder="Search Facebook"
-            ></input>
-          </div>
+          <input
+            className={classes.header_input_value}
+            type="text"
+            placeholder="Search Facebook"
+          ></input>
         </div>
-    
-        <div className={useStyles.centralHeader}>
-          <div className={classes.centrum}>
-            <div className="options">
-              <Link to="/">
-                {" "}
-                {/*  added link and buttum color gre Mariela*/}
-                <Button className={useStyles.centralBtns}>
-                <HomeOutlinedIcon
-                     color="action"
-                    className={classes.iconCentrum}
-                    fontSize="large"
-                    
-                  />
-                </Button>
-              </Link>
-            </div>
-            <div className="options">
+      </div>
+
+      {/* central part */}
+      <div className={useStyles.centralHeader}>
+        <div className={classes.centrum}>
+          <div className="options">
+            <Link to="/">
+              {" "}
+              {/*  added link and buttum color gre Mariela*/}
+              <Button className={useStyles.centralBtns}>
+                <HomeOutlinedIcon 
+                  color="action"
+                  className={classes.iconCentrum}
+                  fontSize="large"
+                />
+              </Button>
+            </Link>
+          </div>
+          {/* <div className="options">
               <Button className={useStyles.centralBtns}>
                 <StorefrontOutlinedIcon
                   color="action"
@@ -171,95 +172,102 @@ export default function Header(){
                   fontSize="large"
                 />
               </Button>
-            </div>
-            <div className="options">
-              <Link to="/friends">
-                {" "}
-                {/*  added link Mariela */}
-                <Button className={useStyles.centralBtns}>
-                  <PeopleAltOutlinedIcon
-                    color="action"
-                    className={classes.iconCentrum}
-                    fontSize="large"
-                  />
-                </Button>
-              </Link>
-            </div>
-            <div className="options">
-              <Link to="/video">
-                {" "}
-                {/*  added link Mariela */}
-                <Button className={useStyles.centralBtns}>
-                  <SmartDisplayOutlinedIcon
-                    color="action"
-                    className={classes.iconCentrum}
-                    fontSize="large"
-                  />
-                </Button>
-              </Link>
-            </div>
+            </div> */}
+          <div className="options">
+            <Link to="/friends">
+              {" "}
+              {/*  added link Mariela */}
+              <Button className={useStyles.centralBtns}>
+                <PeopleAltOutlinedIcon
+                  color="action"
+                  className={classes.iconCentrum}
+                  fontSize="large"
+                />
+              </Button>
+            </Link>
+          </div>
+          <div className="options">
+            <Link to="/video">
+              {" "}
+              {/*  added link Mariela */}
+              <Button className={useStyles.centralBtns}>
+                <SmartDisplayOutlinedIcon
+                  color="action"
+                  className={classes.iconCentrum}
+                  fontSize="large"
+                />
+              </Button>
+            </Link>
           </div>
         </div>
+      </div>
 
-        <div className={classes.right_header}>
-          <ListItemIcon>
-            <Link className={classes.link} to="/user">
-              <div className={classes.user}>
-                <img
-                sx={{ mr:2 }}
-                  className={classes.profile_image}
-                  src={avatar}
-                  alt="icon my profil"
-                />
-                <p>{fullName} {request.length}</p>
-              </div>
-            </Link>
-          </ListItemIcon>
+      {/* Right side header */}
+      <div className={classes.right_header}>
+        <ListItemIcon>
+          <Link className={classes.link} to="/user">
+            <div className={classes.user}>
+              <img
+                className={classes.profile_image}
+                src={avatar}
+                alt="icon my profil"
+              />
+              <p>{fullName}</p>
+            </div>
+          </Link>
+        </ListItemIcon>
 
-          <div className={classes.rightSideIcons}>
-            <Link to="/">
-              {/* /*  added new style btn Mariela */}
+        <div className={classes.rightSideIcons}>
+          <Link to="/">
+            {/* /*  added new style btn Mariela */}
 
-              <IconButton>
-                <Avatar sx={{ bgcolor: grey[200] }} >
-                  <AppsRoundedIcon color="action" />
-                </Avatar>
-              </IconButton>
-            </Link>
+            <IconButton>
+              <Avatar
+                sx={{
+                  bgcolor: grey[200],
+                  color: "black",
+                  marginRight: "-10px",
+                }}
+              >
+                <AppsRoundedIcon />
+              </Avatar>
+            </IconButton>
+          </Link>
 
-            <Link to="/">
-              {/*  added new style btn Mariela */}
-              <IconButton>
-                <Avatar sx={{ bgcolor: grey[200] }}>
-                  <MessageRoundedIcon color="action" />
-                </Avatar>
-              </IconButton>
-            </Link>
+          <Link to="/">
+            {/*  added new style btn Mariela */}
+            <IconButton>
+              <Avatar
+                sx={{
+                  bgcolor: grey[200],
+                  color: "black",
+                  marginRight: "-10px",
+                }}
+              >
+                <MessageRoundedIcon />
+              </Avatar>
+            </IconButton>
+          </Link>
 
-            <Link to="/">
-              {/*  added new style btn Mariela */}
-              <IconButton>
-                <Avatar sx={{ bgcolor: grey[200] }}>
-                  <NotificationsRoundedIcon color="action"  />
-                </Avatar>
-              </IconButton>
-            </Link>
+          <Link to="/">
+            {/*  added new style btn Mariela */}
+            <IconButton>
+              <Avatar
+                sx={{
+                  bgcolor: grey[200],
+                  color: "black",
+                  marginRight: "-10px",
+                }}
+              >
+                <NotificationsRoundedIcon />
+              </Avatar>
+            </IconButton>
+          </Link>
 
-            <Link to="/">
-              {/*  added new style btn Mariela */}
-              {/* <IconButton>
-                <Avatar className="homeIcon" sx={{ bgcolor: grey[200] }}>
-                  <ArrowDropDownRoundedIcon color="action"></ArrowDropDownRoundedIcon>
-                
-                </Avatar>
-                
-              </IconButton>
-               */}
-              <PopUpUserMenu />
-            </Link>
-          </div>
+          <PopUpUserMenu sx={{ color: "black" }} />
+        </div>
 
-          {/* 
+        {/* 
           <IconButton>
             <CircleNotificationsOutlinedIcon
               className={classes.iconRight}
@@ -272,8 +280,7 @@ export default function Header(){
               fontSize="large"
             />
           </IconButton> */}
-        </div>
       </div>
-    );
+    </div>
+  );
 }
-

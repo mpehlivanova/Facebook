@@ -4,10 +4,10 @@ import { makeStyles } from "@mui/styles";
 const useStyle = makeStyles({
   field: {
     width: "90%",
-    height: "50px",
+    height: "33px",
     fontSize: "12px",
     backgroundColor: "#e4e6eb",
-    marginBottom: "10px",
+    marginBottom: "0px",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",

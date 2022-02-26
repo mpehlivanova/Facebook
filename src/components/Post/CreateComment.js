@@ -14,10 +14,7 @@ import SentimentSatisfiedOutlinedIcon from "@mui/icons-material/SentimentSatisfi
 import ButtonPost from "./ButtonPost";
 import AddIcon from "@mui/icons-material/Add";
 
-
-
 const useStyles = makeStyles({
-
   row: {
     display: "flex",
     flexDirection: "row",
@@ -35,7 +32,7 @@ const useStyles = makeStyles({
     border: "none",
     backgroundColor: " #eff2f5",
     padding: "5px",
-    borderRadius: "20px",
+    borderRadius: "0px",
     width: "60%",
     height: "20px",
     outlineWidth: "0"
@@ -44,21 +41,18 @@ const useStyles = makeStyles({
     display: "flex",
     width: "95%",
     flexDirection: "row",
-    alignItems: "baseline",
+    // alignItems: "baseline",
     justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: " #eff2f5",
     borderRadius: "20px",
     marginLeft: "5px",
+    "&focus": { border: "none" },
   },
-
-
-  
 });
 
 export default function CreateComment(props) {
-  const post = useStyles(); 
-
+  const post = useStyles();
   const [createComment, setCreateComment] = useState("");
 
   const setHandleCreateComment = (ev) => {
@@ -89,7 +83,20 @@ export default function CreateComment(props) {
 const avatar = useSelector((state) => state.userData.registered[0].avatar);
 
   return (
-      <>
+    <>
+      <div className={post.row}>
+        <div>
+          <BadgeAvatars />
+        </div>
+        <div className={post.commenrWrite}>
+          <input
+            onChange={setHandleCreateComment}
+            className={post.inputComment}
+            value={createComment}
+            type="text"
+            placeholder="White a comment"
+          ></input>
+
           <div className={post.row}>
             <div>
               <BadgeAvatars img ={avatar} />
@@ -120,9 +127,18 @@ const avatar = useSelector((state) => state.userData.registered[0].avatar);
                 </IconButton>
               </div>
             </div>
+            <IconButton size="small">
+              <SentimentSatisfiedOutlinedIcon className={post.iconContact} />
+            </IconButton>
+            <IconButton size="small">
+              <PhotoCameraOutlinedIcon className={post.iconContact} />
+            </IconButton>
+            <IconButton size="small">
+              <StickyNote2OutlinedIcon className={post.iconContact} />
+            </IconButton>
           </div>
-     
-
-      </>
+        </div>
+      </div>
+    </>
   );
 }

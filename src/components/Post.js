@@ -138,6 +138,7 @@ const useStyles = makeStyles({
     borderRadius: "20px",
     width: "60%",
     height: "20px",
+    outlineWidth: "0",
   },
   commenrWrite: {
     display: "flex",
@@ -177,7 +178,10 @@ const useStyles = makeStyles({
 
 export default function Post(props) {
   const post = useStyles();
-  const avatar = useSelector((state) => state.userData.registered[0].avatar);
+  const fName = useSelector((state) => state.userData.registered[0].firstName);
+  const lName = useSelector((state) => state.userData.registered[0].lastName);
+  const fullName = fName + " " + lName;
+  const avatar = useSelector((state) => state.profile.avatar);
   const [like, isLike] = useState(false);
   const [liked, viewLiked] = useState(false);
   const [createComment, setCreateComment] = useState("");
@@ -254,16 +258,17 @@ export default function Post(props) {
             <ListItemIcon>
               <img
                 className={post.img}
-                src={props.img}
+                src={avatar}
                 alt="icon my profil"
               ></img>
             </ListItemIcon>
             <div height="8px">
               <p className={post.textInput}>
-                <strong>{props.userName} </strong>
+                <strong>{fullName} </strong>
               </p>
               <p className={post.textXsmall}>
                 15h *
+                
                 <PeopleIcon
                   sx={{
                     fontSize: 12,
@@ -354,7 +359,7 @@ export default function Post(props) {
                   <>
                     <div key={com.commentId} className={post.row}>
                       <div>
-                        <BadgeAvatars img={avatar} />
+                        <BadgeAvatars image={avatar} />
                       </div>
                       <div className={post.input}>
                         <p className={post.addedCom}>{com.comment}</p>
@@ -370,17 +375,18 @@ export default function Post(props) {
         </div>
         <div className={post.row}>
           <div>
-            <BadgeAvatars img={avatar} />
+            <BadgeAvatars image={avatar} />
           </div>
           <div className={`${post.commenrWrite}`}>
             <input
               onChange={setHandleCreateComment}
               className={post.inputComment}
               type="text"
-              placeholder="White a comment"
-              // value={}
-            ></input>
 
+              placeholder="Write a comment"
+               value={createComment}
+
+            ></input>
             <div>
               <Button
                 onClick={() => {

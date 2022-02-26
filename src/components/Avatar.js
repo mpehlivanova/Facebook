@@ -3,6 +3,7 @@ import { styled } from "@mui/material/styles";
 import Badge from "@mui/material/Badge";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
+import { useSelector } from 'react-redux';
 
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -18,13 +19,14 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 export default function BadgeAvatars(props) {
+  // const avatar = useSelector((state) => state.profile.avatar);
   return (
     <Stack style={{fontSize:2}}  direction="row" scale=".2" spacing={1}>
       <StyledBadge 
         overlap="circular"
         anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
         variant="dot">
-        <Avatar src={props.img} style={{ width: 25, height: 25 }} alt="Remy Sharp"  /> 
+        <Avatar style={{ width: 25, height: 25 }} alt="Remy Sharp" src={props.image}/> 
       </StyledBadge>
     </Stack>
   );
