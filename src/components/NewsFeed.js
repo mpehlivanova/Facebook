@@ -10,6 +10,11 @@ import CreatePost from "./CreatePost";
 import PrintUserPosts from "./PrintUserPosts"
 import PrintAllPosts from "./PrintAllPosts";
 
+// import PostHeader from "./Post/PostHeader";
+// import ViewPostPage from "../pages/ViewPostPage";
+// import Emoji from "./Emoji"
+
+
 const useStyles = makeStyles({
   feed: {
     width: "75%",

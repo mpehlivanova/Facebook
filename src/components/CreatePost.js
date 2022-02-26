@@ -24,10 +24,11 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import PhotoLibraryOutlinedIcon from "@mui/icons-material/PhotoLibraryOutlined";
 // import Picker from "emoji-picker-react";
 import PersonAddAltRoundedIcon from "@mui/icons-material/PersonAddAltRounded";
-import MoodRoundedIcon from "@mui/icons-material/MoodRounded";
+// import MoodRoundedIcon from "@mui/icons-material/MoodRounded";
 import FmdGoodRoundedIcon from "@mui/icons-material/FmdGoodRounded";
 import { useDispatch, useSelector } from "react-redux";
 import UUidv4 from "./Util";
+// import Emoji from "./Emoji";
 
 const cssStyle = makeStyles({
   topComment: {
@@ -107,7 +108,7 @@ const cssStyle = makeStyles({
   },
   containerPost: {
     width: "500px",
-    height: "300px",
+    height: "600px",
     backgroundColor: "whate",
   },
   header: {
@@ -162,7 +163,7 @@ const cssStyle = makeStyles({
   input: {
     border: "none",
     color: "#8A8D91",
-    margin: "10px 10px",
+    margin: "5px 10px",
     fontFamily: "Segoe UI Historic, Helvetica, Arial",
     fontSize: "large",
   },
@@ -181,12 +182,18 @@ const cssStyle = makeStyles({
   },
   inputTextPost: {
     width: "450px",
-    height: "80px",
+    height: "50px",
   },
-  type: {
+  type:{
     border: "none",
-    display: "none",
+  display:'none'
+    
   },
+  emojiConatiner:{
+    display:"flex",
+    justifyContent:"center"
+  }
+ 
 });
 
 export default function CreatePost(props) {
@@ -224,10 +231,7 @@ export default function CreatePost(props) {
   const posts = useSelector((state) => state.actionPost.addedPosts); //get all post from global
 
   const handleCreatePost = () => {
-    console.log(fileImg);
-    console.log("img file");
-    console.log(posts);
-    console.log("create post");
+ 
     if (postText !== "") {
       dispatch({
         type: "CREATEPOST",
@@ -302,13 +306,18 @@ export default function CreatePost(props) {
               </div>
             </div>
           </div>
+          <div>
           <div className={style.inputTextPost}>
             <input
               onChange={setHandleInputPostImg}
+              // onClick={setViewEmoji}
               className={style.input}
               placeholder={`Какво мислите, ${fullName}?`}
             ></input>
           </div>
+          {/* {
+            viewEmoji ? (<div className={style.emojiConatiner}> <Emoji/></div>):(null)
+          } */}
 
           <div className={style.postAdd}>
             <img src={colorImg} alt="imgColor"></img>
@@ -319,27 +328,25 @@ export default function CreatePost(props) {
             <p className={style.p}>Добавете към публикацията си</p>
 
             <div>
-              <label>
-                <input
-                  type="file"
-                  name="image"
-                  ref={fileInput}
-                  // onChange={onChange}
-                  style={{ display: "none" }}
-                  onChange={setHandleFildUploud}
-                ></input>
-              </label>
-              <IconButton
-                size="small"
-                onClick={() => fileInput.current.click()}
-              >
-                <PhotoLibraryOutlinedIcon sx={{ color: green[700] }} />
+             <label>
+            <input 
+             type='file'
+              name='image'
+              ref={fileInput}
+              style={{ display: 'none' }}
+              onChange={setHandleFildUploud}
+            >
+             </input>
+             </label>
+              <IconButton  size="small"   onClick={() => fileInput.current.click()}>
+              <PhotoLibraryOutlinedIcon sx={{ color: green[700] }} />
               </IconButton>
               <IconButton size="small">
                 <PersonAddAltRoundedIcon sx={{ color: blue[700] }} />
               </IconButton>
-              <IconButton size="small">
-                <MoodRoundedIcon sx={{ color: yellow[700] }} />
+              <IconButton  size="small">
+                {/* <MoodRoundedIcon onClick={handleViewEmoji} */}
+                {/* sx={{ color: yellow[700] }} /> */}
               </IconButton>
               <IconButton size="small">
                 <FmdGoodRoundedIcon sx={{ color: red[700] }} />
@@ -347,7 +354,15 @@ export default function CreatePost(props) {
               <IconButton size="small">
                 <MoreHorizIcon color="disabled" />
               </IconButton>
+            
             </div>
+         
+          </div>
+          
+          
+
+
+
           </div>
         </div>
 
