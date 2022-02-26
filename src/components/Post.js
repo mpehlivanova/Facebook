@@ -181,7 +181,7 @@ const useStyles = makeStyles({
 
 export default function Post(props) {
   const post = useStyles();
-  
+   const text = "";
   const fullName = useSelector((state) => state.userData.currLogged[0].firstName);
   const avatar = useSelector((state) => state.userData.currLogged[0].avatar);
   const [like, isLike] = useState(false);
@@ -205,11 +205,12 @@ export default function Post(props) {
   };
 
   const handleViewCommentList = () => {
-    commentList ? viewCommentList(false) : viewCommentList(true);
+  
+    commentList ? (viewCommentList(false)) : viewCommentList(true);
   };
 
   const setHandleCreateComment = (ev) => {
-    setCreateComment(ev.target.value.trim());
+    setCreateComment(ev.target.value);
   };
 
   const handleAddNewComment = () => {

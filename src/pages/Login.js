@@ -297,7 +297,6 @@ export default function Login() {
             password: user[0].password,
             firstName: user[0].firstName,
             avatar: user[0].avatar,
-            
           },
           logged: true,
         });
@@ -316,9 +315,6 @@ export default function Login() {
   const [lastName, setLastName] = useState("");
   const [emailReg, setEmailReg] = useState("");
   const [passwordReg, setPasswordReg] = useState("");
-  // const [dayOfBirth, setDayOfBirth] = useState("");
-  // const [monthOfBirth, setMonthOfBirth] = useState("");
-  // const [yearOfBirth, setYearOfBirth] = useState("");
   const [gender, setGender] = useState("");
 
   const setHandlerInputFirstName = (e) => {
@@ -333,15 +329,6 @@ export default function Login() {
   const setHandlerInputPasswordReg = (e) => {
     setPasswordReg(e.target.value);
   };
-  // const setHandlerInputDayOfBirth = (e) => {
-  //   setDayOfBirth(e.target.value);
-  // };
-  // const setHandlerInputMonthOfBirth = (e) => {
-  //   setMonthOfBirth(e.target.value);
-  // };
-  // const setHandlerInputYearOfBirth = (e) => {
-  //   setYearOfBirth(e.target.value);
-  // };
   const setHandlerInputGender = (e) => {
     setGender(e.target.value);
   };
@@ -379,18 +366,6 @@ export default function Login() {
     setOpen(false);
   };
   const style = useStyle();
-
-  // const signInWithFirebase = () => {
-  //     let google_provider = firebase.auth.GoogleAuthProvider();
-  //     firebase.auth().signInWithPopup(google_provider)
-  //         .then((res) => {
-
-  //         })
-  //         .catch((err) => {
-  //         console.log(err);
-  //     })
-
-  // }
 
   return (
     <div className={style.loginWrapper}>
