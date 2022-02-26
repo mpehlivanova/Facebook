@@ -6,6 +6,7 @@ import PrintAllPosts from "./PrintAllPosts";
 import PrintUserPosts from "./PrintUserPosts";
 // import PostHeader from "./Post/PostHeader";
 import ViewPostPage from "../pages/ViewPostPage";
+import Emoji from "./Emoji"
 
 
 const useStyles = makeStyles({

@@ -28,6 +28,7 @@ import MoodRoundedIcon from "@mui/icons-material/MoodRounded";
 import FmdGoodRoundedIcon from "@mui/icons-material/FmdGoodRounded";
 import { useDispatch, useSelector } from "react-redux";
 import UUidv4 from "./Util";
+import Emoji from "./Emoji";
 
 const cssStyle = makeStyles({
   topComment: {
@@ -105,7 +106,7 @@ const cssStyle = makeStyles({
   },
   containerPost: {
     width: "500px",
-    height: "300px",
+    height: "600px",
     backgroundColor: "whate",
   },
   header: {
@@ -160,7 +161,7 @@ const cssStyle = makeStyles({
   input: {
     border: "none",
     color: "#8A8D91",
-    margin: "10px 10px",
+    margin: "5px 10px",
     fontFamily: "Segoe UI Historic, Helvetica, Arial",
     fontSize: "large",
   },
@@ -179,8 +180,17 @@ const cssStyle = makeStyles({
   },
   inputTextPost: {
     width: "450px",
-    height: "80px",
+    height: "50px",
   },
+  type:{
+    border: "none",
+  display:'none'
+    
+  },
+  emojiConatiner:{
+    display:"flex",
+    justifyContent:"center"
+  }
 });
 
 export default function CreatePost(props) {
@@ -191,11 +201,15 @@ export default function CreatePost(props) {
   const lName = useSelector((state) => state.userData.registered[0].lastName);
   const fullName = fName + " " + lName;
 
-
+  const fileInput = React.useRef(null)
 
   const style = cssStyle();
   const [open, setOpen] = React.useState(false);
- 
+  
+  const [viewEmoji, setViewEmoji] = React.useState(false);
+  const handleViewEmoji=()=>{
+    viewEmoji?setViewEmoji(false):setViewEmoji(true)
+  }
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -310,13 +324,18 @@ export default function CreatePost(props) {
               </div>
             </div>
           </div>
+          <div>
           <div className={style.inputTextPost}>
             <input
               onChange={setHandleInputPostImg}
+              onClick={setViewEmoji}
               className={style.input}
               placeholder={`Какво мислите, ${fullName}?`}
             ></input>
           </div>
+          {
+            viewEmoji ? (<div className={style.emojiConatiner}> <Emoji/></div>):(null)
+          }
 
           <div className={style.postAdd}>
             <img src={colorImg} alt="imgColor"></img>
@@ -327,15 +346,25 @@ export default function CreatePost(props) {
             <p className={style.p}>Добавете към публикацията си</p>
             
             <div>
-            <input type='file' onChange={setHandleFildUploud}></input>
-              <IconButton  size="small">
+             <label>
+            <input 
+             type='file'
+              name='image'
+              ref={fileInput}
+              style={{ display: 'none' }}
+              onChange={setHandleFildUploud}
+            >
+             </input>
+             </label>
+              <IconButton  size="small"   onClick={() => fileInput.current.click()}>
               <PhotoLibraryOutlinedIcon sx={{ color: green[700] }} />
               </IconButton>
               <IconButton  size="small">
                 <PersonAddAltRoundedIcon sx={{ color: blue[700] }} />
               </IconButton>
-              <IconButton size="small">
-                <MoodRoundedIcon sx={{ color: yellow[700] }} />
+              <IconButton  size="small">
+                <MoodRoundedIcon onClick={handleViewEmoji}
+                sx={{ color: yellow[700] }} />
               </IconButton>
               <IconButton size="small">
                 <FmdGoodRoundedIcon sx={{ color: red[700] }} />
@@ -343,7 +372,15 @@ export default function CreatePost(props) {
               <IconButton size="small">
                 <MoreHorizIcon color="disabled" />
               </IconButton>
+            
             </div>
+         
+          </div>
+          
+          
+
+
+
           </div>
         </div>
 

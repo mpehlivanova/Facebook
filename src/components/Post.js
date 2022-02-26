@@ -3,7 +3,7 @@ import BadgeAvatars from "./Avatar.js";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { grey } from "@mui/material/colors";
 import { makeStyles } from "@mui/styles";
-import { Button, Link, ListItemIcon } from "@mui/material";
+import { Button, Dialog, Link, ListItemIcon } from "@mui/material";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import RecommendRoundedIcon from "@mui/icons-material/RecommendRounded";
 import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
@@ -17,9 +17,11 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import PeopleIcon from "@mui/icons-material/People";
 import UUidv4 from "./Util.js";
-import Login from "../pages/Login.js";
 import AddIcon from "@mui/icons-material/Add";
+import ViewPostPage from "../pages/ViewPostPage.js";
 // import { type } from "@testing-library/user-event/dist/type";
+import CloseIcon from "@mui/icons-material/Close";
+import Emoji from "./Emoji"
 
 const useStyles = makeStyles({
   conrainerPost: {
@@ -180,8 +182,7 @@ export default function Post(props) {
   const [liked, viewLiked] = useState(false);
   const [createComment, setCreateComment] = useState("");
   const [commentList, viewCommentList] = useState(false);
-  const [newComment, addNewComment] = useState("");
-  
+  const [numberComment, setNumbetComment] = useState(false);
 
   const changeLikeOption = () => {
     if (like === false) {
@@ -193,31 +194,33 @@ export default function Post(props) {
     }
   };
 
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const handleViewLiked = () => {
-    liked ? 
-    viewLiked(false) : 
-    viewLiked(true);
+    liked ? viewLiked(false) : viewLiked(true);
   };
 
   const handleViewCommentList = () => {
-    commentList ? 
-    viewCommentList(false) : 
-    viewCommentList(true);
+    commentList ? viewCommentList(false) : viewCommentList(true);
   };
 
   const setHandleCreateComment = (ev) => {
     setCreateComment(ev.target.value.trim());
   };
 
-  const handleAddNewComment=()=>{
-    addNewComment("");
-  }
+  const handleAddNewComment = () => {
+    numberComment ? setNumbetComment(false) : setNumbetComment(true);
+  };
   const dispatch = useDispatch();
-  const allPosts = useSelector((state) =>
-    state.actionPost.addedPosts.map((p) => {
-      <Link to={"/view/" + p.postId}>{p.story}</Link>;
-    })
-  );
+ 
 
   const allPostsComment = useSelector((state) => state.actionPost.addedComment);
   const onePostComment = allPostsComment.filter(
@@ -229,7 +232,7 @@ export default function Post(props) {
     // console.log(allPostsComment);
     console.log(onePostComment);
     console.log("create comment");
-    console.log(allPosts);
+
     console.log(" allPosts");
     if (createComment.length !== 0) {
       dispatch({
@@ -240,7 +243,6 @@ export default function Post(props) {
           postId: props.id,
         },
       });
-      
     }
   };
 
@@ -283,26 +285,37 @@ export default function Post(props) {
         </div>
 
         <div>
-          <Link className={post.link} to={"/view/" + post.id}>
-            <img
-              className={post.imgPost}
-              src={props.storyImg}
-              alt="user img"
-            ></img>
-          </Link>
+          <img
+            onClick={()=>handleClickOpen()}
+            className={post.imgPost}
+            src={props.storyImg}
+            alt="user img"
+          ></img>
         </div>
+        <Dialog open={open} fullScreen>
+            <ViewPostPage 
+            img={props.storyImg} 
+            avatar={props.img} 
+            handleClose={()=>handleClose()} />
+        </Dialog>
 
         <div className={post.likeConrainer}>
           <div className={post.likeConrainer}>
             {liked ? (
               <>
                 <RecommendRoundedIcon color="primary" />
-                <p className={post.textSmall}>{like}</p> 
+                <p className={post.textSmall}>{like}</p>
               </>
             ) : null}
           </div>
+          {
+            numberComment  ? (
+                <p 
+                onChange={handleAddNewComment} 
+                className={post.textSmall}>{ onePostComment.length} коментар</p>
+              ):(null)
 
-          <p className={post.textSmall}>{onePostComment.length} commentar</p>
+            }
         </div>
 
         <div className={`${post.border} ${post.buttonBox}`}>
@@ -330,7 +343,8 @@ export default function Post(props) {
         <div>
           <p
             onClick={handleViewCommentList}
-            className={`${post.textSmall} ${post.hover}`}>
+            className={`${post.textSmall} ${post.hover}`}
+          >
             Преглед на предишните коментари
           </p>
 
@@ -364,7 +378,7 @@ export default function Post(props) {
               className={post.inputComment}
               type="text"
               placeholder="White a comment"
-              // value=""
+              // value={}
             ></input>
 
             <div>
@@ -372,12 +386,11 @@ export default function Post(props) {
                 onClick={() => {
                   handleCreateComment();
                   viewCommentList(true);
-                  handleAddNewComment();
-                  console.log(onePostComment);
-                  console.log("added Comment");
+                  setNumbetComment(true)
+                  // console.log(onePostComment);
+                  // console.log("added Comment");
                 }}
-                sx={{ textTransform: "none",
-                }}
+                sx={{ textTransform: "none" }}
               >
                 <AddIcon color="disabled" />
               </Button>
@@ -394,6 +407,7 @@ export default function Post(props) {
                 <StickyNote2OutlinedIcon className={post.iconContact} />
               </IconButton>
             </div>
+            {/* <Emoji/> */}
           </div>
         </div>
       </div>

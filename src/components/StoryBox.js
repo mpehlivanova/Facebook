@@ -1,9 +1,12 @@
 import React from "react";
 // import "../components-css/StoryBox"
 import { makeStyles } from "@mui/styles";
-import users from "../server/users"
+import { AppBar, Dialog, IconButton } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import UUidv4 from "./Util";
+import { grey } from "@mui/material/colors";
 
-export default function StoryBox() {
+export default function StoryBox(props) {
   const stories = [
     {
       name: "Rango",
@@ -74,35 +77,86 @@ export default function StoryBox() {
       marginBottom: "5px",
       marginLeft: "5px",
     },
+    container: {
+      width: "100%",
+      height: "100vh",
+      display: "flex",
+      flexDirection: "row",
+      // padding: "46px 0px 0px 0px",
+    },
+    leftDiv: {
+      width: "100%",
+      height: "100vh",
+      backgroundColor: "rgb(0,0,0,0.85)",
+      display: "flex",
+      justifyContent: "center",
+    },
+   
+    img: {
+      width: "65%",
+      height: "100vh",
+    },
+    
+    hover: {
+      cursor: "pointer",
+    },
+
   });
   const style = useStyle();
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <>
-      {
-        users.map((story,i) => {
+      <div
+        key={UUidv4}
+        onClick={handleClickOpen}
+        className={style.storyWrapper}
+        style={{
+          backgroundImage: `url(${props.img})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+        }}
+      >
+        <img className={style.userAvatar} src={props.avatar} alt="userAvatar" />
 
-          if(i > 5){
-        return (
-          <div key={story.name}
-            className={style.storyWrapper}
-            style={{
-              backgroundImage: `url(${story.image})`,
-              backgroundRepeat:"no-repeat",
-              backgroundSize:"cover",
-            }}
-          >
-            <img
-              className={style.userAvatar}
-              src={story.image}
-              alt="userAvatar"
-            />
+        <h4 className={style.authorName}>{props.name}</h4>
+      </div>
 
-            <h4 className={style.authorName}>{story.name}</h4>
+      <Dialog open={open} fullScreen  >
+      <div  sx={{ position: 'relative' }}>
+         
+         
+
+      
+          <div className={style.container}>
+          
+            <div className={style.leftDiv}>
+   
+            <CloseIcon  
+            onClick={handleClose} 
+            sx={{
+                    fontSize: 24,
+                    color: grey[200],
+                    padding: "5px",
+                  }}/>
+                 
+              <img
+                className={style.img}
+                src={props.story}
+                alt="user post"
+              ></img>
+            </div>
           </div>
-        );
-      }
-      })}
+        </div>
+      </Dialog>
     </>
   );
 }

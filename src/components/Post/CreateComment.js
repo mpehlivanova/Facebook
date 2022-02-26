@@ -12,6 +12,7 @@ import { Button } from "react-rainbow-components";
 import GifBoxOutlinedIcon from "@mui/icons-material/GifBoxOutlined";
 import SentimentSatisfiedOutlinedIcon from "@mui/icons-material/SentimentSatisfiedOutlined";
 import ButtonPost from "./ButtonPost";
+import AddIcon from "@mui/icons-material/Add";
 
 
 
@@ -37,6 +38,7 @@ const useStyles = makeStyles({
     borderRadius: "20px",
     width: "60%",
     height: "20px",
+    outlineWidth: "0"
   },
   commenrWrite: {
     display: "flex",
@@ -59,38 +61,38 @@ export default function CreateComment(props) {
 
   const [createComment, setCreateComment] = useState("");
 
-
   const setHandleCreateComment = (ev) => {
-     
     setCreateComment(ev.target.value.trim());
-    // console.log(createComment);
-   
   };
   const dispatch = useDispatch();
-  const allPost = useSelector((state) => state.actionPost.addedPosts.map(el=>
-    el.addedCommented
-));
+ 
 
+ const handleCreateComment = () => {
+  // console.log(createComment);
+  // console.log(allPostsComment);
+  // console.log(onePostComment);
+  // console.log("create comment");
 
-  const handleCreateComment = () => {
-
-    console.log( allPost);
-    console.log("create comment");
-    
-    dispatch({ type: "CREATECOMMENT", payload: { addedCommented: 
-      {
-        comment:createComment, 
-        idComment:{UUidv4}} 
-      } 
+  console.log(" allPosts");
+  if (createComment.length !== 0) {
+    dispatch({
+      type: "CREATECOMMENT",
+      payload: {
+        comment: createComment,
+        idcomment: UUidv4(),
+        postId: props.id,
+      },
     });
-}
+  }
+};
 
+const avatar = useSelector((state) => state.userData.registered[0].avatar);
 
   return (
       <>
           <div className={post.row}>
             <div>
-              <BadgeAvatars />
+              <BadgeAvatars img ={avatar} />
             </div>
             <div className={`${post.commenrWrite}`}>
               <input
@@ -102,7 +104,9 @@ export default function CreateComment(props) {
 
               <div className={post.row}>
               <div  onClick={ handleCreateComment}>
-              <ButtonPost name="add"></ButtonPost>
+              <ButtonPost icon={<AddIcon color="disabled"/>} >
+              <AddIcon size="small" color="disabled" />
+              </ButtonPost>
              </div>
                 <IconButton size="small">
                   <SentimentSatisfiedOutlinedIcon

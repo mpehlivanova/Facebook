@@ -228,9 +228,7 @@ export default function VideoPost() {
                 </div>
               </div>
               
-              <div>
-             <IFrame className={post.IFrame}/>
-              </div>
+              
               <div className={post.likeConrainer}>
                 <div className={post.like}>
                   <FavoriteRoundedIcon
