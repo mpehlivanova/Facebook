@@ -12,7 +12,7 @@ import ViewPostPage from "./pages/ViewPostPage";
 
 // useSelector((state) => state.userData.logged);
 function App() {
-  const logged = 1;
+  const logged = useSelector((state) => state.userData.logged);;
   return (
 
       <>
@@ -27,7 +27,7 @@ function App() {
               <Route path="/friends" element={<Friends></Friends>} />
               <Route path="/video" element ={<VideoPage></VideoPage>}/>
               <Route path="/grup" element ={<Grups></Grups>}/>
-             <Route path="/view" element ={<ViewPostPage></ViewPostPage>}/>    {/* да сочи към ид на поста*/}
+             <Route path="/view/" element ={<ViewPostPage></ViewPostPage>}/>    {/* да сочи към ид на поста*/}
             </Routes>
         </>
       )}

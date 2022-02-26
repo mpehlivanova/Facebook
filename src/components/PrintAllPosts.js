@@ -5,7 +5,7 @@ export default function PrintAllPosts(props) {
 
     return (
       <>
-        {users.map((u) => {
+        {/* {users.map((u) => {
             return(
               <>
                   <Post 
@@ -20,7 +20,7 @@ export default function PrintAllPosts(props) {
                
                 </>
             )
-        })}
+        })} */}
         </>
     )
 }

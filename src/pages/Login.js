@@ -231,13 +231,13 @@ const useStyle = makeStyles({
 
 export default function Login() {
 
-let isLogged = useSelector((state) => state.userData.logged);
+// let isLogged = useSelector((state) => state.userData.logged);
 
- const [loginData, setLoginData] = useState(
-    localStorage.getItem("loginData") && (isLogged = true)
-      ? JSON.parse(localStorage.getItem("loginData"))
-      : null
-  );
+//  const [loginData, setLoginData] = useState(
+//     localStorage.getItem("loginData") && (isLogged = true)
+//       ? JSON.parse(localStorage.getItem("loginData"))
+//       : null
+//   );
 
   const handleFailure = (result) => {
     alert(result)
@@ -251,7 +251,8 @@ let isLogged = useSelector((state) => state.userData.logged);
         email: googleData.profileObj.email,
         password: googleData.tokenObj.idpId,
         firstName: googleData.profileObj.name,
-        gender: "male",
+        avatar: googleData.profileObj.imageUrl,
+
       },
     });
     // const res = await fetch('/api/google-login', {
@@ -285,20 +286,34 @@ let isLogged = useSelector((state) => state.userData.logged);
 
   const dispatch = useDispatch();
   const regUsers = useSelector((state) => state.userData.registered);
+  console.log(regUsers);
 
   const handleLogin = () => {
    
     const user = regUsers.filter((u) => u.email === email);
+    console.log(user);
+
     if (validator.validate(email)) {
       if (user && password === user[0].password) {
         
-        dispatch({ type: "LOGIN" });
+        dispatch({
+          type: "LOGIN",
+          payload: {
+            email: user.email ,
+            password: user.password,
+            firstName: user.name ,
+            avatar:user.avatar,
+          },
+          logged: true,
+        });
         setError(false);
       } else {
+        console.log("pass wrong")
         setError(true);
       }
     } else {
       setError(true);
+      console.log("mail wrong");
     }
   };
   //register form functions
@@ -306,9 +321,9 @@ let isLogged = useSelector((state) => state.userData.logged);
   const [lastName, setLastName] = useState("");
   const [emailReg, setEmailReg] = useState("");
   const [passwordReg, setPasswordReg] = useState("");
-  const [dayOfBirth, setDayOfBirth] = useState("");
-  const [monthOfBirth, setMonthOfBirth] = useState("");
-  const [yearOfBirth, setYearOfBirth] = useState("");
+  // const [dayOfBirth, setDayOfBirth] = useState("");
+  // const [monthOfBirth, setMonthOfBirth] = useState("");
+  // const [yearOfBirth, setYearOfBirth] = useState("");
   const [gender, setGender] = useState("");
 
   const setHandlerInputFirstName = (e) => {
@@ -323,15 +338,15 @@ let isLogged = useSelector((state) => state.userData.logged);
   const setHandlerInputPasswordReg = (e) => {
     setPasswordReg(e.target.value);
   };
-  const setHandlerInputDayOfBirth = (e) => {
-    setDayOfBirth(e.target.value);
-  };
-  const setHandlerInputMonthOfBirth = (e) => {
-    setMonthOfBirth(e.target.value);
-  };
-  const setHandlerInputYearOfBirth = (e) => {
-    setYearOfBirth(e.target.value);
-  };
+  // const setHandlerInputDayOfBirth = (e) => {
+  //   setDayOfBirth(e.target.value);
+  // };
+  // const setHandlerInputMonthOfBirth = (e) => {
+  //   setMonthOfBirth(e.target.value);
+  // };
+  // const setHandlerInputYearOfBirth = (e) => {
+  //   setYearOfBirth(e.target.value);
+  // };
   const setHandlerInputGender = (e) => {
     setGender(e.target.value);
   };

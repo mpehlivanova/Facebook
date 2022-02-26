@@ -6,7 +6,6 @@ import UUidv4 from "./Util.js";
 export default function PrintUserPosts() {
 
  const avatar = useSelector((state) => state.userData.registered[0].avatar);
-
  const userAllPost =useSelector(state=>state.actionPost.addedPosts);
  console.log(userAllPost);
  const id = UUidv4()

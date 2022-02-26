@@ -85,6 +85,8 @@ export default function FriendsCard(img, name) {
                   </Button>
                 </div>
               </div>
+          
+           
             </>
 
           )

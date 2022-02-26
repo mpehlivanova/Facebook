@@ -22,7 +22,7 @@ const useStyles = makeStyles({
   conrainerRight: {
     width: "20%",
     background: "#F2F3F5",
-    height: "120vh",
+    height: "1300vh",
     padding: "20px",
     margin: "0px",
   },
@@ -91,7 +91,7 @@ const useStyles = makeStyles({
 
 // const user ={{},{}} // all user
 
-export default function RightSideBar() {
+export default function RightSideBar(props) {
   const classes = useStyles();
 
   return (
@@ -103,16 +103,16 @@ export default function RightSideBar() {
         <CardAd />
         <CardAd />
       </div> */}
-      <div className={classes.border}>
+      {/* <div className={classes.border}>
         <ListItemButton className={classes.textSmall}>
-          <img width="30px" src={iconRd} alt="icon rd"></img>
+          <img width="30px" src={props.name} alt="icon rd"></img>
           <p className={classes.margin}>
             <strong>user name's </strong> end <strong> user name's </strong>{" "}
             birthday is today.
             <strong>your name's</strong>have hteir birthdays today.
           </p>
         </ListItemButton>
-      </div>
+      </div> */}
 
       <div>
         <List>
@@ -133,7 +133,7 @@ export default function RightSideBar() {
 
           {users.map((u) => (
             <ListItemButton className={classes.list}>
-              <BadgeAvatars src={u.image} />
+              <BadgeAvatars image={u.image} />
               <p className={classes.textSmall}>{u.name}</p>
             </ListItemButton>
           ))}

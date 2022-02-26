@@ -121,7 +121,6 @@ export default function Header() {
   const avatar = useSelector((state) => state.profile.avatar);
   const fName = useSelector((state) => state.userData.registered[0].firstName);
   const lName = useSelector((state) => state.userData.registered[0].lastName);
-  const request = useSelector((state) => state.userData.registered[0].request);
   const fullName = fName + " " + lName;
 
   console.log(avatar);

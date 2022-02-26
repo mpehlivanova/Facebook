@@ -27,8 +27,6 @@ import PersonAddAltRoundedIcon from "@mui/icons-material/PersonAddAltRounded";
 import MoodRoundedIcon from "@mui/icons-material/MoodRounded";
 import FmdGoodRoundedIcon from "@mui/icons-material/FmdGoodRounded";
 import { useDispatch, useSelector } from "react-redux";
-// import { CloseIcon } from '@mui/icons-material/Close';
-import CloseIcon from "@mui/icons-material/Close";
 import UUidv4 from "./Util";
 
 const cssStyle = makeStyles({
@@ -133,7 +131,6 @@ const cssStyle = makeStyles({
     fontFamily: "Segoe UI Historic, Helvetica, Arial",
   },
   textInput: {
-    outlineWidth: "0",
     fontSize: "medium",
     fontFamily: "Segoe UI Historic, Helvetica, Arial",
     margin: "0px 0px",
@@ -166,7 +163,6 @@ const cssStyle = makeStyles({
     margin: "10px 10px",
     fontFamily: "Segoe UI Historic, Helvetica, Arial",
     fontSize: "large",
-    outlineWidth: "0",
   },
   footer: {
     border: "1px solid #cfd0d1",
@@ -185,21 +181,22 @@ const cssStyle = makeStyles({
     width: "450px",
     height: "80px",
   },
+  type: {
+    border: "none",
+    display: "none",
+  },
 });
 
 export default function CreatePost(props) {
-
-
-  const avatar = useSelector((state) => state.profile.avatar);
+  const avatar = useSelector((state) => state.userData.registered[0].avatar);
   const fName = useSelector((state) => state.userData.registered[0].firstName);
   const lName = useSelector((state) => state.userData.registered[0].lastName);
   const fullName = fName + " " + lName;
 
-
+  const fileInput = React.useRef(null);
 
   const style = cssStyle();
   const [open, setOpen] = React.useState(false);
- 
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -209,55 +206,49 @@ export default function CreatePost(props) {
     setOpen(false);
   };
 
-
   const [fileImg, setFileImg] = React.useState("");
 
   const setHandleFildUploud = (ev) => {
-      const{files}=ev.target;
-      const localImgUrl=URL.createObjectURL(files[0])
-      setFileImg(localImgUrl)
-
+    const { files } = ev.target;
+    const localImgUrl = URL.createObjectURL(files[0]);
+    setFileImg(localImgUrl);
   };
 
   const [postText, setpPostText] = React.useState("");
- 
-  const setHandleInputPostImg=(ev)=>{
-    setpPostText(ev.target.value.trim())
-  }
 
+  const setHandleInputPostImg = (ev) => {
+    setpPostText(ev.target.value.trim());
+  };
 
   const dispatch = useDispatch();
 
-  const posts = useSelector((state)=>state.actionPost.addedPosts) //get all post from global
+  const posts = useSelector((state) => state.actionPost.addedPosts); //get all post from global
 
-  const handleCreatePost =()=>{
+  const handleCreatePost = () => {
     console.log(fileImg);
     console.log("img file");
     console.log(posts);
     console.log("create post");
-    if(postText !== ""){
-      dispatch ({type:"CREATEPOST",
-       payload:{ 
-        userName:fullName,
-        descripion:postText,
-        img:avatar,
-        story:fileImg,
-        postId:UUidv4(),
-      }})
+    if (postText !== "") {
+      dispatch({
+        type: "CREATEPOST",
+        payload: {
+          userName: fullName,
+          descripion: postText,
+          img: avatar,
+          story: fileImg,
+          postId: UUidv4(),
+        },
+      });
     }
-    }
-    
+  };
 
   return (
     <>
       <div className={style.conteiner}>
         <div className={style.topComment}>
           <ListItemIcon>
-            <img
-              className={style.img}
-              src={avatar}
-              alt="icon my profil"
-            ></img>
+            <img className={style.img} src={avatar} alt="icon my profil"></img>
           </ListItemIcon>
 
           <div onClick={handleClickOpen} className={style.divInput}>
@@ -285,8 +276,8 @@ export default function CreatePost(props) {
           <div className={style.header}>
             <h3 className={style.text}>Създаване на публикация</h3>
 
-            <IconButton  onClick={handleClose} sx={{ bgcolor: grey[200] }}>
-              <CloseIcon color="action" />
+            <IconButton onClick={handleClose} sx={{ bgcolor: grey[200] }}>
+              <AddIcon color="action" />
             </IconButton>
           </div>
           <div className={style.row}>
@@ -316,7 +307,7 @@ export default function CreatePost(props) {
             <input
               onChange={setHandleInputPostImg}
               className={style.input}
-              placeholder={`Какво мислите, ${fName}?`}
+              placeholder={`Какво мислите, ${fullName}?`}
             ></input>
           </div>
 
@@ -327,13 +318,25 @@ export default function CreatePost(props) {
 
           <div className={`${style.postAdd} ${style.footer}`}>
             <p className={style.p}>Добавете към публикацията си</p>
-            
+
             <div>
-            <input  type='file' onChange={setHandleFildUploud}></input>
-              <IconButton  size="small">
-              <PhotoLibraryOutlinedIcon sx={{ color: green[700] }} />
+              <label>
+                <input
+                  type="file"
+                  name="image"
+                  ref={fileInput}
+                  // onChange={onChange}
+                  style={{ display: "none" }}
+                  onChange={setHandleFildUploud}
+                ></input>
+              </label>
+              <IconButton
+                size="small"
+                onClick={() => fileInput.current.click()}
+              >
+                <PhotoLibraryOutlinedIcon sx={{ color: green[700] }} />
               </IconButton>
-              <IconButton  size="small">
+              <IconButton size="small">
                 <PersonAddAltRoundedIcon sx={{ color: blue[700] }} />
               </IconButton>
               <IconButton size="small">
@@ -354,12 +357,11 @@ export default function CreatePost(props) {
             className={style.buttonPost}
             variant="contained"
             // disabled
-            
-            onClick={()=>{
+
+            onClick={() => {
               // ev.preventDefault()
               handleCreatePost();
               handleClose();
-
             }}
           >
             Публикация
