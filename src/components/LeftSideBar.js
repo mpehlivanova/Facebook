@@ -48,8 +48,9 @@ const useStyles = makeStyles({
   },
   img: {
     width: "30px",
-    height:"30px",
+    height: "30px",
     borderRadius: "50%",
+    objectFit: "cover",
     // marginRight:"-15px"
   },
 
@@ -102,16 +103,16 @@ const useStyles = makeStyles({
     paddingLeft: "10px",
     textDecoration: "none",
     color: "#2c2d2d",
-    fontWeight:"600",
+    fontWeight: "600",
   },
 });
 
 export default function LeftSidebar() {
 
-  const avatar = useSelector((state) => state.profile.avatar);
-  const fName = useSelector((state) => state.userData.registered[0].firstName);
-  const lName = useSelector((state) => state.userData.registered[0].lastName);
-  const fullName = fName + " " + lName;
+ const fullName = useSelector(
+   (state) => state.userData.currLogged[0].firstName
+ );
+ const avatar = useSelector((state) => state.userData.currLogged[0].avatar);
 
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();

@@ -230,18 +230,17 @@ const useStyle = makeStyles({
 });
 
 export default function Login() {
+  // let isLogged = useSelector((state) => state.userData.logged);
 
-// let isLogged = useSelector((state) => state.userData.logged);
-
-//  const [loginData, setLoginData] = useState(
-//     localStorage.getItem("loginData") && (isLogged = true)
-//       ? JSON.parse(localStorage.getItem("loginData"))
-//       : null
-//   );
+  //  const [loginData, setLoginData] = useState(
+  //     localStorage.getItem("loginData") && (isLogged = true)
+  //       ? JSON.parse(localStorage.getItem("loginData"))
+  //       : null
+  //   );
 
   const handleFailure = (result) => {
-    alert(result)
-  }
+    alert(result);
+  };
   const handleGoogleLogin = async (googleData) => {
     console.log(googleData.profileObj.email);
     console.log(googleData);
@@ -252,7 +251,6 @@ export default function Login() {
         password: googleData.tokenObj.idpId,
         firstName: googleData.profileObj.name,
         avatar: googleData.profileObj.imageUrl,
-
       },
     });
     // const res = await fetch('/api/google-login', {
@@ -267,8 +265,7 @@ export default function Login() {
     // const data = await res.json();
     // setLoginData(data);
     // localStorage.setItem("loginData", JSON.stringify(data));
-  } 
-
+  };
 
   var validator = require("email-validator");
 
@@ -286,29 +283,27 @@ export default function Login() {
 
   const dispatch = useDispatch();
   const regUsers = useSelector((state) => state.userData.registered);
-  console.log(regUsers);
 
   const handleLogin = () => {
-   
     const user = regUsers.filter((u) => u.email === email);
     console.log(user);
 
     if (validator.validate(email)) {
       if (user && password === user[0].password) {
-        
         dispatch({
           type: "LOGIN",
           payload: {
-            email: user.email ,
-            password: user.password,
-            firstName: user.name ,
-            avatar:user.avatar,
+            email: user[0].email,
+            password: user[0].password,
+            firstName: user[0].firstName,
+            avatar: user[0].avatar,
+            
           },
           logged: true,
         });
         setError(false);
       } else {
-        console.log("pass wrong")
+        console.log("pass wrong");
         setError(true);
       }
     } else {
@@ -354,9 +349,9 @@ export default function Login() {
   const handleRegister = () => {
     if (validator.validate(emailReg)) {
       console.log(regUsers);
-      const notAvailableEmails = (regUsers.filter(u => u.email === emailReg));
+      const notAvailableEmails = regUsers.filter((u) => u.email === emailReg);
       let mailsArr = [];
-      notAvailableEmails.forEach(u => mailsArr.push(u.email));
+      notAvailableEmails.forEach((u) => mailsArr.push(u.email));
       console.log(notAvailableEmails);
       if (mailsArr.indexOf(emailReg) === -1) {
         console.log("reg");
@@ -367,8 +362,8 @@ export default function Login() {
             password: passwordReg,
             firstName: firstName,
             lastName: lastName,
-            gender: gender
-          } 
+            gender: gender,
+          },
         });
       }
     } else {
@@ -451,13 +446,13 @@ export default function Login() {
             Забравена парола?
           </a>
           <hr className={style.hr} />
-          <button className={style.createRegisterBtn} onClick={() => {
-            handleClickOpen()
-        
-          }
-          } >
+          <button
+            className={style.createRegisterBtn}
+            onClick={() => {
+              handleClickOpen();
+            }}
+          >
             Създаване на нов профил
-            
           </button>
 
           <div>
@@ -468,8 +463,7 @@ export default function Login() {
               onFailure={handleFailure}
               cookiePolicy={"single_host_origin"}
             ></GoogleLogin>
-          {/* <button className={style.loginWithGoogle}>Вход с Google</button> */}
-
+            {/* <button className={style.loginWithGoogle}>Вход с Google</button> */}
           </div>
         </div>
       </div>
@@ -560,10 +554,9 @@ export default function Login() {
             className={style.regBtnFormCreate}
             autoFocus
             onClick={() => {
-              handleRegister()
-              handleClose()
+              handleRegister();
+              handleClose();
             }}
-            
           >
             Регистрация
           </button>

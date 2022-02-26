@@ -153,6 +153,7 @@ const useStyles = makeStyles({
     width: "40px",
     height: "40px",
     borderRadius: "33px",
+    objectFit: "cover",
   },
 
   link: {
@@ -172,20 +173,22 @@ const useStyles = makeStyles({
   colorText: {
     color: "#2e81f4",
   },
+
+  avatar: {
+    objectFit: "cover",
+  },
 });
 
 export default function Post(props) {
   const post = useStyles();
-  const fName = useSelector((state) => state.userData.registered[0].firstName);
-  const lName = useSelector((state) => state.userData.registered[0].lastName);
-  const fullName = fName + " " + lName;
-  const avatar = useSelector((state) => state.profile.avatar);
+  
+  const fullName = useSelector((state) => state.userData.currLogged[0].firstName);
+  const avatar = useSelector((state) => state.userData.currLogged[0].avatar);
   const [like, isLike] = useState(false);
   const [liked, viewLiked] = useState(false);
   const [createComment, setCreateComment] = useState("");
   const [commentList, viewCommentList] = useState(false);
   const [newComment, addNewComment] = useState("");
-  
 
   const changeLikeOption = () => {
     if (like === false) {
@@ -198,24 +201,20 @@ export default function Post(props) {
   };
 
   const handleViewLiked = () => {
-    liked ? 
-    viewLiked(false) : 
-    viewLiked(true);
+    liked ? viewLiked(false) : viewLiked(true);
   };
 
   const handleViewCommentList = () => {
-    commentList ? 
-    viewCommentList(false) : 
-    viewCommentList(true);
+    commentList ? viewCommentList(false) : viewCommentList(true);
   };
 
   const setHandleCreateComment = (ev) => {
     setCreateComment(ev.target.value.trim());
   };
 
-  const handleAddNewComment=()=>{
+  const handleAddNewComment = () => {
     addNewComment("");
-  }
+  };
   const dispatch = useDispatch();
   const allPosts = useSelector((state) =>
     state.actionPost.addedPosts.map((p) => {
@@ -254,11 +253,7 @@ export default function Post(props) {
         <div className={post.header}>
           <div className={post.row}>
             <ListItemIcon>
-              <img
-                className={post.img}
-                src={avatar}
-                alt="icon my profil"
-              ></img>
+              <img className={post.img} src={avatar} alt="icon my profil"></img>
             </ListItemIcon>
             <div height="8px">
               <p className={post.textInput}>
@@ -266,7 +261,6 @@ export default function Post(props) {
               </p>
               <p className={post.textXsmall}>
                 15h *
-                
                 <PeopleIcon
                   sx={{
                     fontSize: 12,
@@ -302,7 +296,7 @@ export default function Post(props) {
             {liked ? (
               <>
                 <RecommendRoundedIcon color="primary" />
-                <p className={post.textSmall}>{like}</p> 
+                <p className={post.textSmall}>{like}</p>
               </>
             ) : null}
           </div>
@@ -335,7 +329,8 @@ export default function Post(props) {
         <div>
           <p
             onClick={handleViewCommentList}
-            className={`${post.textSmall} ${post.hover}`}>
+            className={`${post.textSmall} ${post.hover}`}
+          >
             Преглед на предишните коментари
           </p>
 
@@ -345,7 +340,7 @@ export default function Post(props) {
                   <>
                     <div key={com.commentId} className={post.row}>
                       <div>
-                        <BadgeAvatars image={avatar} />
+                        <BadgeAvatars className={post.avatar} image={avatar} />
                       </div>
                       <div className={post.input}>
                         <p className={post.addedCom}>{com.comment}</p>
@@ -369,7 +364,7 @@ export default function Post(props) {
               className={post.inputComment}
               type="text"
               placeholder="Write a comment"
-               value={createComment}
+              value={createComment}
             ></input>
 
             <div>
@@ -381,8 +376,7 @@ export default function Post(props) {
                   console.log(onePostComment);
                   console.log("added Comment");
                 }}
-                sx={{ textTransform: "none",
-                }}
+                sx={{ textTransform: "none" }}
               >
                 <AddIcon color="disabled" />
               </Button>

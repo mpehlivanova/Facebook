@@ -22,7 +22,7 @@ import NotificationsRoundedIcon from "@mui/icons-material/NotificationsRounded";
 // import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import PopUpUserMenu from "./PopUpUserMenu";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 const useStyles = makeStyles({
   iconCentrum: {
@@ -82,9 +82,10 @@ const useStyles = makeStyles({
   },
   profile_image: {
     height: "25px",
-    width:"25px",
+    width: "25px",
     borderRadius: "33px",
     marginRight: "5px",
+    objectFit: "cover",
   },
   right_header: {
     display: "flex",
@@ -117,13 +118,23 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Header() {
-  const avatar = useSelector((state) => state.profile.avatar);
-  const fName = useSelector((state) => state.userData.registered[0].firstName);
-  const lName = useSelector((state) => state.userData.registered[0].lastName);
-  const fullName = fName + " " + lName;
 
-  console.log(avatar);
+
+export default function Header() {
+
+  const dispatch = useDispatch();
+  const clearCurrLoggedUser = () => {
+    dispatch({
+      type: "LOGOUT",
+      // payload: null,
+      logged: false,
+    });
+  };
+
+  const avatar = useSelector((state) => state.userData.currLogged[0].avatar);
+  const fullName = useSelector((state) => state.userData.currLogged[0].firstName);
+  
+  // console.log(avatar);
   const classes = useStyles();
 
   return (
@@ -264,7 +275,7 @@ export default function Header() {
             </IconButton>
           </Link>
 
-          <PopUpUserMenu sx={{ color: "black" }} />
+          <PopUpUserMenu onClick={clearCurrLoggedUser} sx={{ color: "black" }} />
         </div>
 
         {/* 

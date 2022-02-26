@@ -183,12 +183,13 @@ export default function ProfilePageTop() {
   };
 
   const style = useStyle();
-  const avatar = useSelector((state) => state.profile.avatar);
+ const fullName = useSelector(
+   (state) => state.userData.currLogged[0].firstName
+ );
+ const avatar = useSelector((state) => state.userData.currLogged[0].avatar);
   const coverPhoto = useSelector((state) => state.profile.coverPhoto);
 
-  const fName = useSelector((state) => state.userData.registered[0].firstName);
-  const lName = useSelector((state) => state.userData.registered[0].lastName);
-  const fullName = fName + " " + lName;
+
 
   return (
     <>

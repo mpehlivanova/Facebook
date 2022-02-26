@@ -41,6 +41,8 @@ const cssStyle = makeStyles({
     width: "40px",
     height: "40px",
     borderRadius: "33px",
+    objectFit: "cover",
+
   },
   conteiner: {
     width: "75%",
@@ -188,16 +190,13 @@ const cssStyle = makeStyles({
 });
 
 export default function CreatePost(props) {
-  const avatar = useSelector((state) => state.userData.registered[0].avatar);
-  const fName = useSelector((state) => state.userData.registered[0].firstName);
-  const lName = useSelector((state) => state.userData.registered[0].lastName);
-  const fullName = fName + " " + lName;
-
+  const fullName = useSelector(
+    (state) => state.userData.currLogged[0].firstName
+  );
+  const avatar = useSelector((state) => state.userData.currLogged[0].avatar);
   const fileInput = React.useRef(null);
-
   const style = cssStyle();
   const [open, setOpen] = React.useState(false);
-
   const handleClickOpen = () => {
     setOpen(true);
   };

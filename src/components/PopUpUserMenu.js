@@ -25,11 +25,9 @@ import { makeStyles } from '@mui/styles';
 
 
 export default function AccountMenu() {
-
-  const avatar = useSelector((state) => state.userData.registered[0].avatar);
-  const fName = useSelector((state) => state.userData.registered[0].firstName);
-  const lName = useSelector((state) => state.userData.registered[0].lastName);
-  const fullName = fName + " " + lName;
+const avatar = useSelector((state) => state.userData.currLogged[0].avatar);
+const fullName = useSelector((state) => state.userData.currLogged[0].firstName);
+  
   const dispatch = useDispatch();
 
   const handleLogout = () => {
