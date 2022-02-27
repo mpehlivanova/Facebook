@@ -12,6 +12,10 @@ import { Button } from "react-rainbow-components";
 import GifBoxOutlinedIcon from "@mui/icons-material/GifBoxOutlined";
 import SentimentSatisfiedOutlinedIcon from "@mui/icons-material/SentimentSatisfiedOutlined";
 import ButtonPost from "./ButtonPost";
+import AddIcon from "@mui/icons-material/Add";
+
+import { Picker } from "@material-ui/pickers";
+import EmojiPicker, { SKIN_TONE_MEDIUM_DARK } from "emoji-picker-react";
 
 const useStyles = makeStyles({
   row: {
@@ -20,6 +24,7 @@ const useStyles = makeStyles({
     alignItems: "center",
     paddingLeft: "5px",
     poddingLeft: "10px",
+    gap: "5px",
   },
 
   iconContact: {
@@ -31,10 +36,10 @@ const useStyles = makeStyles({
     border: "none",
     backgroundColor: " #eff2f5",
     padding: "5px",
-    borderRadius: "0px",
-    width: "60%",
+    borderRadius: "50px",
+    width: "80%",
     height: "20px",
-    "&focus": { border: "none" },
+    outlineWidth: "0",
   },
   commenrWrite: {
     display: "flex",
@@ -52,70 +57,89 @@ const useStyles = makeStyles({
 
 export default function CreateComment(props) {
   const post = useStyles();
-  const [createComment, setCreateComment] = useState("");
-  const setHandleCreateComment = (ev) => {
-    setCreateComment(ev.target.value.trim());
-    // console.log(createComment);
+  const fullName = useSelector(
+    (state) => state.userData.currLogged[0].firstName
+  );
+  const avatar = useSelector((state) => state.userData.currLogged[0].avatar);
+  const [comment, setComment] = useState("");
+
+  const setHandleComment = (ev) => {
+    setComment(ev.target.value);
   };
 
-  // const cleanInput = () => {
-  //   setCreateComment("");
-  // }
+  const handleViewEmoji=()=>{
+    viewEmoji?setViewEmoji(false):setViewEmoji(true)
+  }
+
+  const onEmojiClick = (ev, emojiObject) => {
+    setComment(comment=>comment + emojiObject.emoji);
+    setViewEmoji(false);
+    console.log(comment + emojiObject.emoji);
+  };
   const dispatch = useDispatch();
-  const allPost = useSelector((state) =>
-    state.actionPost.addedPosts.map((el) => el.addedCommented)
-  );
 
   const handleCreateComment = () => {
-    console.log(allPost);
-    console.log("create comment");
-
-    dispatch({
-      type: "CREATECOMMENT",
-      payload: {
-        addedCommented: {
-          comment: createComment,
-          idComment: { UUidv4 },
+    console.log(" allPosts");
+    if (comment.length !== 0) {
+      dispatch({
+        type: "CREATECOMMENT",
+        payload: {
+          comment: comment,
+          idcomment: UUidv4(),
+          postId: props.id,
         },
-      },
-    });
-    setCreateComment("")
+      });
+    }
   };
 
+  const [viewEmoji, setViewEmoji] = React.useState(null);
+ 
   return (
     <>
       <div className={post.row}>
         <div>
-          <BadgeAvatars />
+          <BadgeAvatars image={avatar} />
         </div>
-        <div className={post.commenrWrite}>
+        <div className={`${post.commenrWrite}`}>
           <input
-            onChange={setHandleCreateComment}
+            onChange={setHandleComment}
             className={post.inputComment}
-            value={createComment}
             type="text"
             placeholder="White a comment"
           ></input>
 
-          <div className={post.row}>
-            <div onClick={() => {
-              handleCreateComment()
-              // cleanInput()
-            }}>
-              <ButtonPost name="add"></ButtonPost>
-            </div>
-            <IconButton size="small">
-              <SentimentSatisfiedOutlinedIcon className={post.iconContact} />
-            </IconButton>
-            <IconButton size="small">
-              <PhotoCameraOutlinedIcon className={post.iconContact} />
-            </IconButton>
-            <IconButton size="small">
-              <StickyNote2OutlinedIcon className={post.iconContact} />
+          <div
+            className={post.row}
+            onClick={() => {
+              handleCreateComment();
+            }}
+          >     <IconButton size="small">
+            <AddIcon size="small" color="disabled" />
             </IconButton>
           </div>
+          <IconButton size="small">
+            <SentimentSatisfiedOutlinedIcon
+              onClick={handleViewEmoji}
+              className={post.iconContact}
+            />
+          </IconButton>
+          <IconButton size="small">
+            <PhotoCameraOutlinedIcon className={post.iconContact} />
+          </IconButton>
+          <IconButton size="small">
+            <StickyNote2OutlinedIcon className={post.iconContact} />
+          </IconButton>
         </div>
+       
       </div>
+      {viewEmoji && <EmojiPicker
+            pickerStyle={{width: "450px"}}
+            onEmojiClick={onEmojiClick}
+            disableAutoFocus={true}
+            skinTone={SKIN_TONE_MEDIUM_DARK}
+            groupNames={{ smileys_people: "PEOPLE" }}
+            native
+            />}
     </>
   );
 }

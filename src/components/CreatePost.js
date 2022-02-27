@@ -28,6 +28,7 @@ import MoodRoundedIcon from "@mui/icons-material/MoodRounded";
 import FmdGoodRoundedIcon from "@mui/icons-material/FmdGoodRounded";
 import { useDispatch, useSelector } from "react-redux";
 import UUidv4 from "./Util";
+import EmojiPicker, { SKIN_TONE_MEDIUM_DARK } from "emoji-picker-react";
 
 const cssStyle = makeStyles({
   topComment: {
@@ -107,7 +108,6 @@ const cssStyle = makeStyles({
   },
   containerPost: {
     width: "500px",
-    height: "300px",
     backgroundColor: "whate",
   },
   header: {
@@ -151,6 +151,7 @@ const cssStyle = makeStyles({
     borderRadius: "5px",
     gap: "2px",
     backgroundColor: "#CCCCCC",
+    justifyContent:"center"
   },
   postAdd: {
     display: "flex",
@@ -160,11 +161,13 @@ const cssStyle = makeStyles({
     margin: "10px 10px",
   },
   input: {
+    width: "480px",
     border: "none",
     color: "#8A8D91",
     margin: "10px 10px",
     fontFamily: "Segoe UI Historic, Helvetica, Arial",
     fontSize: "large",
+    outlineWidth: "0",
   },
   footer: {
     border: "1px solid #cfd0d1",
@@ -182,10 +185,17 @@ const cssStyle = makeStyles({
   inputTextPost: {
     width: "450px",
     height: "80px",
+    outlineWidth: "0",
   },
   type: {
     border: "none",
     display: "none",
+  },
+    emojiConatinerView:{
+    width: "480px",
+    display:"flex",
+    justifyContent:"center",
+
   },
 });
 
@@ -194,6 +204,7 @@ export default function CreatePost(props) {
     (state) => state.userData.currLogged[0].firstName
   );
   const avatar = useSelector((state) => state.userData.currLogged[0].avatar);
+  const logUserEmail = useSelector((state) => state.userData.currLogged[0].logIdUse);
   const fileInput = React.useRef(null);
   const style = cssStyle();
   const [open, setOpen] = React.useState(false);
@@ -204,6 +215,21 @@ export default function CreatePost(props) {
   const handleClose = () => {
     setOpen(false);
   };
+  const [viewEmoji, setViewEmoji] = React.useState(false);
+  const [viewPhotoPost, setviewPhotoPost] = React.useState(false);
+
+  const handleviewPhotoPost=()=>{
+    viewPhotoPost?setviewPhotoPost(false):setviewPhotoPost(true)
+  }
+  const handleViewEmoji=()=>{
+    viewEmoji?setViewEmoji(false):setViewEmoji(true)
+  }
+
+  const onEmojiClick = (event, emojiObject) => {
+    setInputText(inputText=>inputText + emojiObject.emoji);
+    setViewEmoji(false);
+    console.log(inputText + emojiObject.emoji);
+  };
 
   const [fileImg, setFileImg] = React.useState("");
 
@@ -213,33 +239,34 @@ export default function CreatePost(props) {
     setFileImg(localImgUrl);
   };
 
-  const [postText, setpPostText] = React.useState("");
+  const [inputText, setInputText] = React.useState("");
 
-  const setHandleInputPostImg = (ev) => {
-    setpPostText(ev.target.value.trim());
-  };
+  // const setHandleInputPost = (ev) => {
+  //   setpInputText(ev.target.value.trim());
+  // };
+  
 
   const dispatch = useDispatch();
 
-  const posts = useSelector((state) => state.actionPost.addedPosts); //get all post from global
+  const posts = useSelector((state) => state.actionPost.addedPosts); 
 
   const handleCreatePost = () => {
-    console.log(fileImg);
-    console.log("img file");
-    console.log(posts);
-    console.log("create post");
-    if (postText !== "") {
-      dispatch({
-        type: "CREATEPOST",
-        payload: {
-          userName: fullName,
-          descripion: postText,
-          img: avatar,
-          story: fileImg,
-          postId: UUidv4(),
-        },
-      });
-    }
+if(inputText.length > 0 || fileImg.length > 0){ 
+  dispatch({
+  type: "CREATEPOST",
+  payload: {
+    userName: fullName,
+    descripion: inputText,
+    img: avatar,
+    story: fileImg,
+    postId: UUidv4(),
+    logIdUser: logUserEmail,
+  },
+});
+
+}
+     
+    
   };
 
   return (
@@ -304,15 +331,31 @@ export default function CreatePost(props) {
           </div>
           <div className={style.inputTextPost}>
             <input
-              onChange={setHandleInputPostImg}
+              onChange={ e => setInputText(e.target.value.trim())}
               className={style.input}
               placeholder={`Какво мислите, ${fullName}?`}
             ></input>
           </div>
+          <div className={style.emojiConatinerView}>
+            {
+            viewPhotoPost ?(<img  width="200px" src={fileImg} alt="addPhotoStory"></img>):(null)
+            }
+          </div>
+          {
+            viewEmoji?(     
+            <EmojiPicker
+            pickerStyle={{width: "480px"}}
+            onEmojiClick={onEmojiClick}
+            disableAutoFocus={true}
+            skinTone={SKIN_TONE_MEDIUM_DARK}
+            groupNames={{ smileys_people: "PEOPLE" }}
+            native
+            />):(null)
+         }
 
           <div className={style.postAdd}>
             <img src={colorImg} alt="imgColor"></img>
-            <SentimentSatisfiedAltIcon color="action" />
+            <SentimentSatisfiedAltIcon   onClick={handleViewEmoji} color="action" />
           </div>
 
           <div className={`${style.postAdd} ${style.footer}`}>
@@ -324,7 +367,6 @@ export default function CreatePost(props) {
                   type="file"
                   name="image"
                   ref={fileInput}
-                  // onChange={onChange}
                   style={{ display: "none" }}
                   onChange={setHandleFildUploud}
                 ></input>
@@ -333,13 +375,14 @@ export default function CreatePost(props) {
                 size="small"
                 onClick={() => fileInput.current.click()}
               >
-                <PhotoLibraryOutlinedIcon sx={{ color: green[700] }} />
+                <PhotoLibraryOutlinedIcon onClick={handleviewPhotoPost} 
+                sx={{ color: green[700] }} />
               </IconButton>
               <IconButton size="small">
                 <PersonAddAltRoundedIcon sx={{ color: blue[700] }} />
               </IconButton>
               <IconButton size="small">
-                <MoodRoundedIcon sx={{ color: yellow[700] }} />
+                <MoodRoundedIcon  onClick={handleViewEmoji} sx={{ color: yellow[700] }} />
               </IconButton>
               <IconButton size="small">
                 <FmdGoodRoundedIcon sx={{ color: red[700] }} />
@@ -361,6 +404,8 @@ export default function CreatePost(props) {
               // ev.preventDefault()
               handleCreatePost();
               handleClose();
+              setViewEmoji();
+              setviewPhotoPost();
             }}
           >
             Публикация

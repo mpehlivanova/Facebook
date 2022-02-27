@@ -15,10 +15,11 @@ import PhotoCameraOutlinedIcon from "@mui/icons-material/PhotoCameraOutlined";
 import StickyNote2OutlinedIcon from "@mui/icons-material/StickyNote2Outlined";
 import IconButton from "@mui/material/IconButton";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
-import UserDisny from "./userDisny";
+
 import { Player } from 'video-react';
 import { IFrame } from "./IFrame.js";
 import { useState } from 'react';
+import UserStories from "./UserStories.js";
 
 
 const useStyles = makeStyles({
@@ -198,7 +199,7 @@ export default function VideoPost() {
 
   return (
     <>
-      {UserDisny.map((user,i) => {
+      {UserStories.map((user,i) => {
         return (
           <>
             <div key={uuidv4()} className={post.conrainerPost}>
