@@ -53,19 +53,18 @@ const useStyles = makeStyles({
   
 });
 
-
 export default function CommentList(props) {
   const post = useStyles();
-  const avatar = useSelector((state) => state.userData.registered[0].avatar);
+
   return (
     <>
       <div>
         <div key={UUidv4} className={post.row}>
           <div>
-            <BadgeAvatars img={avatar} />
+            <BadgeAvatars />
           </div>
           <div className={post.input}>
-            <p clasName={post.addedComment}>{props.text}</p>
+            <p clasName={post.addedComment}>{"com.comment"}</p>
           </div>
           <IconButton size="small">
             <MoreHorizIcon color="disabled" />

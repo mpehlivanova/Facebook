@@ -12,7 +12,6 @@ import { Button } from "react-rainbow-components";
 import GifBoxOutlinedIcon from "@mui/icons-material/GifBoxOutlined";
 import SentimentSatisfiedOutlinedIcon from "@mui/icons-material/SentimentSatisfiedOutlined";
 import ButtonPost from "./ButtonPost";
-import AddIcon from "@mui/icons-material/Add";
 
 const useStyles = makeStyles({
   row: {
@@ -35,7 +34,7 @@ const useStyles = makeStyles({
     borderRadius: "0px",
     width: "60%",
     height: "20px",
-    outlineWidth: "0"
+    "&focus": { border: "none" },
   },
   commenrWrite: {
     display: "flex",
@@ -54,33 +53,34 @@ const useStyles = makeStyles({
 export default function CreateComment(props) {
   const post = useStyles();
   const [createComment, setCreateComment] = useState("");
-
   const setHandleCreateComment = (ev) => {
     setCreateComment(ev.target.value.trim());
+    // console.log(createComment);
   };
+
+  // const cleanInput = () => {
+  //   setCreateComment("");
+  // }
   const dispatch = useDispatch();
- 
+  const allPost = useSelector((state) =>
+    state.actionPost.addedPosts.map((el) => el.addedCommented)
+  );
 
- const handleCreateComment = () => {
-  // console.log(createComment);
-  // console.log(allPostsComment);
-  // console.log(onePostComment);
-  // console.log("create comment");
+  const handleCreateComment = () => {
+    console.log(allPost);
+    console.log("create comment");
 
-  console.log(" allPosts");
-  if (createComment.length !== 0) {
     dispatch({
       type: "CREATECOMMENT",
       payload: {
-        comment: createComment,
-        idcomment: UUidv4(),
-        postId: props.id,
+        addedCommented: {
+          comment: createComment,
+          idComment: { UUidv4 },
+        },
       },
     });
-  }
-};
-
-const avatar = useSelector((state) => state.userData.registered[0].avatar);
+    setCreateComment("")
+  };
 
   return (
     <>
@@ -98,34 +98,11 @@ const avatar = useSelector((state) => state.userData.registered[0].avatar);
           ></input>
 
           <div className={post.row}>
-            <div>
-              <BadgeAvatars img ={avatar} />
-            </div>
-            <div className={`${post.commenrWrite}`}>
-              <input
-                onChange={setHandleCreateComment}
-                className={post.inputComment}
-                type="text"
-                placeholder="White a comment"
-              ></input>
-
-              <div className={post.row}>
-              <div  onClick={ handleCreateComment}>
-              <ButtonPost icon={<AddIcon color="disabled"/>} >
-              <AddIcon size="small" color="disabled" />
-              </ButtonPost>
-             </div>
-                <IconButton size="small">
-                  <SentimentSatisfiedOutlinedIcon
-                    className={post.iconContact}/>
-                </IconButton>
-                <IconButton size="small">
-                  <PhotoCameraOutlinedIcon className={post.iconContact} />
-                </IconButton>
-                <IconButton size="small">
-                  <StickyNote2OutlinedIcon className={post.iconContact} />
-                </IconButton>
-              </div>
+            <div onClick={() => {
+              handleCreateComment()
+              // cleanInput()
+            }}>
+              <ButtonPost name="add"></ButtonPost>
             </div>
             <IconButton size="small">
               <SentimentSatisfiedOutlinedIcon className={post.iconContact} />

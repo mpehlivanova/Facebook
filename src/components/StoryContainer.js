@@ -1,34 +1,22 @@
-import React from "react";
-import CreateStory from "./CreateStory";
-import StoryBox from "./StoryBox";
-import { makeStyles } from "@mui/styles";
-import { userActivate } from "video-react/lib/actions/player";
-import userDisny from "./userDisny";
+import React from 'react';
+import CreateStory from './CreateStory';
+import StoryBox from './StoryBox';
+import { makeStyles } from '@mui/styles';
 
 const useStyle = makeStyles({
-  storyContainer: {
-    width: "130%",
-    display: "flex",
-    justifyContent: "center",
-  },
-});
+    storyContainer: { 
+        width: "130%",
+        display: 'flex',
+        justifyContent: 'center',    
+    }
+})
 
 export default function StoryContainer() {
-  const style = useStyle();
+    const style = useStyle();
   return (
-    <div className={style.storyContainer}>
-      <CreateStory />
-      {userDisny.map((u) => {
-        return (
-          <StoryBox
-            key={u.name}
-            img={u.story}
-            avatar={u.avatar}
-            name={u.name}
-            story={u.story}
-          />
-        );
-      })}
+      <div className={style.storyContainer}>
+          <CreateStory />
+          <StoryBox/>
     </div>
-  );
+  )
 }

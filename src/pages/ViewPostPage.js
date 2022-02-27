@@ -11,27 +11,26 @@ import { grey } from "@mui/material/colors";
 import CommentList from "../components/Post/CommentList";
 import { useSelector } from "react-redux";
 import CreateComment from "../components/Post/CreateComment";
-import { IconButton } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
+
 
 const useStyle = makeStyles({
   container: {
     width: "100%",
-    height: "100vh",
+    height: "70vh",
     display: "flex",
     flexDirection: "row",
-    // padding: "46px 0px 0px 0px",
+    padding: "46px 0px 0px 0px",
   },
   leftDiv: {
     width: "70%",
-    // height: "100vh",
+    height: "94vh",
     backgroundColor: "rgb(0,0,0,0.85)",
     display: "flex",
     justifyContent: "center",
   },
   rightDiv: {
     width: "30%",
-    height: "100vh",
+    height: "94vh",
     backgroundColor: "white",
     display: "flex",
     flexDirection: "column",
@@ -39,7 +38,7 @@ const useStyle = makeStyles({
   },
   img: {
     width: "65%",
-    // height: "100vh",
+    height: "94vh",
   },
   right: {
     display: "flex",
@@ -69,13 +68,13 @@ const useStyle = makeStyles({
   },
 });
 
-export default function ViewPostPage(props) {
+export default function ViewPostPage() {
+
   const avatar = useSelector((state) => state.userData.registered[0].avatar);
   const fName = useSelector((state) => state.userData.registered[0].firstName);
   const lName = useSelector((state) => state.userData.registered[0].lastName);
   const fullName = fName + " " + lName;
 
-  const post = useSelector((state) => state.userData.addedPosts);
 
   const viewPost = useStyle();
   const [like, isLike] = useState(false);
@@ -90,65 +89,51 @@ export default function ViewPostPage(props) {
       isLike(false);
     }
   };
-  
-  const allPostsComment = useSelector((state) => state.actionPost.addedComment);
-  const onePostComment = allPostsComment.filter(
-    (com) => com.postId === props.id
-  );
-  const [numberComment, setNumbetCommentt] = useState("");
-
-  const handleAddNewComment = () => {
-    setNumbetCommentt(onePostComment.length+"коментари");
-  };
-
-
-  const handleViewLiked = (props) => {
+  const handleViewLiked = () => {
     liked ? viewLiked(false) : viewLiked(true);
   };
-  const [commentList, viewCommentList] = useState(true);
+  const [commentList, viewCommentList] = useState(false);
   const handleViewCommentList = () => {
     commentList ? viewCommentList(false) : viewCommentList(true);
   };
 
-
+  const allCommentList = useSelector(
+    (state) => state.actionPost.addedCommented
+  );
 
   return (
     <>
       <div className={viewPost.container}>
         <div className={viewPost.leftDiv}>
-            <CloseIcon
-            onClick={props.handleClose}
-            sx={{
-              fontSize: 24,
-              color: grey[200],
-              margin: "5px 10px",
-            }}
-          />
-          <img className={viewPost.img} src={props.img} alt="user post"></img>
+          <img
+            className={viewPost.img}
+            src={"https://i.pinimg.com/736x/88/73/26/88732696e902cd550f8c63a048d8e003.jpg"}
+            alt="user post"
+          ></img>
         </div>
         <div className={viewPost.rightDiv}>
           <div className={viewPost.right}>
             <RightButton />
           </div>
-          <PostHeader userName="Ivan" imgUser={props.avatar} />
+
+          <PostHeader
+            userName="Ivan"
+            imgUser={avatar}
+          />
+
+          {/* //Button  */}
           <div className={viewPost.likeConrainer}>
             <div>
+              {/* <FavoriteRoundedIcon sx={{ color: red[600] }} /> */}
               {liked ? (
-                <div className={viewPost.likeConrainer}>
+                <div>
                   <RecommendRoundedIcon color="primary" />
                   <p className={viewPost.textSmall}>{like}</p>
                 </div>
               ) : null}
             </div>
-            {
-            commentList  ? (
-                <p 
-                onChange={handleAddNewComment} 
-                className={viewPost.textSmall}>{ onePostComment.length} коментар</p>
-              ):(null)
 
-            }
-           
+            <p className={viewPost.textSmall}>1 commentar</p>
           </div>
           <div className={viewPost.buttonBox}>
             <div
@@ -162,8 +147,9 @@ export default function ViewPostPage(props) {
                 icon={<ThumbUpOutlinedIcon sx={{ mr: 1 }} color="action" />}
               ></ButtonPost>
             </div>
-            <div
-            onClick={handleViewCommentList}>
+            <div 
+            // onClick={handleViewCommentList}
+            >
               <ButtonPost
                 name="Comment"
                 icon={<ModeCommentOutlinedIcon sx={{ mr: 1 }} color="action" />}
@@ -171,31 +157,21 @@ export default function ViewPostPage(props) {
             </div>
           </div>
 
+          {/* //Comments  */}
           <div>
-            <p 
-            onClick={handleViewCommentList}
-            className={`${viewPost.textSmall} ${viewPost.hover}`}>
+            <p
+
+              className={`${viewPost.textSmall} ${viewPost.hover}`}
+            >
               View previouse comments
             </p>
-          {
-            commentList?(
-              onePostComment.map(com=>{
-              return(
-                <>
-                <CommentList
-                text={com.comment}
-                 /> 
-                </>
-
-              )
-            })
-            ):(null)
-            
-
-          }
-          <CreateComment/>
+            {commentList
+              ? allCommentList.map((com) => {
+                  return <CommentList />;
+                })
+              : null}
           </div>
-         
+          <CreateComment/>
         </div>
       </div>
     </>
