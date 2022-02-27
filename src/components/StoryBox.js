@@ -80,7 +80,6 @@ export default function StoryBox() {
       {
         stories.map((story) => {
 
-         
         return (
           <div key={story.name}
             className={style.storyWrapper}

@@ -7,8 +7,7 @@ const useStyle = makeStyles({
     storyContainer: { 
         width: "130%",
         display: 'flex',
-        justifyContent: 'center',
-        
+        justifyContent: 'center',    
     }
 })
 

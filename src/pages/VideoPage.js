@@ -7,7 +7,6 @@ import { Avatar } from "@mui/material";
 // import Post from "../components/Post";
 import VideoPost from "../components/VideoPost";
 
-
 const useStyle = makeStyles({
     container: {
         marginTop: "50px",
@@ -43,13 +42,7 @@ const useStyle = makeStyles({
     iconStyle:{
         color:"black"
     }  
-
-
-
-
-
 })
-
 
 export default function Video() {
     const style = useStyle();
@@ -58,9 +51,7 @@ export default function Video() {
 
             <div className={style.leftBarVideo}>
                 <h3>Watch</h3>
-
                 <div className="topLeftBar">
-
                     <div className={style.option}>
                         <OndemandVideoIcon className={style.iconStyle} fontSize="large"/>
                         <h2 className={style.textInfo}>Начало</h2>
