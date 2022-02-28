@@ -1,6 +1,7 @@
 import React from "react";
 // import "../components-css/StoryBox"
 import { makeStyles } from "@mui/styles";
+import UserStories from "./UserStories";
 // import users from "../server/users"
 export default function StoryBox() {
   const stories = [
@@ -78,7 +79,7 @@ export default function StoryBox() {
   return (
     <>
       {
-        stories.map((story) => {
+        UserStories.map((story) => {
 
         return (
           <div key={story.name}

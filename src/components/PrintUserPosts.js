@@ -5,13 +5,16 @@ import UUidv4 from "./Util.js";
 
 export default function PrintUserPosts() {
 
- const avatar = useSelector((state) => state.userData.registered[0].avatar);
- const userAllPost =useSelector(state=>state.actionPost.addedPosts);
- console.log(userAllPost);
+  const avatar = useSelector((state) => state.userData.currLogged[0].avatar);
+  const logUserEmail = useSelector((state) => state.userData.currLogged[0].logIdUse);
+const allPost =useSelector(state=>state.actionPost.addedPosts);
+ const userLogPost =allPost.filter(u=>u.logIdUse === logUserEmail)
+ console.log(userLogPost);
+ console.log("userLogPost");
  const id = UUidv4()
  return (
     <>
-      {userAllPost.map((post) => {
+      {userLogPost.map((post) => {
           return(
               
                   <Post 
