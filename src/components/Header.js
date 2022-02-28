@@ -221,7 +221,7 @@ export default function Header() {
               <img
                 className={classes.profile_image}
                 src={avatar}
-                alt="icon my profil"
+                alt="avatar"
               />
               <p>{fullName}</p>
             </div>

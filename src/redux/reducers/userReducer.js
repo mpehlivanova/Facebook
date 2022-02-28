@@ -13,6 +13,7 @@ const INITIAL_STATE = {
        
     },
   ],
+
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -36,7 +37,12 @@ const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         registered: [...state.registered, action.payload],
       };
-   
+    // case "CHANGEAVATAR":
+    //   return {
+    //     ...state,
+    //     currLogged: [...state.avatar, action.payload],
+    //   };
+
     default:
       return state;
   }

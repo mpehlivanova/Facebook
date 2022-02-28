@@ -257,6 +257,7 @@ export default function Post(props) {
           postId: props.id,
         },
       });
+      setComment("");
     }
   };
 

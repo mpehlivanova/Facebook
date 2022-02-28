@@ -49,13 +49,14 @@ const useStyle = makeStyles({
     width: "400px",
     textAlign: "center",
     fontFamilies: "Helvetica",
+  height: "15px",
   },
   friendsContainer: {
     borderRadius: "5px",
     marginTop: "15px",
     display: "grid",
     gridTemplateColumns: "1fr 1fr 1fr",
-    gap: "5px",
+    gap: "10px",
 
   }
 });
