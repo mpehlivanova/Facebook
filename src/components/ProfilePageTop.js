@@ -166,6 +166,7 @@ export default function ProfilePageTop() {
       payload: `${coverImageURL}`,
     });
   };
+
   const handleClickOpenCover = () => {
     setOpenCover(true);
   };
@@ -178,8 +179,6 @@ export default function ProfilePageTop() {
     setAvatarImageURL(ev.target.value.trim());
     // console.log(avatarImageURL);
    
-
-    
   };
   const changeAvatarPhoto = () => {
     console.log(avatarImageURL + "  hi");
@@ -190,7 +189,6 @@ export default function ProfilePageTop() {
       type: "CHANGEAVATAR",
       payload: `${avatarImageURL}`,
     });
-
   };
 
   const handleClickOpenAvatar = () => {
@@ -200,7 +198,7 @@ export default function ProfilePageTop() {
     setOpenAvatar(false);
   };
 
-  const style = useStyle();
+const style = useStyle();
  const fullName = useSelector(
    (state) => state.userData.currLogged[0].firstName
  );
@@ -249,7 +247,7 @@ export default function ProfilePageTop() {
             </DialogActions>
           </Dialog>
 
-         <img className={style.userAvatar} src={avatarImageURL ? avatarImageURL : avatar} alt="userAvatar" />
+         <img className={style.userAvatar} src= {avatar} alt="userAvatar" />
           <CameraAltIcon />
           <button
             className={style.cameraAvatarBtn}
