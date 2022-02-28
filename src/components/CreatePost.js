@@ -260,10 +260,11 @@ if(inputText.length > 0 || fileImg.length > 0){
     img: avatar,
     story: fileImg,
     postId: UUidv4(),
-    logIdUser: logUserEmail,
   },
+  
 });
-
+setInputText("");
+setFileImg("");
 }
      
     
@@ -334,6 +335,7 @@ if(inputText.length > 0 || fileImg.length > 0){
               onChange={ e => setInputText(e.target.value.trim())}
               className={style.input}
               placeholder={`Какво мислите, ${fullName}?`}
+              value={inputText}
             ></input>
           </div>
           <div className={style.emojiConatinerView}>
@@ -342,7 +344,7 @@ if(inputText.length > 0 || fileImg.length > 0){
             }
           </div>
           {
-            viewEmoji?(     
+            viewEmoji &&    
             <EmojiPicker
             pickerStyle={{width: "480px"}}
             onEmojiClick={onEmojiClick}
@@ -350,7 +352,7 @@ if(inputText.length > 0 || fileImg.length > 0){
             skinTone={SKIN_TONE_MEDIUM_DARK}
             groupNames={{ smileys_people: "PEOPLE" }}
             native
-            />):(null)
+            />
          }
 
           <div className={style.postAdd}>
@@ -369,13 +371,14 @@ if(inputText.length > 0 || fileImg.length > 0){
                   ref={fileInput}
                   style={{ display: "none" }}
                   onChange={setHandleFildUploud}
+                  // value={}
                 ></input>
               </label>
               <IconButton
                 size="small"
-                onClick={() => fileInput.current.click()}
+                onClick={() => {fileInput.current.click();handleviewPhotoPost()}}
               >
-                <PhotoLibraryOutlinedIcon onClick={handleviewPhotoPost} 
+                <PhotoLibraryOutlinedIcon 
                 sx={{ color: green[700] }} />
               </IconButton>
               <IconButton size="small">

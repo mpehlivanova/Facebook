@@ -22,6 +22,7 @@ import ViewPostPage from "../pages/ViewPostPage.js";
 // import { type } from "@testing-library/user-event/dist/type";
 import CloseIcon from "@mui/icons-material/Close";
 import EmojiPicker, { SKIN_TONE_MEDIUM_DARK } from "emoji-picker-react";
+import PostHeader from "./Post/PostHeader.js";
 
 const useStyles = makeStyles({
   conrainerPost: {
@@ -33,12 +34,6 @@ const useStyles = makeStyles({
     boxShadow: "5px 5px 5px 5px rgb(169,169,169,0.25)",
     borderRadius: "10px",
     paddingBottom: "20px",
-  },
-  header: {
-    display: "flex",
-    justifyContent: "space-between",
-    height: "20px",
-    padding: "20px",
   },
   row: {
     display: "flex",
@@ -152,11 +147,7 @@ const useStyles = makeStyles({
     borderRadius: "20px",
     marginLeft: "5px",
   },
-  img: {
-    width: "40px",
-    height: "40px",
-    borderRadius: "33px",
-  },
+
 
   link: {
     textDecoration: "none",
@@ -231,7 +222,7 @@ export default function Post(props) {
     console.log(comment + emojiObject.emoji);
   };
 
-  const handleAddNewComment = () => {
+  const handleNumberComment = () => {
     numberComment ? setNumbetComment(false) : setNumbetComment(true);
   };
 
@@ -257,45 +248,14 @@ export default function Post(props) {
           postId: props.id,
         },
       });
-      setComment("");
+      setComment("")
     }
   };
 
   return (
     <>
       <div className={post.conrainerPost}>
-        <div className={post.header}>
-          <div className={post.row}>
-            <ListItemIcon>
-              <img
-                className={post.img}
-                src={avatar}
-                alt="icon my profil"
-              ></img>
-            </ListItemIcon>
-            <div height="8px">
-              <p className={post.textInput}>
-                <strong>{fullName} </strong>
-              </p>
-              <p className={post.textXsmall}>
-                15h *
-                
-                <PeopleIcon
-                  sx={{
-                    fontSize: 12,
-                    color: grey[600],
-                    marginLeft: "2px",
-                  }}
-                />
-              </p>
-            </div>
-          </div>
-          <div>
-            <IconButton size="small">
-              <MoreHorizIcon color="disabled" />
-            </IconButton>
-          </div>
-        </div>
+         <PostHeader userName={fullName} imgUser={avatar} />
         <div className={post.textInput}>
           <p>{props.text}</p>
         </div>
@@ -325,11 +285,11 @@ export default function Post(props) {
             ) : null}
           </div>
           {
-            numberComment  ? (
+            numberComment && 
                 <p 
-                onChange={handleAddNewComment} 
-                className={post.textSmall}>{ onePostComment.length} коментар</p>
-              ):(null)
+                onChange={handleNumberComment} 
+                className={post.textSmall}>
+                { onePostComment.length} коментар</p>
 
             }
         </div>
@@ -365,7 +325,7 @@ export default function Post(props) {
           </p>
 
           {commentList
-            ? onePostComment.map((com) => {
+            && onePostComment.map((com) => {
                 return (
                   <>
                     <div key={com.commentId} className={post.row}>
@@ -382,7 +342,7 @@ export default function Post(props) {
                   </>
                 );
               })
-            : null}
+            }
         </div>
         <div className={post.row}>
           <div>

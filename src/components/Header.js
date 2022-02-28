@@ -48,7 +48,7 @@ const useStyles = makeStyles({
     height: "50px",
     width: "100%",
     display: "flex",
-    // justifyContent: "space-between",
+    justifyContent: "space-between",
     position: "fixed",
     backgroundColor: "white",
     zIndex: "2",
@@ -92,6 +92,7 @@ const useStyles = makeStyles({
     width: "345px",
     alignItems: "center",
     marginLeft: "26%",
+    marginRight:"3%"
   },
   homeIcon: {
     color: "action",
