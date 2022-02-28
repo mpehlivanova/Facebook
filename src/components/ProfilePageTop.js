@@ -1,4 +1,5 @@
 import * as React from "react";
+import {useEffect} from "react"
 import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@mui/styles";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
@@ -141,17 +142,25 @@ const useStyle = makeStyles({
 
 export default function ProfilePageTop() {
   const dispatch = useDispatch();
+  
+  
+  let avatar = useSelector((state) => state.userData.currLogged[0].avatar);
+  const coverPhoto = useSelector((state) => state.profile.coverPhoto);
   const [openAvatar, setOpenAvatar] = React.useState(false);
   const [openCover, setOpenCover] = React.useState(false);
 
   const [coverImageURL, setCoverImageURL] = React.useState("");
   const [avatarImageURL, setAvatarImageURL] = React.useState("");
+  // const [newAvatar, setNewAvatar] = React.useState("");
 
+  
+  
   //cover image functions
   const handleChangeCover = (ev) => {
     setCoverImageURL(ev.target.value.trim());
   };
   const changeCoverPhoto = () => {
+    
     dispatch({
       type: "CHANGECOVER",
       payload: `${coverImageURL}`,
@@ -167,12 +176,21 @@ export default function ProfilePageTop() {
   // avatar image functions
   const handleChangeAvatar = (ev) => {
     setAvatarImageURL(ev.target.value.trim());
+    // console.log(avatarImageURL);
+   
+
+    
   };
   const changeAvatarPhoto = () => {
+    console.log(avatarImageURL + "  hi");
+    console.log(avatar + " " + "this is my old avatar") 
+    console.log(avatar + " " + " this is my new avatar");
+    
     dispatch({
       type: "CHANGEAVATAR",
       payload: `${avatarImageURL}`,
     });
+
   };
 
   const handleClickOpenAvatar = () => {
@@ -186,10 +204,6 @@ export default function ProfilePageTop() {
  const fullName = useSelector(
    (state) => state.userData.currLogged[0].firstName
  );
- const avatar = useSelector((state) => state.userData.currLogged[0].avatar);
-  const coverPhoto = useSelector((state) => state.profile.coverPhoto);
-
-
 
   return (
     <>
@@ -235,7 +249,7 @@ export default function ProfilePageTop() {
             </DialogActions>
           </Dialog>
 
-          <img className={style.userAvatar} src={avatar} alt="userAvatar" />
+         <img className={style.userAvatar} src={avatarImageURL ? avatarImageURL : avatar} alt="userAvatar" />
           <CameraAltIcon />
           <button
             className={style.cameraAvatarBtn}

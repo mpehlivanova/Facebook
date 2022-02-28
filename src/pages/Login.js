@@ -251,6 +251,8 @@ export default function Login() {
         password: googleData.tokenObj.idpId,
         firstName: googleData.profileObj.name,
         avatar: googleData.profileObj.imageUrl,
+        friends: [],
+        requests:[],
       },
     });
     // const res = await fetch('/api/google-login', {
@@ -297,6 +299,8 @@ export default function Login() {
             password: user[0].password,
             firstName: user[0].firstName,
             avatar: user[0].avatar,
+            friends: user[0].friends,
+            requests:user[0].requests,
           },
           logged: true,
         });
@@ -312,7 +316,7 @@ export default function Login() {
   };
   //register form functions
   const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [avatar, setAvatar] = useState("");
   const [emailReg, setEmailReg] = useState("");
   const [passwordReg, setPasswordReg] = useState("");
   const [gender, setGender] = useState("");
@@ -320,8 +324,8 @@ export default function Login() {
   const setHandlerInputFirstName = (e) => {
     setFirstName(e.target.value);
   };
-  const setHandlerInputLastName = (e) => {
-    setLastName(e.target.value);
+  const setHandlerInputAvatar = (e) => {
+    setAvatar(e.target.value);
   };
   const setHandlerInputEmailReg = (e) => {
     setEmailReg(e.target.value);
@@ -348,8 +352,10 @@ export default function Login() {
             email: emailReg,
             password: passwordReg,
             firstName: firstName,
-            lastName: lastName,
+            avatar: avatar,
             gender: gender,
+            friends: [],
+            requests:[],
           },
         });
       }
@@ -464,13 +470,13 @@ export default function Login() {
               onChange={setHandlerInputFirstName}
               required
               id="outlined-required3"
-              placeholder="Собствено име"
+              placeholder="Име"
             />
             <TextField
               required
               id="outlined-required2"
-              onChange={setHandlerInputLastName}
-              placeholder="Фамилно име"
+              onChange={setHandlerInputAvatar}
+              placeholder="Профилна снимка"
             />
           </div>
           <TextField
@@ -481,6 +487,7 @@ export default function Login() {
           />
 
           <TextField
+            required
             id="outlined-password-input"
             type="password"
             onChange={setHandlerInputPasswordReg}

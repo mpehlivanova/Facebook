@@ -92,6 +92,7 @@ const useStyles = makeStyles({
     width: "345px",
     alignItems: "center",
     marginLeft: "26%",
+    marginRight:"3%"
   },
   homeIcon: {
     color: "action",
@@ -221,7 +222,7 @@ export default function Header() {
               <img
                 className={classes.profile_image}
                 src={avatar}
-                alt="icon my profil"
+                alt="avatar"
               />
               <p>{fullName}</p>
             </div>

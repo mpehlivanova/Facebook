@@ -1,5 +1,3 @@
-import userReducer from "./userReducer"
-
 const INITIAL_STATE = {
   biography: "",
   coverPhoto:
@@ -25,7 +23,7 @@ const profileReducer = (state = INITIAL_STATE, action) => {
     case "CHANGEAVATAR":
       return {
         ...state,
-        avatar: [action.payload],
+        avatar: action.payload,
       };
 
     default:

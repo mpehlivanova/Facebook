@@ -4,6 +4,7 @@ import { makeStyles } from "@mui/styles";
 import Button from "@mui/material/Button";
 import { grey } from "@mui/material/colors";
 import users from "../server/users"
+import { useDispatch, useSelector } from "react-redux";
 
 const useStyles = makeStyles({
 
@@ -59,25 +60,37 @@ const useStyles = makeStyles({
 
 });
 
-export default function FriendsCard(img, name) {
+export default function FriendsCard() {
   const friends = useStyles();
+  const allRegistersUsers = useSelector((state) => state.userData.registered); // 
+  const list = useSelector((state) => state.userData.currLogged);
+  const filterforcorectUser = allRegistersUsers.filter(e => e.email !== list[0].email)
 
+
+  
+  const dispatch = useDispatch();
+  const sentReguqest = (ev) =>{
+    dispatch({type:"REQUEST", payload : ev.target.value})
+  }
   return (
     <>
       {
-        users.map((u) => {
+        filterforcorectUser.map((u) => {
 
           return (
             <>
               <div className={friends.oneFriend}>
                 <img
                   className={friends.imgUser}
-                  src={u.image}
+                  src={u.avatar}
                   alt="user img">
                   </img>
-                <p className={friends.text}>{u.name}</p>
+                <p className={friends.text}>{u.firstName}{u.lastName}</p>
                 <div className={friends.conrainerBtn}>
-                  <Button variant="contained">
+                  <Button variant="contained" 
+                  onClick ={sentReguqest}
+                  
+                   value = {u.email}>
                   Добавяне
                   </Button>
                   <Button sx={{ bgcolor: grey[200] }} >

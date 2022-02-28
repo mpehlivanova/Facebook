@@ -275,7 +275,7 @@ setFileImg("");
       <div className={style.conteiner}>
         <div className={style.topComment}>
           <ListItemIcon>
-            <img className={style.img} src={avatar} alt="icon my profil"></img>
+            <img className={style.img} src={avatar} alt="avatar"></img>
           </ListItemIcon>
 
           <div onClick={handleClickOpen} className={style.divInput}>

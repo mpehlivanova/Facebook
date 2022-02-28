@@ -131,7 +131,7 @@ export default function LeftSidebar() {
               <img
                 className={classes.img}
                 src={avatar}
-                alt="icon my profil"
+                alt="avatar"
               ></img>
             </ListItemIcon>
             <p className={classes.link}> {fullName} </p>

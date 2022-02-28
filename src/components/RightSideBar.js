@@ -10,13 +10,11 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import IconButton from "@mui/material/IconButton";
 import users from "../server/users";
 
-//    {/* scroll */}
-// // import EmployeeList, { IEmployee } from "./EmployeeList";
-// // import { Paper } from "@material-ui/core";
-//    {/* scroll */}
-
 import { makeStyles } from "@mui/styles";
 import { IFrame } from "./IFrame";
+
+import { useSelector } from "react-redux";
+import RequestsCard from "./RequestsCard";
 
 const useStyles = makeStyles({
   conrainerRight: {
@@ -92,28 +90,31 @@ const useStyles = makeStyles({
 // const user ={{},{}} // all user
 
 export default function RightSideBar(props) {
+
+  function uuidv4() {
+    return (Math.random() * 1000 + Math.random() * 1000)
+  }
   const classes = useStyles();
+
+  const listOfRequests = useSelector((state) => state.userData.currLogged);
+  const isEmpty = listOfRequests[0].requests.length > 0
+  const xxx = listOfRequests[0].friends[0]
+  console.log(listOfRequests)
 
   return (
     <div className={classes.conrainerRight}>
+      {
+      isEmpty ? 
+      <div>
+      <p>предложение за приятелство</p>
+        <RequestsCard />
+      </div> 
+      : 
+      <div>
       <h3 className={classes.text}>Спонсорирано</h3>
-
-      <IFrame />
-      {/* <div className={classes.ad}>
-        <CardAd />
-        <CardAd />
-      </div> */}
-      {/* <div className={classes.border}>
-        <ListItemButton className={classes.textSmall}>
-          <img width="30px" src={props.name} alt="icon rd"></img>
-          <p className={classes.margin}>
-            <strong>user name's </strong> end <strong> user name's </strong>{" "}
-            birthday is today.
-            <strong>your name's</strong>have hteir birthdays today.
-          </p>
-        </ListItemButton>
-      </div> */}
-
+      <IFrame></IFrame>
+      </div>
+      }
       <div>
         <List>
           <div className={classes.headerContact}>
@@ -132,9 +133,11 @@ export default function RightSideBar(props) {
           </div>
 
           {users.map((u) => (
-            <ListItemButton key={u.name} className={classes.list}>
-              <BadgeAvatars image={u.image} />
-              <p className={classes.textSmall}>{u.name}</p>
+            <ListItemButton className={classes.list} key={uuidv4}>
+              <BadgeAvatars image={u.image} key={uuidv4} />
+              <p className={classes.textSmall} key={uuidv4}>
+                {u.name}
+              </p>
             </ListItemButton>
           ))}
         </List>
