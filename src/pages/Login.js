@@ -251,6 +251,8 @@ export default function Login() {
         password: googleData.tokenObj.idpId,
         firstName: googleData.profileObj.name,
         avatar: googleData.profileObj.imageUrl,
+        friends: [],
+        requests:[],
       },
     });
     // const res = await fetch('/api/google-login', {
@@ -297,6 +299,8 @@ export default function Login() {
             password: user[0].password,
             firstName: user[0].firstName,
             avatar: user[0].avatar,
+            friends: user[0].friends,
+            requests:user[0].requests,
           },
           logged: true,
         });
@@ -350,6 +354,8 @@ export default function Login() {
             firstName: firstName,
             avatar: avatar,
             gender: gender,
+            friends: [],
+            requests:[],
           },
         });
       }

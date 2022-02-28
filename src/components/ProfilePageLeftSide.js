@@ -3,7 +3,7 @@ import { makeStyles } from "@mui/styles";
 import ProfilePageLeftSideField from "./ProfilePageLeftSideField";
 import ProfilePageLeftSideFormDialog from "./ProfilePageLeftSideFormDialog";
 import { useSelector } from "react-redux";
-import FriendsCardsSmall from "./FriendsCardsSmall"
+//import FriendsCardsSmall from "./FriendsCardsSmall"
 
 const useStyle = makeStyles({
   mainWrapper: {
@@ -89,7 +89,7 @@ export default function ProfilePageLeftSide() {
         />
       </div>
       <div className={style.friendsContainer}>
-      <FriendsCardsSmall/>
+      {/*<FriendsCardsSmall/>*/}
 
       </div>
       

@@ -13,6 +13,9 @@ import users from "../server/users";
 import { makeStyles } from "@mui/styles";
 import { IFrame } from "./IFrame";
 
+import { useSelector } from "react-redux";
+import RequestsCard from "./RequestsCard";
+
 const useStyles = makeStyles({
   conrainerRight: {
     width: "20%",
@@ -93,26 +96,25 @@ export default function RightSideBar(props) {
   }
   const classes = useStyles();
 
+  const listOfRequests = useSelector((state) => state.userData.currLogged);
+  const isEmpty = listOfRequests[0].requests.length > 0
+  const xxx = listOfRequests[0].friends[0]
+  console.log(listOfRequests)
+
   return (
     <div className={classes.conrainerRight}>
+      {
+      isEmpty ? 
+      <div>
+      <p>предложение за приятелство</p>
+        <RequestsCard />
+      </div> 
+      : 
+      <div>
       <h3 className={classes.text}>Спонсорирано</h3>
-
-      <IFrame />
-      {/* <div className={classes.ad}>
-        <CardAd />
-        <CardAd />
-      </div> */}
-      {/* <div className={classes.border}>
-        <ListItemButton className={classes.textSmall}>
-          <img width="30px" src={props.name} alt="icon rd"></img>
-          <p className={classes.margin}>
-            <strong>user name's </strong> end <strong> user name's </strong>{" "}
-            birthday is today.
-            <strong>your name's</strong>have hteir birthdays today.
-          </p>
-        </ListItemButton>
-      </div> */}
-
+      <IFrame></IFrame>
+      </div>
+      }
       <div>
         <List>
           <div className={classes.headerContact}>
