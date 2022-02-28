@@ -89,6 +89,7 @@ export default function CreateComment(props) {
           postId: props.id,
         },
       });
+      setComment("");
     }
   };
 
@@ -106,6 +107,7 @@ export default function CreateComment(props) {
             className={post.inputComment}
             type="text"
             placeholder="White a comment"
+            value={comment}
           ></input>
 
           <div
@@ -113,6 +115,8 @@ export default function CreateComment(props) {
             onClick={() => {
               handleCreateComment();
             }}
+            onViewCommenn={props.viewComment}
+            onViewNumberComent={props.numberComment}
           >     <IconButton size="small">
             <AddIcon size="small" color="disabled" />
             </IconButton>

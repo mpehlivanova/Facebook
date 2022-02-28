@@ -106,7 +106,7 @@ export default function ViewPostPage(props) {
   const handleViewCommentList = () => {
     commentList ? viewCommentList(false) : viewCommentList(true);
   };
-  const handleAddNewComment = () => {
+  const handleNumberComment = () => {
     numberComment ? setNumbetComment(false) : setNumbetComment(true);
   };
 
@@ -142,12 +142,10 @@ export default function ViewPostPage(props) {
               ) : null}
             </div>
             {
-              numberComment  ? (
-                <p 
-                onChange={handleAddNewComment} 
-                className={viewPost.textSmall}>{ onePostComment.length} коментар</p>
-              ):(null)
-
+              numberComment &&
+              <p 
+              onChange={handleNumberComment} 
+              className={viewPost.textSmall}>{ onePostComment.length} коментар</p>
             }
            
           </div>
@@ -179,21 +177,18 @@ export default function ViewPostPage(props) {
               View previouse comments
             </p>
           {
-            commentList?(
-              onePostComment.map(com=>{
+            commentList&&
+             onePostComment.map(com=>{
               return(
-                <>
+            
                 <CommentList
-                text={com.comment}
-                 /> 
-                </>
-
-              )
-            })
-            ):(null)
+                text={com.comment}/> )})
             
           }
-          <CreateComment  imgUser={avatar}/>
+          <CreateComment
+          numberComment={()=>props.setNumbetComment(true)} 
+          viewComment={()=>props.handleViewCommentList()}  
+          imgUser={avatar}/>
           </div>
          
         </div>

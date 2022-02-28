@@ -132,7 +132,7 @@ export default function RightSideBar(props) {
           </div>
 
           {users.map((u) => (
-            <ListItemButton className={classes.list}>
+            <ListItemButton key={u.name} className={classes.list}>
               <BadgeAvatars image={u.image} />
               <p className={classes.textSmall}>{u.name}</p>
             </ListItemButton>
