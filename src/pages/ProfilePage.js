@@ -4,6 +4,7 @@ import ProfilePageTop from "../components/ProfilePageTop";
 import { makeStyles } from "@mui/styles";
 import ProfilePageRightSide from "../components/ProfilePageRightSide";
 import { PostsLayout } from "./../components/InfiniteScroll";
+import FriendsCard from '../components/FriendsCard';
 
 const useStyle = makeStyles({
   container: {
@@ -18,6 +19,8 @@ const useStyle = makeStyles({
     width: "60%",
     marginTop: "15px",
   },
+ 
+  
 });
 
 export default function ProfilePage() {
@@ -26,10 +29,12 @@ export default function ProfilePage() {
   return (
     <div className={style.container}>
       <ProfilePageTop />
-
       <div className={style.main}>
-        <ProfilePageLeftSide />
-        <ProfilePageRightSide />
+      <ProfilePageLeftSide />
+        
+
+        
+      <ProfilePageRightSide />
         {/* <PostsLayout /> */}
       </div>
     </div>

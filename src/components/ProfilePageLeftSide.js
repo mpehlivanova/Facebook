@@ -3,6 +3,7 @@ import { makeStyles } from "@mui/styles";
 import ProfilePageLeftSideField from "./ProfilePageLeftSideField";
 import ProfilePageLeftSideFormDialog from "./ProfilePageLeftSideFormDialog";
 import { useSelector } from "react-redux";
+import FriendsCardsSmall from "./FriendsCardsSmall"
 
 const useStyle = makeStyles({
   mainWrapper: {
@@ -10,7 +11,7 @@ const useStyle = makeStyles({
     fontSize: "12px",
     marginTop: "16px",
     marginLeft: "10%",
-    height: "320px",
+    height: "1180px",
     width: "30%",
     display: "flex",
     flexDirection: "column",
@@ -18,6 +19,20 @@ const useStyle = makeStyles({
     backgroundColor: "white",
     alignItems: "center",
     borderRadius: "10px",
+    fontFamily: "Segoe UI",
+    textTransform: "uppercase",
+  },
+  container: {
+    width: "100%",
+    boxShadow: "5px 5px 5px px rgb(169,169,169,0.25)",
+    fontSize: "12px",
+    height: "320px",
+    display: "flex",
+    flexDirection: "column",
+    gap: "15px",
+    backgroundColor: "white",
+    alignItems: "center",
+    borderRadius: "10px 10px 0 0",
     fontFamily: "Segoe UI",
     textTransform: "uppercase",
   },
@@ -35,33 +50,48 @@ const useStyle = makeStyles({
     textAlign: "center",
     fontFamilies: "Helvetica",
   },
+  friendsContainer: {
+    borderRadius: "5px",
+    marginTop: "15px",
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr 1fr",
+    gap: "5px",
+
+  }
 });
 
 export default function ProfilePageLeftSide() {
   const style = useStyle();
   const biography = useSelector((state) => state.profile.biography);
-  console.log(biography);
+ 
 
   return (
     <div className={style.mainWrapper}>
-      <p className={style.mainText}>Въведение</p>
-      <p className={style.biography}> {biography}</p>
-      <ProfilePageLeftSideFormDialog />
-      <ProfilePageLeftSideField
-        className={style.secondaryText}
-        key="2"
-        name="Редактиране на подробностите"
-      />
-      <ProfilePageLeftSideField
-        className={style.secondaryText}
-        key="3"
-        name="Добавяне на хобита"
-      />
-      <ProfilePageLeftSideField
-        className={style.secondaryText}
-        key="4"
-        name="Добавяне на препоръчано съдържание"
-      />
+      <div className={style.container}>
+        <p className={style.mainText}>Въведение</p>
+        <p className={style.biography}> {biography}</p>
+        <ProfilePageLeftSideFormDialog />
+        <ProfilePageLeftSideField
+          className={style.secondaryText}
+          key="2"
+          name="Редактиране на подробностите"
+        />
+        <ProfilePageLeftSideField
+          className={style.secondaryText}
+          key="3"
+          name="Добавяне на хобита"
+        />
+        <ProfilePageLeftSideField
+          className={style.secondaryText}
+          key="4"
+          name="Добавяне на препоръчано съдържание"
+        />
+      </div>
+      <div className={style.friendsContainer}>
+      <FriendsCardsSmall/>
+
+      </div>
+      
     </div>
   );
 }

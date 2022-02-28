@@ -36,8 +36,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         registered: [...state.registered, action.payload],
       };
-    
-    
+   
     default:
       return state;
   }

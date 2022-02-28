@@ -10,11 +10,6 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import IconButton from "@mui/material/IconButton";
 import users from "../server/users";
 
-//    {/* scroll */}
-// // import EmployeeList, { IEmployee } from "./EmployeeList";
-// // import { Paper } from "@material-ui/core";
-//    {/* scroll */}
-
 import { makeStyles } from "@mui/styles";
 import { IFrame } from "./IFrame";
 
@@ -92,6 +87,10 @@ const useStyles = makeStyles({
 // const user ={{},{}} // all user
 
 export default function RightSideBar(props) {
+
+  function uuidv4() {
+    return (Math.random() * 1000 + Math.random() * 1000)
+  }
   const classes = useStyles();
 
   return (
@@ -132,9 +131,11 @@ export default function RightSideBar(props) {
           </div>
 
           {users.map((u) => (
-            <ListItemButton className={classes.list}>
-              <BadgeAvatars image={u.image} />
-              <p className={classes.textSmall}>{u.name}</p>
+            <ListItemButton className={classes.list} key={uuidv4}>
+              <BadgeAvatars image={u.image} key={uuidv4} />
+              <p className={classes.textSmall} key={uuidv4}>
+                {u.name}
+              </p>
             </ListItemButton>
           ))}
         </List>
