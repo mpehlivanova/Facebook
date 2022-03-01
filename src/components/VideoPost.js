@@ -212,13 +212,16 @@ export default function VideoPost(props) {
 
   return (
     <>
-      {UserStories.map((user, i) => {
+      {UserStories.slice(0,1).map((user) => {
         return (
           <>
             <div key={uuidv4()} className={video.conrainerPost}>
               <PostHeader userName={fullName} imgUser={avatar} />
               <div>
-                <IFrame className={video.IFrame} />
+                <IFrame
+                  className={video.IFrame}
+                  src="https://www.youtube.com/embed/kbMqWXnpXcA?list=RDkbMqWXnpXcA"
+                />
               </div>
               <div className={video.likeConrainer}>
                 <div>
@@ -235,7 +238,6 @@ export default function VideoPost(props) {
               onChange={handleNumberComment} 
               className={video.textSmall}>{ onePostComment.length} коментар</p>
             } */}
-
               </div>
               <div className={video.buttonBox}>
                 <div
@@ -249,26 +251,28 @@ export default function VideoPost(props) {
                     icon={<ThumbUpOutlinedIcon sx={{ mr: 1 }} color="action" />}
                   ></ButtonPost>
                 </div>
-                <div
-                  onClick={handleViewCommentList}>
+                <div onClick={handleViewCommentList}>
                   <ButtonPost
                     name="Comment"
-                    icon={<ModeCommentOutlinedIcon sx={{ mr: 1 }} color="action" />}
+                    icon={
+                      <ModeCommentOutlinedIcon sx={{ mr: 1 }} color="action" />
+                    }
                   ></ButtonPost>
                 </div>
               </div>
               <div>
                 <p
                   onClick={handleViewCommentList}
-                  className={`${video.textSmall} ${video.hover}`}>
+                  className={`${video.textSmall} ${video.hover}`}
+                >
                   View previouse comments
                 </p>
-                <CommentList
-                  text={"comment"} />
+                <CommentList text={"comment"} />
                 <CreateComment
                   numberComment={() => props.setNumbetComment(true)}
                   viewComment={() => props.handleViewCommentList()}
-                  imgUser={avatar} />
+                  imgUser={avatar}
+                />
               </div>
             </div>
           </>

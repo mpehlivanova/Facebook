@@ -65,7 +65,7 @@ export default function FriendsCard(img, name) {
     const dataOfCurrentUser = allUsers.filter(e => e.email === currentUser[0].email)
 
   return (
-    <>
+      <>
       {dataOfCurrentUser[0].friends.map((u) => {
         return (
           <>
