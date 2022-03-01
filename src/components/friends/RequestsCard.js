@@ -69,7 +69,6 @@ function RequestsCard() {
   return (
     <>
       {dataOfCurrentUser[0].requests.map((e) => {
-        console.log(e.firstName);
         return (
           <div className={classes.container}>
             <div className={classes.containerImage}>

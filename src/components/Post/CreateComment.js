@@ -17,23 +17,11 @@ const useStyles = makeStyles({
     width: "100%",
     display: "flex",
     alignItems: "center",
-    // justifyContent:"flex-end",
     paddingLeft: "5px",
     poddingLeft: "10px",
     justifyContent: "space-between",
     
   },
-  // row: {
-  //   width: "80%",
-  //   display: "flex",
-  //   flexDirection: "row",
-  //   alignItems: "center",
-  //   paddingLeft: "2px",
-  //   poddingLeft: "2px",
-  //   gap: "2px",
-  //   justifyContent: "space-between",
-  // },
- 
   iconContact: {
     opacity: "0.5",
     scale: "0.7",

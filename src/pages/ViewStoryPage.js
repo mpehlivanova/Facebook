@@ -10,7 +10,7 @@ const useStyle = makeStyles({
     height: "70vh",
     display: "flex",
     flexDirection: "row",
-    // padding: "46px 0px 0px 0px",
+    
   },
   leftDiv: {
     width: "100%",

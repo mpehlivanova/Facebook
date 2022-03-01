@@ -34,7 +34,7 @@ const useStyles = makeStyles({
     display: "flex",
     gap: "10px",
     flexWrap: "wrap",
-    // padding:"20px",
+    
     
 
   },

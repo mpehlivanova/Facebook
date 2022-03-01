@@ -195,7 +195,6 @@ const style = useStyle();
             key={4}
             className={style.editCoverImgBtn}
             onClick={() => {
-              console.log("clicked");
               handleClickOpenCover();
             }}
           >

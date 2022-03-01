@@ -2,7 +2,6 @@ import React from "react";
 import CreateStory from "./CreateStory";
 import StoryBox from "./StoryBox";
 import { makeStyles } from "@mui/styles";
-// import { userActivate } from "video-react/lib/actions/player";
 import  UserStories from "../../server/UserStories"
 
 const useStyle = makeStyles({

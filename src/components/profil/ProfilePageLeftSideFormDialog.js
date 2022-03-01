@@ -11,8 +11,7 @@ export default function FormDialog() {
   const [biographyText, setBiographyText] = React.useState("");
   const [open, setOpen] = React.useState(false);
   const addBiography = () => {
-    // console.log("add");
-    // console.log(biographyText);
+   
     dispatch({
       type: "CHANGEBIOGRAPHY",
       payload: `${biographyText}`,

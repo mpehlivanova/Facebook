@@ -24,7 +24,7 @@ export default function ProfilePageLeftSideField(props) {
   const style = useStyle();
 
   return (
-    <div className={style.field} onClick={() => console.log("click")}>
+    <div className={style.field}>
       {props.name}
     </div>
   );

@@ -10,8 +10,6 @@ export default function PrintUserPosts() {
 
   const allPost = useSelector((state) => state.actionPost.addedPosts);
   const userLogPost = allPost.filter((u) => u.userName === fullName);
-  console.log(userLogPost);
-  console.log("userLogPost");
 
   return (
     <>
