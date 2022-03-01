@@ -9,10 +9,12 @@ import RecommendRoundedIcon from "@mui/icons-material/RecommendRounded";
 import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
 import { grey } from "@mui/material/colors";
 import CommentList from "../components/Post/CommentList";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CreateComment from "../components/Post/CreateComment";
 import { IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import UUidv4 from "../components/Util";
+import EmojiPicker, { SKIN_TONE_MEDIUM_DARK } from "emoji-picker-react";
 
 const useStyle = makeStyles({
   container: {
@@ -111,6 +113,39 @@ export default function ViewPostPage(props) {
   const handleNumberComment = () => {
     numberComment ? setNumbetComment(false) : setNumbetComment(true);
   };
+  
+  const [comment, setComment] = useState("");
+
+  const setHandleComment = (ev) => {
+    setComment(ev.target.value);
+  };
+  const [viewEmoji, setViewEmoji] = React.useState(null);
+  const handleViewEmoji=()=>{
+    viewEmoji?setViewEmoji(false):setViewEmoji(true)
+  }
+
+  const onEmojiClick = (ev, emojiObject) => {
+    setComment(comment=>comment + emojiObject.emoji);
+    setViewEmoji(false);
+    console.log(comment + emojiObject.emoji);
+  };
+  const dispatch = useDispatch();
+
+  const handleCreateComment = () => {
+    console.log(comment);
+    if (comment.length !== 0) {
+      dispatch({
+        type: "CREATECOMMENT",
+        payload: {
+          comment: comment,
+          commentId: UUidv4(),
+          postId: props.postId,
+        },
+      });
+      setComment("");
+    }
+  };
+
 
 
 
@@ -187,11 +222,25 @@ export default function ViewPostPage(props) {
                 key={com.comment}
                 text={com.comment}/> )})    
           }
+      
           <CreateComment
-          numberComment={()=>props.setNumbetComment(true)} 
-          viewComment={()=>props.handleViewCommentList()}  
+          comment={comment}
+          onChange={(ev)=>setComment(ev.target.value)}
+          handleViewEmoji={()=>handleViewEmoji()}
+          // handleCreateComment={handleCreateComment}
+           onClick={(ev)=>handleCreateComment(ev)}
+          numberComment={()=>setNumbetComment(true)} 
+          viewComment={()=>viewCommentList(true)}  
           imgUser={avatar}/>
           </div>
+          {viewEmoji && <EmojiPicker
+            pickerStyle={{width: "450px"}}
+            onEmojiClick={onEmojiClick}
+            disableAutoFocus={true}
+            skinTone={SKIN_TONE_MEDIUM_DARK}
+            groupNames={{ smileys_people: "PEOPLE" }}
+            native
+            />}
          
         </div>
       </div>
