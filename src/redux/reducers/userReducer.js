@@ -91,30 +91,57 @@ const userReducer = (state = INITIAL_STATE, action) => {
         
 
         case "ADD":
-        let meOnline = [...state.currLogged]
+        let userOnlineNow = [...state.currLogged]
         let emailOfPeoplefromReguest = action.payload
-        let setStates = [...state.registered]
-        let filtersPotrebitel = setStates.filter( e => e.email === emailOfPeoplefromReguest)
+        let setData = [...state.registered]
+        let filtersPotrebitel = setData.filter( e => e.email === emailOfPeoplefromReguest)
         
 
-        setStates.map(e =>{
-          if(e.email === meOnline[0].email){
+        for(let i = 0; i < setData.length;i++){
+          if(setData[i].email === userOnlineNow[0].email){
+            let newListofRequest = setData[i].requests.filter(e => e.email !== emailOfPeoplefromReguest)
+            setData[i].requests = newListofRequest
+          }
+        }
+
+        setData.map(e =>{
+          if(e.email === userOnlineNow[0].email){
             e.friends.push(filtersPotrebitel[0])
           }
         })
 
-        setStates.map(e => {
+        setData.map(e => {
           if(e.email === emailOfPeoplefromReguest){
-            e.friends.push(meOnline[0])
+            e.friends.push(userOnlineNow[0])
           }
         })
 
+
+
         return{
           ...state,
-          registered: setStates,
+          currLogged: userOnlineNow,
+          registered: setData
+          
           
         }
+
+        case "DELЕТЕ":
+        let currentUser = [...state.currLogged] //връща обект - потребителя,които се е логнал
+        let emailFromRequest = action.payload //мейла на потребителя,които иска заявка
+        let regUsers = [...state.registered] // всички регистрирани потребители
+
+        for(let i =0; i < regUsers.length;i++){
+          if(regUsers[i].email === currentUser[0].email){
+             let newRequest = regUsers[i].requests.filter(e => e.email !== emailFromRequest)
+             regUsers[i].requests = newRequest
+          }
+        }
         
+        return{
+          ...state,
+          registered: regUsers
+        }
 
   }
 };

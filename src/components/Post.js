@@ -23,6 +23,7 @@ import ViewPostPage from "../pages/ViewPostPage.js";
 import CloseIcon from "@mui/icons-material/Close";
 import EmojiPicker, { SKIN_TONE_MEDIUM_DARK } from "emoji-picker-react";
 import PostHeader from "./Post/PostHeader.js";
+import CommentList from "./Post/CommentList.js";
 
 const useStyles = makeStyles({
   conrainerPost: {
@@ -219,7 +220,6 @@ export default function Post(props) {
   const onEmojiClick = (event, emojiObject) => {
     setComment(comment=>comment + emojiObject.emoji);
     setViewEmoji(false);
-    console.log(comment + emojiObject.emoji);
   };
 
   const handleNumberComment = () => {
@@ -233,18 +233,13 @@ export default function Post(props) {
   );
 
   const handleCreateComment = () => {
-    // console.log(createComment);
-    // console.log(allPostsComment);
-    console.log(onePostComment);
-    console.log("create comment");
-
-    console.log(" allPosts");
+  
     if (comment.trim() !== "" ){
       dispatch({
         type: "CREATECOMMENT",
         payload: {
           comment: comment,
-          idcomment: UUidv4(),
+          comentId: UUidv4(),
           postId: props.id,
         },
       });
@@ -270,6 +265,7 @@ export default function Post(props) {
         </div>
         <Dialog open={open} fullScreen>
             <ViewPostPage 
+            postId={props.id}
             img={props.storyImg} 
             avatar={props.img} 
             handleClose={()=>handleClose()} />
@@ -327,22 +323,13 @@ export default function Post(props) {
           {commentList
             && onePostComment.map((com) => {
                 return (
-                  <>
-                    <div key={com.commentId} className={post.row}>
-                      <div>
-                        <BadgeAvatars image={avatar} />
-                      </div>
-                      <div className={post.input}>
-                        <p className={post.addedCom}>{com.comment}</p>
-                      </div>
-                      <IconButton size="small">
-                        <MoreHorizIcon color="disabled" />
-                      </IconButton>
-                    </div>
-                  </>
+                  <CommentList 
+                  id={props.id}
+                  key={com.comment}
+                  text={com.comment}/>
                 );
               })
-            }
+          }
         </div>
         <div className={post.row}>
           <div>

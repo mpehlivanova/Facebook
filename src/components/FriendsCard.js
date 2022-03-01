@@ -10,7 +10,7 @@ const useStyles = makeStyles({
 
   oneFriend: {
     width: "210px",
-    height: "360px",
+    height: "400px",
     background: "white",
     display: "flex",
     flexDirection: "column",
@@ -63,9 +63,32 @@ const useStyles = makeStyles({
 export default function FriendsCard() {
   const friends = useStyles();
   const allRegistersUsers = useSelector((state) => state.userData.registered); // 
-  const list = useSelector((state) => state.userData.currLogged);
-  const filterforcorectUser = allRegistersUsers.filter(e => e.email !== list[0].email)
-
+  const loggedUser = useSelector((state) => state.userData.currLogged);
+  const filterforcorectUser = allRegistersUsers.filter(e => e.email !== loggedUser[0].email)
+  const dataOfFriends = loggedUser[0].friends
+  const dataofRequests = loggedUser[0].requests
+  console.log(dataOfFriends)
+  console.log(dataofRequests)
+  
+  
+    for(let i = 0; i < filterforcorectUser.length;i++){
+      for(let j = 0; j < dataOfFriends.length;j++){
+        if(filterforcorectUser[i].email === dataOfFriends[j].email){
+          filterforcorectUser.splice(i,1)
+        }
+      }
+    }
+  
+  
+    for(let h=0; h <filterforcorectUser.length; h++){
+      for(let t = 0; t < dataofRequests.length; t++){
+        if(filterforcorectUser[h].email === dataofRequests[t].email){
+          filterforcorectUser.splice(h,1)
+        }
+      }
+    }
+    
+  
 
   
   const dispatch = useDispatch();
