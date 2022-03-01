@@ -115,8 +115,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
           registered: setStates,
           
         }
-        
-
+       
   }
 };
 export default userReducer;

@@ -56,7 +56,7 @@ const useStyles = makeStyles({
 
 export default function CommentList(props) {
   const post = useStyles();
-  const avatar = useSelector((state) => state.userData.registered[0].avatar);
+  const avatar = useSelector((state) => state.userData.currLogged[0].avatar);
   return (
     <>
       <div>
@@ -65,7 +65,7 @@ export default function CommentList(props) {
             <BadgeAvatars image={avatar} />
           </div>
           <div className={post.input}>
-            <p clasName={post.addedComment}>{props.text}</p>
+            <p className={post.addedComment}>{props.text}</p>
           </div>
           <IconButton size="small">
             <MoreHorizIcon color="disabled" />

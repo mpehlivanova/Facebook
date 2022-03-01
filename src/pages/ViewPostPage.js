@@ -39,7 +39,7 @@ const useStyle = makeStyles({
   },
   img: {
     width: "75%",
-    // height: "100vh",
+    objectFit:"contain"
   },
   right: {
     display: "flex",
@@ -75,8 +75,6 @@ export default function ViewPostPage(props) {
   );
   const avatar = useSelector((state) => state.userData.currLogged[0].avatar);
 
-  const post = useSelector((state) => state.userData.addedPosts);
-
   const viewPost = useStyle();
   const [like, isLike] = useState(false);
   const [liked, viewLiked] = useState(false);
@@ -91,15 +89,19 @@ export default function ViewPostPage(props) {
     }
   };
   
-  const allPostsComment = useSelector((state) => state.actionPost.addedComment);
-  const onePostComment = allPostsComment.filter(
-    (com) => com.postId === props.id
-  );
-  const [numberComment, setNumbetComment] = useState(false);
+  const allPosts = useSelector((state) => state.actionPost.addedPosts);
+  const userLogPost = allPosts.filter((u) => u.userName === fullName);
+  const allComments = useSelector((state) => state.actionPost.addedComment.filter(com=>com.postId === props.postId));
+
+  console.log(allComments);
+
+
  
 
 
+  const [numberComment, setNumbetComment] = useState(false);
   const handleViewLiked = (props) => {
+   
     liked ? viewLiked(false) : viewLiked(true);
   };
   const [commentList, viewCommentList] = useState(true);
@@ -134,29 +136,30 @@ export default function ViewPostPage(props) {
           <PostHeader userName={fullName} imgUser={avatar} />
           <div className={viewPost.likeConrainer}>
             <div>
-              {liked ? (
+              {liked && 
                 <div className={viewPost.likeConrainer}>
                   <RecommendRoundedIcon color="primary" />
                   <p className={viewPost.textSmall}>{like}</p>
                 </div>
-              ) : null}
+              }
             </div>
             {
               numberComment &&
               <p 
               onChange={handleNumberComment} 
-              className={viewPost.textSmall}>{ onePostComment.length} коментар</p>
+              className={viewPost.textSmall}>{ allComments.length} коментар</p>
             }
            
           </div>
           <div className={viewPost.buttonBox}>
             <div
+              
+            >
+              <ButtonPost
               onClick={() => {
                 changeLikeOption();
                 handleViewLiked();
               }}
-            >
-              <ButtonPost
                 name="Like"
                 icon={<ThumbUpOutlinedIcon sx={{ mr: 1 }} color="action" />}
               ></ButtonPost>
@@ -177,13 +180,12 @@ export default function ViewPostPage(props) {
               View previouse comments
             </p>
           {
-            commentList&&
-             onePostComment.map(com=>{
+            commentList &&
+            allComments.map(com=>{
               return(
-            
                 <CommentList
-                text={com.comment}/> )})
-            
+                key={com.comment}
+                text={com.comment}/> )})    
           }
           <CreateComment
           numberComment={()=>props.setNumbetComment(true)} 

@@ -43,7 +43,7 @@ export default function NewsFeed(){
         </div>
           <CreatePost/>
           <PrintUserPosts/>
-          <PrintAllPosts/>
+          {/* <PrintAllPosts/> */}
 
 
       </div>

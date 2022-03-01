@@ -116,7 +116,7 @@ export default function CreateComment(props) {
               handleCreateComment();
             }}
             onViewCommenn={props.viewComment}
-            onViewNumberComent={props.numberComment}
+            onViewNumberComment={props.numberComment}
           >     <IconButton size="small">
             <AddIcon size="small" color="disabled" />
             </IconButton>
