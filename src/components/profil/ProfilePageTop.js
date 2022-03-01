@@ -281,6 +281,7 @@ const style = useStyle();
       <div className={style.hrWrapper}>
         <hr />
       </div>
+
       <nav className={style.nav}>
         <Link className={style.link} to="/">
           Публикации

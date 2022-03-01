@@ -35,7 +35,7 @@ const useStyles = makeStyles({
     width: "100%",
     height: "20px",
     outlineWidth: "0",
-    marginRight:"50px"
+    
   },
   commenrWrite: {
     display: "flex",
@@ -48,6 +48,10 @@ const useStyles = makeStyles({
     marginLeft: "5px",
     "&focus": { border: "none" },
   },
+  right:{
+    display: "flex",
+    justifyContent:"end",
+  }
   
 });
 export default function CreateComment(props) {
@@ -68,7 +72,7 @@ export default function CreateComment(props) {
             value={props.comment}
           ></input>{" "}
         </div>
-        <div className={post.row}>
+        <div className={post.right}>
           <IconButton
             onClick={(ev) => {
               props.onClick(ev)
