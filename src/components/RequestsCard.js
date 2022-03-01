@@ -3,83 +3,71 @@ import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@mui/styles";
 import ListItemButton from "@mui/material/ListItemButton";
 import BadgeAvatars from "./Avatar.js";
+import { height, width } from "@mui/system";
 
 
 
 const useStyles = makeStyles({
-    conrainerRight: {
-      width: "20%",
-      background: "#F2F3F5",
-      height: "1300vh",
-      padding: "20px",
-      margin: "0px",
+    image:{
+      width:"60px",
+      borderRadius: "33.33px"
     },
-    ad: {
-      height: "200px",
-      background: "#F2F3F5",
-  
-      display: "flex",
+    text:{
+    color: "Black",
+    fontFamily: "Arial",
+    fontSize: "14px",
+    marginLeft: "5px",
+    
+    },
+    container:{
+      display:"flex",
+      gap:"10px",
+      width:"100%",
+      height:"100px",
+      backgroundColor:"white",
+      borderRadius:"15px",
+      justifyContent:"center",
+
+    },
+    addButton:{
+      backgroundColor:"#2e81f4",
+      border:"none",
+      borderRadius: "5px",
+      width:"100%",
+      height:"33%",
+      color:"white",
+      marginTop:"-8px"
+      
+    },
+    clearButton:{
+      backgroundColor:"grey",
+      border:"none",
+      borderRadius: "5px",
+      width:"100%",
+      height:"33%",
+      color:"black"
+      
+    },
+    containerButton:{
+      display:"flex",
       flexDirection: "column",
-      gap: "5px",
+      width:"65%",
+      gap:"5px",
+      height:"100%",
+      marginTop:"-8px"
     },
-  
-    imgUser: {
-      width: "200px",
-      borderRadius: "50%",
-    },
-    list: {
-      borderRadius: "10px",
-      display: "flex",
-      gap: "10px",
-      height: "40px",
-    },
-  
-    text: {
-      color: " #4d4e4e",
-      marginLeft: "10px",
-      marginTop: "5px",
-      marginBottom: "5px",
-      // fontSize: "small",
-      fontFamily: "Helvetica",
-      fontSize: "16px",
-    },
-    textMedium: {
-      fontSize: "medium",
-    },
-    border: {
-      borderTop: "1px solid #cfd0d1",
-      borderBottom: "1px solid #cfd0d1",
-    },
-    margin: {
-      marginLeft: "8px",
-    },
-    containerCard: {
-      display: "flex",
-      flexDirection: "row",
-    },
-  
-    textAd: {
-      color: " #4d4e4e",
-      marginLeft: "10px",
-    },
-    imgAd: {
-      
-      height: "40px",
-      borderRadius: "33.33px",
-    },
-    iconContact: {
-      opacity: "0.5",
-      scale: "0.7",
-    },
-    headerContact: {
-      display: "flex",
-      
-    },
+    containerImage:{
+      marginTop:"17px"
+    }
+    
+
   });
 
 function RequestsCard() {
     const classes = useStyles();
-    const list = useSelector((state) => state.userData.currLogged);
+    const currentUser = useSelector((state) => state.userData.currLogged);
+    const allUsers = useSelector((state) => state.userData.registered);
+    const dataOfCurrentUser = allUsers.filter(e => e.email === currentUser[0].email)
     const dispatch = useDispatch();
 
     const addFriends = (ev) =>{
@@ -87,26 +75,34 @@ function RequestsCard() {
    
   }
 
- 
+  const deleteFriends = (ev) =>{
+    dispatch({type:"DELЕТЕ", payload : ev.target.value});
+   
+  }
 
     return (
         <>
             {
-                list[0].requests.map(e => {
+                dataOfCurrentUser[0].requests.map(e => {
                     console.log(e.firstName)
                     return (
                    
-                        <div>
-                            <div >
-                            <ListItemButton className={classes.list}>
-                            <BadgeAvatars image={e.avatar} />
-                            <p className={classes.textSmall}>{e.firstName}</p>
-                            </ListItemButton>
+                        <div className={classes.container}>
+                            <div className={classes.containerImage}>
+                            
+                            <img className={classes.image} src={e.avatar} />
+                            
+                            
                             </div>
-                            <div>
-                            <button onClick={addFriends} value={e.email}>Приеми</button>
-                            <button value={e.email}>Откажи</button>
+
+                            <div className={classes.containerButton}>
+                              
+                            <p className={classes.text}>{e.firstName}</p>
+                            
+                            <button className={classes.addButton} onClick={addFriends} value={e.email}>Потвърждаване</button>
+                            <button className={classes.clearButton} onClick={deleteFriends} value={e.email}>Премахване</button>
                             </div>
+
                         </div>
                     )
 

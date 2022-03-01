@@ -99,7 +99,7 @@ export default function RightSideBar(props) {
   const listOfRequests = useSelector((state) => state.userData.currLogged);
   const isEmpty = listOfRequests[0].requests.length > 0
   const xxx = listOfRequests[0].friends[0]
-  console.log(listOfRequests)
+  
 
   return (
     <div className={classes.conrainerRight}>
