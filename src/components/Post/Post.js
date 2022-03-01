@@ -7,12 +7,12 @@ import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import UUidv4 from "./Util.js";
-import ViewPostPage from "../pages/ViewPostPage.js";
+import UUidv4 from "../Util.js";
+import ViewPostPage from "../../pages/ViewPostPage.js";
 import EmojiPicker, { SKIN_TONE_MEDIUM_DARK } from "emoji-picker-react";
-import PostHeader from "./Post/PostHeader.js";
-import CommentList from "./Post/CommentList.js";
-import CreateComment from "./Post/CreateComment.js";
+import PostHeader from "./PostHeader.js";
+import CommentList from "./CommentList.js";
+import CreateComment from "./CreateComment.js";
 
 const useStyles = makeStyles({
   conrainerPost: {
@@ -170,19 +170,15 @@ export default function Post(props) {
   };
 
   const [open, setOpen] = React.useState(false);
-
   const handleClickOpen = () => {
     setOpen(true);
   };
-
   const handleClose = () => {
     setOpen(false);
   };
-
   const handleViewLiked = () => {
     liked ? viewLiked(false) : viewLiked(true);
   };
-
   const handleViewCommentList = () => {
     commentList ? viewCommentList(false) : viewCommentList(true);
   };

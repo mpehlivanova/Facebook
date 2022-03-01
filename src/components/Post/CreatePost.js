@@ -19,7 +19,7 @@ import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
 // import ColorLensIcon from "@mui/icons-material/ColorLens";
-import colorImg from "../components-css/color.PNG";
+// import colorImg from "./color.png"
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import PhotoLibraryOutlinedIcon from "@mui/icons-material/PhotoLibraryOutlined";
 // import Picker from "emoji-picker-react";
@@ -27,7 +27,7 @@ import PersonAddAltRoundedIcon from "@mui/icons-material/PersonAddAltRounded";
 import MoodRoundedIcon from "@mui/icons-material/MoodRounded";
 import FmdGoodRoundedIcon from "@mui/icons-material/FmdGoodRounded";
 import { useDispatch, useSelector } from "react-redux";
-import UUidv4 from "./Util";
+import UUidv4 from "../Util";
 import EmojiPicker, { SKIN_TONE_MEDIUM_DARK } from "emoji-picker-react";
 
 const cssStyle = makeStyles({
@@ -43,7 +43,6 @@ const cssStyle = makeStyles({
     height: "40px",
     borderRadius: "33px",
     objectFit: "cover",
-
   },
   conteiner: {
     width: "75%",
@@ -151,7 +150,7 @@ const cssStyle = makeStyles({
     borderRadius: "5px",
     gap: "2px",
     backgroundColor: "#CCCCCC",
-    justifyContent:"center"
+    justifyContent: "center",
   },
   postAdd: {
     display: "flex",
@@ -191,11 +190,10 @@ const cssStyle = makeStyles({
     border: "none",
     display: "none",
   },
-    emojiConatinerView:{
+  emojiConatinerView: {
     width: "480px",
-    display:"flex",
-    justifyContent:"center",
-
+    display: "flex",
+    justifyContent: "center",
   },
 });
 
@@ -204,7 +202,9 @@ export default function CreatePost(props) {
     (state) => state.userData.currLogged[0].firstName
   );
   const avatar = useSelector((state) => state.userData.currLogged[0].avatar);
-  const logUserEmail = useSelector((state) => state.userData.currLogged[0].logIdUse);
+  const logUserEmail = useSelector(
+    (state) => state.userData.currLogged[0].logIdUse
+  );
   const fileInput = React.useRef(null);
   const style = cssStyle();
   const [open, setOpen] = React.useState(false);
@@ -218,15 +218,15 @@ export default function CreatePost(props) {
   const [viewEmoji, setViewEmoji] = React.useState(false);
   const [viewPhotoPost, setviewPhotoPost] = React.useState(false);
 
-  const handleviewPhotoPost=()=>{
-    viewPhotoPost?setviewPhotoPost(false):setviewPhotoPost(true)
-  }
-  const handleViewEmoji=()=>{
-    viewEmoji?setViewEmoji(false):setViewEmoji(true)
-  }
+  const handleviewPhotoPost = () => {
+    viewPhotoPost ? setviewPhotoPost(false) : setviewPhotoPost(true);
+  };
+  const handleViewEmoji = () => {
+    viewEmoji ? setViewEmoji(false) : setViewEmoji(true);
+  };
 
   const onEmojiClick = (event, emojiObject) => {
-    setInputText(inputText=>inputText + emojiObject.emoji);
+    setInputText((inputText) => inputText + emojiObject.emoji);
     setViewEmoji(false);
     console.log(inputText + emojiObject.emoji);
   };
@@ -244,39 +244,36 @@ export default function CreatePost(props) {
   // const setHandleInputPost = (ev) => {
   //   setpInputText(ev.target.value.trim());
   // };
-  
 
   const dispatch = useDispatch();
 
-  const posts = useSelector((state) => state.actionPost.addedPosts); 
+  const posts = useSelector((state) => state.actionPost.addedPosts);
 
   const handleCreatePost = () => {
-if(inputText.length > 0 || fileImg.length > 0){ 
-  dispatch({
-  type: "CREATEPOST",
-  payload: {
-    userName: fullName,
-    descripion: inputText,
-    img: avatar,
-    story: fileImg,
-    postId: UUidv4(),
-  },
-});
-dispatch({
-  type: "MYPOSTS",
-  payload: {
-    userName: fullName,
-    descripion: inputText,
-    img: avatar,
-    story: fileImg,
-    postId: UUidv4(),
-  },
-});
-setInputText("");
-setFileImg("");
-}
-     
-    
+    if (inputText.length > 0 || fileImg.length > 0) {
+      dispatch({
+        type: "CREATEPOST",
+        payload: {
+          userName: fullName,
+          descripion: inputText,
+          img: avatar,
+          story: fileImg,
+          postId: UUidv4(),
+        },
+      });
+      dispatch({
+        type: "MYPOSTS",
+        payload: {
+          userName: fullName,
+          descripion: inputText,
+          img: avatar,
+          story: fileImg,
+          postId: UUidv4(),
+        },
+      });
+      setInputText("");
+      setFileImg("");
+    }
   };
 
   return (
@@ -312,7 +309,7 @@ setFileImg("");
           <div className={style.header}>
             <h3 className={style.text}>Създаване на публикация</h3>
 
-            <IconButton  sx={{ bgcolor: grey[200] }}>
+            <IconButton sx={{ bgcolor: grey[200] }}>
               <AddIcon onClick={handleClose} color="action" />
             </IconButton>
           </div>
@@ -341,32 +338,34 @@ setFileImg("");
           </div>
           <div className={style.inputTextPost}>
             <input
-              onChange={ e => setInputText(e.target.value)}
+              onChange={(e) => setInputText(e.target.value)}
               className={style.input}
               placeholder={`Какво мислите, ${fullName}?`}
               value={inputText}
             ></input>
           </div>
           <div className={style.emojiConatinerView}>
-            {
-            viewPhotoPost ?(<img  width="200px" src={fileImg} alt="addPhotoStory"></img>):(null)
-            }
+            {viewPhotoPost ? (
+              <img width="200px" src={fileImg} alt="addPhotoStory"></img>
+            ) : null}
           </div>
-          {
-            viewEmoji &&    
+          {viewEmoji && (
             <EmojiPicker
-            pickerStyle={{width: "480px"}}
-            onEmojiClick={onEmojiClick}
-            disableAutoFocus={true}
-            skinTone={SKIN_TONE_MEDIUM_DARK}
-            groupNames={{ smileys_people: "PEOPLE" }}
-            native
+              pickerStyle={{ width: "480px" }}
+              onEmojiClick={onEmojiClick}
+              disableAutoFocus={true}
+              skinTone={SKIN_TONE_MEDIUM_DARK}
+              groupNames={{ smileys_people: "PEOPLE" }}
+              native
             />
-         }
+          )}
 
           <div className={style.postAdd}>
-            <img src={colorImg} alt="imgColor"></img>
-            <SentimentSatisfiedAltIcon   onClick={handleViewEmoji} color="action" />
+            {/* <img src={colorImg} alt="imgColor"></img> */}
+            <SentimentSatisfiedAltIcon
+              onClick={handleViewEmoji}
+              color="action"
+            />
           </div>
 
           <div className={`${style.postAdd} ${style.footer}`}>
@@ -383,17 +382,23 @@ setFileImg("");
                   // value={}
                 ></input>
               </label>
-              <IconButton
-                size="small">
-                <PhotoLibraryOutlinedIcon 
-                onClick={() => {fileInput.current.click();handleviewPhotoPost()}}
-                sx={{ color: green[700] }} />
+              <IconButton size="small">
+                <PhotoLibraryOutlinedIcon
+                  onClick={() => {
+                    fileInput.current.click();
+                    handleviewPhotoPost();
+                  }}
+                  sx={{ color: green[700] }}
+                />
               </IconButton>
               <IconButton size="small">
                 <PersonAddAltRoundedIcon sx={{ color: blue[700] }} />
               </IconButton>
               <IconButton size="small">
-                <MoodRoundedIcon  onClick={handleViewEmoji} sx={{ color: yellow[700] }} />
+                <MoodRoundedIcon
+                  onClick={handleViewEmoji}
+                  sx={{ color: yellow[700] }}
+                />
               </IconButton>
               <IconButton size="small">
                 <FmdGoodRoundedIcon sx={{ color: red[700] }} />

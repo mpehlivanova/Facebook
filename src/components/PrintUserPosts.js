@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import Post from "./Post";
+import Post from "./post/Post";
 import UUidv4 from "./Util.js";
 
 export default function PrintUserPosts() {

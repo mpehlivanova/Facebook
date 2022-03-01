@@ -18,14 +18,29 @@ import { Picker } from "@material-ui/pickers";
 import EmojiPicker, { SKIN_TONE_MEDIUM_DARK } from "emoji-picker-react";
 
 const useStyles = makeStyles({
+  container: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "space-between",
+  },
+
   row: {
+    width: "50%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent:"flex-end",
+    paddingLeft: "5px",
+    poddingLeft: "10px",
+    
+  },
+  row1: {
+    width: "50%",
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    paddingLeft: "5px",
     poddingLeft: "10px",
     gap: "5px",
-    justifyContent: "space-between",
+    // justifyContent: "space-between",
   },
 
   iconContact: {
@@ -38,22 +53,23 @@ const useStyles = makeStyles({
     backgroundColor: " #eff2f5",
     padding: "5px",
     borderRadius: "50px",
-    width: "80%",
+    width: "100%",
     height: "20px",
     outlineWidth: "0",
+    marginRight:"50px"
   },
-  commenrWrite: {
-    display: "flex",
-    width: "95%",
-    flexDirection: "row",
-    // alignItems: "baseline",
-    justifyContent: "space-between",
-    alignItems: "center",
-    backgroundColor: " #eff2f5",
-    borderRadius: "20px",
-    marginLeft: "5px",
-    "&focus": { border: "none" },
-  },
+  // commenrWrite: {
+  //   display: "flex",
+  //   width: "95%",
+  //   flexDirection: "row",
+  //   // alignItems: "baseline",
+  //   justifyContent: "space-between",
+  //   alignItems: "center",
+  //   backgroundColor: " #eff2f5",
+  //   borderRadius: "20px",
+  //   marginLeft: "5px",
+  //   "&focus": { border: "none" },
+  // },
 });
 
 export default function CreateComment(props) {
@@ -62,39 +78,37 @@ export default function CreateComment(props) {
     (state) => state.userData.currLogged[0].firstName
   );
   const avatar = useSelector((state) => state.userData.currLogged[0].avatar);
-  
-
- 
- 
   return (
     <>
-      <div className={post.row}>
-        <div>
-          <BadgeAvatars image={avatar} />
+      <div className={post.container}>
+        <div className={post.row1}>
+          <div>
+            <BadgeAvatars image={avatar} />
+          </div>
+          <div className={`${post.commenrWrite}`}>
+            <input
+              onChange={(ev) => props.onChange(ev)}
+              className={post.inputComment}
+              type="text"
+              placeholder="White a comment"
+              value={props.comment}
+            ></input>{" "}
+          </div>
         </div>
-        <div className={`${post.commenrWrite}`}>
-          <input
-            onChange={ev=>props.onChange(ev)}
-            className={post.inputComment}
-            type="text"
-            placeholder="White a comment"
-            value={props.comment}
-          ></input> </div>
 
-          <div
-            className={post.row}
-            
-          >  <IconButton
-            onClick={(ev)=>props.onClick(ev)}
+        <div className={post.row}>
+          {" "}
+          <IconButton
+            onClick={(ev) => props.onClick(ev)}
             onViewCommenn={props.viewComment}
-            onViewNumberComment={props.numberComment} 
-            size="small">
+            onViewNumberComment={props.numberComment}
+            size="small"
+          >
             <AddIcon size="small" color="disabled" />
-            </IconButton>
-         
+          </IconButton>
           <IconButton size="small">
             <SentimentSatisfiedOutlinedIcon
-             onClick={props.handleViewEmoji}
+              onClick={props.handleViewEmoji}
               // onClick={handleViewEmoji}
               className={post.iconContact}
             />
@@ -105,10 +119,8 @@ export default function CreateComment(props) {
           <IconButton size="small">
             <StickyNote2OutlinedIcon className={post.iconContact} />
           </IconButton>
-          </div>
-       
+        </div>
       </div>
-      
     </>
   );
 }

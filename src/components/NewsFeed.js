@@ -1,54 +1,40 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
 import StoryContainer from "./StoryContainer";
-// import Post from "./Post";
-// import FriendsCard from "./FriendsCard";
-import CreatePost from "./CreatePost";
-// import AllPosts from "./AllPosts";
-// import MyPost from "./MyPost";
-// import { InfiniteScroll } from './InfiniteScroll';
-import PrintUserPosts from "./PrintUserPosts"
-import PrintAllPosts from "./PrintAllPosts";
+import CreatePost from "./post/CreatePost";
+import PrintUserPosts from "./PrintUserPosts";
 
 const useStyles = makeStyles({
   feed: {
     width: "75%",
-    background: "#F2F3F5",    
+    background: "#F2F3F5",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    gap: "20px"
+    gap: "20px",
   },
-  createPost:{
-
-  } , 
+  createPost: {},
 
   storiesWrapper: {
     display: "flex",
     justifyContent: "center",
-    width: "100%"
+    width: "100%",
   },
 });
 
-export default function NewsFeed(){
-    const classes = useStyles();
+export default function NewsFeed() {
+  const classes = useStyles();
 
-
-    
   return (
     <>
       <div className={classes.feed}>
         <div className={classes.storiesWrapper}>
           <StoryContainer />
         </div>
-          <CreatePost/>
-          <PrintUserPosts/>
-          {/* <PrintAllPosts/> */}
-
-
+        <CreatePost />
+        <PrintUserPosts />
+        {/* <PrintAllPosts/> */}
       </div>
-      
     </>
   );
-
 }

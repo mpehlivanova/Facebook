@@ -3,8 +3,6 @@ import { styled } from "@mui/material/styles";
 import Badge from "@mui/material/Badge";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
-import { useSelector } from 'react-redux';
-
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -14,12 +12,10 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
     "&::after": {
     
     }
-   
   }
 }));
 
 export default function BadgeAvatars(props) {
-  // const avatar = useSelector((state) => state.profile.avatar);
   return (
     <Stack style={{fontSize:2}}  direction="row" scale=".2" spacing={1}>
       <StyledBadge 

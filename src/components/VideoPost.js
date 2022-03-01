@@ -1,31 +1,16 @@
 import * as React from "react";
-// import Box from '@mui/material/Box';
-import BadgeAvatars from "./Avatar.js";
-import PublicIcon from "@mui/icons-material/Public";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { grey } from "@mui/material/colors";
 import { makeStyles } from "@mui/styles";
-import { Button } from "@mui/material";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import RecommendRoundedIcon from "@mui/icons-material/RecommendRounded";
 import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
-import GifBoxOutlinedIcon from "@mui/icons-material/GifBoxOutlined";
-import SentimentSatisfiedOutlinedIcon from "@mui/icons-material/SentimentSatisfiedOutlined";
-import PhotoCameraOutlinedIcon from "@mui/icons-material/PhotoCameraOutlined";
-import StickyNote2OutlinedIcon from "@mui/icons-material/StickyNote2Outlined";
-import IconButton from "@mui/material/IconButton";
-import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
-
-import { Player } from 'video-react';
 import { IFrame } from "./IFrame.js";
 import { useState } from 'react';
 import UserStories from "./UserStories.js";
-import PostHeader from "./Post/PostHeader.js";
+import PostHeader from "./post/PostHeader.js";
 import { useSelector } from "react-redux";
-import ButtonPost from "./Post/ButtonPost.js";
-import CreateComment from "./Post/CreateComment.js";
-import CommentList from "./Post/CommentList.js";
-
+import ButtonPost from "./post/ButtonPost.js";
+import CreateComment from "./post/CreateComment.js";
+import CommentList from "./post/CommentList.js";
 
 const useStyles = makeStyles({
   conrainerPost: {
@@ -231,13 +216,7 @@ export default function VideoPost(props) {
                       <p className={video.textSmall}>{like}</p>
                     </div>
                   ) : null}
-                </div>
-                {/* {
-              numberComment &&
-              <p 
-              onChange={handleNumberComment} 
-              className={video.textSmall}>{ onePostComment.length} коментар</p>
-            } */}
+                </div>             
               </div>
               <div className={video.buttonBox}>
                 <div
@@ -267,7 +246,7 @@ export default function VideoPost(props) {
                 >
                   View previouse comments
                 </p>
-                <CommentList text={"comment"} />
+                
                 <CreateComment
                   numberComment={() => props.setNumbetComment(true)}
                   viewComment={() => props.handleViewCommentList()}

@@ -107,24 +107,16 @@ export default function RightButton(){
 
     const classes = useStyles();
 
-    return (
-      // <div className={classes.header}>
-       
-        // <div className={classes.right_header}>
-        
+    return (    
           <div className={classes.rightSideIcons}>
             <Link to="/">
-         
-
               <IconButton>
                 <Avatar sx={{ bgcolor: grey[200] }}>
                   <AppsRoundedIcon color="action" />
                 </Avatar>
               </IconButton>
             </Link>
-
-            <Link to="/">
-   
+            <Link to="/">  
               <IconButton>
                 <Avatar sx={{ bgcolor: grey[200] }}>
                   <MessageRoundedIcon color="action" />

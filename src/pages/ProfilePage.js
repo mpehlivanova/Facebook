@@ -3,8 +3,7 @@ import ProfilePageLeftSide from "../components/ProfilePageLeftSide";
 import ProfilePageTop from "../components/ProfilePageTop";
 import { makeStyles } from "@mui/styles";
 import ProfilePageRightSide from "../components/ProfilePageRightSide";
-import { PostsLayout } from "./../components/InfiniteScroll";
-import FriendsCard from '../components/FriendsCard';
+
 
 const useStyle = makeStyles({
   container: {

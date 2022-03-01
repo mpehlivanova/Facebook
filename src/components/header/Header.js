@@ -1,16 +1,9 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
-import "../components-css/Header.css";
 import SearchIcon from "@mui/icons-material/Search";
-// import HomeIcon from '@mui/icons-material/Home';
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import SmartDisplayOutlinedIcon from "@mui/icons-material/SmartDisplayOutlined";
-// import StorefrontOutlinedIcon from '@mui/icons-material/StorefrontOutlined';
-// import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-// import CircleNotificationsOutlinedIcon from '@mui/icons-material/CircleNotificationsOutlined';
-// import ArrowDropDownCircleOutlinedIcon from '@mui/icons-material/ArrowDropDownCircleOutlined';
 import IconButton from "@mui/material/IconButton";
-// import myProfil from "../components-css/imgLeftBar/guest.png";
 import Button from "@mui/material/Button";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import { Link } from "react-router-dom";
@@ -19,8 +12,7 @@ import MessageRoundedIcon from "@mui/icons-material/MessageRounded";
 import AppsRoundedIcon from "@mui/icons-material/AppsRounded";
 import { blue, grey, red } from "@mui/material/colors";
 import NotificationsRoundedIcon from "@mui/icons-material/NotificationsRounded";
-// import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
-import PopUpUserMenu from "./PopUpUserMenu";
+import PopUpUserMenu from "../PopUpUserMenu";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import { useSelector, useDispatch } from "react-redux";
 

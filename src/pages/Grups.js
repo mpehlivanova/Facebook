@@ -10,7 +10,7 @@ import DomainDisabledRoundedIcon from "@mui/icons-material/DomainDisabledRounded
 import NotificationsRoundedIcon from "@mui/icons-material/NotificationsRounded";
 import SettingsIcon from "@mui/icons-material/Settings";
 import SearchIcon from "@mui/icons-material/Search";
-import Post from "../components/Post";
+import Post from "../components/post/Post";
 
 const useStyles = makeStyles({
   page: {
