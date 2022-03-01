@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/https//mpehlivanova.github.io/facebook-clone/static/js/main.a39de55a.js",
-    "index.html": "/https//mpehlivanova.github.io/facebook-clone/index.html",
-    "main.a39de55a.js.map": "/https//mpehlivanova.github.io/facebook-clone/static/js/main.a39de55a.js.map"
+    "main.js": "/Facebook/static/js/main.3fad479f.js",
+    "index.html": "/Facebook/index.html",
+    "main.3fad479f.js.map": "/Facebook/static/js/main.3fad479f.js.map"
   },
   "entrypoints": [
-    "static/js/main.a39de55a.js"
+    "static/js/main.3fad479f.js"
   ]
 }
