@@ -60,7 +60,7 @@ export default function FriendsCard(img, name) {
   );
 
   return (
-    <>
+      <>
       {dataOfCurrentUser[0].friends.map((u) => {
         return (
           <>

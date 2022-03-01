@@ -182,11 +182,9 @@ export default function Post(props) {
   };
 
   const [open, setOpen] = React.useState(false);
-
   const handleClickOpen = () => {
     setOpen(true);
   };
-
   const handleClose = () => {
     setOpen(false);
   };
@@ -194,7 +192,6 @@ export default function Post(props) {
   const handleViewLiked = (props) => {
     liked ? viewLiked(false) : viewLiked(true);
   };
-
   const handleViewCommentList = () => {
     commentList ? viewCommentList(false) : viewCommentList(true);
   };

@@ -178,13 +178,16 @@ export default function VideoPost(props) {
   }
   return (
     <>
-      {UserStories.map((user, i) => {
+      {UserStories.slice(0,1).map((user) => {
         return (
           <>
             <div key={uuidv4()} className={video.conrainerPost}>
               <PostHeader userName={fullName} imgUser={avatar} />
               <div>
-                <IFrame className={video.IFrame} />
+                <IFrame
+                  className={video.IFrame}
+                  src="https://www.youtube.com/embed/kbMqWXnpXcA?list=RDkbMqWXnpXcA"
+                />
               </div>
               <div className={video.likeConrainer}>
                 <div>

@@ -11,16 +11,28 @@ import AddIcon from "@mui/icons-material/Add";
 const useStyles = makeStyles({
   container: {
     width:"100%",
+
   },
   row: {
+    width: "100%",
     display: "flex",
-    flexDirection: "row",
     alignItems: "center",
-    paddingLeft: "2px",
-    poddingLeft: "2px",
-    gap: "2px",
+    // justifyContent:"flex-end",
+    paddingLeft: "5px",
+    poddingLeft: "10px",
     justifyContent: "space-between",
+    
   },
+  // row: {
+  //   width: "80%",
+  //   display: "flex",
+  //   flexDirection: "row",
+  //   alignItems: "center",
+  //   paddingLeft: "2px",
+  //   poddingLeft: "2px",
+  //   gap: "2px",
+  //   justifyContent: "space-between",
+  // },
  
   iconContact: {
     opacity: "0.5",
@@ -32,9 +44,10 @@ const useStyles = makeStyles({
     backgroundColor: " #eff2f5",
     padding: "5px",
     borderRadius: "50px",
-    width: "80%",
+    width: "100%",
     height: "20px",
     outlineWidth: "0",
+    marginRight:"50px"
   },
   commenrWrite: {
     display: "flex",
@@ -55,9 +68,9 @@ export default function CreateComment(props) {
   return (
     <div className={post.container}>
       <div className={post.row}>
-        <div>
+     
           <BadgeAvatars image={avatar} />
-        </div>
+       
         <div className={`${post.commenrWrite}`}>
           <input
             onChange={(ev) => props.onChange(ev)}

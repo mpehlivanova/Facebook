@@ -108,7 +108,12 @@ const useStyles = makeStyles({
 export default function RightSideBar(props) {
 
   function uuidv4() {
-    return (Math.random() * 1000 + Math.random() * 1000)
+    return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
+      (
+        c ^
+        (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
+      ).toString(16)
+    );
   }
   const classes = useStyles();
   const listOfRequests = useSelector((state) => state.userData.currLogged);
@@ -118,25 +123,20 @@ export default function RightSideBar(props) {
   
   return (
     <div className={classes.conrainerRight}>
-      {
-      isEmpty ? 
-      <div className={classes.conteinerRequest}>
-      <div className={classes.textFromRequest}>
-      <img
-                className={classes.img}
-                src={friends}
-                alt="icon friends"
-              ></img>
-      <p className={classes.styleOfText}>Предложение за приятелство</p>
-      </div>
-        <RequestsCard />
-      </div> 
-      : 
-      <div>
-      <h3 className={classes.text}>Спонсорирано</h3>
-      <IFrame></IFrame>
-      </div>
-      }
+      {isEmpty ? (
+        <div className={classes.conteinerRequest}>
+          <div className={classes.textFromRequest}>
+            <img className={classes.img} src={friends} alt="icon friends"></img>
+            <p className={classes.styleOfText}>Предложение за приятелство</p>
+          </div>
+          <RequestsCard />
+        </div>
+      ) : (
+        <div>
+          <h3 className={classes.text}>Спонсорирано</h3>
+          <IFrame src="https://www.youtube.com/embed/qyWfWtsR1m8"></IFrame>
+        </div>
+      )}
       <div>
         <List>
           <div className={classes.headerContact}>
@@ -155,9 +155,9 @@ export default function RightSideBar(props) {
           </div>
 
           {users.map((u) => (
-            <ListItemButton className={classes.list} key={uuidv4}>
-              <BadgeAvatars image={u.image} key={uuidv4} />
-              <p className={classes.textSmall} key={uuidv4}>
+            <ListItemButton className={classes.list} key={uuidv4()}>
+              <BadgeAvatars image={u.image} key={uuidv4()} />
+              <p className={classes.textSmall} key={uuidv4()}>
                 {u.name}
               </p>
             </ListItemButton>

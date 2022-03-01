@@ -29,12 +29,12 @@ const useStyles = makeStyles({
 
   conatinerFiends: {
     width: "75%",
-    height: "150vh",
+    height: "100vh",
     background: "#F2F3F5",
     display: "flex",
     gap: "10px",
     flexWrap: "wrap",
-    padding:"20px",
+    // padding:"20px",
     
 
   },
@@ -49,18 +49,18 @@ const useStyles = makeStyles({
 });
 
 export default function Friends() {
-  const pageFriends = useStyles();
+  const style = useStyles();
   return (
     <>
-      <div className={pageFriends.page}>
-        <div className={pageFriends.leftSideBar}>
+      <div className={style.page}>
+        <div className={style.leftSideBar}>
 
         <Link  to="/">
           <ListItemButton >
             <Avatar sx={{ bgcolor: blue[600] }}>
               <PeopleAltRoundedIcon />
             </Avatar>
-           <p className={pageFriends.text}> Home</p>
+           <p className={style.text}> Home</p>
           </ListItemButton>
           </Link>
           
@@ -68,35 +68,35 @@ export default function Friends() {
             <Avatar sx={{ bgcolor: grey[200] }}>
               <PersonAddAlt1Icon color="action" />
             </Avatar>
-            <p className={pageFriends.text}>Friends recuest</p>
+            <p className={style.text}>Friends recuest</p>
           </ListItemButton>
           <ListItemButton>
             <Avatar sx={{ bgcolor: grey[200] }}>
               <PeopleIcon color="action" />
              
             </Avatar>
-            <p className={pageFriends.text}>Suggestion</p>
+            <p className={style.text}>Suggestion</p>
           </ListItemButton>
           <ListItemButton>
             <Avatar sx={{ bgcolor: grey[200] }}>
               <PeopleIcon color="action" />
             </Avatar>
-            <p className={pageFriends.text}>All friends</p>
+            <p className={style.text}>All friends</p>
           </ListItemButton>
           <ListItemButton>
             <Avatar sx={{ bgcolor: grey[200] }}>
               <CakeIcon color="action" />
             </Avatar>
-            <p className={pageFriends.text}>Birthdays</p>
+            <p className={style.text}>Birthdays</p>
           </ListItemButton>
           <ListItemButton>
             <Avatar sx={{ bgcolor: grey[200] }}>
               <PeopleIcon color="action" />
             </Avatar>
-            <p className={pageFriends.text}>Costom list</p>
+            <p className={style.text}>Costom list</p>
           </ListItemButton>
         </div>
-        <div className={pageFriends.conatinerFiends}>
+        <div className={style.conatinerFiends}>
           <FriendsCard />
         </div>
       </div>

@@ -13,7 +13,7 @@ import { blue, green, grey, red, yellow } from "@mui/material/colors";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
-import colorImg from "./color.PNG";
+import colorImg from "../../components-css/color.png";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import PhotoLibraryOutlinedIcon from "@mui/icons-material/PhotoLibraryOutlined";
 import PersonAddAltRoundedIcon from "@mui/icons-material/PersonAddAltRounded";
