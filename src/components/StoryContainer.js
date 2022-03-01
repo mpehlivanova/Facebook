@@ -14,7 +14,8 @@ const useStyle = makeStyles({
 });
 
 export default function StoryContainer() {
-  let start = Math.ceil(Math.random() * 10);
+  let start = Math.ceil(Math.random() * 12);
+  
   const style = useStyle();
   return (
     <div className={style.storyContainer}>

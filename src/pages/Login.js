@@ -226,6 +226,7 @@ const useStyle = makeStyles({
   },
   error: {
     fontFamily: "Helvetica",
+    height: "20px"
   },
 });
 
@@ -241,33 +242,7 @@ export default function Login() {
   const handleFailure = (result) => {
     alert(result);
   };
-  const handleGoogleLogin = async (googleData) => {
-    console.log(googleData.profileObj.email);
-    console.log(googleData);
-    dispatch({
-      type: "REGISTER",
-      payload: {
-        email: googleData.profileObj.email,
-        password: googleData.tokenObj.idpId,
-        firstName: googleData.profileObj.name,
-        avatar: googleData.profileObj.imageUrl,
-        friends: [],
-        requests:[],
-      },
-    });
-    // const res = await fetch('/api/google-login', {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     token: googleData.tokenId,
-    //   }),
-    //   headers: {
-    //     "Content-Type": "application/json"
-    //   },
-    // })
-    // const data = await res.json();
-    // setLoginData(data);
-    // localStorage.setItem("loginData", JSON.stringify(data));
-  };
+  
 
   var validator = require("email-validator");
 
@@ -278,18 +253,14 @@ export default function Login() {
   const setHandlerInputEmail = (e) => {
     setEmail(e.target.value);
   };
-
   const setHandlerInputPassword = (e) => {
     setPassword(e.target.value);
   };
-
   const dispatch = useDispatch();
   const regUsers = useSelector((state) => state.userData.registered);
-
+  
   const handleLogin = () => {
     const user = regUsers.filter((u) => u.email === email);
-    console.log(user);
-
     if (validator.validate(email)) {
       if (user && password === user[0].password) {
         dispatch({
@@ -313,7 +284,9 @@ export default function Login() {
       setError(true);
       console.log("mail wrong");
     }
+    console.log(regUsers);
   };
+
   //register form functions
   const [firstName, setFirstName] = useState("");
   const [avatar, setAvatar] = useState("");
@@ -337,15 +310,16 @@ export default function Login() {
     setGender(e.target.value);
   };
 
-  const handleRegister = () => {
+  
+
+  const handleRegister = () => { 
+    const notAvailableEmails = [];
+    regUsers.forEach(u => notAvailableEmails.push(u.email));
     if (validator.validate(emailReg)) {
-      console.log(regUsers);
-      const notAvailableEmails = regUsers.filter((u) => u.email === emailReg);
-      let mailsArr = [];
-      notAvailableEmails.forEach((u) => mailsArr.push(u.email));
-      console.log(notAvailableEmails);
-      if (mailsArr.indexOf(emailReg) === -1) {
-        console.log("reg");
+      if (
+        passwordReg.length >= 6 &&
+        notAvailableEmails.indexOf(emailReg) === -1
+      ) {
         dispatch({
           type: "REGISTER",
           payload: {
@@ -355,13 +329,48 @@ export default function Login() {
             avatar: avatar,
             gender: gender,
             friends: [],
-            requests:[],
+            requests: [],
           },
         });
+      } else {
+        setError(true);
       }
+      console.log(regUsers)
+      
     } else {
       console.log("mail is required");
+      console.log(notAvailableEmails);
+      setError(true);
     }
+  };
+
+  const handleGoogleRegistration = async (googleData) => {
+    console.log(googleData.profileObj.email);
+    console.log(googleData);
+    dispatch({
+      type: "REGISTER",
+      payload: {
+        email: googleData.profileObj.email,
+        password: googleData.tokenObj.idpId,
+        firstName: googleData.profileObj.name,
+        avatar: googleData.profileObj.imageUrl,
+        friends: [],
+        requests: [],
+      },
+    });
+
+    // const res = await fetch('/api/google-login', {
+    //   method: "POST",
+    //   body: JSON.stringify({
+    //     token: googleData.tokenId,
+    //   }),
+    //   headers: {
+    //     "Content-Type": "application/json"
+    //   },
+    // })
+    // const data = await res.json();
+    // setLoginData(data);
+    // localStorage.setItem("loginData", JSON.stringify(data));
   };
 
   const [open, setOpen] = React.useState(false);
@@ -407,9 +416,9 @@ export default function Login() {
             onChange={(e) => setHandlerInputPassword(e)}
           />
           {error ? (
-            <span className={style.error}>
+            <div className={style.error}>
               Невалиден имейл адрес или парола
-            </span>
+            </div>
           ) : (
             " "
           )}
@@ -440,7 +449,7 @@ export default function Login() {
             <GoogleLogin
               clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
               buttonText="Вход с Google"
-              onSuccess={handleGoogleLogin}
+              onSuccess={handleGoogleRegistration}
               onFailure={handleFailure}
               cookiePolicy={"single_host_origin"}
             ></GoogleLogin>
@@ -467,6 +476,7 @@ export default function Login() {
         <DialogContent dividers className={style.registerWrapper}>
           <div className={style.namesWrapper}>
             <TextField
+              maxLength={20}
               onChange={setHandlerInputFirstName}
               required
               id="outlined-required3"

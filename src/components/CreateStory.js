@@ -31,7 +31,7 @@ const useStyle = makeStyles({
     color: "black",
     position: "relative",
     // top: "120px",
-    left: "14px",
+    left: "2px",
   },
   imgWrapper: {
       width: "112px",
@@ -58,7 +58,7 @@ export default function CreateStory() {
           }}
         ></div>
         <AddIcon className={style.addIcon} />
-        <p className={style.name}>Create story</p>
+        <p className={style.name}>Добави история</p>
       </div>
     </>
   );

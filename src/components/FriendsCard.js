@@ -21,7 +21,7 @@ const useStyles = makeStyles({
     
   },
   text: {
-    fontSize: "large",
+    fontSize: "medium",
     fontFamily: "Segoe UI Historic, Helvetica, Arial",
     margin: "0px 20px",
     fontWeight: "bold",
