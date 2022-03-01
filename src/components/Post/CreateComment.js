@@ -17,23 +17,10 @@ const useStyles = makeStyles({
     width: "100%",
     display: "flex",
     alignItems: "center",
-    // justifyContent:"flex-end",
-    paddingLeft: "5px",
-    poddingLeft: "10px",
     justifyContent: "space-between",
     
   },
-  // row: {
-  //   width: "80%",
-  //   display: "flex",
-  //   flexDirection: "row",
-  //   alignItems: "center",
-  //   paddingLeft: "2px",
-  //   poddingLeft: "2px",
-  //   gap: "2px",
-  //   justifyContent: "space-between",
-  // },
- 
+  
   iconContact: {
     opacity: "0.5",
     scale: "0.7",
@@ -47,7 +34,7 @@ const useStyles = makeStyles({
     width: "100%",
     height: "20px",
     outlineWidth: "0",
-    marginRight:"50px"
+    
   },
   commenrWrite: {
     display: "flex",
@@ -60,6 +47,10 @@ const useStyles = makeStyles({
     marginLeft: "5px",
     "&focus": { border: "none" },
   },
+  right:{
+    display: "flex",
+    justifyContent:"end",
+  }
   
 });
 export default function CreateComment(props) {
@@ -80,7 +71,7 @@ export default function CreateComment(props) {
             value={props.comment}
           ></input>{" "}
         </div>
-        <div className={post.row}>
+        <div className={post.right}>
           <IconButton
             onClick={(ev) => {
               props.onClick(ev)
