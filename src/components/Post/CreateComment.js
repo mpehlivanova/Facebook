@@ -25,6 +25,7 @@ const useStyles = makeStyles({
     paddingLeft: "5px",
     poddingLeft: "10px",
     gap: "5px",
+    justifyContent: "space-between",
   },
 
   iconContact: {
@@ -61,39 +62,9 @@ export default function CreateComment(props) {
     (state) => state.userData.currLogged[0].firstName
   );
   const avatar = useSelector((state) => state.userData.currLogged[0].avatar);
-  const [comment, setComment] = useState("");
+  
 
-  const setHandleComment = (ev) => {
-    setComment(ev.target.value);
-  };
-
-  const handleViewEmoji=()=>{
-    viewEmoji?setViewEmoji(false):setViewEmoji(true)
-  }
-
-  const onEmojiClick = (ev, emojiObject) => {
-    setComment(comment=>comment + emojiObject.emoji);
-    setViewEmoji(false);
-    console.log(comment + emojiObject.emoji);
-  };
-  const dispatch = useDispatch();
-
-  const handleCreateComment = () => {
-    console.log(" allPosts");
-    if (comment.length !== 0) {
-      dispatch({
-        type: "CREATECOMMENT",
-        payload: {
-          comment: comment,
-          idcomment: UUidv4(),
-          postId: props.id,
-        },
-      });
-      setComment("");
-    }
-  };
-
-  const [viewEmoji, setViewEmoji] = React.useState(null);
+ 
  
   return (
     <>
@@ -103,27 +74,28 @@ export default function CreateComment(props) {
         </div>
         <div className={`${post.commenrWrite}`}>
           <input
-            onChange={setHandleComment}
+            onChange={ev=>props.onChange(ev)}
             className={post.inputComment}
             type="text"
             placeholder="White a comment"
-            value={comment}
-          ></input>
+            value={props.comment}
+          ></input> </div>
 
           <div
             className={post.row}
-            onClick={() => {
-              handleCreateComment();
-            }}
+            
+          >  <IconButton
+            onClick={(ev)=>props.onClick(ev)}
             onViewCommenn={props.viewComment}
-            onViewNumberComment={props.numberComment}
-          >     <IconButton size="small">
+            onViewNumberComment={props.numberComment} 
+            size="small">
             <AddIcon size="small" color="disabled" />
             </IconButton>
-          </div>
+         
           <IconButton size="small">
             <SentimentSatisfiedOutlinedIcon
-              onClick={handleViewEmoji}
+             onClick={props.handleViewEmoji}
+              // onClick={handleViewEmoji}
               className={post.iconContact}
             />
           </IconButton>
@@ -133,17 +105,10 @@ export default function CreateComment(props) {
           <IconButton size="small">
             <StickyNote2OutlinedIcon className={post.iconContact} />
           </IconButton>
-        </div>
+          </div>
        
       </div>
-      {viewEmoji && <EmojiPicker
-            pickerStyle={{width: "450px"}}
-            onEmojiClick={onEmojiClick}
-            disableAutoFocus={true}
-            skinTone={SKIN_TONE_MEDIUM_DARK}
-            groupNames={{ smileys_people: "PEOPLE" }}
-            native
-            />}
+      
     </>
   );
 }

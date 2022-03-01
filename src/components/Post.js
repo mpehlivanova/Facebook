@@ -1,29 +1,18 @@
 import * as React from "react";
-import BadgeAvatars from "./Avatar.js";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { grey } from "@mui/material/colors";
 import { makeStyles } from "@mui/styles";
-import { Button, Dialog, Link, ListItemIcon } from "@mui/material";
+import { Button, Dialog} from "@mui/material";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import RecommendRoundedIcon from "@mui/icons-material/RecommendRounded";
 import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
-import GifBoxOutlinedIcon from "@mui/icons-material/GifBoxOutlined";
-import SentimentSatisfiedOutlinedIcon from "@mui/icons-material/SentimentSatisfiedOutlined";
-import PhotoCameraOutlinedIcon from "@mui/icons-material/PhotoCameraOutlined";
-import StickyNote2OutlinedIcon from "@mui/icons-material/StickyNote2Outlined";
-import IconButton from "@mui/material/IconButton";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import PeopleIcon from "@mui/icons-material/People";
 import UUidv4 from "./Util.js";
-import AddIcon from "@mui/icons-material/Add";
 import ViewPostPage from "../pages/ViewPostPage.js";
-// import { type } from "@testing-library/user-event/dist/type";
-import CloseIcon from "@mui/icons-material/Close";
 import EmojiPicker, { SKIN_TONE_MEDIUM_DARK } from "emoji-picker-react";
 import PostHeader from "./Post/PostHeader.js";
 import CommentList from "./Post/CommentList.js";
+import CreateComment from "./Post/CreateComment.js";
 
 const useStyles = makeStyles({
   conrainerPost: {
@@ -137,19 +126,7 @@ const useStyles = makeStyles({
     height: "20px",
     outlineWidth: "0",
   },
-  commenrWrite: {
-    display: "flex",
-    width: "95%",
-    flexDirection: "row",
-    alignItems: "baseline",
-    justifyContent: "space-between",
-    alignItems: "center",
-    backgroundColor: " #eff2f5",
-    borderRadius: "20px",
-    marginLeft: "5px",
-  },
-
-
+  
   link: {
     textDecoration: "none",
     color: "#2c2d2d",
@@ -239,7 +216,7 @@ export default function Post(props) {
         type: "CREATECOMMENT",
         payload: {
           comment: comment,
-          comentId: UUidv4(),
+          commentId: UUidv4(),
           postId: props.id,
         },
       });
@@ -332,43 +309,15 @@ export default function Post(props) {
           }
         </div>
         <div className={post.row}>
-          <div>
-            <BadgeAvatars image={avatar} />
-          </div>
           <div className={`${post.commenrWrite}`}>
-            <input
-              onChange={setHandleComment}
-              className={post.inputComment}
-              type="text"
-              placeholder="Write a comment"
-              value={comment}
-
-            ></input>
-            <div>
-              <Button
-                onClick={() => {
-                  handleCreateComment();
-                  viewCommentList(true);
-                  setNumbetComment(true)
-                }}
-                sx={{ textTransform: "none" }}
-              >
-                <AddIcon color="disabled" />
-              </Button>
-              <IconButton size="small">
-                <SentimentSatisfiedOutlinedIcon onClick={handleViewEmoji} className={post.iconContact} />
-              </IconButton>
-              <IconButton size="small">
-                <PhotoCameraOutlinedIcon className={post.iconContact} />
-              </IconButton>
-              <IconButton size="small">
-                <GifBoxOutlinedIcon className={post.iconContact} />
-              </IconButton>
-              <IconButton size="small">
-                <StickyNote2OutlinedIcon className={post.iconContact} />
-              </IconButton>
-            </div>
-            {/* <Emoji/> */}
+            <CreateComment
+          comment={comment}
+          onChange={(ev)=>setComment(ev.target.value)}
+          handleViewEmoji={()=>handleViewEmoji()}
+           onClick={()=>handleCreateComment()}
+          numberComment={()=>setNumbetComment(true)} 
+          viewComment={handleViewCommentList}  
+          imgUser={avatar}/>
           </div>
         </div>
         {viewEmoji && <EmojiPicker
