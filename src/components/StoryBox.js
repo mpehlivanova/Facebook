@@ -18,6 +18,7 @@ export default function StoryBox(props) {
       backgroundImage: "",
       display: "flex",
       flexDirection: "column",
+      objectFit: "cover",
 
       justifyContent: "space-between",
       "&:hover": {
@@ -58,24 +59,21 @@ export default function StoryBox(props) {
       display: "flex",
       justifyContent: "center",
     },
-   
+
     img: {
       width: "65%",
-      height: "100vh",
+      objectFit: "cover",
     },
-    
+
     hover: {
       cursor: "pointer",
     },
-
   });
   const style = useStyle();
   const [open, setOpen] = React.useState(false);
-
   const handleClickOpen = () => {
     setOpen(true);
   };
-
   const handleClose = () => {
     setOpen(false);
   };
@@ -90,6 +88,7 @@ export default function StoryBox(props) {
           backgroundImage: `url(${props.img})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       >
         <img className={style.userAvatar} src={props.avatar} alt="userAvatar" />

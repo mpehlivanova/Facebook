@@ -2,7 +2,7 @@ import React from "react";
 import CreateStory from "./CreateStory";
 import StoryBox from "./StoryBox";
 import { makeStyles } from "@mui/styles";
-import { userActivate } from "video-react/lib/actions/player";
+// import { userActivate } from "video-react/lib/actions/player";
 import  UserStories from "./UserStories"
 
 const useStyle = makeStyles({
@@ -14,11 +14,13 @@ const useStyle = makeStyles({
 });
 
 export default function StoryContainer() {
+  let start = Math.ceil(Math.random() * 10);
   const style = useStyle();
   return (
     <div className={style.storyContainer}>
       <CreateStory />
-      {UserStories.map((u) => {
+    
+      {UserStories.slice(start, start + 4).map((u) => {
         return (
           <StoryBox
             key={u.name}

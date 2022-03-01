@@ -64,11 +64,13 @@ const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         registered: [...state.registered, action.payload],
       };
-    // case "CHANGEAVATAR":
-    //   return {
-    //     ...state,
-    //     currLogged: [...state.avatar, action.payload],
-    //   };
+    case "CHANGEAVATAR":
+      let user = [...state.currLogged];
+      user[0].avatar = action.payload;
+      return {
+        ...state,
+        currLogged: user
+      }
 
     default:
       return state;
@@ -90,7 +92,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
           registered: newState
         }
         
-        
+
         case "ADD":
         let userOnlineNow = [...state.currLogged]
         let emailOfPeoplefromReguest = action.payload
