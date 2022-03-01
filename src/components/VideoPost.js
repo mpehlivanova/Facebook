@@ -20,6 +20,11 @@ import { Player } from 'video-react';
 import { IFrame } from "./IFrame.js";
 import { useState } from 'react';
 import UserStories from "./UserStories.js";
+import PostHeader from "./Post/PostHeader.js";
+import { useSelector } from "react-redux";
+import ButtonPost from "./Post/ButtonPost.js";
+import CreateComment from "./Post/CreateComment.js";
+import CommentList from "./Post/CommentList.js";
 
 
 const useStyles = makeStyles({
@@ -32,8 +37,8 @@ const useStyles = makeStyles({
     boxShadow: "5px 5px 5px 5px rgb(169,169,169,0.25)",
     borderRadius: "10px",
     paddingBottom: "20px",
-  
-   
+
+
   },
   header: {
     display: "flex",
@@ -46,8 +51,8 @@ const useStyles = makeStyles({
     flexDirection: "row",
     alignItems: "center",
     paddingLeft: "5px",
-    poddingLeft:"10px",
- 
+    poddingLeft: "10px",
+
   },
   textSmall: {
     fontSize: "small",
@@ -63,8 +68,8 @@ const useStyles = makeStyles({
   textInput: {
     fontSize: "medium",
     fontFamily: "Segoe UI Historic, Helvetica, Arial",
-    margin:"5px 5px",
-  
+    margin: "5px 5px",
+
   },
   border: {
     borderTop: "1px solid #cfd0d1",
@@ -76,14 +81,14 @@ const useStyles = makeStyles({
     // padding: "4px",
   },
   addComment: {
-    width:"100%",
+    width: "100%",
     display: "flex",
     alignItems: "center",
     flexDirection: "row",
     gap: "10px",
   },
   form: {
-    
+
     display: "flex",
     alignItems: "center",
     flexDirection: "row",
@@ -94,11 +99,11 @@ const useStyles = makeStyles({
     borderRadius: "20px",
     width: "60%",
     height: "30px",
-    color:"action",
+    color: "action",
     border: "none",
     backgroundColor: " #eff2f5",
-    padding:"10px",
-    marginLeft:"5px"
+    padding: "10px",
+    marginLeft: "5px"
   },
   iconContact: {
     opacity: "0.5",
@@ -117,11 +122,11 @@ const useStyles = makeStyles({
   likeConrainer: {
     height: "10px",
     display: "flex",
-    flexDirection: "row",
     alignItems: "center",
-    paddingLeft: "5px",
+    padding: "0px 5px",
+    justifyContent: "space-between",
   },
-  textBox:{
+  textBox: {
     display: "flex",
     justifyContent: "space-between",
     height: "20px",
@@ -132,61 +137,69 @@ const useStyles = makeStyles({
   inputComment: {
     border: "none",
     backgroundColor: " #eff2f5",
-    padding:"10px",
-    borderRadius:"20px",
+    padding: "10px",
+    borderRadius: "20px",
     width: "60%",
     height: "30px",
- 
+
   },
-  commenrWrite:{
+  commenrWrite: {
 
     display: "flex",
-    width:"95%",
+    width: "95%",
     flexDirection: "row",
     alignItems: "baseline",
     justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: " #eff2f5",
-    borderRadius:"20px",
-    marginLeft:"5px"
+    borderRadius: "20px",
+    marginLeft: "5px"
 
   },
-  IFrame:{
-      width:"100%",
+  IFrame: {
+    width: "100%",
 
-  }
-  
- 
+  },
+  hover: {
+    cursor: "pointer",
+  },
+
+
 });
 
-export default function VideoPost() {
-  const post = useStyles();
-
-  const [like, isLike] = useState(false)
-  const [commentButton, isComment] = useState(false)
-  const [comment, createComent] = useState([])
-  
-  
+export default function VideoPost(props) {
+  const fullName = useSelector(
+    (state) => state.userData.currLogged[0].firstName
+  );
+  const avatar = useSelector((state) => state.userData.currLogged[0].avatar);
+  const video = useStyles();
+  const [like, isLike] = useState(false);
+  const [liked, viewLiked] = useState(false);
 
   const changeLikeOption = () => {
-    if(like === false){
-      isLike(true)
-      isLike(like + 1)
+    if (like === false) {
+      isLike(true);
+      isLike(like + 1);
+    } else {
+      isLike(like - 1);
+      isLike(false);
     }
-    else{
-      isLike(like - 1)
-      isLike(false)   
-    }  
-  }
+  };
+  const [numberComment, setNumbetComment] = useState(false);
 
-  const createNewComment = () => {
-    if(commentButton === false){
-      isComment(true)
-    }
-    else{
-      isComment(false)
-    }
-  }
+
+
+  const handleViewLiked = (props) => {
+    liked ? viewLiked(false) : viewLiked(true);
+  };
+  const [commentList, viewCommentList] = useState(true);
+  const handleViewCommentList = () => {
+    commentList ? viewCommentList(false) : viewCommentList(true);
+  };
+  const handleNumberComment = () => {
+    numberComment ? setNumbetComment(false) : setNumbetComment(true);
+  };
+
 
   function uuidv4() {
     return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
@@ -199,144 +212,65 @@ export default function VideoPost() {
 
   return (
     <>
-      {UserStories.map((user,i) => {
+      {UserStories.map((user, i) => {
         return (
           <>
-            <div key={uuidv4()} className={post.conrainerPost}>
-              <div className={post.header}>
-                <div className={post.row}>
-                  <BadgeAvatars />
-                  <div height="8px">
-                    <p className={post.textInput}>
-                      <strong>{user.name} </strong>
-                    </p>
-                    <p className={post.textXsmall}>
-                      15h *
-                      <PublicIcon
-                        sx={{
-                          fontSize: 12,
-                          color: grey[600],
-                          marginLeft: "2px",
-                        }}
-                      />
-                    </p>
-                  </div>
-                </div>
-                <div>
-                  <IconButton size="small">
-                    <MoreHorizIcon color="disabled" />
-                  </IconButton>
-                </div>
-              </div>
-              
+            <div key={uuidv4()} className={video.conrainerPost}>
+              <PostHeader userName={fullName} imgUser={avatar} />
               <div>
-             <IFrame className={post.IFrame}/>
+                <IFrame className={video.IFrame} />
               </div>
-              <div className={post.likeConrainer}>
-                <div className={post.like}>
-                  <FavoriteRoundedIcon
-                    sx={{ width: 15, height: 15, color: grey["A100"] }}
-                  />
-                </div>
-
-                <RecommendRoundedIcon color="primary" />
-                <p className={post.textSmall}>{like}</p>
-              </div>
-
-              <div className={`${post.border} ${post.buttonBox}`}>
-                <Button
-                  // sx={{ "&:hover": , textTransform: "none" }} //Mitko- without this row the button works appropriate
-                  color="inherit"
-                  startIcon={<ThumbUpOutlinedIcon color="disabled" />}
-                  onClick = {changeLikeOption}
-                >
-                  Like
-                </Button>
-                <Button
-                  // sx={{ "&:hover": { width: "40%" }, textTransform: "none" }}//Mitko- without this row the button works appropriate
-                  color="inherit"
-                  startIcon={<ModeCommentOutlinedIcon color="action" />}
-                  onClick = {createNewComment}
-                >
-                  Comment
-                </Button>
-              </div>
-
-            
-
-              {commentButton ? (
+              <div className={video.likeConrainer}>
                 <div>
-              <div className={post.row}>
-                <div>
-                  <BadgeAvatars />
-                </div>
-                <div className={`${post.commenrWrite}`}>
-                  <input
-                    className={post.inputComment}
-                    type="text"
-                    placeholder="White a comment"
-                    
-                  ></input>
-                  <div>
-                    <IconButton size="small">
-                      <SentimentSatisfiedOutlinedIcon
-                        className={post.iconContact}
-                        
-                      />
-                    </IconButton>
-                    <IconButton size="small">
-                      <PhotoCameraOutlinedIcon className={post.iconContact} />
-                    </IconButton>
-                    <IconButton size="small">
-                      <GifBoxOutlinedIcon className={post.iconContact} />
-                    </IconButton>
-                    <IconButton size="small">
-                      <StickyNote2OutlinedIcon className={post.iconContact} />
-                    </IconButton>
-                  </div>
-                </div> 
-              </div>
-              <div>
-                {
-                 comment.map(element => (<div>
-                  <div className={post.row}>
-                    <div>
-                      <BadgeAvatars />
+                  {liked ? (
+                    <div className={video.likeConrainer}>
+                      <RecommendRoundedIcon color="primary" />
+                      <p className={video.textSmall}>{like}</p>
                     </div>
-                    <div className={`${post.commenrWrite}`}>
-                      <p>{}</p>
-                      <div>
-                        <IconButton size="small">
-                          <SentimentSatisfiedOutlinedIcon
-                            className={post.iconContact}
-                            
-                          />
-                        </IconButton>
-                        <IconButton size="small">
-                          <PhotoCameraOutlinedIcon className={post.iconContact} />
-                        </IconButton>
-                        <IconButton size="small">
-                          <GifBoxOutlinedIcon className={post.iconContact} />
-                        </IconButton>
-                        <IconButton size="small">
-                          <StickyNote2OutlinedIcon className={post.iconContact} />
-                        </IconButton>
-                      </div>
-                    </div> 
-                  </div>
-                  </div>))
-                }
+                  ) : null}
+                </div>
+                {/* {
+              numberComment &&
+              <p 
+              onChange={handleNumberComment} 
+              className={video.textSmall}>{ onePostComment.length} коментар</p>
+            } */}
+
               </div>
+              <div className={video.buttonBox}>
+                <div
+                  onClick={() => {
+                    changeLikeOption();
+                    handleViewLiked();
+                  }}
+                >
+                  <ButtonPost
+                    name="Like"
+                    icon={<ThumbUpOutlinedIcon sx={{ mr: 1 }} color="action" />}
+                  ></ButtonPost>
+                </div>
+                <div
+                  onClick={handleViewCommentList}>
+                  <ButtonPost
+                    name="Comment"
+                    icon={<ModeCommentOutlinedIcon sx={{ mr: 1 }} color="action" />}
+                  ></ButtonPost>
+                </div>
               </div>
-              
-              
-              ) : null }
-              
-              
+              <div>
+                <p
+                  onClick={handleViewCommentList}
+                  className={`${video.textSmall} ${video.hover}`}>
+                  View previouse comments
+                </p>
+                <CommentList
+                  text={"comment"} />
+                <CreateComment
+                  numberComment={() => props.setNumbetComment(true)}
+                  viewComment={() => props.handleViewCommentList()}
+                  imgUser={avatar} />
+              </div>
             </div>
-
-
-
           </>
         );
       })}

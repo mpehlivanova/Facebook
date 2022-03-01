@@ -261,7 +261,16 @@ if(inputText.length > 0 || fileImg.length > 0){
     story: fileImg,
     postId: UUidv4(),
   },
-  
+});
+dispatch({
+  type: "MYPOSTS",
+  payload: {
+    userName: fullName,
+    descripion: inputText,
+    img: avatar,
+    story: fileImg,
+    postId: UUidv4(),
+  },
 });
 setInputText("");
 setFileImg("");
@@ -303,8 +312,8 @@ setFileImg("");
           <div className={style.header}>
             <h3 className={style.text}>Създаване на публикация</h3>
 
-            <IconButton onClick={handleClose} sx={{ bgcolor: grey[200] }}>
-              <AddIcon color="action" />
+            <IconButton  sx={{ bgcolor: grey[200] }}>
+              <AddIcon onClick={handleClose} color="action" />
             </IconButton>
           </div>
           <div className={style.row}>
@@ -375,10 +384,9 @@ setFileImg("");
                 ></input>
               </label>
               <IconButton
-                size="small"
-                onClick={() => {fileInput.current.click();handleviewPhotoPost()}}
-              >
+                size="small">
                 <PhotoLibraryOutlinedIcon 
+                onClick={() => {fileInput.current.click();handleviewPhotoPost()}}
                 sx={{ color: green[700] }} />
               </IconButton>
               <IconButton size="small">

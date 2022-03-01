@@ -10,7 +10,7 @@ const useStyles = makeStyles({
 
   oneFriend: {
     width: "210px",
-    height: "360px",
+    height: "400px",
     background: "white",
     display: "flex",
     flexDirection: "column",
