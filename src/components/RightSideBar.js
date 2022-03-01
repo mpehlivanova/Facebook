@@ -12,7 +12,7 @@ import users from "../server/users";
 
 import { makeStyles } from "@mui/styles";
 import { IFrame } from "./IFrame";
-
+import friends from "../components-css/imgLeftBar/friends.png"
 import { useSelector } from "react-redux";
 import RequestsCard from "./RequestsCard";
 
@@ -85,6 +85,28 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "space-between",
   },
+  conteinerRequest:{
+    display:"flex",
+    flexDirection: "column",
+    gap: "10px",  
+  },
+  styleOfText:{
+    fontFamily: "Segoe UI",
+    fontSize: "16px",
+    fontWeight: "500",
+  },
+  img:{
+    width: "30px",
+    height: "30px",
+    borderRadius: "50%",
+    objectFit: "cover",
+    margin:"10px"
+  },
+  textFromRequest:{
+    display:"flex",
+    justifyContent:"center",
+    textAlign:"center",
+  }
 });
 
 // const user ={{},{}} // all user
@@ -97,16 +119,25 @@ export default function RightSideBar(props) {
   const classes = useStyles();
 
   const listOfRequests = useSelector((state) => state.userData.currLogged);
-  const isEmpty = listOfRequests[0].requests.length > 0
-  const xxx = listOfRequests[0].friends[0]
+  const allUsersReg = useSelector((state) => state.userData.registered);
+  const dataOfCurrentUser = allUsersReg.filter(e => e.email === listOfRequests[0].email)
+  const isEmpty = dataOfCurrentUser[0].requests.length > 0
+  
   
 
   return (
     <div className={classes.conrainerRight}>
       {
       isEmpty ? 
-      <div>
-      <p>предложение за приятелство</p>
+      <div className={classes.conteinerRequest}>
+      <div className={classes.textFromRequest}>
+      <img
+                className={classes.img}
+                src={friends}
+                alt="icon friends"
+              ></img>
+      <p className={classes.styleOfText}>Предложение за приятелство</p>
+      </div>
         <RequestsCard />
       </div> 
       : 

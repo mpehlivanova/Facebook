@@ -143,7 +143,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
         
         return{
           ...state,
-          currLogged: regUsers
+          registered: regUsers
         }
 
   }
