@@ -82,7 +82,7 @@ const UserStories = [
       "https://nationaltoday.com/wp-content/uploads/2020/09/Beyonce%CC%81s-Birthday.jpg",
 
     story:
-      "https://i.pinimg.com/originals/da/3c/e7/da3ce7a89366d281f71c903848c3261e.jpg",
+      "https://cdn.livekindly.co/wp-content/uploads/2021/09/beyonce-activism-1.jpg",
   },
   {
     name: "Shakira",
@@ -98,14 +98,37 @@ const UserStories = [
       "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Matt_LeBlanc%2C_Arqiva_British_Academy_Television_Awards%2C_2013_%28tone_crop%29.jpg/230px-Matt_LeBlanc%2C_Arqiva_British_Academy_Television_Awards%2C_2013_%28tone_crop%29.jpg",
 
     story:
-      "https://m.media-amazon.com/images/M/MV5BZDc2NTg5YWUtZGZlZC00Y2VmLTgwZjEtZDUxM2QyNGRmYjZlXkEyXkFqcGdeQWFybm8@._V1_QL75_UX500_CR0,0,500,281_.jpg",
+      "https://m.media-amazon.com/images/M/MV5BNDVkYjU0MzctMWRmZi00NTkxLTgwZWEtOWVhYjZlYjllYmU4XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_.jpg",
   },
   {
-    name: "Samanta Foxc",
+    name: "Samanta Fox",
     avatar:
       "https://www.telegraph.co.uk/content/dam/tv/2016/07/26/fox_trans_NvBQzQNjv4BqqVzuuqpFlyLIwiB6NTmJwfSVWeZ_vEN7c6bHu2jJnT8.jpg?imwidth=480",
 
     story: "https://m.media-amazon.com/images/I/81qzAY0jTIL._SL1429_.jpg",
+  },
+  {
+    name: "Bond James Bond",
+    avatar:
+      "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRXt5bdHCD8-ks6ge2jjQcxip2iWvGPaqCLbDVHiXsSG4oiU11D",
+
+    story:
+      "https://www.dmarge.com/wp-content/uploads/2015/07/Daniel-Craig-Style-2-of-23.jpg",
+  },
+  {
+    name: "Elon Musk",
+    avatar:
+      "https://webnews.bg/uploads/images/75/5275/505275/768x432.jpg?_=1605283635",
+
+    story:
+      "https://www.tesla.com/sites/default/files/images/roadster/roadster-social.jpg",
+  },
+  {
+    name: "Richard Branson",
+    avatar:
+      "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTGpZlmk6d3Bf90vTPG61Ri7gXm8oHq48chy2_qOElcg7Ekpd_d",
+
+    story: "https://i.insider.com/6062cd4f67187800184ad375?width=700",
   },
 ];
 export default UserStories;

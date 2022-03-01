@@ -4,6 +4,7 @@ import { makeStyles } from "@mui/styles";
 import Button from "@mui/material/Button";
 import { grey } from "@mui/material/colors";
 import users from "../server/users";
+import { useDispatch, useSelector } from "react-redux";
 
 const useStyles = makeStyles({
   oneFriend: {
@@ -59,18 +60,22 @@ const useStyles = makeStyles({
 export default function FriendsCard(img, name) {
   const friends = useStyles();
 
+  const currentUser = useSelector((state) => state.userData.currLogged);
+    const allUsers = useSelector((state) => state.userData.registered);
+    const dataOfCurrentUser = allUsers.filter(e => e.email === currentUser[0].email)
+
   return (
     <>
-      {users.map((u) => {
+      {dataOfCurrentUser[0].friends.map((u) => {
         return (
           <>
             <div className={friends.oneFriend}>
               <img
                 className={friends.imgUser}
-                src={u.image}
+                src={u.avatar}
                 alt="user img"
               ></img>
-              <p className={friends.text}>{u.name}</p>
+              <p className={friends.text}>{u.firstName}</p>
             
             </div>
           </>

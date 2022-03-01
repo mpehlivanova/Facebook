@@ -181,10 +181,6 @@ export default function ProfilePageTop() {
    
   };
   const changeAvatarPhoto = () => {
-    console.log(avatarImageURL + "  hi");
-    console.log(avatar + " " + "this is my old avatar") 
-    console.log(avatar + " " + " this is my new avatar");
-    
     dispatch({
       type: "CHANGEAVATAR",
       payload: `${avatarImageURL}`,

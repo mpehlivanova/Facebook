@@ -341,7 +341,7 @@ setFileImg("");
           </div>
           <div className={style.inputTextPost}>
             <input
-              onChange={ e => setInputText(e.target.value.trim())}
+              onChange={ e => setInputText(e.target.value)}
               className={style.input}
               placeholder={`Какво мислите, ${fullName}?`}
               value={inputText}

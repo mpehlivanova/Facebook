@@ -32,7 +32,7 @@ export default function MaterialDatePicker() {
   return (
     <>
       <FormLabel id="demo-row-radio-buttons-group-label">Дата на раждане<br/></FormLabel>
-      <FormControl required sx={{ m: 1, minWidth: 133 }}>
+      <FormControl key={1} required sx={{ m: 1, minWidth: 133 }}>
         <InputLabel id="demo-simple-select-required-label1">Ден</InputLabel>
         <Select
           labelId="demo-simple-select-required-label1"
@@ -46,7 +46,7 @@ export default function MaterialDatePicker() {
           })}
         </Select>
       </FormControl>
-      <FormControl required sx={{ m: 1, minWidth: 133 }}>
+      <FormControl key={2} required sx={{ m: 1, minWidth: 133 }}>
         <InputLabel id="demo-simple-select-required-label2">Месец</InputLabel>
         <Select
           labelId="demo-simple-select-required-label2"
@@ -60,7 +60,7 @@ export default function MaterialDatePicker() {
           })}
         </Select>
       </FormControl>
-      <FormControl required sx={{ m: 1, minWidth: 133 }}>
+      <FormControl key={3} required sx={{ m: 1, minWidth: 133 }}>
         <InputLabel id="demo-simple-select-required-label3">Година</InputLabel>
         <Select
           labelId="demo-simple-select-required-label3"
