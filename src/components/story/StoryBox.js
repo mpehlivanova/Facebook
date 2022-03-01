@@ -3,7 +3,7 @@ import React from "react";
 import { makeStyles } from "@mui/styles";
 import { AppBar, Dialog, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import UUidv4 from "./Util";
+import UUidv4 from "../Util";
 import { grey } from "@mui/material/colors";
 
 export default function StoryBox(props) {
@@ -19,7 +19,6 @@ export default function StoryBox(props) {
       display: "flex",
       flexDirection: "column",
       objectFit: "cover",
-
       justifyContent: "space-between",
       "&:hover": {
         overflow: "hidden",
@@ -50,7 +49,6 @@ export default function StoryBox(props) {
       height: "100vh",
       display: "flex",
       flexDirection: "row",
-      // padding: "46px 0px 0px 0px",
     },
     leftDiv: {
       width: "100%",
@@ -107,7 +105,6 @@ export default function StoryBox(props) {
                     color: grey[200],
                     padding: "5px",
                   }}/>
-                 
               <img
                 className={style.img}
                 src={props.story}

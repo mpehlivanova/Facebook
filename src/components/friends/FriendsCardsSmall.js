@@ -1,10 +1,6 @@
 import * as React from "react";
-// import Box from '@mui/material/Box';
 import { makeStyles } from "@mui/styles";
-import Button from "@mui/material/Button";
-import { grey } from "@mui/material/colors";
-import users from "../server/users";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles({
   oneFriend: {
@@ -23,10 +19,8 @@ const useStyles = makeStyles({
     fontFamily: "Segoe UI Historic, Helvetica, Arial",
     margin: "2px 10px 10px 10px",
     fontWeight: "bold",
-      textAlign: "center",
-    alignContent: "center"
-     
-    
+    textAlign: "center",
+    alignContent: "center",
   },
   conrainerBtn: {
     width: "90%",
@@ -59,10 +53,11 @@ const useStyles = makeStyles({
 
 export default function FriendsCard(img, name) {
   const friends = useStyles();
-
   const currentUser = useSelector((state) => state.userData.currLogged);
-    const allUsers = useSelector((state) => state.userData.registered);
-    const dataOfCurrentUser = allUsers.filter(e => e.email === currentUser[0].email)
+  const allUsers = useSelector((state) => state.userData.registered);
+  const dataOfCurrentUser = allUsers.filter(
+    (e) => e.email === currentUser[0].email
+  );
 
   return (
     <>
@@ -76,7 +71,6 @@ export default function FriendsCard(img, name) {
                 alt="user img"
               ></img>
               <p className={friends.text}>{u.firstName}</p>
-            
             </div>
           </>
         );

@@ -1,8 +1,6 @@
 import React from "react";
-
-
 import { makeStyles } from "@mui/styles";
-import NewsFeed from "./NewsFeed.js";
+import NewsFeed from "../main/NewsFeed";
 import LeftSideBar from "./LeftSideBar.js";
 import RightSideBar from "./RightSideBar.js";
 

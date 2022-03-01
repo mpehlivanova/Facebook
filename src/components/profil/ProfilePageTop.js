@@ -14,11 +14,9 @@ import { Button } from "@mui/material";
 
 const useStyle = makeStyles({
   topWrapper: {
-    // position: "absolute",
     width: "100%",
     display: "flex",
     justifyContent: "center",
-    // height: "800px"
   },
 
   coverImage: {
@@ -26,9 +24,7 @@ const useStyle = makeStyles({
     height: "400px",
     width: "80%",
     objectFit: "cover",
-    // objectPosition: "0% 0%",
     borderRadius: "0 0 10px 10px",
-    // left: "20%",
   },
 
   editCoverImgBtn: {
@@ -122,7 +118,6 @@ const useStyle = makeStyles({
     fontSize: "16px",
     fontWeight: "600",
 
-    // marginRight: "10px",
   },
   cameraAvatarBtn: {
     position: "relative",
@@ -151,11 +146,7 @@ export default function ProfilePageTop() {
 
   const [coverImageURL, setCoverImageURL] = React.useState("");
   const [avatarImageURL, setAvatarImageURL] = React.useState("");
-  // const [newAvatar, setNewAvatar] = React.useState("");
 
-  
-  
-  //cover image functions
   const handleChangeCover = (ev) => {
     setCoverImageURL(ev.target.value.trim());
   };
@@ -174,11 +165,8 @@ export default function ProfilePageTop() {
     setOpenCover(false);
   };
 
-  // avatar image functions
   const handleChangeAvatar = (ev) => {
     setAvatarImageURL(ev.target.value.trim());
-    // console.log(avatarImageURL);
-   
   };
   const changeAvatarPhoto = () => {
     dispatch({
@@ -186,7 +174,6 @@ export default function ProfilePageTop() {
       payload: `${avatarImageURL}`,
     });
   };
-
   const handleClickOpenAvatar = () => {
     setOpenAvatar(true);
   };
@@ -292,11 +279,9 @@ const style = useStyle();
           </div>
         </div>
       </div>
-
       <div className={style.hrWrapper}>
         <hr />
       </div>
-
       <nav className={style.nav}>
         <Link className={style.link} to="/">
           Публикации

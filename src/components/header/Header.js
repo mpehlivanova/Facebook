@@ -1,25 +1,17 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
-import "../components-css/Header.css";
 import SearchIcon from "@mui/icons-material/Search";
-// import HomeIcon from '@mui/icons-material/Home';
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import SmartDisplayOutlinedIcon from "@mui/icons-material/SmartDisplayOutlined";
-// import StorefrontOutlinedIcon from '@mui/icons-material/StorefrontOutlined';
-// import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-// import CircleNotificationsOutlinedIcon from '@mui/icons-material/CircleNotificationsOutlined';
-// import ArrowDropDownCircleOutlinedIcon from '@mui/icons-material/ArrowDropDownCircleOutlined';
 import IconButton from "@mui/material/IconButton";
-// import myProfil from "../components-css/imgLeftBar/guest.png";
 import Button from "@mui/material/Button";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import { Link } from "react-router-dom";
 import { Avatar } from "@mui/material";
 import MessageRoundedIcon from "@mui/icons-material/MessageRounded";
 import AppsRoundedIcon from "@mui/icons-material/AppsRounded";
-import { blue, grey, red } from "@mui/material/colors";
+import { grey, red } from "@mui/material/colors";
 import NotificationsRoundedIcon from "@mui/icons-material/NotificationsRounded";
-// import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import PopUpUserMenu from "./PopUpUserMenu";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import { useSelector, useDispatch } from "react-redux";
@@ -100,7 +92,6 @@ const useStyles = makeStyles({
   user: {
     display: "flex",
     flexDirection: "row",
-    // gap: "5px",
     alignItems: "center",
   },
   link: {
@@ -127,15 +118,12 @@ export default function Header() {
   const clearCurrLoggedUser = () => {
     dispatch({
       type: "LOGOUT",
-      // payload: null,
       logged: false,
     });
   };
 
   const avatar = useSelector((state) => state.userData.currLogged[0].avatar);
   const fullName = useSelector((state) => state.userData.currLogged[0].firstName);
-  
-  // console.log(avatar);
   const classes = useStyles();
 
   return (
@@ -159,14 +147,10 @@ export default function Header() {
           ></input>
         </div>
       </div>
-
-      {/* central part */}
       <div className={useStyles.centralHeader}>
         <div className={classes.centrum}>
           <div className="options">
             <Link to="/">
-              {" "}
-              {/*  added link and buttum color gre Mariela*/}
               <Button className={useStyles.centralBtns}>
                 <HomeOutlinedIcon 
                   color="action"
@@ -176,19 +160,8 @@ export default function Header() {
               </Button>
             </Link>
           </div>
-          {/* <div className="options">
-              <Button className={useStyles.centralBtns}>
-                <StorefrontOutlinedIcon
-                  color="action"
-                  className={classes.iconCentrum}
-                  fontSize="large"
-                />
-              </Button>
-            </div> */}
           <div className="options">
             <Link to="/friends">
-              {" "}
-              {/*  added link Mariela */}
               <Button className={useStyles.centralBtns}>
                 <PeopleAltOutlinedIcon
                   color="action"
@@ -200,8 +173,6 @@ export default function Header() {
           </div>
           <div className="options">
             <Link to="/video">
-              {" "}
-              {/*  added link Mariela */}
               <Button className={useStyles.centralBtns}>
                 <SmartDisplayOutlinedIcon
                   color="action"
@@ -213,8 +184,6 @@ export default function Header() {
           </div>
         </div>
       </div>
-
-      {/* Right side header */}
       <div className={classes.right_header}>
         <ListItemIcon>
           <Link className={classes.link} to="/user">
@@ -228,11 +197,8 @@ export default function Header() {
             </div>
           </Link>
         </ListItemIcon>
-
         <div className={classes.rightSideIcons}>
           <Link to="/">
-            {/* /*  added new style btn Mariela */}
-
             <IconButton>
               <Avatar
                 sx={{
@@ -245,53 +211,32 @@ export default function Header() {
               </Avatar>
             </IconButton>
           </Link>
-
           <Link to="/">
-            {/*  added new style btn Mariela */}
             <IconButton>
               <Avatar
                 sx={{
                   bgcolor: grey[200],
                   color: "black",
                   marginRight: "-10px",
-                }}
-              >
+                }}>
                 <MessageRoundedIcon />
               </Avatar>
             </IconButton>
           </Link>
-
           <Link to="/">
-            {/*  added new style btn Mariela */}
             <IconButton>
               <Avatar
                 sx={{
                   bgcolor: grey[200],
                   color: "black",
                   marginRight: "-10px",
-                }}
-              >
+                }} >
                 <NotificationsRoundedIcon />
               </Avatar>
             </IconButton>
           </Link>
-
           <PopUpUserMenu onClick={clearCurrLoggedUser} sx={{ color: "black" }} />
         </div>
-
-        {/* 
-          <IconButton>
-            <CircleNotificationsOutlinedIcon
-              className={classes.iconRight}
-              fontSize="large"
-            />
-          </IconButton>
-          <IconButton>
-            <ArrowDropDownCircleOutlinedIcon
-              className={classes.iconRight}
-              fontSize="large"
-            />
-          </IconButton> */}
       </div>
     </div>
   );

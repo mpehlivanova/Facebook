@@ -1,10 +1,8 @@
 import React from "react";
-import ProfilePageLeftSide from "../components/ProfilePageLeftSide";
-import ProfilePageTop from "../components/ProfilePageTop";
+import ProfilePageLeftSide from "../components/profil/ProfilePageLeftSide";
+import ProfilePageTop from "../components/profil/ProfilePageTop";
 import { makeStyles } from "@mui/styles";
-import ProfilePageRightSide from "../components/ProfilePageRightSide";
-import { PostsLayout } from "./../components/InfiniteScroll";
-import FriendsCard from '../components/FriendsCard';
+import ProfilePageRightSide from "../components/profil/ProfilePageRightSide";
 
 const useStyle = makeStyles({
   container: {
@@ -31,11 +29,7 @@ export default function ProfilePage() {
       <ProfilePageTop />
       <div className={style.main}>
       <ProfilePageLeftSide />
-        
-
-        
-      <ProfilePageRightSide />
-        {/* <PostsLayout /> */}
+       <ProfilePageRightSide />
       </div>
     </div>
   );

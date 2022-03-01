@@ -1,8 +1,8 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
-import NewsFeed from "../components/NewsFeed.js";
-import LeftSideBar from "../components/LeftSideBar.js";
-import RightSideBar from "../components/RightSideBar.js";
+import NewsFeed from "../components/main/NewsFeed";
+import LeftSideBar from "../components/main/LeftSideBar.js";
+import RightSideBar from "../components/main/RightSideBar.js";
 // import ProfilePageTop from './../components/ProfilePageTop';
 
 const useStyles = makeStyles({

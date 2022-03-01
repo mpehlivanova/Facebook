@@ -6,12 +6,9 @@ import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-// import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip";
-// import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
-// import triangle from "../components-css/imgLeftBar/triangle.png";
 import { useDispatch } from "react-redux";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { grey } from "@mui/material/colors";
@@ -19,7 +16,6 @@ import AnnouncementIcon from '@mui/icons-material/Announcement';
 import BedtimeIcon from '@mui/icons-material/Bedtime';
 import HelpIcon from '@mui/icons-material/Help';
 import {useSelector} from "react-redux"
-// import Login from "../pages/Login"
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@mui/styles';
 
@@ -27,17 +23,12 @@ import { makeStyles } from '@mui/styles';
 export default function AccountMenu() {
 const avatar = useSelector((state) => state.userData.currLogged[0].avatar);
 const fullName = useSelector((state) => state.userData.currLogged[0].firstName);
-  
   const dispatch = useDispatch();
-
   const handleLogout = () => {
     console.log("bye");
     dispatch({ type: "LOGOUT" });
     localStorage.removeItem("loginData");
-    
-
   };
-
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -46,7 +37,6 @@ const fullName = useSelector((state) => state.userData.currLogged[0].firstName);
   const handleClose = () => {
     setAnchorEl(null);
   };
-
   const useStyles = makeStyles({
     link: {
       textDecoration: "none",
@@ -58,7 +48,6 @@ const fullName = useSelector((state) => state.userData.currLogged[0].firstName);
     container: {
       display: "flex",
       width: "100%",
-
     },
     avatar: {
       width:"100%"

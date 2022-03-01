@@ -1,6 +1,5 @@
 import { makeStyles } from "@mui/styles";
 import React, { useState } from "react";
-import { Button, ButtonGroup } from "react-rainbow-components";
 import RightButton from "../components/header/RightButton";
 import ButtonPost from "../components/Post/ButtonPost";
 import PostHeader from "../components/Post/PostHeader";
@@ -8,13 +7,13 @@ import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import RecommendRoundedIcon from "@mui/icons-material/RecommendRounded";
 import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
 import { grey } from "@mui/material/colors";
-import CommentList from "../components/Post/CommentList";
+import CommentList from "../components/Post/Comment";
 import { useDispatch, useSelector } from "react-redux";
 import CreateComment from "../components/Post/CreateComment";
-import { IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import UUidv4 from "../components/Util";
 import EmojiPicker, { SKIN_TONE_MEDIUM_DARK } from "emoji-picker-react";
+import { Button } from "@mui/material";
 
 const useStyle = makeStyles({
   container: {
@@ -26,7 +25,6 @@ const useStyle = makeStyles({
   },
   leftDiv: {
     width: "70%",
-    // height: "100vh",
     backgroundColor: "rgb(0,0,0,0.85)",
     display: "flex",
     justifyContent: "center",
@@ -41,7 +39,7 @@ const useStyle = makeStyles({
   },
   img: {
     width: "75%",
-    objectFit:"contain"
+    objectFit: "contain",
   },
   right: {
     display: "flex",
@@ -90,20 +88,12 @@ export default function ViewPostPage(props) {
       isLike(false);
     }
   };
-  
-  const allPosts = useSelector((state) => state.actionPost.addedPosts);
-  const userLogPost = allPosts.filter((u) => u.userName === fullName);
-  const allComments = useSelector((state) => state.actionPost.addedComment.filter(com=>com.postId === props.postId));
 
-  console.log(allComments);
-
-
- 
-
-
-  const [numberComment, setNumbetComment] = useState(false);
+  const allComments = useSelector((state) =>
+    state.actionPost.addedComment.filter((com) => com.postId === props.postId)
+  );
+  const [numberComment, setNumbetComment] = useState(true);
   const handleViewLiked = (props) => {
-   
     liked ? viewLiked(false) : viewLiked(true);
   };
   const [commentList, viewCommentList] = useState(true);
@@ -113,24 +103,20 @@ export default function ViewPostPage(props) {
   const handleNumberComment = () => {
     numberComment ? setNumbetComment(false) : setNumbetComment(true);
   };
-  
   const [comment, setComment] = useState("");
-
   const setHandleComment = (ev) => {
     setComment(ev.target.value);
   };
   const [viewEmoji, setViewEmoji] = React.useState(null);
-  const handleViewEmoji=()=>{
-    viewEmoji?setViewEmoji(false):setViewEmoji(true)
-  }
-
+  const handleViewEmoji = () => {
+    viewEmoji ? setViewEmoji(false) : setViewEmoji(true);
+  };
   const onEmojiClick = (ev, emojiObject) => {
-    setComment(comment=>comment + emojiObject.emoji);
+    setComment((comment) => comment + emojiObject.emoji);
     setViewEmoji(false);
     console.log(comment + emojiObject.emoji);
   };
   const dispatch = useDispatch();
-
   const handleCreateComment = () => {
     console.log(comment);
     if (comment.length !== 0) {
@@ -145,16 +131,11 @@ export default function ViewPostPage(props) {
       setComment("");
     }
   };
-
-
-
-
-
   return (
     <>
       <div className={viewPost.container}>
         <div className={viewPost.leftDiv}>
-            <CloseIcon
+          <CloseIcon
             onClick={props.handleClose}
             sx={{
               fontSize: 24,
@@ -171,77 +152,73 @@ export default function ViewPostPage(props) {
           <PostHeader userName={fullName} imgUser={avatar} />
           <div className={viewPost.likeConrainer}>
             <div>
-              {liked && 
-                <div className={viewPost.likeConrainer}>
-                  <RecommendRoundedIcon color="primary" />
-                  <p className={viewPost.textSmall}>{like}</p>
-                </div>
-              }
+              <div className={viewPost.likeConrainer}>
+                {liked && (
+                  <>
+                    <RecommendRoundedIcon color="primary" />
+                    <p className={viewPost.textSmall}>{like}</p>
+                  </>
+                )}
+              </div>
             </div>
-            {
-              numberComment &&
-              <p 
-              onChange={handleNumberComment} 
-              className={viewPost.textSmall}>{ allComments.length} коментар</p>
-            }
-           
+            {(allComments.length > 0)  && (
+              <p onChange={handleNumberComment} className={viewPost.textSmall}>
+                {allComments.length} коментар
+              </p>
+            )}
           </div>
           <div className={viewPost.buttonBox}>
-            <div
-              
-            >
-              <ButtonPost
-              onClick={() => {
-                changeLikeOption();
-                handleViewLiked();
-              }}
-                name="Like"
-                icon={<ThumbUpOutlinedIcon sx={{ mr: 1 }} color="action" />}
-              ></ButtonPost>
+            <div>
+              <Button
+                onClick={() => {
+                  changeLikeOption();
+                  handleViewLiked();
+                }}
+                sx={{ textTransform: "none" }}
+                color="inherit"
+                startIcon={<ThumbUpOutlinedIcon color="disabled" />}
+              >
+                Like
+              </Button>
             </div>
-            <div
-            onClick={handleViewCommentList}>
+            <div onClick={handleViewCommentList}>
               <ButtonPost
                 name="Comment"
                 icon={<ModeCommentOutlinedIcon sx={{ mr: 1 }} color="action" />}
               ></ButtonPost>
             </div>
           </div>
-
           <div>
-            <p 
-            onClick={handleViewCommentList}
-            className={`${viewPost.textSmall} ${viewPost.hover}`}>
+            <p
+              onClick={handleViewCommentList}
+              className={`${viewPost.textSmall} ${viewPost.hover}`}
+            >
               View previouse comments
             </p>
-          {
-            commentList &&
-            allComments.map(com=>{
-              return(
-                <CommentList
-                key={com.comment}
-                text={com.comment}/> )})    
-          }
-      
-          <CreateComment
-          comment={comment}
-          onChange={(ev)=>setComment(ev.target.value)}
-          handleViewEmoji={()=>handleViewEmoji()}
-          // handleCreateComment={handleCreateComment}
-           onClick={(ev)=>handleCreateComment(ev)}
-          numberComment={()=>setNumbetComment(true)} 
-          viewComment={()=>viewCommentList(true)}  
-          imgUser={avatar}/>
+            {commentList &&
+              allComments.map((com) => {
+                return <CommentList key={com.comment} text={com.comment} />;
+              })}
+            <CreateComment
+              comment={comment}
+              onChange={(ev) => setComment(ev.target.value)}
+              handleViewEmoji={() => handleViewEmoji()}
+              onClick={(ev) => handleCreateComment(ev)}
+              numberComment={() => setNumbetComment(true)}
+              viewComment={() => viewCommentList(true)}
+              imgUser={avatar}
+            />
           </div>
-          {viewEmoji && <EmojiPicker
-            pickerStyle={{width: "450px"}}
-            onEmojiClick={onEmojiClick}
-            disableAutoFocus={true}
-            skinTone={SKIN_TONE_MEDIUM_DARK}
-            groupNames={{ smileys_people: "PEOPLE" }}
-            native
-            />}
-         
+          {viewEmoji && (
+            <EmojiPicker
+              pickerStyle={{ width: "450px" }}
+              onEmojiClick={onEmojiClick}
+              disableAutoFocus={true}
+              skinTone={SKIN_TONE_MEDIUM_DARK}
+              groupNames={{ smileys_people: "PEOPLE" }}
+              native
+            />
+          )}
         </div>
       </div>
     </>

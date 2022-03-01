@@ -3,7 +3,6 @@ import BadgeAvatars from "../Avatar";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { makeStyles } from "@mui/styles";
 import IconButton from "@mui/material/IconButton";
-import { useState } from "react";
 import { useSelector } from "react-redux";
 import UUidv4 from "../Util";
 
@@ -34,7 +33,7 @@ const useStyles = makeStyles({
 
   input: {
     borderRadius: "10px",
-    width: "60%",
+    width: "40%",
     height: "20px",
     color: "action",
     border: "none",
@@ -49,10 +48,7 @@ const useStyles = makeStyles({
     textDecoration: "none",
     color: "#2c2d2d",
   },
-
-  
 });
-
 
 export default function CommentList(props) {
   const post = useStyles();

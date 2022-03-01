@@ -1,8 +1,8 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
-import CreatePost from "./CreatePost";
-import Post from "./Post";
-import PrintUserPosts from "./PrintUserPosts";
+import CreatePost from "../Post/CreatePost";
+import Post from "../Post/Post";
+import PrintUserPosts from "../Post/PrintUserPosts";
 
 const useStyle = makeStyles({
   mainRight: {

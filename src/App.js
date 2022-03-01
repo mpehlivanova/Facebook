@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "./components/Header";
+import Header from "./components/header/Header";
 import Login from "./pages/Login";
 import Main from "./pages/Main.js";
 import {  Routes, Route } from "react-router-dom";
@@ -10,7 +10,6 @@ import ProfilePage from './pages/ProfilePage';
 import { useSelector } from "react-redux";
 import ViewPostPage from "./pages/ViewPostPage";
 
-// useSelector((state) => state.userData.logged);
 function App() {
   const logged = useSelector((state) => state.userData.logged);;
   return (
@@ -27,7 +26,7 @@ function App() {
               <Route path="/friends" element={<Friends></Friends>} />
               <Route path="/video" element ={<VideoPage></VideoPage>}/>
               <Route path="/grup" element ={<Grups></Grups>}/>
-             <Route path="/view/" element ={<ViewPostPage></ViewPostPage>}/>    {/* да сочи към ид на поста*/}
+             <Route path="/view/" element ={<ViewPostPage></ViewPostPage>}/> 
             </Routes>
         </>
       )}

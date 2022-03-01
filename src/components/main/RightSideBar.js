@@ -1,20 +1,17 @@
 import React from "react";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
-import iconRd from "../components-css/imgLeftBar/rd.png";
-// import CardAd from "./CardAd.js";
-import BadgeAvatars from "./Avatar.js";
+import BadgeAvatars from "../Avatar.js";
 import SearchIcon from "@mui/icons-material/Search";
 import VideoCallIcon from "@mui/icons-material/VideoCall";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import IconButton from "@mui/material/IconButton";
-import users from "../server/users";
-
+import users from "../../server/users";
 import { makeStyles } from "@mui/styles";
-import { IFrame } from "./IFrame";
-import friends from "../components-css/imgLeftBar/friends.png"
+import { IFrame } from "../video/IFrame";
+import friends from "../../components-css/imgLeftBar/friends.png"
 import { useSelector } from "react-redux";
-import RequestsCard from "./RequestsCard";
+import RequestsCard from "../friends/RequestsCard";
 
 const useStyles = makeStyles({
   conrainerRight: {
@@ -49,7 +46,6 @@ const useStyles = makeStyles({
     marginLeft: "10px",
     marginTop: "5px",
     marginBottom: "5px",
-    // fontSize: "small",
     fontFamily: "Helvetica",
     fontSize: "16px",
   },
@@ -109,22 +105,17 @@ const useStyles = makeStyles({
   }
 });
 
-// const user ={{},{}} // all user
-
 export default function RightSideBar(props) {
 
   function uuidv4() {
     return (Math.random() * 1000 + Math.random() * 1000)
   }
   const classes = useStyles();
-
   const listOfRequests = useSelector((state) => state.userData.currLogged);
   const allUsersReg = useSelector((state) => state.userData.registered);
   const dataOfCurrentUser = allUsersReg.filter(e => e.email === listOfRequests[0].email)
   const isEmpty = dataOfCurrentUser[0].requests.length > 0
   
-  
-
   return (
     <div className={classes.conrainerRight}>
       {
@@ -173,42 +164,7 @@ export default function RightSideBar(props) {
           ))}
         </List>
       </div>
-
-      {/* <ListItemButton className={classes.list}>
-            <BadgeAvatars />
-            <p className={classes.textSmall}>Калоян Игнатов</p>
-          </ListItemButton>
-
-          <ListItemButton className={classes.list}>
-            <BadgeAvatars />
-            <p className={classes.textSmall}>Кирил Страхилов</p>
-          </ListItemButton>
-
-          <ListItemButton className={classes.list}>
-            <BadgeAvatars src="https://d33wubrfki0l68.cloudfront.net/1fa5d5db38d24786b36e58bf0562f1d821b12ef6/e61d8/static/inviteyourownheader1-878b5db230ca8e78e1451814ba07a834.jpg" />
-            <p className={classes.textSmall}>Мадлена Христова</p>
-          </ListItemButton>
-
-          <div className={classes.border}>
-            <h3 className={classes.text}>Групови разговори</h3>
-
-            <ListItemButton className={classes.list}>
-              <BadgeAvatars />
-              <p className={classes.textSmall}>Дом и градина</p>
-            </ListItemButton>
-
-            <ListItemButton className={classes.list}>
-              <BadgeAvatars img="https://www.gravatar.com/avatar/1b8fabaa8d66250a7049bdb9ecf44397?s=250&d=mm&r=x" />
-              <p className={classes.textSmall}>Всичко за котките</p>
-            </ListItemButton> */}
-
-      {/* scroll */}
-      {/* <Paper>
-          <EmployeeList employees={rows} showAdmin={false} />
-        </Paper>
- */}
-      {/* scroll */}
     </div>
-    // </div>
+    
   );
 }

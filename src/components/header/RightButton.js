@@ -7,20 +7,15 @@ import MessageRoundedIcon from '@mui/icons-material/MessageRounded';
 import AppsRoundedIcon from '@mui/icons-material/AppsRounded';
 import {  grey, red } from "@mui/material/colors";
 import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
-
-
-import PopUpUserMenu from "../PopUpUserMenu";
-
-
-
+import PopUpUserMenu from "./PopUpUserMenu";
 
 const useStyles = makeStyles({
   iconCentrum: {
-    scale: "0.9", // small icon header -Mariela
+    scale: "0.9", 
     borderBottom: "4px solid white",
   },
   iconRight: {
-    scale: "0.1", // small icon header -Mariela
+    scale: "0.1", 
   },
   centrum: {
     display: "flex",
@@ -45,7 +40,6 @@ const useStyles = makeStyles({
     left: "0",
 
     boxShadow: "0px 5px 8px -9px rgb(0,0,0,0.75)",
-    // alignItems: "baseline",
     alignItems: "center",
   },
   left_header: {
@@ -84,7 +78,6 @@ const useStyles = makeStyles({
   user: {
     display: "flex",
     flexDirection: "row",
-    // gap: "5px",
     alignItems: "center",
   },
   link: {
@@ -108,49 +101,32 @@ export default function RightButton(){
     const classes = useStyles();
 
     return (
-      // <div className={classes.header}>
-       
-        // <div className={classes.right_header}>
-        
           <div className={classes.rightSideIcons}>
             <Link to="/">
-         
-
               <IconButton>
                 <Avatar sx={{ bgcolor: grey[200] }}>
                   <AppsRoundedIcon color="action" />
                 </Avatar>
               </IconButton>
             </Link>
-
             <Link to="/">
-   
               <IconButton>
                 <Avatar sx={{ bgcolor: grey[200] }}>
                   <MessageRoundedIcon color="action" />
                 </Avatar>
               </IconButton>
             </Link>
-
             <Link to="/">
-        
               <IconButton>
                 <Avatar sx={{ bgcolor: grey[200] }}>
                   <NotificationsRoundedIcon color="action"  />
                 </Avatar>
               </IconButton>
             </Link>
-
             <Link to="/">
-          
               <PopUpUserMenu />
             </Link>
-          
           </div>
-
-       
-      //   </div>
-      // </div>
     );
 }
 

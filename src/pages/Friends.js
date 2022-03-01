@@ -1,7 +1,7 @@
 import * as React from "react";
 import { makeStyles } from "@mui/styles";
 import ListItemButton from "@mui/material/ListItemButton";
-import FriendsCard from "../components/FriendsCard";
+import FriendsCard from "../components/friends/FriendsCard";
 import { Link } from "@mui/material";
 import PeopleIcon from "@mui/icons-material/People";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";

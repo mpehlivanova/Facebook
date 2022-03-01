@@ -3,31 +3,25 @@ import BadgeAvatars from "../Avatar";
 import PhotoCameraOutlinedIcon from "@mui/icons-material/PhotoCameraOutlined";
 import StickyNote2OutlinedIcon from "@mui/icons-material/StickyNote2Outlined";
 import IconButton from "@mui/material/IconButton";
-import { useState } from "react";
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import UUidv4 from "../Util";
 import { makeStyles } from "@mui/styles";
-import { Button } from "react-rainbow-components";
-import GifBoxOutlinedIcon from "@mui/icons-material/GifBoxOutlined";
 import SentimentSatisfiedOutlinedIcon from "@mui/icons-material/SentimentSatisfiedOutlined";
-import ButtonPost from "./ButtonPost";
 import AddIcon from "@mui/icons-material/Add";
 
-import { Picker } from "@material-ui/pickers";
-import EmojiPicker, { SKIN_TONE_MEDIUM_DARK } from "emoji-picker-react";
-
 const useStyles = makeStyles({
+  container: {
+    width:"100%",
+  },
   row: {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    paddingLeft: "5px",
-    poddingLeft: "10px",
-    gap: "5px",
+    paddingLeft: "2px",
+    poddingLeft: "2px",
+    gap: "2px",
     justifyContent: "space-between",
   },
-
+ 
   iconContact: {
     opacity: "0.5",
     scale: "0.7",
@@ -46,7 +40,6 @@ const useStyles = makeStyles({
     display: "flex",
     width: "95%",
     flexDirection: "row",
-    // alignItems: "baseline",
     justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: " #eff2f5",
@@ -54,48 +47,38 @@ const useStyles = makeStyles({
     marginLeft: "5px",
     "&focus": { border: "none" },
   },
+  
 });
-
 export default function CreateComment(props) {
   const post = useStyles();
-  const fullName = useSelector(
-    (state) => state.userData.currLogged[0].firstName
-  );
   const avatar = useSelector((state) => state.userData.currLogged[0].avatar);
-  
-
- 
- 
   return (
-    <>
+    <div className={post.container}>
       <div className={post.row}>
         <div>
           <BadgeAvatars image={avatar} />
         </div>
         <div className={`${post.commenrWrite}`}>
           <input
-            onChange={ev=>props.onChange(ev)}
+            onChange={(ev) => props.onChange(ev)}
             className={post.inputComment}
             type="text"
             placeholder="White a comment"
             value={props.comment}
-          ></input> </div>
-
-          <div
-            className={post.row}
-            
-          >  <IconButton
-            onClick={(ev)=>props.onClick(ev)}
-            onViewCommenn={props.viewComment}
-            onViewNumberComment={props.numberComment} 
-            size="small">
+          ></input>{" "}
+        </div>
+        <div className={post.row}>
+          <IconButton
+            onClick={(ev) => {
+              props.onClick(ev)
+              props.numberComment()}}
+            size="small"
+          >
             <AddIcon size="small" color="disabled" />
-            </IconButton>
-         
+          </IconButton>
           <IconButton size="small">
             <SentimentSatisfiedOutlinedIcon
-             onClick={props.handleViewEmoji}
-              // onClick={handleViewEmoji}
+              onClick={props.handleViewEmoji}
               className={post.iconContact}
             />
           </IconButton>
@@ -105,10 +88,8 @@ export default function CreateComment(props) {
           <IconButton size="small">
             <StickyNote2OutlinedIcon className={post.iconContact} />
           </IconButton>
-          </div>
-       
+        </div>
       </div>
-      
-    </>
+    </div>
   );
 }

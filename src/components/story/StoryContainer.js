@@ -3,7 +3,7 @@ import CreateStory from "./CreateStory";
 import StoryBox from "./StoryBox";
 import { makeStyles } from "@mui/styles";
 // import { userActivate } from "video-react/lib/actions/player";
-import  UserStories from "./UserStories"
+import  UserStories from "../../server/UserStories"
 
 const useStyle = makeStyles({
   storyContainer: {
@@ -20,7 +20,6 @@ export default function StoryContainer() {
   return (
     <div className={style.storyContainer}>
       <CreateStory />
-    
       {UserStories.slice(start, start + 4).map((u) => {
         return (
           <StoryBox

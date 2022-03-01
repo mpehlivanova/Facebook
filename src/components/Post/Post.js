@@ -7,12 +7,12 @@ import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import UUidv4 from "./Util.js";
-import ViewPostPage from "../pages/ViewPostPage.js";
+import UUidv4 from "../Util.js";
+import ViewPostPage from "../../pages/ViewPostPage.js";
 import EmojiPicker, { SKIN_TONE_MEDIUM_DARK } from "emoji-picker-react";
-import PostHeader from "./Post/PostHeader.js";
-import CommentList from "./Post/CommentList.js";
-import CreateComment from "./Post/CreateComment.js";
+import PostHeader from "./PostHeader.js";
+import CommentList from "./Comment.js";
+import CreateComment from "./CreateComment.js";
 
 const useStyles = makeStyles({
   conrainerPost: {
@@ -126,7 +126,19 @@ const useStyles = makeStyles({
     height: "20px",
     outlineWidth: "0",
   },
-  
+  commenrWrite: {
+    display: "flex",
+    width: "95%",
+    flexDirection: "row",
+    alignItems: "baseline",
+    justifyContent: "space-between",
+    alignItems: "center",
+    backgroundColor: " #eff2f5",
+    borderRadius: "20px",
+    marginLeft: "5px",
+  },
+
+
   link: {
     textDecoration: "none",
     color: "#2c2d2d",
@@ -155,7 +167,7 @@ export default function Post(props) {
   const [like, isLike] = useState(false);
   const [liked, viewLiked] = useState(false);
   const [comment, setComment] = useState("");
-  const [commentList, viewCommentList] = useState(false);
+  const [commentList, viewCommentList] = useState(true);
   const [numberComment, setNumbetComment] = useState(false);
   const [viewEmoji, setViewEmoji] = React.useState(false);
 
@@ -179,7 +191,7 @@ export default function Post(props) {
     setOpen(false);
   };
 
-  const handleViewLiked = () => {
+  const handleViewLiked = (props) => {
     liked ? viewLiked(false) : viewLiked(true);
   };
 
@@ -258,11 +270,11 @@ export default function Post(props) {
             ) : null}
           </div>
           {
-            numberComment && 
-                <p 
+            (onePostComment.length > 0  ) ?
+                (<p 
                 onChange={handleNumberComment} 
                 className={post.textSmall}>
-                { onePostComment.length} коментар</p>
+                { onePostComment.length} коментар</p>):(null)
 
             }
         </div>
@@ -314,9 +326,9 @@ export default function Post(props) {
           comment={comment}
           onChange={(ev)=>setComment(ev.target.value)}
           handleViewEmoji={()=>handleViewEmoji()}
-           onClick={()=>handleCreateComment()}
+          onClick={()=>handleCreateComment()}
           numberComment={()=>setNumbetComment(true)} 
-          viewComment={handleViewCommentList}  
+          viewComment={()=>handleViewCommentList()}  
           imgUser={avatar}/>
           </div>
         </div>

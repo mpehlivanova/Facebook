@@ -74,9 +74,6 @@ export default function PostHeader(props) {
             <div height="8px">
               <p className={post.textInput}>
                 <strong>{props.userName} </strong>
-                 {/* is width */}
-                {/* <strong>{"{friend}"}</strong> at
-                <strong>{"{Hotel}"}</strong> */}
               </p>
               <p className={post.textXsmall}>
                 15h *

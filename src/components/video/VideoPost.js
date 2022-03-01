@@ -1,31 +1,16 @@
 import * as React from "react";
-// import Box from '@mui/material/Box';
-import BadgeAvatars from "./Avatar.js";
-import PublicIcon from "@mui/icons-material/Public";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { grey } from "@mui/material/colors";
 import { makeStyles } from "@mui/styles";
-import { Button } from "@mui/material";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import RecommendRoundedIcon from "@mui/icons-material/RecommendRounded";
 import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
-import GifBoxOutlinedIcon from "@mui/icons-material/GifBoxOutlined";
-import SentimentSatisfiedOutlinedIcon from "@mui/icons-material/SentimentSatisfiedOutlined";
-import PhotoCameraOutlinedIcon from "@mui/icons-material/PhotoCameraOutlined";
-import StickyNote2OutlinedIcon from "@mui/icons-material/StickyNote2Outlined";
-import IconButton from "@mui/material/IconButton";
-import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
-
-import { Player } from 'video-react';
 import { IFrame } from "./IFrame.js";
-import { useState } from 'react';
-import UserStories from "./UserStories.js";
-import PostHeader from "./Post/PostHeader.js";
+import { useState } from "react";
+import UserStories from "../../server/UserStories";
+import PostHeader from "../Post/PostHeader";
 import { useSelector } from "react-redux";
-import ButtonPost from "./Post/ButtonPost.js";
-import CreateComment from "./Post/CreateComment.js";
-import CommentList from "./Post/CommentList.js";
-
+import ButtonPost from "../Post/ButtonPost";
+import CreateComment from "../Post/CreateComment.js";
+import CommentList from "../Post/Comment.js";
 
 const useStyles = makeStyles({
   conrainerPost: {
@@ -37,8 +22,6 @@ const useStyles = makeStyles({
     boxShadow: "5px 5px 5px 5px rgb(169,169,169,0.25)",
     borderRadius: "10px",
     paddingBottom: "20px",
-
-
   },
   header: {
     display: "flex",
@@ -52,7 +35,6 @@ const useStyles = makeStyles({
     alignItems: "center",
     paddingLeft: "5px",
     poddingLeft: "10px",
-
   },
   textSmall: {
     fontSize: "small",
@@ -69,7 +51,6 @@ const useStyles = makeStyles({
     fontSize: "medium",
     fontFamily: "Segoe UI Historic, Helvetica, Arial",
     margin: "5px 5px",
-
   },
   border: {
     borderTop: "1px solid #cfd0d1",
@@ -78,7 +59,6 @@ const useStyles = makeStyles({
   buttonBox: {
     display: "flex",
     justifyContent: "space-around",
-    // padding: "4px",
   },
   addComment: {
     width: "100%",
@@ -88,7 +68,6 @@ const useStyles = makeStyles({
     gap: "10px",
   },
   form: {
-
     display: "flex",
     alignItems: "center",
     flexDirection: "row",
@@ -103,7 +82,7 @@ const useStyles = makeStyles({
     border: "none",
     backgroundColor: " #eff2f5",
     padding: "10px",
-    marginLeft: "5px"
+    marginLeft: "5px",
   },
   iconContact: {
     opacity: "0.5",
@@ -133,7 +112,6 @@ const useStyles = makeStyles({
     padding: "20px",
   },
 
-
   inputComment: {
     border: "none",
     backgroundColor: " #eff2f5",
@@ -141,10 +119,8 @@ const useStyles = makeStyles({
     borderRadius: "20px",
     width: "60%",
     height: "30px",
-
   },
   commenrWrite: {
-
     display: "flex",
     width: "95%",
     flexDirection: "row",
@@ -153,18 +129,14 @@ const useStyles = makeStyles({
     alignItems: "center",
     backgroundColor: " #eff2f5",
     borderRadius: "20px",
-    marginLeft: "5px"
-
+    marginLeft: "5px",
   },
   IFrame: {
     width: "100%",
-
   },
   hover: {
     cursor: "pointer",
   },
-
-
 });
 
 export default function VideoPost(props) {
@@ -186,9 +158,6 @@ export default function VideoPost(props) {
     }
   };
   const [numberComment, setNumbetComment] = useState(false);
-
-
-
   const handleViewLiked = (props) => {
     liked ? viewLiked(false) : viewLiked(true);
   };
@@ -199,8 +168,6 @@ export default function VideoPost(props) {
   const handleNumberComment = () => {
     numberComment ? setNumbetComment(false) : setNumbetComment(true);
   };
-
-
   function uuidv4() {
     return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
       (
@@ -209,7 +176,6 @@ export default function VideoPost(props) {
       ).toString(16)
     );
   }
-
   return (
     <>
       {UserStories.map((user, i) => {
@@ -229,13 +195,6 @@ export default function VideoPost(props) {
                     </div>
                   ) : null}
                 </div>
-                {/* {
-              numberComment &&
-              <p 
-              onChange={handleNumberComment} 
-              className={video.textSmall}>{ onePostComment.length} коментар</p>
-            } */}
-
               </div>
               <div className={video.buttonBox}>
                 <div
@@ -249,26 +208,28 @@ export default function VideoPost(props) {
                     icon={<ThumbUpOutlinedIcon sx={{ mr: 1 }} color="action" />}
                   ></ButtonPost>
                 </div>
-                <div
-                  onClick={handleViewCommentList}>
+                <div onClick={handleViewCommentList}>
                   <ButtonPost
                     name="Comment"
-                    icon={<ModeCommentOutlinedIcon sx={{ mr: 1 }} color="action" />}
+                    icon={
+                      <ModeCommentOutlinedIcon sx={{ mr: 1 }} color="action" />
+                    }
                   ></ButtonPost>
                 </div>
               </div>
               <div>
                 <p
                   onClick={handleViewCommentList}
-                  className={`${video.textSmall} ${video.hover}`}>
+                  className={`${video.textSmall} ${video.hover}`}
+                >
                   View previouse comments
                 </p>
-                <CommentList
-                  text={"comment"} />
+                <CommentList />
                 <CreateComment
                   numberComment={() => props.setNumbetComment(true)}
                   viewComment={() => props.handleViewCommentList()}
-                  imgUser={avatar} />
+                  imgUser={avatar}
+                />
               </div>
             </div>
           </>

@@ -30,7 +30,6 @@ const useStyle = makeStyles({
   name: {
     color: "black",
     position: "relative",
-    // top: "120px",
     left: "2px",
   },
   imgWrapper: {

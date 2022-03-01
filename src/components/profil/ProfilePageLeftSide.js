@@ -3,7 +3,7 @@ import { makeStyles } from "@mui/styles";
 import ProfilePageLeftSideField from "./ProfilePageLeftSideField";
 import ProfilePageLeftSideFormDialog from "./ProfilePageLeftSideFormDialog";
 import { useSelector } from "react-redux";
-import FriendsCardsSmall from "./FriendsCardsSmall"
+import FriendsCardsSmall from "../friends/FriendsCardsSmall"
 
 const useStyle = makeStyles({
   mainWrapper: {
@@ -42,7 +42,7 @@ const useStyle = makeStyles({
     fontWeight: "bold",
   },
   secondaryText: {
-    fontSize: "12px                          ",
+    fontSize: "12px",
   },
   biography: {
     marginTop: "-15px",

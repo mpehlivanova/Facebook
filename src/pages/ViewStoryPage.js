@@ -24,11 +24,7 @@ const useStyle = makeStyles({
     width: "75%",
     height: "94vh",
   },
-  
- 
- 
 
- 
   hover: {
     cursor: "pointer",
   },
@@ -36,17 +32,8 @@ const useStyle = makeStyles({
 
 export default function ViewStoryPage(props) {
 
-  const fullName = useSelector(
-    (state) => state.userData.currLogged[0].firstName
-  );
-  const avatar = useSelector((state) => state.userData.currLogged[0].avatar);
-
-
   const viewPost = useStyle();
  
-
- 
-
   return (
     <>
       <div className={viewPost.container}>
