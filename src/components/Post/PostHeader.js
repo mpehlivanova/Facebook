@@ -3,9 +3,7 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { grey} from "@mui/material/colors";
 import { makeStyles } from "@mui/styles";
 import { ListItemIcon } from "@mui/material";
-
 import IconButton from "@mui/material/IconButton";
-
 import PeopleIcon from "@mui/icons-material/People";
 
 const useStyles = makeStyles({
@@ -67,7 +65,7 @@ export default function PostHeader(props) {
             <ListItemIcon>
               <img
                 className={post.img}
-                src={props.imgUser} //props
+                src={props.imgUser} 
                 alt="icon my profil"
               ></img>
             </ListItemIcon>

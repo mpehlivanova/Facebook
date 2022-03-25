@@ -16,7 +16,6 @@ import FormLabel from "@mui/material/FormLabel";
 import TextField from "@mui/material/TextField";
 import DatePicker from ".././components/DatePicker";
 import { useDispatch, useSelector } from "react-redux";
-// import userReducer from "../redux/reducers/userReducer";
 import GoogleLogin from "react-google-login";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -56,7 +55,7 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-// import { firebase } from "../Firebase/firebase";
+
 
 const useStyle = makeStyles({
   loginWrapper: {
@@ -74,7 +73,7 @@ const useStyle = makeStyles({
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
-    // marginTop: "176px",
+    
   },
 
   motto: {
@@ -231,14 +230,7 @@ const useStyle = makeStyles({
 });
 
 export default function Login() {
-  // let isLogged = useSelector((state) => state.userData.logged);
-
-  //  const [loginData, setLoginData] = useState(
-  //     localStorage.getItem("loginData") && (isLogged = true)
-  //       ? JSON.parse(localStorage.getItem("loginData"))
-  //       : null
-  //   );
-
+ 
   const handleFailure = (result) => {
     alert(result);
   };
@@ -249,7 +241,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
-  //login form functions
+  
   const setHandlerInputEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -277,17 +269,16 @@ export default function Login() {
         });
         setError(false);
       } else {
-        console.log("pass wrong");
+        
         setError(true);
       }
     } else {
       setError(true);
-      console.log("mail wrong");
+      
     }
-    console.log(regUsers);
+    
   };
 
-  //register form functions
   const [firstName, setFirstName] = useState("");
   const [avatar, setAvatar] = useState("");
   const [emailReg, setEmailReg] = useState("");
@@ -335,18 +326,16 @@ export default function Login() {
       } else {
         setError(true);
       }
-      console.log(regUsers)
+      
       
     } else {
-      console.log("mail is required");
-      console.log(notAvailableEmails);
+      
       setError(true);
     }
   };
 
   const handleGoogleRegistration = async (googleData) => {
-    console.log(googleData.profileObj.email);
-    console.log(googleData);
+    
     dispatch({
       type: "REGISTER",
       payload: {
@@ -359,18 +348,6 @@ export default function Login() {
       },
     });
 
-    // const res = await fetch('/api/google-login', {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     token: googleData.tokenId,
-    //   }),
-    //   headers: {
-    //     "Content-Type": "application/json"
-    //   },
-    // })
-    // const data = await res.json();
-    // setLoginData(data);
-    // localStorage.setItem("loginData", JSON.stringify(data));
   };
 
   const [open, setOpen] = React.useState(false);
@@ -453,12 +430,12 @@ export default function Login() {
               onFailure={handleFailure}
               cookiePolicy={"single_host_origin"}
             ></GoogleLogin>
-            {/* <button className={style.loginWithGoogle}>Вход с Google</button> */}
+            
           </div>
         </div>
       </div>
 
-      {/* Register form  */}
+      
       <BootstrapDialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"

@@ -17,10 +17,11 @@ const useStyles = makeStyles({
     width: "100%",
     display: "flex",
     alignItems: "center",
+    paddingLeft: "5px",
+    poddingLeft: "10px",
     justifyContent: "space-between",
     
   },
-  
   iconContact: {
     opacity: "0.5",
     scale: "0.7",

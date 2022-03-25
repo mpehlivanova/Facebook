@@ -1,5 +1,4 @@
 import * as React from "react";
-// import Box from '@mui/material/Box';
 import { makeStyles } from "@mui/styles";
 import Button from "@mui/material/Button";
 import { grey } from "@mui/material/colors";
@@ -61,8 +60,6 @@ export default function FriendsCard() {
   );
   const dataOfFriends = loggedUser[0].friends;
   const dataofRequests = loggedUser[0].requests;
-  console.log(dataOfFriends);
-  console.log(dataofRequests);
 
   for (let i = 0; i < filterforcorectUser.length; i++) {
     for (let j = 0; j < dataOfFriends.length; j++) {

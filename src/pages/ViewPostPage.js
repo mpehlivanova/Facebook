@@ -21,7 +21,6 @@ const useStyle = makeStyles({
     height: "100vh",
     display: "flex",
     flexDirection: "row",
-    // padding: "46px 0px 0px 0px",
   },
   leftDiv: {
     width: "70%",
@@ -114,11 +113,11 @@ export default function ViewPostPage(props) {
   const onEmojiClick = (ev, emojiObject) => {
     setComment((comment) => comment + emojiObject.emoji);
     setViewEmoji(false);
-    console.log(comment + emojiObject.emoji);
+    
   };
   const dispatch = useDispatch();
   const handleCreateComment = () => {
-    console.log(comment);
+    
     if (comment.length !== 0) {
       dispatch({
         type: "CREATECOMMENT",

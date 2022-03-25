@@ -55,7 +55,6 @@ const useStyles = makeStyles({
   buttonBox: {
     display: "flex",
     justifyContent: "space-around",
-    // padding: "4px",
   },
   addComment: {
     width: "100%",

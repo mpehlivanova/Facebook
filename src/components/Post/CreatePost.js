@@ -190,8 +190,7 @@ const cssStyle = makeStyles({
 
 export default function CreatePost(props) {
   const fullName = useSelector(
-    (state) => state.userData.currLogged[0].firstName
-  );
+    (state) => state.userData.currLogged[0].firstName);
   const avatar = useSelector((state) => state.userData.currLogged[0].avatar);
   const fileInput = React.useRef(null);
   const style = cssStyle();
@@ -216,7 +215,6 @@ export default function CreatePost(props) {
   const onEmojiClick = (event, emojiObject) => {
     setInputText((inputText) => inputText + emojiObject.emoji);
     setViewEmoji(false);
-    console.log(inputText + emojiObject.emoji);
   };
 
   const [fileImg, setFileImg] = React.useState("");
@@ -347,7 +345,6 @@ export default function CreatePost(props) {
                   ref={fileInput}
                   style={{ display: "none" }}
                   onChange={setHandleFildUploud}
-                  // value={}
                 ></input>
               </label>
               <IconButton size="small">

@@ -18,11 +18,11 @@ import { useSelector, useDispatch } from "react-redux";
 
 const useStyles = makeStyles({
   iconCentrum: {
-    scale: "0.9", // small icon header -Mariela
+    scale: "0.9", 
     borderBottom: "4px solid white",
   },
   iconRight: {
-    scale: "0.1", // small icon header -Mariela
+    scale: "0.1",
   },
   centrum: {
     display: "flex",
@@ -48,7 +48,7 @@ const useStyles = makeStyles({
     left: "0",
 
     boxShadow: "0px 5px 8px -9px rgb(0,0,0,0.75)",
-    // alignItems: "baseline",
+    
     alignItems: "center",
   },
   left_header: {
