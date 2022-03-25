@@ -242,16 +242,7 @@ export default function CreatePost(props) {
           postId: UUidv4(),
         },
       });
-      dispatch({
-        type: "MYPOSTS",
-        payload: {
-          userName: fullName,
-          descripion: inputText,
-          img: avatar,
-          story: fileImg,
-          postId: UUidv4(),
-        },
-      });
+    
       setInputText("");
       setFileImg("");
     }

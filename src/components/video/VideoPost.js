@@ -10,11 +10,12 @@ import PostHeader from "../Post/PostHeader";
 import { useSelector } from "react-redux";
 import ButtonPost from "../Post/ButtonPost";
 import CreateComment from "../Post/CreateComment.js";
-import CommentList from "../Post/Comment.js";
+import UUidv4 from "../Util.js";
 
 const useStyles = makeStyles({
-  conrainerPost: {
-    width: "75%",
+  conrainer: {
+    width: "65%",
+    height: "45%",
     background: "white",
     display: "flex",
     flexDirection: "column",
@@ -157,7 +158,6 @@ export default function VideoPost(props) {
       isLike(false);
     }
   };
-  const [numberComment, setNumbetComment] = useState(false);
   const handleViewLiked = (props) => {
     liked ? viewLiked(false) : viewLiked(true);
   };
@@ -165,23 +165,13 @@ export default function VideoPost(props) {
   const handleViewCommentList = () => {
     commentList ? viewCommentList(false) : viewCommentList(true);
   };
-  const handleNumberComment = () => {
-    numberComment ? setNumbetComment(false) : setNumbetComment(true);
-  };
-  function uuidv4() {
-    return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
-      (
-        c ^
-        (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
-      ).toString(16)
-    );
-  }
+
   return (
     <>
-      {UserStories.slice(0,1).map((user) => {
+      {UserStories.slice(0, 1).map((user) => {
         return (
           <>
-            <div key={uuidv4()} className={video.conrainerPost}>
+            <div key={UUidv4} className={video.conrainer}>
               <PostHeader userName={fullName} imgUser={avatar} />
               <div>
                 <IFrame
@@ -227,10 +217,9 @@ export default function VideoPost(props) {
                 >
                   View previouse comments
                 </p>
-                <CommentList />
+                {/* <CommentList /> */}
                 <CreateComment
-                  numberComment={() => props.setNumbetComment(true)}
-                  viewComment={() => props.handleViewCommentList()}
+                  viewComment={() => handleViewCommentList()}
                   imgUser={avatar}
                 />
               </div>

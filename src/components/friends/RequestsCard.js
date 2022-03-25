@@ -32,7 +32,7 @@ const useStyles = makeStyles({
     marginTop: "-8px",
   },
   clearButton: {
-    backgroundColor: "grey",
+    backgroundColor: "#e6e6e6",
     border: "none",
     borderRadius: "5px",
     width: "100%",
@@ -71,7 +71,7 @@ function RequestsCard() {
       {dataOfCurrentUser[0].requests.map((e) => {
         console.log(e.firstName);
         return (
-          <div className={classes.container}>
+          <div key={e.email} className={classes.container}>
             <div className={classes.containerImage}>
               <img className={classes.image} src={e.avatar}  alt="imag avatar"/>
             </div>

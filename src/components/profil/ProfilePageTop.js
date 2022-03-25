@@ -1,5 +1,4 @@
 import * as React from "react";
-import {useEffect} from "react"
 import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@mui/styles";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
@@ -83,7 +82,7 @@ const useStyle = makeStyles({
     height: "40px",
     width: "220px",
     position: "relative",
-    top: "420px",
+    top: "425px",
     left: "15%",
     borderRadius: "10px",
     display: "flex",

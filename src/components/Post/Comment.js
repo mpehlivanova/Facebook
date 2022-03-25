@@ -33,7 +33,7 @@ const useStyles = makeStyles({
 
   input: {
     borderRadius: "10px",
-    width: "80%",
+    width: "60%",
     height: "20px",
     color: "action",
     border: "none",

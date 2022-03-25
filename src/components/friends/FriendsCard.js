@@ -89,7 +89,7 @@ export default function FriendsCard() {
       {filterforcorectUser.map((u) => {
         return (
           <>
-            <div className={friends.oneFriend}>
+            <div key={u.firstName} className={friends.oneFriend}>
               <img
                 className={friends.imgUser}
                 src={u.avatar}

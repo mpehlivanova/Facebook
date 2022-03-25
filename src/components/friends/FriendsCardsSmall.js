@@ -64,7 +64,7 @@ export default function FriendsCard(img, name) {
       {dataOfCurrentUser[0].friends.map((u) => {
         return (
           <>
-            <div className={friends.oneFriend}>
+            <div key={u.firstName} className={friends.oneFriend}>
               <img
                 className={friends.imgUser}
                 src={u.avatar}

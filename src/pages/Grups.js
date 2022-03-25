@@ -2,7 +2,6 @@ import * as React from "react";
 import { makeStyles } from "@mui/styles";
 import ListItemButton from "@mui/material/ListItemButton";
 import { Button,Link } from "@mui/material";
-import PeopleIcon from "@mui/icons-material/People";
 import Avatar from "@mui/material/Avatar";
 import { blue, grey } from "@mui/material/colors";
 import FeedRoundedIcon from "@mui/icons-material/FeedRounded";
@@ -11,6 +10,7 @@ import NotificationsRoundedIcon from "@mui/icons-material/NotificationsRounded";
 import SettingsIcon from "@mui/icons-material/Settings";
 import SearchIcon from "@mui/icons-material/Search";
 import Post from "../components/Post/Post";
+import grups from "../components-css/grups.PNG"
 
 const useStyles = makeStyles({
   page: {
@@ -27,8 +27,18 @@ const useStyles = makeStyles({
     paddingLeft: "20px",
     paddingRight: "10px",
   },
-
   conatinerGrup: {
+    width: "100%",
+    height: "35%",
+    background: "#F2F3F5",
+    display: "flex",
+    gap: "20px",
+    flexWrap: "wrap",
+    padding: "20px",
+    justifyContent: "center",
+  },
+
+  conatiner: {
     width: "50%",
     height: "150vh",
     background: "#F2F3F5",
@@ -109,7 +119,7 @@ export default function Grups() {
                 <input
                   className={groupPage.input}
                   type="text"
-                  placeholder="Search group"
+                  placeholder="Търсене на група"
                 ></input>
               </div>
             </form>
@@ -120,7 +130,7 @@ export default function Grups() {
               <Avatar sx={{ bgcolor: blue[600] }}>
                 <FeedRoundedIcon />
               </Avatar>
-              <p className={groupPage.text}> Your feed</p>
+              <p className={groupPage.text}>Вашите канали</p>
             </ListItemButton>
           </Link>
 
@@ -128,28 +138,28 @@ export default function Grups() {
             <Avatar sx={{ bgcolor: grey[200] }}>
               <DomainDisabledRoundedIcon color="action" />
             </Avatar>
-            <p className={groupPage.text}>Discover</p>
-          </ListItemButton>
-          <ListItemButton>
-            <Avatar sx={{ bgcolor: grey[200] }}>
-              <PeopleIcon color="action" />
-            </Avatar>
-            <p className={groupPage.text}>Suggestion</p>
+            <p className={groupPage.text}>Откриване</p>
           </ListItemButton>
           <ListItemButton>
             <Avatar sx={{ bgcolor: grey[200] }}>
               <NotificationsRoundedIcon color="action" />
             </Avatar>
-            <p className={groupPage.text}>Your notification</p>
+            <p className={groupPage.text}>Вашите известия</p>
           </ListItemButton>
           <ListItemButton>
             <Button sx={{ width: "100%", bgcolor: blue[100], opacity: ".5" }}>
-              <h3 className={groupPage.textbtn}>+ Create New Grup</h3>
+              <h3 className={groupPage.textbtn}>+ Създаване на нова група</h3>
             </Button>
           </ListItemButton>
         </div>
+        <div className={groupPage.conatiner}>
         <div className={groupPage.conatinerGrup}>
-          <Post />
+        <Post 
+        storyImg={grups}  
+        text="Предлагаме ремонтни дейности на достъпни цени" 
+        img={grups} />
+        </div>
+          
         </div>
       </div>
     </>
